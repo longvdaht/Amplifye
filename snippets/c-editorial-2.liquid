@@ -1,0 +1,176 @@
+{% comment %}
+	{%- render 'c-editorial',
+        section_height: number,
+        section_height_m: number,
+		subheading: string,
+		heading: string,
+		is_smaller_heading: boolean,
+		heading_image: image,
+		heading_image_mobile: image,
+		paragraph: string,
+		paragraph_align_mobile: 'left',
+		cta_label: string,
+		cta_url: url,
+		source: string,
+		gradient_overlay: string,
+		background_image: image,
+		background_image_w: number,
+		background_image_h: number,
+        button_width: text,
+		background_image_mobile: image
+	-%}
+{% endcomment %}
+
+{% style %}
+    {% if section_height != blank %}
+        #shopify-section-{{ section.id }}.s-editorial-2 .c-editorial {
+            height: {{ section_height }}px
+        }
+    {% endif %}
+
+    {% if section_height_m != blank %}
+        @media (max-width: 600px) {
+            #shopify-section-{{ section.id }}.s-editorial-2 .c-editorial {
+                height: {{ section_height_m }}px
+            }
+        }
+    {% endif %}
+
+    @media (min-width: 601px) {
+        #shopify-section-{{ section.id }}.s-editorial-2 .object-fit img {
+            width: auto !important;
+            height: auto !important;
+            transform: translate3d(14.5%, -50%, 0);
+            z-index: 1;
+            left: auto;
+            right: 0;
+        }
+    }
+
+    #shopify-section-{{ section.id }}.s-editorial-2 .gradient-overlay {
+        z-index: 2;
+    }
+
+    #shopify-section-{{ section.id }}.s-editorial-2 .gradient-overlay::before {
+        width: 60%;
+        height: 590px;
+        background: linear-gradient(90.84deg, #B25F41 71.28%, rgba(198, 110, 75, 0) 99.3%);
+        position: absolute;
+        display: block;
+        content: "";
+        top: 50%;
+        left: -57px;
+        transform: translateY(-50%);
+        z-index: 11;
+    }
+
+    #shopify-section-{{ section.id }}.s-editorial-2 .background-image-mobile {
+        display: none
+    }
+
+    .c-editorial__footer.btn-width-large {
+        width: 100%;
+    }
+
+    .c-editorial__footer.btn-width-large .btn {
+        min-width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        #shopify-section-{{ section.id }}.s-editorial-2 .background-image-desktop {
+            display: none
+        }
+
+        #shopify-section-{{ section.id }}.s-editorial-2 .background-image-mobile {
+            display: block
+        }
+
+        #shopify-section-{{ section.id }}.s-editorial-2 .gradient-overlay::before {
+            background: #000;
+            opacity: 0.4;
+            width: 100%;
+            height: 100%;
+            left: 0;
+        }
+
+        #shopify-section-{{ section.id }}.s-editorial-2 .object-fit img {
+            right: -5%;
+            top: 50%;
+        }
+        .s-landing-editorial-2 .c-editorial__footer {
+            margin-top: 0;
+        }
+    }
+{% endstyle %}
+
+<div class="c-editorial f-v bg-subtle">
+	{%- if background_image != null -%}
+		<span class="object-fit">
+			{% comment %} {%- render 'c-img-srcset',
+				image: background_image,
+				responsive_image: background_image_mobile,
+				alt: background_image.alt
+			-%} {% endcomment %}
+            {% if gradient_overlay != blank %}
+                <span class="gradient-overlay"></span>
+            {% endif %}
+            
+            {% if background_image_w != blank and background_image_h != blank %}
+                {% assign background_image_size = background_image_w | append: 'x' | append: background_image_h %}
+            {% else %}
+                {% assign background_image_size = 'master' %}
+            {% endif %}
+
+            {% if background_image_m_w != blank and background_image_m_h != blank %}
+                {% assign background_image_m_size = background_image_m_w | append: 'x' | append: background_image_m_h %}
+            {% else %}
+                {% assign background_image_m_size = 'master' %}
+            {% endif %}
+
+            <img class="background-image-desktop" src="{{ background_image | img_url: background_image_size }}" alt="{{ background_image.alt }}" width="{{ background_image_w }}" height="{{ background_image_h }}" />
+            <img class="background-image-mobile" src="{{ background_image_mobile | img_url: background_image_m_size }}" alt="{{ background_image_mobile.alt }}" width="{{ background_image_m_w }}" height="{{ background_image_m_h }}" />
+		</span>
+	{%- endif %}
+
+	<div class="c-editorial__content f-v">
+		{%- render 'c-header',
+			subheading: subheading,
+			heading: heading,
+			is_smaller_heading: is_smaller_heading
+		-%}
+
+		{% if heading_image != null %}
+			<span class="c-editorial__heading-image child-contain">
+				{%- render 'c-img-srcset',
+					image: heading_image,
+					responsive_image: heading_image_mobile
+				-%}
+			</span>
+		{%- endif %}
+
+		{%- if paragraph != blank
+			or source != blank
+			or cta_label != blank
+			and cta_url != blank
+		-%}
+			<div class="c-editorial__footer btn-width-{{ button_width }}">
+				{%- if paragraph != blank -%}
+					<p class="c-editorial__paragraph t-b-1{% if paragraph_align_mobile == 'centered' %} text-centered-mobile{% endif %}">
+						{{ paragraph | newline_to_br }}
+					</p>
+				{%- endif -%}
+
+				{%- if cta_label != blank and cta_url != blank -%}
+					<a
+						class="c-editorial__cta btn{% if activate_orange_btn %} cr-orange hover-white{% endif %}"
+						href="{{- cta_url -}}"
+					>
+						<span>{{- cta_label -}}</span>
+					</a>
+				{%- endif -%}
+
+				{%- render 'c-source', source: source -%}
+			</div>
+		{%- endif -%}
+	</div>
+</div>

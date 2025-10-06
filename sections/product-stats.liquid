@@ -1,0 +1,45 @@
+{% schema %}
+{
+	"name": "Product Stats",
+	"tag": "section",
+	"class": "product-stats p-y-section p-x-lg cr-cream bg-orange",
+	"settings": [],
+	"max_blocks": 9,
+	"blocks": [
+		{
+			"type": "stat",
+			"name": "Stat",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "richtext",
+					"id": "paragraph",
+					"label": "Paragraph"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- if section.blocks.size > 0 -%}
+	<ul class="product-stats__blocks g g-3">
+		{%- for block in section.blocks -%}
+			{%- liquid
+				assign title = block.settings.title
+				assign paragraph = block.settings.paragraph
+			-%}
+
+			<li class="product-stats__block">
+				<div class="product-stats__inner f-v f-j-s">
+					<h1 class="product-stats__title t-l-5">{{ title }}</h1>
+					<div class="product-stats__paragraph wysiwyg">{{ paragraph }}</div>
+				</div>
+			</li>
+		{%- endfor -%}
+	</ul>
+{%- endif -%}

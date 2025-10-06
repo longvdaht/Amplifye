@@ -1,0 +1,81 @@
+{% schema %}
+{
+	"name": "Articles",
+	"tag": "section",
+	"class": "s-articles",
+	"presets": [
+		{
+			"name": "Articles",
+			"settings": {
+				"heading": "Lorem",
+				"cta_label": "All Articles",
+				"cta_url": "shopify://blogs/research",
+				"blog": "research"
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "blog",
+			"id": "blog",
+			"label": "Blog"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign articles = section.settings.blog.articles | sort: 'published_at' | reverse
+-%}
+
+<div class="s-articles__header f-h f-w f-a-c p-x-max">
+	{%- if heading != blank -%}
+		<h2 class="s-articles__heading t-h-2">{{ heading }}</h2>
+	{%- endif -%}
+
+	{%- if cta_label != blank and cta_url != blank -%}
+		<a
+			class="s-articles__cta btn-outline mobile-up-only"
+			href="{{- cta_url -}}"
+		>
+			<span class="btn-outline__label">{{- cta_label -}}</span>
+		</a>
+	{%- endif -%}
+</div>
+
+{%- if articles.size > 0 -%}
+	<div class="s-articles__cards f-h f-j-s f-a-s p-x-max scrollbar-custom">
+		{%- for article in articles limit: 8 -%}
+			{%- render 'c-article-card-bg', article: article, class: 's-articles__card' -%}
+		{%- endfor -%}
+	</div>
+{%- endif -%}
+
+{%- if cta_label != blank and cta_url != blank -%}
+	<div class="s-articles__footer f-h f-a-c f-j-c">
+		<a
+			class="s-articles__cta btn-outline mobile-down-only"
+			href="{{- cta_url -}}"
+		>
+			<span class="btn-outline__label">{{- cta_label -}}</span>
+		</a>
+	</div>
+{%- endif -%}

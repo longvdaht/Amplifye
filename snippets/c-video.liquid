@@ -1,0 +1,131 @@
+{% comment %}
+	usecase:
+	{% render 'c-video',
+		video_type: media.host (or video.type if video is from section schema. 'video' for internal video)
+		video: media,
+		preview_image: media.preview_image,
+		class: '',
+		video_id: media.external_id,
+		show_mute_btn: true,
+		is_background_video: true,
+		is_autoplay: true,
+		has_audio: true,
+		has_play_btn: false,
+		has_mute_btn: false,
+		id: string %}
+{% endcomment %}
+
+{% liquid
+	if is_autoplay == null
+		assign is_autoplay = true
+	endif
+
+	assign unique_id = video_id | append: '-' | append: id
+	unless unique_id contains '-'
+		assign unique_id = video_id | append: '-' | append: 'default'
+	endunless
+%}
+
+{% if video_type != blank and video != blank %}
+	<div
+		class="c-video{% if class %} {{ class }}{% endif %}{% if video.aspect_ratio <= 1 %} is-portrait{% elsif video.aspect_ratio > 1 %} is-landscape{% endif %}{% if is_autoplay %} is-autoplay{% endif %}"
+		{% if video.aspect_ratio %}
+			style="--aspect-ratio: {{ video.aspect_ratio }}"
+		{% endif %}
+	>
+		{% comment %}
+			vimeo does not allow auto play with sound,
+			so muted: false + autoplay: true will not work.
+		{% endcomment %}
+		{% if video_type == 'vimeo' and video_id != null %}
+			<iframe
+				class="js-external-video"
+				title="Vimeo video player"
+				src="https://player.vimeo.com/video/{{ video_id }}?controls=false&loop=true&muted=true&playsinline=true{% if is_background_video != false %}&background=1{% endif %}"
+				data-video-host="vimeo"
+				data-video-id="{{ unique_id }}"
+				data-video-audio="{{ has_audio }}"
+				data-original-video-id="{{ video_id }}"
+				frameborder="0"
+				allow="picture-in-picture; fullscreen; autoplay"
+				allowfullscreen
+			>
+			</iframe>
+
+		{% elsif video_type == 'youtube' and video_id != null %}
+			<iframe
+				class="js-external-video"
+				title="YouTube video player"
+				src="https://www.youtube.com/embed/{{ video_id }}?controls=0&mute=1&playsinline=1{% if is_background_video != false %}{% endif %}&enablejsapi=1"
+				data-video-host="youtube"
+				data-video-id="{{ unique_id }}"
+				data-video-audio="{{ has_audio }}"
+				data-original-video-id="{{ video_id }}"
+				frameborder="0"
+				allow="picture-in-picture; fullscreen; autoplay"
+				allowfullscreen
+			></iframe>
+
+		{% elsif video_type == 'video' %}
+			<video
+				class="js-lazy-video"
+				preload="none"
+				playsinline
+				{% if is_autoplay == true %}
+					autoplay
+					muted
+					loop
+				{% endif %}
+				poster="{{ video.preview_image | image_url }}"
+				aria-label="{{ video.alt | default: video.title | escape }}"
+			>
+				{% for source in video.sources %}
+					<source
+						data-src="{{ source.url }}"
+						type="{{ source.mime_type }}"
+					>
+				{% endfor %}
+				<!-- Fallback content for unsupported browsers -->
+				<p>Your browser does not support the video tag.</p>
+			</video>
+		{% endif %}
+
+		<div class="c-video__control f-h f-a-c js-video-control">
+			{% if has_play_btn != false %}
+				<button
+					type="button"
+					class="c-video__trigger play cr-cream expand-clickable-area{% if is_autoplay == false %} is-active{% endif %} js-video-play"
+					aria-label="Play video"
+				>
+					{% render 'svg-icons', icon: 'play' %}
+				</button>
+
+				<button
+					type="button"
+					class="c-video__trigger pause cr-cream expand-clickable-area{% if is_autoplay == true %} is-active{% endif %} js-video-pause"
+					aria-label="Pause video"
+				>
+					{% render 'svg-icons', icon: 'pause' %}
+				</button>
+			{% endif %}
+
+			{% if has_mute_btn %}
+				<button
+					type="button"
+					class="c-video__trigger unmute cr-cream expand-clickable-area is-active js-video-unmute"
+					aria-label="Video sound on"
+				>
+					{% render 'svg-icons', icon: 'unmute' %}
+				</button>
+
+				<button
+					type="button"
+					class="c-video__trigger mute cr-cream expand-clickable-area js-video-mute"
+					aria-label="Video sound off"
+				>
+					{% render 'svg-icons', icon: 'mute' %}
+				</button>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

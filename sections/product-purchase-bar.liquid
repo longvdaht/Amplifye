@@ -1,0 +1,68 @@
+{% schema %}
+{
+	"name": "Product Purchase Bar",
+	"tag": "section",
+	"class": "product-purchase-bar bg-cream js-purchase-bar",
+	"settings": []
+}
+{% endschema %}
+
+<div class="product-purchase-bar__wrapper p-x-max f-h f-w f-a-c">
+	<div class="product-purchase-bar__header">
+		<p class="t-h-3">
+			{{ product.title }}
+		</p>
+
+		<button class="product-purchase-bar__gladly t-l-3 js-gladly-trigger">
+			Need support? <span>Let’s chat</span>
+		</button>
+	</div>
+
+	<div class="product-purchase-bar__action f-h f-a-c">
+		<div class="c-item-selling-plan__options f-v">
+			<div class="c-item-selling-plan__option js-sync-subscription">
+				<input
+					id="purchaseBarSubscription"
+					type="radio"
+					name="selling-plans"
+					value="subscription"
+					checked
+				>
+				<label for="purchaseBarSubscription">
+					{% liquid
+						assign subscription = product.selling_plan_groups
+						assign subscription_price_adj = subscription[0].selling_plans[0].price_adjustments[0].value
+						assign subscription_price_adj_price = product.price | times: subscription_price_adj | divided_by: 100.00
+					%}
+					<span class="t-l-3">
+						{{-  -}}
+						Subscribe
+						{{ subscription_price_adj_price | money | prepend: ' | Save ' }}
+						{{-  -}}
+					</span>
+				</label>
+
+				{% comment %}.c-item-selling-plan__option__content__info is populated via js {% endcomment %}
+			</div>
+			<div class="c-item-selling-plan__option js-sync-one-time">
+				<input
+					id="purchaseBarOneTime"
+					type="radio"
+					name="selling-plans"
+					value="one-time"
+				>
+				<label for="purchaseBarOneTime">
+					<span class="t-l-3">One time purchase</span>
+				</label>
+
+				{% comment %}.c-item-selling-plan__option__content__info is populated via js {% endcomment %}
+			</div>
+		</div>
+
+		{% render 'c-product-form',
+			item: product,
+			is_update_variant_url: true,
+			is_default_to_subscription: true
+		%}
+	</div>
+</div>

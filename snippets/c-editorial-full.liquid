@@ -1,0 +1,85 @@
+{% comment %}
+	{%- render 'c-editorial-full',
+		subheading: string,
+		heading: string,
+		paragraph: string,
+		cta_label: string,
+		cta_url: url,
+		selected_media_type: string,
+		image: image,
+		video: video,
+		is_full_bleed: boolean,
+		activate_light_text: boolean,
+		activate_overlay: boolean,
+		bg_color: string
+	-%}
+{% endcomment %}
+
+{%- liquid
+	assign layout = 'default'
+	if is_full_bleed
+		assign layout = 'full'
+	endif
+
+	assign bg_color = bg_color | default: 'none'
+	if selected_media_type != blank and is_full_bleed
+		assign bg_color = 'none'
+	endif
+
+	if activate_light_text
+		assign text_color = 'cr-cream'
+	endif
+
+	case bg_color
+		when 'black'
+			assign bg_color_class = 'bg-black cr-cream'
+		when 'orange'
+			assign bg_color_class = 'bg-orange cr-cream'
+		when 'blue'
+			assign bg_color_class = 'bg-blue'
+	endcase
+-%}
+
+<div
+	class="c-editorial-full f-v f-j-c f-a-c{% if class %} {{ class }}{% endif %}{% if activate_overlay and is_full_bleed %} has-overlay{% endif %}"
+	data-layout="{{ layout | default: 'default' }}"
+>
+	{%- if selected_media_type != blank -%}
+		<div class="c-editorial-full__media bg-subtle child-cover">
+			{%- render 'c-media',
+				selected_media_type: selected_media_type,
+				image: image,
+				image_mobile: image_mobile,
+				video: video
+			-%}
+		</div>
+	{%- endif %}
+
+	<div class="c-editorial-full__content p-x-max p-y-section f-v f-a-c{% if bg_color != 'none' %} {{ bg_color_class }}{% endif %} {{ text_color }}">
+		{%- if subheading != blank -%}
+			<p class="c-editorial-full__subheading t-l-5">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+		{%- if heading != blank -%}
+			<h2 class="c-editorial-full__heading t-h-1">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+		{%- if paragraph != blank -%}
+			<p class="c-editorial-full__paragraph t-b-1">
+				{{ paragraph }}
+			</p>
+		{%- endif -%}
+		{%- if cta_label != blank and cta_url != blank -%}
+			<a
+				class="c-editorial-full__cta btn cr-orange{% if bg_color == 'black' %} hover-white{%- endif -%}"
+				href="{{- cta_url -}}"
+			>
+				<span>
+					{{- cta_label -}}
+				</span>
+			</a>
+		{%- endif -%}
+	</div>
+</div>

@@ -1,0 +1,165 @@
+{% schema %}
+{
+	"name": "Editorial Full",
+	"tag": "section",
+	"class": "s-editorial-full",
+	"presets": [
+		{
+			"name": "Editorial Full",
+			"settings": {
+				"media_type": "image",
+				"image": "shopify://shop_images/image.jpg",
+				"subheading": "Introducing P24",
+				"heading": "The enzyme that’s unlocking protein.",
+				"paragraph": "The culmination of years of research and careful development, P24 enhances what your body already knows how to do best: digest food, absorb protein, and unlock nutrients.",
+				"cta_label": "Get P24",
+				"cta_url": "shopify://pages/the-science"
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Section Appearance"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_full_bleed",
+			"label": "Allow Media as Background Media"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_overlay",
+			"label": "Activate Overlay",
+			"info": "Dark overlay over the background media to increase text legibility."
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_light_text",
+			"label": "Change Text Color to White"
+		},
+		{
+			"type": "radio",
+			"id": "bg_color",
+			"label": "Background Color",
+			"options": [
+				{
+					"value": "none",
+					"label": "None"
+				},
+				{
+					"value": "black",
+					"label": "Black"
+				},
+				{
+					"value": "orange",
+					"label": "Orange"
+				},
+				{
+					"value": "blue",
+					"label": "Blue"
+				}
+			],
+			"default": "none"
+		},
+		{
+			"type": "header",
+			"content": "Media"
+		},
+		{
+			"type": "radio",
+			"id": "media_type",
+			"label": "Media Type",
+			"options": [
+				{
+					"value": "image",
+					"label": "Image"
+				},
+				{
+					"value": "video",
+					"label": "Shopify-Hosted Video"
+				}
+			],
+			"default": "image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mobile",
+			"label": "Image (Mobile)"
+		},
+		{
+			"type": "video",
+			"id": "video",
+			"label": "Shopify-Hosted Video"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign media_type = section.settings.media_type
+	assign image = section.settings.image
+	assign image_mobile = section.settings.image_mobile
+	assign video = section.settings.video
+
+	if media_type == 'image' and image != null
+		assign selected_media_type = 'image'
+	elsif media_type == 'video' and video != null
+		assign selected_media_type = 'video'
+	endif
+-%}
+
+{%- render 'c-editorial-full',
+	subheading: subheading,
+	heading: heading,
+	paragraph: paragraph,
+	cta_label: cta_label,
+	cta_url: cta_url,
+	selected_media_type: selected_media_type,
+	image: image,
+	image_mobile: image_mobile,
+	video: video,
+	is_full_bleed: section.settings.activate_full_bleed,
+	activate_light_text: section.settings.activate_light_text,
+	activate_overlay: section.settings.activate_overlay,
+	bg_color: section.settings.bg_color
+-%}

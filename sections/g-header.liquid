@@ -1,0 +1,142 @@
+{% schema %}
+{
+	"name": "Header",
+	"tag": "header",
+	"class": "g-header user-select-disable",
+	"settings": [
+		{
+			"type": "link_list",
+			"id": "menu",
+			"label": "Menu"
+		},
+		{
+			"type": "link_list",
+			"id": "mobile_menu",
+			"label": "Mobile Menu"
+		},
+		{
+			"type": "link_list",
+			"id": "mobile_submenu",
+			"label": "Mobile Submenu"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label",
+			"default": "Get P24"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL",
+			"default": "/collections"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign menu = linklists[section.settings.menu]
+	assign mobile_menu = linklists[section.settings.mobile_menu]
+	assign mobile_submenu = linklists[section.settings.mobile_submenu]
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign current_url = request.path
+-%}
+
+<div class="g-header__bar p-x-max f-h f-a-c cr-black bg-cream">
+	<a
+		class="g-header__logo"
+		href="{{ shop.url }}"
+		aria-label="{{- shop.name | escape -}} logo"
+	>
+		{% render 'svg-logos', type: 'default' %}
+	</a>
+
+	{%- if menu.links != blank -%}
+		<nav class="g-header__nav">
+			{% render 'c-linklist',
+				linklist: menu,
+				class: 'g-header__linklist f-h f-a-c'
+			%}
+		</nav>
+	{%- endif -%}
+
+	<div class="g-header__actions f-h f-a-c">
+		<button
+			type="button"
+			class="g-header__cart btn-underline js-minicart-toggle"
+		>
+			<span>Cart</span>
+			<sup class="js-cart-item-count{% if cart.item_count > 0 %} is-active{% endif %}">
+				{{- cart.item_count | default: 0 -}}
+			</sup>
+		</button>
+		{%- if shop.customer_accounts_enabled -%}
+			<a
+				href="{{- shop.domain | prepend: 'https://account.' -}}"
+				class="g-header__account cr-black increase-target-size"
+				aria-label="Account"
+			>
+				{% render 'svg-icons', icon: 'person' %}
+			</a>
+		{%- endif -%}
+		{%- if cta_label != blank
+			and cta_url != blank
+			and cta_url != current_url
+		-%}
+			<a
+				class="g-header__cta btn cr-orange"
+				href="{{- cta_url -}}"
+			>
+				{{- cta_label -}}
+			</a>
+		{%- endif -%}
+	</div>
+
+	<button
+		type="button"
+		class="g-mobile-cart__trigger t-l-2 js-minicart-toggle"
+	>
+		(<span class="js-cart-item-count">{{- cart.item_count | default: 0 -}}</span
+		>)
+	</button>
+	<button
+		type="button"
+		class="g-mobile-menu__trigger increase-target-size js-mobile-menu-toggle"
+		aria-label="Toggle mobile menu"
+	>
+		<span></span>
+		<span></span>
+	</button>
+</div>
+
+<div
+	class="g-mobile-menu c f-v f-j-c f-a-s cr-cream bg-orange js-mobile-menu"
+	aria-hidden="true"
+>
+	{%- if mobile_menu.links != blank -%}
+		{% render 'c-linklist',
+			linklist: mobile_menu,
+			class: 'g-mobile-menu__links f-v f-a-c'
+		%}
+	{%- endif -%}
+
+	<div class="g-mobile-menu__footer f-v f-a-s">
+		{%- if cta_label != blank and cta_url != blank -%}
+			<a
+				class="btn hover-white"
+				href="{{- cta_url -}}"
+			>
+				{{- cta_label -}}
+			</a>
+		{%- endif -%}
+
+		{%- if mobile_submenu.links != blank -%}
+			{% render 'c-linklist',
+				linklist: mobile_submenu,
+				class: 'g-mobile-menu__footer__links f-h f-j-c'
+			%}
+		{%- endif -%}
+	</div>
+</div>

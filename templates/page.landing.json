@@ -1,0 +1,178 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "landing-hero": {
+      "type": "landing-hero",
+      "settings": {
+        "heading": "You are what you absorb",
+        "subheading": "Your protein needs don't stay the same - neither should your approach to absorption. For a limited time, MindBodyGreen readers get 15% off the groundbreaking enzyme, P24. Use code MBG15 at checkout.",
+        "cta_label": "Buy P24",
+        "cta_url": "",
+        "background_image": "shopify://shop_images/Background_Image_01.jpg",
+        "background_image_mobile": "shopify://shop_images/Background_Image_2.jpg",
+        "product": "amplifye-p24"
+      }
+    },
+    "s_banner_BEqgV8": {
+      "type": "landing-s-banner",
+      "name": "Banner",
+      "settings": {
+        "subheading": "As seen on",
+        "heading": "mindbodygreen",
+        "heading_image": "shopify://shop_images/mindbodygreen-mobile.png",
+        "heading_image_mobile": "shopify://shop_images/mindbodygreen-logo-white.png",
+        "cta_label": "Claim your 15% off offer",
+        "cta_url": "",
+        "product": "amplifye-p24",
+        "color_scheme": "scheme-fcc1c5bd-f961-4bec-b731-2870c953017a"
+      }
+    },
+    "landing-benefits": {
+      "type": "landing-benefits",
+      "settings": {
+        "subheading": "Your body—and your relationship with protein—evolves over time.",
+        "heading": "Here’s how P24 supports women through the decades:",
+        "paragraph": "",
+        "label": "Swipe",
+        "protein_evolves": [
+          "in-your-30-s",
+          "in-your-40-s",
+          "in-your-50-s-beyond"
+        ],
+        "notes": ""
+      }
+    },
+    "landing-intro": {
+      "type": "landing-intro",
+      "settings": {
+        "subheading": "Nobel Prize-Winning Science, Naturally Derived",
+        "heading_left": "P24 isn’t a supplement.",
+        "heading_right": "It’s an amplifyer.",
+        "image": "shopify://shop_images/Amplifye_Bottle_Capsule.png",
+        "paragraph": "By breaking down protein into small peptides and amino acids, P24 amplifyes the absorption of critical nutrients.",
+        "cta_label": "BUY  P24",
+        "cta_url": "",
+        "product": "amplifye-p24"
+      }
+    },
+    "landing_testimonial_video": {
+      "type": "s-testimonial-video",
+      "blocks": {
+        "block_E3haNa": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/2e0e3ae8798b43a19eabed8c2d8abe5a (1).mov",
+            "title": "I noticed positive changes in my gut health.",
+            "name": "Casey",
+            "is_autoplay": false
+          }
+        },
+        "block_K638i8": {
+          "type": "block",
+          "settings": {
+            "title": "I absolutely feel better muscle recovery, improved muscle hypertrophy, leaner, less bloating, improved digestions & reduced inflammation.",
+            "name": "Jeanette J.",
+            "is_autoplay": false
+          }
+        },
+        "block_JqGqYK": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/eadb854bb0b04900a3a92345cc552f8a.mov",
+            "title": "",
+            "name": "",
+            "is_autoplay": false
+          }
+        },
+        "block_GCDqgA": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/85c1530be4a54b6194965d878d0be795 (1).mov",
+            "title": "I’ll never travel without it.",
+            "name": "Remy M.",
+            "is_autoplay": false
+          }
+        },
+        "block_CDxCGK": {
+          "type": "block",
+          "settings": {
+            "title": "A must for all woman, specifically perimenopause ladies. I sleep better, my energy is consistent and my tummy feels great! If you are having hormone rollercoaster this certainly has helped level out and enhance my nutrition and fitness goals.",
+            "name": "Clare V.",
+            "is_autoplay": false
+          }
+        },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/5d0377487f364062b8ed5f3c1f557693.mov",
+            "title": "I can totally feel the difference.",
+            "name": "Rosie A.",
+            "is_autoplay": false
+          }
+        },
+        "block_NGjjjR": {
+          "type": "block",
+          "settings": {
+            "title": "I've definitely been sleeping better so far.",
+            "name": "Gabriela B.",
+            "is_autoplay": false
+          }
+        },
+        "block_V7YFPi": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/5a5d6494481f4844849ac7d9464bf828.mov",
+            "title": "",
+            "name": "",
+            "is_autoplay": false
+          }
+        },
+        "block_gWehgV": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "title": "I'm loving P24; I see a big difference on my body.",
+            "name": "Larry S.",
+            "is_autoplay": false
+          }
+        }
+      },
+      "block_order": [
+        "block_E3haNa",
+        "block_K638i8",
+        "block_JqGqYK",
+        "block_GCDqgA",
+        "block_CDxCGK",
+        "block_7y8TVr",
+        "block_NGjjjR",
+        "block_V7YFPi",
+        "block_gWehgV"
+      ],
+      "settings": {
+        "layout": "vertical",
+        "heading": "Don't just take it from us.",
+        "subheading": "",
+        "cta_label": "",
+        "cta_url": "#reviews",
+        "margin_top": 100,
+        "margin_bottom": 100,
+        "show_dots": true
+      }
+    }
+  },
+  "order": [
+    "landing-hero",
+    "s_banner_BEqgV8",
+    "landing-benefits",
+    "landing-intro",
+    "landing_testimonial_video"
+  ]
+}

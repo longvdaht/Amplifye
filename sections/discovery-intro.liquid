@@ -1,0 +1,31 @@
+{% schema %}
+{
+	"name": "Discovery Intro",
+	"tag": "section",
+	"class": "discovery-intro p-x-sm f-v f-a-c",
+	"settings": [],
+	"max_blocks": 4,
+	"blocks": [
+		{
+			"type": "paragraph",
+			"name": "Paragraph",
+			"settings": [
+				{
+					"type": "inline_richtext",
+					"id": "paragraph",
+					"label": "Paragraph",
+					"info": "Bold text to create a tooltip. Text should match to the information title created here: https://admin.shopify.com/store/amplifye-store/content/metaobjects/entries/information"
+				},
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- for block in section.blocks -%}
+	{%- if block.settings.paragraph != blank -%}
+		{%- render 'c-info',
+			class: 'discovery-intro__block t-h-3',
+			content: block.settings.paragraph -%}
+	{%- endif -%}
+{%- endfor -%}

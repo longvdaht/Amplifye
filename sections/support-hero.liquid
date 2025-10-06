@@ -1,0 +1,86 @@
+{% schema %}
+{
+	"name": "Support Hero",
+	"tag": "section",
+	"class": "support-hero p-x-md bg-blue f-v f-a-c",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_chatbot",
+			"label": "Activate Chatbot",
+			"info": "Replace CTA URL as Chatbot button"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_order",
+			"label": "Activate Order Tracking",
+		},
+		{
+			"type": "text",
+			"id": "cta_label_track",
+			"label": "CTA Label",
+			"default": "Track your order"
+		},
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign activate_chatbot = section.settings.activate_chatbot
+	assign activate_order = section.settings.activate_order
+	assign cta_label_track = section.settings.cta_label_track
+-%}
+
+{%- if heading != blank -%}
+	<h1 class="support-hero__heading t-h-1">{{ heading }}</h1>
+{%- endif -%}
+
+{%- if activate_chatbot and cta_label != blank -%}
+	<button type="button" class="btn has-svg js-gladly-trigger">
+		<span class="btn__label">{{- cta_label -}}</span>
+		{% render 'svg-icons', icon: 'dialog' -%}
+	</button>
+{%- elsif cta_label != blank and cta_url != blank -%}
+	<a
+		class="btn"
+		href="{{- cta_url -}}"
+	>
+		<span>
+			{{- cta_label -}}
+		</span>
+	</a>
+{%- endif -%}
+
+{%- if activate_order and cta_label_track != blank -%}
+	<a
+		class="btn-underline is-reverse"
+		href="{{- shop.domain | prepend: 'https://account.' | append: '/orders' -}}"
+	>
+		<span>
+			{{- cta_label_track -}}
+		</span>
+	</a>
+{%- endif -%}
+
+
+
+
+

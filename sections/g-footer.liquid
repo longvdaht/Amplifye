@@ -1,0 +1,232 @@
+{% schema %}
+{
+	"name": "Footer",
+	"tag": "footer",
+	"class": "g-footer",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Footer Header"
+		},
+		{
+			"type": "text",
+			"id": "header_title",
+			"label": "Header Title",
+			"default": "Unlock the power of protein with P24."
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+		{
+			"type": "header",
+			"content": "Email Capture"
+		},
+		{
+			"type": "text",
+			"id": "email_capture_heading",
+			"label": "Email Capture Heading",
+			"default": "Stay Updated!"
+		},
+		{
+			"type": "text",
+			"id": "email_capture_success_message",
+			"label": "Email Capture Success Message",
+			"default": "Success! Thank you for signing up."
+		},
+		{
+			"type": "link_list",
+			"id": "menu",
+			"label": "Menu"
+		},
+		{
+			"type": "link_list",
+			"id": "menu_2",
+			"label": "Menu 2"
+		},
+		{
+			"type": "header",
+			"content": "Bottom content"
+		},
+		{
+			"type": "link_list",
+			"id": "menu_legal",
+			"label": "Legal Menu"
+		},
+		{
+			"type": "text",
+			"id": "disclaimer_title",
+			"label": "Disclaimer Title",
+			"default": "Disclaimer"
+		},
+		{
+			"type": "textarea",
+			"id": "disclaimer_content",
+			"label": "Disclaimer Content"
+		},
+		{
+			"type": "text",
+			"id": "copyright_text",
+			"label": "Copyright Text"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign header_title = section.settings.header_title
+	assign menu = linklists[section.settings.menu]
+	assign menu_2 = linklists[section.settings.menu_2]
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign email_capture_heading = section.settings.email_capture_heading
+	assign email_capture_success_message = section.settings.email_capture_success_message
+	assign menu_legal = section.settings.menu_legal
+	assign disclaimer_title = section.settings.disclaimer_title
+	assign disclaimer_content = section.settings.disclaimer_content
+	assign copyright_text = section.settings.copyright_text
+
+	if section.settings.product != blank
+      assign product = section.settings.product
+    else
+      assign product = all_products['amplifye-p24']
+    endif
+-%}
+
+<div class="g-footer__header p-x-max">
+	{% if template.suffix == 'landing' %}
+    	{%- render 'landing-c-banner',
+    		heading: header_title,
+    		cta_label: cta_label,
+            product: product
+    	-%}
+    {% else %}
+    	{%- render 'c-banner',
+    		heading: header_title,
+    		cta_label: cta_label,
+    		cta_url: cta_url,
+    	-%}
+    {% endif %}
+</div>
+
+<div class="g-footer__content p-x-max f-h f-w">
+	<div class="g-footer__email-capture wysiwyg">
+		{% if email_capture_heading != empty %}
+			<h2 class="t-b-1">{{ email_capture_heading }}</h2>
+		{% endif %}
+		{% render 'c-email-capture-shopify',
+			email_capture_id: 'gFooter',
+			class: 'cr-black',
+			success_message: email_capture_success_message
+		%}
+	</div>
+	<nav class="g-footer__nav f-h t-l-3">
+		{% render 'c-linklist', linklist: menu, class: 'f-v' %}
+		{% render 'c-linklist', linklist: menu_2, class: 'f-v' %}
+	</nav>
+	<ul class="g-footer__social f-h f-w f-j-s f-a-c cr-black">
+		{% if settings.facebook_url != blank %}
+			<li>
+				<a
+					href="{{ settings.facebook_url }}"
+					title="Facebook profile"
+					target="_blank"
+					rel="noopener"
+				>
+					{% render 'svg-icons', icon: 'social-facebook' -%}
+				</a>
+			</li>
+		{% endif %}
+		{% if settings.x_url != blank %}
+			<li>
+				<a
+					href="{{ settings.x_url }}"
+					title="X profile"
+					target="_blank"
+					rel="noopener"
+				>
+					{% render 'svg-icons', icon: 'social-x' -%}
+				</a>
+			</li>
+		{% endif -%}
+		{%- if settings.instagram_url != blank %}
+			<li>
+				<a
+					href="{{ settings.instagram_url }}"
+					title="Instagram profile"
+					target="_blank"
+					rel="noopener"
+				>
+					{% render 'svg-icons', icon: 'social-instagram' -%}
+				</a>
+			</li>
+		{% endif %}
+		{% if settings.youtube_url != blank %}
+			<li>
+				<a
+					href="{{ settings.youtube_url }}"
+					title="YouTube profile"
+					target="_blank"
+					rel="noopener"
+				>
+					{% render 'svg-icons', icon: 'social-youtube' -%}
+				</a>
+			</li>
+		{% endif %}
+		{% if settings.tiktok_url != blank %}
+			<li>
+				<a
+					href="{{ settings.tiktok_url }}"
+					title="TikTok profile"
+					target="_blank"
+					rel="noopener"
+				>
+					{% render 'svg-icons', icon: 'social-tiktok' -%}
+				</a>
+			</li>
+		{% endif %}
+	</ul>
+	<a
+		class="g-footer__logo"
+		href="{{ shop.url }}"
+		aria-label="{{- shop.name | escape -}} logo"
+	>
+		{% render 'svg-logos', type: 'default' %}
+	</a>
+</div>
+<div class="g-footer__bottom p-x-max f-h f-j-s f-a-c t-l-4 cr-cream bg-black">
+	{% render 'c-linklist', linklist: menu_legal, class: 'f-h f-a-c' %}
+
+	{% if disclaimer_content != blank %}
+		<div class="g-footer__disclaimer">
+			<span data-popup-trigger="footer-disclaimer" class="btn-underline">
+				{{ disclaimer_title }}
+			</span>
+			<div
+				data-popup-target="footer-disclaimer"
+				class="is-hidden"
+			>
+				<div class="g-footer__disclaimer__popup bg-black cr-cream t-h-4">
+					{{ disclaimer_content }}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+	<p class="g-footer__copyright">
+		© Copyright {{ 'now' | date: '%Y' }}
+		{{ shop.name }}.
+		{{ copyright_text }}
+	</p>
+</div>

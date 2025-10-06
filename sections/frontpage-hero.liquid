@@ -1,0 +1,86 @@
+{% schema %}
+{
+	"name": "Hero",
+	"tag": "section",
+	"class": "frontpage-hero p-y-section p-x-lg f-v f-j-c js-frontpage-hero",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image_mobile",
+			"label": "Background Image (Mobile)"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign subheading = section.settings.subheading
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign background_image = section.settings.background_image
+	assign background_image_mobile = section.settings.background_image_mobile
+-%}
+
+{%- if background_image != null -%}
+	<div class="frontpage-hero__image p-fill">
+		<span class="object-fit">
+			{%- render 'c-img-srcset',
+				image: background_image,
+				responsive_image: background_image_mobile,
+				alt: background_image.alt
+			-%}
+		</span>
+	</div>
+{%- endif %}
+
+<div class="frontpage-hero__text wysiwyg-large">
+	{%- if heading != blank -%}
+		<h1 class="frontpage-hero__heading t-h-1">
+			{{ heading }}
+		</h1>
+	{%- endif -%}
+	{%- if subheading != blank -%}
+		<p class="frontpage-hero__subheading t-b-1">
+			{{ subheading }}
+		</p>
+	{%- endif -%}
+	{%- if cta_label != blank and cta_url != blank -%}
+		<a
+			class="btn"
+			href="{{- cta_url -}}"
+	
+		>
+			<span>
+				{{- cta_label -}}
+				
+			</span>
+			
+		</a>
+	{%- endif -%}
+</div>

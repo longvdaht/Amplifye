@@ -1,0 +1,145 @@
+{% schema %}
+{
+	"name": "New - Editorial",
+	"tag": "section",
+	"class": "s-editorial s-landing-editorial s-landing-editorial-2 cr-cream",
+	"presets": [
+		{
+			"name": "New - Editorial",
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Media"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image_mobile",
+			"label": "Background Image (mobile)"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "color",
+			"id": "color",
+			"label": "Content Colour"
+		},
+		{
+			"type": "number",
+			"id": "content_max_width",
+			"default": 490,
+			"info": "We use px",
+			"label": "Content max width"
+		},
+		{
+			"type": "text_alignment",
+			"id": "alignment",
+			"label": "Text alignment",
+			"default": "center"
+		},
+		{
+			"type": "checkbox",
+			"id": "vertical_align_c",
+			"label": "Make vertical align is center"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_smaller_heading",
+			"label": "Use Smaller Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_orange_btn",
+			"label": "Activate orange button"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},		
+		{
+			"type": "checkbox",
+			"id": "use_btn_outline",
+			"label": "Use btn with outlie"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "source",
+			"label": "Source"
+		},
+		{
+			"type": "header",
+			"content": "Mobile settings"
+		},
+		{
+			"type": "number",
+			"id": "content_height_mobile",
+			"default": 480,
+			"info": "We use px",
+			"label": "Content height on mobile"
+		},
+		{
+			"type": "range",
+			"id": "padding_top_mobile",
+			"label": "Padding Top (Mobile)",
+			"min": 0,
+			"max": 200,
+			"step": 5,
+			"default": 100
+		}
+	]
+}
+{% endschema %}
+
+{% style %}
+	#shopify-section-{{ section.id }}.s-landing-editorial-2 .c-landing-editorial {
+        height: {{ section.settings.content_height_mobile }}px;
+        padding-top: {{ section.settings.padding_top_mobile }}px;
+    }
+{% endstyle %}
+
+{%- render 'new-editorial',
+	subheading: section.settings.subheading,
+	color: section.settings.color,
+	content_max_width: section.settings.content_max_width,
+	alignment: section.settings.alignment,
+	vertical_align_c: section.settings.vertical_align_c,
+	heading: section.settings.heading,
+	is_smaller_heading: section.settings.is_smaller_heading,
+	paragraph: section.settings.paragraph,
+	cta_label: section.settings.cta_label,
+	cta_url: section.settings.cta_url,
+	use_btn_outline: section.settings.use_btn_outline,
+	source: section.settings.source,
+	background_image: section.settings.background_image,
+	background_image_mobile: section.settings.background_image_mobile,
+	activate_orange_btn: section.settings.activate_orange_btn,
+-%}

@@ -1,0 +1,155 @@
+{% schema %}
+{
+	"name": "Editorial",
+	"tag": "section",
+	"class": "s-editorial cr-cream",
+	"presets": [
+		{
+			"name": "Editorial",
+			"settings": {
+				"background_image": "shopify://shop_images/bottle.jpg",
+				"heading": "From rates of consumption to rates of absorption.",
+				"is_smaller_heading": false,
+				"paragraph": "Access your protein’s full potential. Try P24 for 30 days, worry free.",
+				"activate_orange_btn": true,
+				"cta_label": "Get P24",
+				"cta_url": "shopify://products/amplifye-p24"
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Layout"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_full_bleed",
+			"label": "Full Bleed"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_full_bleed_mobile",
+			"label": "Full Bleed (Mobile)"
+		},
+		{
+			"type": "header",
+			"content": "Media"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image_mobile",
+			"label": "Background Image (Mobile)"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_smaller_heading",
+			"label": "Use Smaller Heading"
+		},
+		{
+			"type": "image_picker",
+			"id": "heading_image",
+			"label": "Heading Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "heading_image_mobile",
+			"label": "Heading Image (Mobile)"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "select",
+			"id": "paragraph_align_mobile",
+			"label": "Paragraph Alignment (Mobile)",
+			"options": [
+				{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "centered",
+					"label": "Centered"
+				}
+			],
+			"default": "left"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_orange_btn",
+			"label": "Activate Orange Button"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "source",
+			"label": "Source"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign is_full_bleed = section.settings.is_full_bleed
+	assign is_full_bleed_mobile = section.settings.is_full_bleed_mobile
+	assign section_classes = ''
+
+	if is_full_bleed and is_full_bleed_mobile
+		# Both full bleed - no padding classes
+	elsif is_full_bleed
+		assign section_classes = section_classes | append: ' p-x-max-mobile'
+	elsif is_full_bleed_mobile
+		assign section_classes = section_classes | append: ' p-x-max' | append: ' is-full-bleed-mobile'
+	else
+		assign section_classes = section_classes | append: ' p-x-max'
+	endif
+-%}
+
+<div class="s-editorial__wrapper{% if section_classes != '' %}{{ section_classes }}{% endif %}">
+	{%- render 'c-editorial',
+		subheading: section.settings.subheading,
+		heading: section.settings.heading,
+		is_smaller_heading: section.settings.is_smaller_heading,
+		heading_image: section.settings.heading_image,
+		heading_image_mobile: section.settings.heading_image_mobile,
+		paragraph: section.settings.paragraph,
+		paragraph_align_mobile: section.settings.paragraph_align_mobile,
+		cta_label: section.settings.cta_label,
+		cta_url: section.settings.cta_url,
+		source: section.settings.source,
+		background_image: section.settings.background_image,
+		background_image_mobile: section.settings.background_image_mobile,
+		activate_orange_btn: section.settings.activate_orange_btn
+	-%}
+</div>

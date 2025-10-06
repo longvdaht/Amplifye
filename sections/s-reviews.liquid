@@ -1,0 +1,251 @@
+{% schema %}
+{
+	"name": "Reviews",
+	"tag": "section",
+	"class": "s-brands s-reviews p-x-max",
+	"presets": [
+		{
+			"name": "Reviews",
+			"blocks": [
+				{
+					"type": "review",
+					"settings": {
+						"review_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+						"review_author": "John Doe"
+					}
+				},
+				{
+					"type": "review",
+					"settings": {
+						"review_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+						"review_author": "Jane Smith"
+					}
+				},
+				{
+					"type": "review",
+					"settings": {
+						"review_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+						"review_author": "Alice Johnson"
+					}
+				}
+			]
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "Reviews"
+		},
+    	{
+			"type": "image_picker",
+			"id": "heading_image",
+			"label": "Heading Image",
+			"info": "Optional image to display instead of the heading text"
+		},
+		{
+			"type": "header",
+			"content": "Padding"
+		},
+		{
+			"type": "range",
+			"id": "padding_top",
+			"label": "Padding Top (px)",
+			"min": 0,
+			"max": 200,
+			"step": 5,
+			"default": 15
+		},
+		{
+			"type": "range",
+			"id": "padding_right",
+			"label": "Padding Right (px)",
+			"min": 0,
+			"max": 200,
+			"step": 5,
+			"default": 15
+		},
+		{
+			"type": "range",
+			"id": "padding_bottom",
+			"label": "Padding Bottom (px)",
+			"min": 0,
+			"max": 200,
+			"step": 5,
+			"default": 15
+		},
+		{
+			"type": "range",
+			"id": "padding_left",
+			"label": "Padding Left (px)",
+			"min": 0,
+			"max": 200,
+			"step": 5,
+			"default": 30
+		},
+	],
+	"blocks": [
+		{
+			"type": "review",
+			"name": "Review",
+			"settings": [
+				{
+					"type": "text",
+					"id": "review_text",
+					"label": "Review Text",
+				},
+				{
+					"type": "text",
+					"id": "review_author",
+					"label": "Review Author",
+					"default": "John Doe"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{% style %}
+.s-reviews {
+	padding-block: 0
+}
+
+.s-reviews__heading {
+    width: 150px;
+}
+
+.s-brands__review {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.s-reviews__slide .s-reviews__text,
+.s-reviews__slide .s-reviews__author {
+    max-width: none;
+    height: auto;
+}
+
+.s-reviews__slide .s-reviews__text .s-brands__review {
+    font-family: Basis Grotesque;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: 0;
+}
+
+.s-reviews__slide .s-reviews__author .s-brands__review {
+    font-family: GT Pressura Mono;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.3;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin-left: var(--slide-gap);
+}
+
+.s-reviews__content,
+.s-reviews__content::after {
+    border: 0;
+}
+
+{% liquid
+	assign padding_top = section.settings.padding_top
+	assign padding_right = section.settings.padding_right
+	assign padding_bottom = section.settings.padding_bottom
+	assign padding_left = section.settings.padding_left
+%}
+
+#shopify-section-{{ section.id }} .s-brands__content {
+	padding: {{ padding_top }}px {{ padding_right }}px {{ padding_bottom }}px {{ padding_left }}px
+}
+{% endstyle %}
+
+{%- liquid
+	assign heading = section.settings.heading
+-%}
+{%- if section.blocks.size > 0 -%}
+	<div class="s-brands__content s-reviews__content f-h f-a-c">
+		{%- if heading != blank -%}
+			<h2 class="s-brands__heading s-reviews__heading t-l-5">
+				{%- if section.settings.heading_image != blank -%}
+					{%- render 'c-img-srcset',
+						image: section.settings.heading_image,
+						alt: heading
+					-%}
+				{%- else -%}
+					{{ heading }}
+				{%- endif -%}
+			</h2>
+		{%- endif -%}
+
+		<div class="s-brands__marquee s-reviews__marquee">
+			{%- capture slider_html -%}
+				{%- for block in section.blocks -%}
+					{%- liquid
+						assign review_text = block.settings.review_text
+						assign review_author = block.settings.review_author
+					-%}
+
+					{%- if review_text != blank or review_author != blank -%}
+						<div class="s-reviews__slide s-brands__slide c-slider__slide f-h f-j-c f-a-c">
+							{%- if review_text != blank -%}
+								<div class="s-brands__logo s-reviews__text child-contain">
+									<div class="s-brands__review t-l-3">
+										"{{ review_text }}"
+									</div>
+								</div>
+							{%- endif -%}
+							{%- if review_author != blank -%}
+								<div class="s-reviews__author s-brands__logo child-contain">
+									<div class="s-brands__review t-l-3">
+										{{ review_author }}
+									</div>
+								</div>
+							{%- endif -%}
+						</div>
+					{%- endif -%}
+					
+				{%- endfor -%}
+				
+				{%- for block in section.blocks -%}
+					{%- liquid
+						assign review_text = block.settings.review_text
+						assign review_author = block.settings.review_author
+					-%}
+
+					{%- if review_text != blank or review_author != blank -%}
+						<div class="s-reviews__slide s-brands__slide c-slider__slide f-h f-j-c f-a-c">
+							{%- if review_text != blank -%}
+								<div class="s-brands__logo s-reviews__text child-contain">
+									<div class="s-brands__review t-l-3">
+										"{{ review_text }}"
+									</div>
+								</div>
+							{%- endif -%}
+							{%- if review_author != blank -%}
+								<div class="s-reviews__author s-brands__logo child-contain">
+									<div class="s-brands__review t-l-3">
+										{{ review_author }}
+									</div>
+								</div>
+							{%- endif -%}
+						</div>
+					{%- endif -%}
+
+				{%- endfor -%}
+			{%- endcapture -%}
+
+			{%- render 'c-slider',
+				slider_html: slider_html,
+				custom_slides_size: '--slide-size: auto; --slide-gap: 20px;',
+				slider_options: "{'loop': true, 'watchDrag': false}",
+				enable_autoscroll: true,
+				enable_wheel: true,
+				autoscroll_speed: 1
+			-%}
+		</div>
+	</div>
+{%- endif -%}

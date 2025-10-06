@@ -1,0 +1,70 @@
+{% comment %}
+	{%- render 'c-editorial',
+		subheading: string,
+		heading: string,
+		is_smaller_heading: boolean,
+		heading_image: image,
+		heading_image_mobile: image,
+		paragraph: string,
+		paragraph_align_mobile: 'left',
+		cta_label: string,
+		cta_url: url,
+		source: string,
+		background_image: image,
+		background_image_mobile: image
+	-%}
+{% endcomment %}
+
+<div class="c-editorial f-v bg-subtle">
+	{%- if background_image != null -%}
+		<span class="object-fit">
+			{%- render 'c-img-srcset',
+				image: background_image,
+				responsive_image: background_image_mobile,
+				alt: background_image.alt
+			-%}
+		</span>
+	{%- endif %}
+
+	<div class="c-editorial__content f-v">
+		{%- render 'c-header',
+			subheading: subheading,
+			heading: heading,
+			is_smaller_heading: is_smaller_heading
+		-%}
+
+		{% if heading_image != null %}
+			<span class="c-editorial__heading-image child-contain">
+				{%- render 'c-img-srcset',
+					image: heading_image,
+					responsive_image: heading_image_mobile
+				-%}
+			</span>
+		{%- endif %}
+
+		{%- if paragraph != blank
+			or source != blank
+			or cta_label != blank
+			and cta_url != blank
+		-%}
+			<div class="c-editorial__footer">
+				{%- if paragraph != blank -%}
+					<p class="c-editorial__paragraph t-b-1{% if paragraph_align_mobile == 'centered' %} text-centered-mobile{% endif %}">
+						{{ paragraph | newline_to_br }}
+					</p>
+				{%- endif -%}
+
+				{%- if cta_label != blank and cta_url != blank -%}
+					<a
+						class="c-editorial__cta btn{% if activate_orange_btn %} cr-orange hover-white{% endif %}"
+						href="{{- cta_url -}}"
+					>
+						<span>{{- cta_label -}}</span>
+					</a>
+				{%- endif -%}
+
+				{%- render 'c-source', source: source -%}
+			</div>
+		{%- endif -%}
+	</div>
+</div>

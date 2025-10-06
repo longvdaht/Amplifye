@@ -1,0 +1,173 @@
+{% schema %}
+{
+	"name": "Support Contact",
+	"tag": "section",
+	"class": "support-contact p-x-max bg-cream-dark f-h f-a-s",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading",
+			"default": "Support"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "We're here for you."
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label",
+			"default": "Let's Chat"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_chatbot",
+			"label": "Activate Chatbot",
+			"default": true,
+			"info": "Replace CTA URL as Chatbot button"
+		},
+		{
+			"type": "textarea",
+			"id": "notice",
+			"label": "Notice",
+			"default": "*Message & data rates may apply. By texting us, you consent to receive text messages from Amplifye at the mobile number you used to text and you are opting-in to receive future messages or a phone call."
+		}
+	],
+	"max_blocks": 4,
+	"blocks": [
+		{
+			"type": "contact",
+			"name": "Contact",
+			"settings": [
+				{
+					"type": "text",
+					"id": "label",
+					"label": "Label"
+				},
+				{
+					"type": "text",
+					"id": "cta_label",
+					"label": "CTA Label"
+				},
+				{
+					"type": "url",
+					"id": "cta_url",
+					"label": "CTA URL"
+				},
+				{
+					"type": "text",
+					"id": "contact",
+					"label": "Contact Number/Email"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign image = section.settings.image
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign activate_chatbot = section.settings.activate_chatbot
+	assign notice = section.settings.notice
+-%}
+
+{%- if image != null -%}
+	<div class="support-contact__image child-cover bg-subtle">
+		{% render 'c-img-srcset', image: image, alt: image.alt %}
+	</div>
+{%- endif -%}
+
+<div class="support-contact__content">
+	<div class="support-contact__inner">
+		{%- if subheading != blank -%}
+			<p class="support-contact__subheading t-l-5">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+
+		{%- if heading != blank -%}
+			<h2 class="support-contact__heading t-h-2">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+
+		{%- if paragraph != blank -%}
+			<p class="support-contact__paragraph t-h-4">
+				{{ paragraph | newline_to_br }}
+			</p>
+		{%- endif -%}
+
+		{%- if section.blocks.size > 0 -%}
+			<div class="support-contact__blocks g g-2">
+				{%- for i in section.blocks -%}
+					{%- liquid
+						assign title = i.settings.label
+						assign label = i.settings.cta_label
+						assign url = i.settings.contact | default: i.settings.cta_url
+					-%}
+					{% if label != blank and url != blank %}
+						<div class="support-contact__block f-v">
+							<p class="t-l-5">{{ title }}</p>
+							<a
+								class="support-contact__link t-h-4"
+								href="{{- url -}}"
+								target="_blank"
+								rel="noopener"
+							>
+								{{- label -}}
+							</a>
+						</div>
+					{%- endif -%}
+				{%- endfor -%}
+			</div>
+		{%- endif -%}
+
+		{%- if activate_chatbot and cta_label != blank -%}
+			<button
+				type="button"
+				class="support-contact__action btn has-svg js-gladly-trigger"
+			>
+				<span class="btn__label">{{- cta_label -}}</span>
+				{% render 'svg-icons', icon: 'dialog' -%}
+			</button>
+		{%- elsif cta_label != blank and cta_url != blank -%}
+			<a
+				class="support-contact__action btn"
+				href="{{- cta_url -}}"
+			>
+				<span>
+					{{- cta_label -}}
+				</span>
+			</a>
+		{%- endif -%}
+
+		{%- if notice != blank -%}
+			<p class="support-contact__notice t-b-4">
+				{{ notice | newline_to_br }}
+			</p>
+		{%- endif -%}
+	</div>
+</div>

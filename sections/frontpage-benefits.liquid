@@ -1,0 +1,121 @@
+{% schema %}
+{
+	"name": "Benefits",
+	"tag": "section",
+	"class": "frontpage-benefits",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "textarea",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "label",
+			"label": "Label",
+			"default": "Swipe to see the P24 impact"
+		},
+		{
+			"metaobject_type": "benefits",
+			"type": "metaobject_list",
+			"id": "benefits",
+			"label": "Benefits"
+		},
+		{
+			"type": "textarea",
+			"id": "notes",
+			"label": "Benefits Notes"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign label = section.settings.label
+	assign benefits = section.settings.benefits
+	assign notes = section.settings.notes
+-%}
+
+<div class="frontpage-benefits__header p-x-max f-v">
+	{%- render 'c-header',
+		subheading: subheading,
+		heading: heading,
+		max_width: 1100
+	-%}
+
+	{%- if paragraph != blank -%}
+		<p class="frontpage-benefits__paragraph t-b-1">{{ paragraph }}</p>
+	{%- endif -%}
+
+	{%- if label != blank -%}
+		<p class="frontpage-benefits__label t-b-3 tablet-down-only">{{ label }}</p>
+	{%- endif -%}
+</div>
+
+{%- if benefits.count > 0 -%}
+	<div class="frontpage-benefits__blocks f-h p-x-max scrollbar-custom js-benefits-accordion-container">
+		{%- for i in benefits -%}
+			{%- liquid
+				assign image = i.image
+				assign excerpt = i.excerpt
+				assign title = i.title
+			-%}
+			<c-accordion
+				class="frontpage-benefits__block c-accordion has-image"
+				data-close-sibling="true"
+			>
+				<button
+					type="button"
+					class="c-accordion__toggle js-accordion-toggle f-v f-a-s f-j-s"
+					data-trigger="{{ title | handle }}"
+				>
+					{%- if image != null -%}
+						<div class="c-accordion__image bg-subtle">
+							<span class="object-fit">
+								{% render 'c-img-srcset', image: image, alt: image.alt %}
+							</span>
+						</div>
+					{%- endif -%}
+					<div class="f-h f-a-c">
+						<span class="c-accordion__title t-l-1">
+							{{- title -}}
+						</span>
+						<span class="icon-plus"></span>
+					</div>
+				</button>
+				<div
+					class="c-accordion__content js-accordion-content"
+					data-target="{{ title | handle }}"
+					aria-hidden="true"
+				>
+					<div class="c-accordion__content-interior">
+						<p class="t-b-2">{{ excerpt | newline_to_br }}</p>
+					</div>
+				</div>
+			</c-accordion>
+		{%- endfor -%}
+	</div>
+{%- endif -%}
+
+{% if notes != blank %}
+	<div class="frontpage-benefits__footer w-max">
+		{%- render 'c-source',
+			source: notes,
+			label: 'Disclaimer',
+			max_width: 2000
+		-%}
+	</div>
+{% endif %}

@@ -1,0 +1,144 @@
+{% schema %}
+{
+	"name": "Science Features",
+	"tag": "section",
+	"class": "science-features p-x-max p-y-section",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		}
+	],
+	"max_blocks": 10,
+	"blocks": [
+		{
+			"type": "feature",
+			"name": "Feature",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Media"
+				},
+				{
+					"type": "radio",
+					"id": "media_type",
+					"label": "Media Type",
+					"options": [
+						{
+							"value": "image",
+							"label": "Image"
+						},
+						{
+							"value": "video",
+							"label": "Shopify-Hosted Video"
+						}
+					],
+					"default": "image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "video",
+					"id": "video",
+					"label": "Shopify-Hosted Video"
+				},
+				{
+					"type": "text",
+					"id": "name",
+					"label": "Name"
+				},
+				{
+					"type": "text",
+					"id": "label",
+					"label": "Label"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+-%}
+
+{%- if section.blocks.size > 0 -%}
+	<div class="science-features__header f-v f-a-c">
+		{%- if heading != blank -%}
+			<h1 class="science-features__heading t-h-2">
+				{{ heading }}
+			</h1>
+		{%- endif -%}
+		{%- if paragraph != blank -%}
+			<p class="science-features__paragraph t-b-1">
+				{{ paragraph }}
+			</p>
+		{%- endif -%}
+	</div>
+
+	{%- capture slider_html -%}
+		{%- for block in section.blocks -%}
+			{%- liquid
+				assign name = block.settings.name
+				assign label = block.settings.label
+				assign media_type = block.settings.media_type
+				assign image = block.settings.image
+				assign video = block.settings.video
+
+				if media_type == 'image' and image != null
+					assign selected_media_type = 'image'
+				elsif media_type == 'video' and video != null
+					assign selected_media_type = 'video'
+				endif
+			-%}
+
+			<div class="science-features__block c-slider__slide f-v f-a-c f-j-s">
+				{%- if selected_media_type != blank -%}
+					<div class="science-features__media child-contain">
+						{%- render 'c-media',
+							selected_media_type: selected_media_type,
+							image: image,
+							video: video,
+						-%}
+					</div>
+				{%- endif %}
+
+				{%- if name != blank or label != blank -%}
+					<div class="science-features__info f-v f-a-c">
+						{%- if name != blank -%}
+							<p class="science-features__name t-l-2">{{ name }}</p>
+						{%- endif -%}
+
+						{%- if label != blank -%}
+							<p class="science-features__label t-l-2">
+								<sup>[{{ forloop.index }}]</sup>
+								{{ label }}
+							</p>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+
+			</div>
+		{%- endfor -%}
+	{%- endcapture -%}
+
+	{%- render 'c-slider',
+		classes: 'science-features__blocks',
+		slider_html: slider_html,
+		slider_options: "{'loop': true, 'watchDrag': true}",
+		enable_fade: true,
+		enable_dots: true,
+		enable_click_to_slide: true,
+		enable_autoheight: true
+	-%}
+{%- endif -%}

@@ -1,0 +1,142 @@
+{% schema %}
+{
+	"name": "FAQ",
+	"tag": "section",
+	"class": "s-faq",
+	"presets": [
+		{
+			"name": "FAQ"
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "FAQs are managed in Gladly."
+		},
+		{
+			"type": "paragraph",
+			"content": "Go to https://amplifye.us-1.gladly.com/ to manage your FAQs."
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading",
+			"default": "FAQ"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "We’re here to break it down, literally."
+		},
+		{
+			"type": "number",
+			"id": "faq_limit",
+			"label": "Max FAQs to show",
+			"default": 12
+		},
+		{
+			"type": "text",
+			"id": "search_placeholder",
+			"label": "Search Input Placeholder",
+			"default": "Search FAQs"
+		},
+		{
+			"type": "textarea",
+			"id": "search_empty",
+			"label": "Search Empty State",
+			"default": "No results found. Please try a different search term."
+		},
+		{
+			"type": "text",
+			"id": "label",
+			"label": "Label",
+			"default": "Not seeing what you need?"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label",
+			"default": "Let’s Chat"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign subheading = section.settings.subheading
+	assign faq_limit = section.settings.faq_limit
+	assign search_placeholder = section.settings.search_placeholder
+	assign search_empty = section.settings.search_empty
+	assign label = section.settings.label
+	assign cta_label = section.settings.cta_label
+-%}
+
+<div id="faq-section" class="m-y-section p-x-md">
+	{%- render 'c-header',
+		class: 's-faq__header',
+		subheading: subheading,
+		heading: heading,
+		is_smaller_heading: true,
+		max_width: 1200
+	-%}
+
+	<div class="s-faq__search">
+		<form
+			role="search"
+			aria-label="FAQ Search"
+			class="f-h f-a-c f-j-s"
+			action=""
+			onsubmit="return false"
+		>
+			<div class="c-field">
+				<div class="s-faq__search__cursor js-faq-blinking-cursor"></div>
+				<input
+					type="text"
+					name="q"
+					id="faq-search-input"
+					class="js-faq-search-input"
+					placeholder=" {{ search_placeholder }}"
+					autocomplete="off"
+					value="{{- search.terms | escape -}}"
+				>
+				<label
+					for="faq-search-input"
+					class="screen-reader-only"
+				>
+					{{- search_placeholder -}}
+				</label>
+				<button
+					type="button"
+					class="btn-underline increase-target-size js-faq-search-clear"
+				>
+					Clear
+				</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="s-faq__blocks">
+		<div
+			class="s-faq__block is-active js-faq-list"
+			data-faq-limit="{{ faq_limit }}"
+			data-empty-message="{{- search_empty -}}"
+		></div>
+	</div>
+
+	{%- if label != blank or cta_label != blank -%}
+		<div class="s-faq__action">
+			{%- if label != blank -%}
+				<h3 class="s-faq__label t-h-2">{{ label }}</h3>
+			{%- endif -%}
+
+			{%- if cta_label != blank -%}
+				<button type="button" class="btn-outline js-gladly-trigger">
+					<span class="btn-outline__label">{{- cta_label -}}</span>
+					{% render 'svg-icons', icon: 'dialog' -%}
+				</button>
+			{%- endif -%}
+		</div>
+	{% endif %}
+</div>

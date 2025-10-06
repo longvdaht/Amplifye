@@ -1,0 +1,399 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "landing_hero_2_bzEcCq": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "Unlock the full powerof protein.",
+        "subheading": "",
+        "content": "We took the best of nature and Nobel Prize-winning science to create P24, an enzyme that makes protein 2X more bioaccessible.",
+        "cta_label": "Get P24",
+        "cta_url": "",
+        "background_image": "shopify://shop_images/284fafa4e2306ed05d1e87ce3e2079dca0da34f4.jpg",
+        "background_image_mobile": "shopify://shop_images/f495419bb4e5f7c4c9b53c3f248490d17addf248.jpg",
+        "product": "",
+        "content_alignment": "right",
+        "mobile_align": "top_left",
+        "code": "MBG15"
+      }
+    },
+    "s_reviews_dnaDbY": {
+      "type": "s-reviews",
+      "blocks": {
+        "review_m4KM4N": {
+          "type": "review",
+          "settings": {
+            "review_text": "I noticed positive changes in my gut health.",
+            "review_author": "Casey P."
+          }
+        },
+        "review_jhKjnt": {
+          "type": "review",
+          "settings": {
+            "review_text": "I’ll never travel without it.",
+            "review_author": "Remy m."
+          }
+        },
+        "review_J9PT4E": {
+          "type": "review",
+          "settings": {
+            "review_text": "I love it. Tummy flat. More energy.",
+            "review_author": "Remy m."
+          }
+        }
+      },
+      "block_order": [
+        "review_m4KM4N",
+        "review_jhKjnt",
+        "review_J9PT4E"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "heading": "Featured In",
+        "heading_image": "shopify://shop_images/5-stars.svg",
+        "padding_top": 30,
+        "padding_right": 0,
+        "padding_bottom": 25,
+        "padding_left": 40
+      }
+    },
+    "landing_testimonial_video": {
+      "type": "s-testimonial-video",
+      "blocks": {
+        "block_E3haNa": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/2e0e3ae8798b43a19eabed8c2d8abe5a (1).mov",
+            "title": "I noticed positive changes in my gut health.",
+            "name": "Casey",
+            "is_autoplay": false
+          }
+        },
+        "block_K638i8": {
+          "type": "block",
+          "settings": {
+            "title": "I absolutely feel better muscle recovery, improved muscle hypertrophy, leaner, less bloating, improved digestions & reduced inflammation.",
+            "name": "Jeanette J.",
+            "is_autoplay": false
+          }
+        },
+        "block_JqGqYK": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/eadb854bb0b04900a3a92345cc552f8a.mov",
+            "title": "",
+            "name": "",
+            "is_autoplay": false
+          }
+        },
+        "block_GCDqgA": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/85c1530be4a54b6194965d878d0be795 (1).mov",
+            "title": "I’ll never travel without it.",
+            "name": "Remy M.",
+            "is_autoplay": false
+          }
+        },
+        "block_CDxCGK": {
+          "type": "block",
+          "settings": {
+            "title": "A must for all woman, specifically perimenopause ladies. I sleep better, my energy is consistent and my tummy feels great! If you are having hormone rollercoaster this certainly has helped level out and enhance my nutrition and fitness goals.",
+            "name": "Clare V.",
+            "is_autoplay": false
+          }
+        },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/5d0377487f364062b8ed5f3c1f557693.mov",
+            "title": "I can totally feel the difference.",
+            "name": "Rosie A.",
+            "is_autoplay": false
+          }
+        },
+        "block_NGjjjR": {
+          "type": "block",
+          "settings": {
+            "title": "I've definitely been sleeping better so far.",
+            "name": "Gabriela B.",
+            "is_autoplay": false
+          }
+        },
+        "block_V7YFPi": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/5a5d6494481f4844849ac7d9464bf828.mov",
+            "title": "",
+            "name": "",
+            "is_autoplay": false
+          }
+        },
+        "block_gWehgV": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "title": "I'm loving P24; I see a big difference on my body.",
+            "name": "Larry S.",
+            "is_autoplay": false
+          }
+        }
+      },
+      "block_order": [
+        "block_E3haNa",
+        "block_K638i8",
+        "block_JqGqYK",
+        "block_GCDqgA",
+        "block_CDxCGK",
+        "block_7y8TVr",
+        "block_NGjjjR",
+        "block_V7YFPi",
+        "block_gWehgV"
+      ],
+      "settings": {
+        "layout": "vertical",
+        "heading": "",
+        "subheading": "",
+        "cta_label": "",
+        "cta_url": "#reviews",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "show_dots": false
+      }
+    },
+    "s_brands_3axFpA": {
+      "type": "s-brands",
+      "blocks": {
+        "logo_7qFkGK": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/the-ny-times_1.png"
+          }
+        },
+        "logo_WMrqaD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/health_1.png"
+          }
+        },
+        "logo_pmnwLA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/vogue_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_7qFkGK",
+        "logo_WMrqaD",
+        "logo_pmnwLA"
+      ],
+      "name": "Brands",
+      "settings": {
+        "heading": "",
+        "padding_top": 15,
+        "padding_right": 165,
+        "padding_bottom": 15,
+        "padding_left": 165,
+        "padding_top_mobile": 0,
+        "padding_right_mobile": 25,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 25
+      }
+    },
+    "frontpage-benefits": {
+      "type": "frontpage-benefits",
+      "settings": {
+        "subheading": "Designed to Help your body help itself",
+        "heading": "Better protein absorption means better health benefits.",
+        "paragraph": "The benefits build as your body experiences higher protein and amino acid levels.",
+        "label": "Swipe to see the p24 impact",
+        "benefits": [
+          "deeper-sleep",
+          "sustained-energy",
+          "muscle-recovery",
+          "digestive-comfort",
+          "mental-clarity"
+        ],
+        "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease."
+      }
+    },
+    "new_editorial_GqCrKp": {
+      "type": "new-editorial",
+      "name": "New - Editorial",
+      "settings": {
+        "background_image": "shopify://shop_images/ANIMATED_Mesh.png",
+        "color": "",
+        "content_max_width": 800,
+        "alignment": "center",
+        "vertical_align_c": true,
+        "subheading": "THE PROTEIN PROBLEM",
+        "heading": "We absorb <strong>less than 50%</strong> of the protein we eat.",
+        "is_smaller_heading": false,
+        "paragraph": "",
+        "activate_orange_btn": false,
+        "cta_label": "",
+        "use_btn_outline": false,
+        "cta_url": "",
+        "source": "Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone.",
+        "content_height_mobile": 480,
+        "padding_top_mobile": 100
+      }
+    },
+    "new_editorial_2_AtB4jB": {
+      "type": "new-editorial-2",
+      "name": "New - Editorial (2)",
+      "settings": {
+        "background_color": "#fdf3e0",
+        "color": "",
+        "content_max_width": 962,
+        "alignment": "center",
+        "vertical_align_c": false,
+        "subheading": "INTRODUCING P24",
+        "heading": "The enzyme that’sunlocking protein.",
+        "is_smaller_heading": false,
+        "paragraph": "P24 enhances digestion by precisely breaking down proteins into peptides, releasing more amino acids — all without having to consume more food.",
+        "image": "shopify://shop_images/Amplifye_Bottle_Front_1.jpg",
+        "activate_orange_btn": true,
+        "cta_label": "GET P24",
+        "use_btn_outline": false,
+        "cta_url": "shopify://products/amplifye-p24",
+        "source": ""
+      }
+    },
+    "s_data_aMCyUH": {
+      "type": "s-data",
+      "name": "Data",
+      "settings": {
+        "heading": "P24 amplifyes every protein.",
+        "subheading": "DISCOVER THE DATA BELOW",
+        "proteins": [
+          "beef",
+          "chicken",
+          "tofu",
+          "atlantic-salmon",
+          "pork",
+          "eggs",
+          "whey-protein",
+          "brown-lentils",
+          "greek-yogurt",
+          "pea-protein",
+          "almonds"
+        ],
+        "disclaimer": ""
+      }
+    },
+    "s_banner_X7rRhM": {
+      "type": "s-banner",
+      "name": "Banner",
+      "settings": {
+        "heading": "Is P24 right for you?",
+        "cta_label": "Let's Chat",
+        "cta_url": "",
+        "color_scheme": "",
+        "activate_chatbot": true
+      }
+    },
+    "new_editorial_3_VeitJY": {
+      "type": "new-editorial-3",
+      "blocks": {
+        "faq_VUBn4j": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "The Activation",
+            "faq_text": "P24 “turns on” the acidic environment of your stomach, so it can begin to efficiently break down protein."
+          }
+        },
+        "faq_d4f7Rh": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "The Unlock",
+            "faq_text": "With ultimate precision, P24 slices protein chains into smaller peptides and amino acids."
+          }
+        },
+        "faq_hRhiAp": {
+          "type": "faq",
+          "settings": {
+            "faq_title": "The Absorption",
+            "faq_text": "P24 increases the concentration of amino acids from protein, leading to higher absorption rates."
+          }
+        }
+      },
+      "block_order": [
+        "faq_VUBn4j",
+        "faq_d4f7Rh",
+        "faq_hRhiAp"
+      ],
+      "name": "New - Editorial (3)",
+      "settings": {
+        "background_color": "#fffaf1",
+        "color": "",
+        "content_max_width": 962,
+        "alignment": "center",
+        "vertical_align_c": false,
+        "subheading": "THE SCIENCE",
+        "heading": "Nature’s intelligence meets human ingenuity.",
+        "is_smaller_heading": false,
+        "paragraph": "P24 is a naturally occurring enzyme, discovered in a Japanese hot spring. We leveraged Nobel Prize-winning research to develop the P24 capsule, designed to accompany your biggest meal of the day and improve protein bioaccessibility.",
+        "image": "shopify://shop_images/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
+        "video": "shopify://files/videos/584d1c2437d0449684c061c4893998d7 (1).mp4",
+        "activate_orange_btn": true,
+        "cta_label": "the science",
+        "use_btn_outline": false,
+        "cta_url": "#",
+        "source": "1. Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone.2. Translating Science to Application for the FODMAP Generation NIH Stefan M Pasiakos. December 2022 John W Carbone.3.Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. IMFD  EduStefan M Pasiakos."
+      }
+    },
+    "s_editorial_GrtPT9": {
+      "type": "s-editorial",
+      "name": "Editorial",
+      "settings": {
+        "is_full_bleed": false,
+        "is_full_bleed_mobile": false,
+        "background_image": "shopify://shop_images/20250417-amplifye-0306_3.jpg",
+        "subheading": "SAME meals, MORE PROTEIN",
+        "heading": "Get more from what you already eat.",
+        "is_smaller_heading": false,
+        "paragraph": "Try P24 for 30 days, worry free.",
+        "paragraph_align_mobile": "left",
+        "activate_orange_btn": false,
+        "cta_label": "Get P24",
+        "cta_url": "shopify://products/amplifye-p24",
+        "source": ""
+      }
+    },
+    "s_articles_BapfYY": {
+      "type": "s-articles",
+      "name": "Articles",
+      "settings": {
+        "heading": "Explore the research from our team of clinical experts.",
+        "cta_label": "All Articles",
+        "cta_url": "shopify://blogs/research",
+        "blog": "research"
+      }
+    }
+  },
+  "order": [
+    "landing_hero_2_bzEcCq",
+    "s_reviews_dnaDbY",
+    "landing_testimonial_video",
+    "s_brands_3axFpA",
+    "frontpage-benefits",
+    "new_editorial_GqCrKp",
+    "new_editorial_2_AtB4jB",
+    "s_data_aMCyUH",
+    "s_banner_X7rRhM",
+    "new_editorial_3_VeitJY",
+    "s_editorial_GrtPT9",
+    "s_articles_BapfYY"
+  ]
+}

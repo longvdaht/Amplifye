@@ -1,0 +1,163 @@
+{% schema %}
+{
+	"name": "Science Mechanism",
+	"tag": "section",
+	"class": "science-mechanism p-x-md p-y-section bg-black cr-cream",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		}
+	],
+	"max_blocks": 3,
+	"blocks": [
+		{
+			"type": "mechanism",
+			"name": "Mechanism",
+			"settings": [
+				{
+					"type": "text",
+					"id": "label",
+					"label": "Label"
+				},
+				{
+					"type": "textarea",
+					"id": "paragraph",
+					"label": "Paragraph"
+				},
+				{
+					"type": "header",
+					"content": "Media"
+				},
+				{
+					"type": "radio",
+					"id": "media_type",
+					"label": "Media Type",
+					"options": [
+						{
+							"value": "image",
+							"label": "Image"
+						},
+						{
+							"value": "video",
+							"label": "Shopify-Hosted Video"
+						}
+					],
+					"default": "image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "video",
+					"id": "video",
+					"label": "Shopify-Hosted Video"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign mechanisms = section.blocks
+-%}
+
+{%- if mechanisms.size > 0 -%}
+	<div class="science-mechanism__header f-v f-a-c">
+		{%- if subheading != blank -%}
+			<p class="science-mechanism__subheading t-l-5">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+
+		{%- if heading != blank -%}
+			<h2 class="science-mechanism__heading t-h-3">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+	</div>
+
+	<div class="science-mechanism__medias f-h f-j-c mobile-up-only">
+		{%- for i in mechanisms -%}
+			{%- liquid
+				assign media_type = i.settings.media_type
+				assign image = i.settings.image
+				assign video = i.settings.video
+
+				if media_type == 'image' and image != null
+					assign selected_media_type = 'image'
+				elsif media_type == 'video' and video != null
+					assign selected_media_type = 'video'
+				endif
+			-%}
+
+			{%- if selected_media_type != blank -%}
+				<div class="science-mechanism__media">
+					<span class="object-fit">
+						{%- render 'c-media',
+							selected_media_type: selected_media_type,
+							image: image,
+							video: video
+						-%}
+					</span>
+				</div>
+			{%- endif %}
+		{%- endfor -%}
+	</div>
+
+	<ul class="science-mechanism__blocks f-v f-a-s">
+		{%- for i in mechanisms -%}
+			{%- liquid
+				assign label = i.settings.label
+				assign paragraph = i.settings.paragraph
+				assign media_type = i.settings.media_type
+				assign image = i.settings.image
+				assign video = i.settings.video
+
+				if media_type == 'image' and image != null
+					assign selected_media_type = 'image'
+				elsif media_type == 'video' and video != null
+					assign selected_media_type = 'video'
+				endif
+			-%}
+
+			<li class="science-mechanism__block f-h f-a-s">
+				{%- if selected_media_type != blank -%}
+					<div class="science-mechanism__media mobile-down-only">
+						<span class="object-fit">
+							{%- render 'c-media',
+								selected_media_type: selected_media_type,
+								image: image,
+								video: video
+							-%}
+						</span>
+					</div>
+				{%- endif %}
+				{%- if label != blank -%}
+					<div class="science-mechanism__info f-v">
+						<span class="t-l-3">{{ forloop.index | prepend: 0 }}</span>
+						<p class="science-mechanism__label t-h-3">
+							{{ label }}
+						</p>
+					</div>
+				{%- endif -%}
+				{%- if paragraph != blank -%}
+					<p class="science-mechanism__paragraph t-l-3">
+						{{ paragraph }}
+					</p>
+				{%- endif -%}
+			</li>
+		{%- endfor -%}
+	</ul>
+{%- endif -%}

@@ -1,0 +1,11 @@
+{% comment %} {%- render 'c-filter',
+	class: string
+	filter_html: liquid
+-%} {% endcomment %}
+
+<ul
+	class="c-filter f-h f-j-s p-x-max scrollbar-hide{% if class %} {{ class }}{%- endif -%}"
+	style="--bg-color: {{ bg_color | default: 'var(--cr-orange)' }}; --text-color: {{ text_color | default: 'var(--cr-cream)' }}; --border-color: {{ border_color | default: 'var(--cr-black)' }}"
+>
+	{{ filter_html }}
+</ul>

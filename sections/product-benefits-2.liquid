@@ -1,0 +1,121 @@
+{% schema %}
+{
+	"name": "Product Benefits",
+	"tag": "section",
+	"class": "product-benefits-2 m-y-section p-x-md",
+	"settings": [
+		{
+			"type": "textarea",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"metaobject_type": "benefits",
+			"type": "metaobject_list",
+			"id": "benefits",
+			"label": "Benefits"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign subheading = section.settings.subheading
+	assign benefits = section.settings.benefits
+-%}
+
+{%- if benefits.count > 0 -%}
+	{%- if subheading != blank or heading != blank -%}
+		<div class="product-benefits-2__heading f-v f-j-c f-a-c">
+			{%- if heading != blank -%}
+				<h2 class="product-benefits-2__heading__title t-h-1">
+					{{ heading }}
+				</h2>
+			{%- endif -%}
+			{%- if subheading != blank -%}
+				<p class="product-benefits-2__subtitle">
+					{{ subheading }}
+				</p>
+			{%- endif -%}
+		</div>
+	{%- endif -%}
+
+	<div class="product-benefits-2__container f-v f-j-c f-a-c">
+		{%- for benefit in benefits -%}
+			{%- liquid
+				assign paragraph = benefit.paragraph
+				assign list_title = benefit.list_title
+				assign list = benefit.list.value
+				assign amino_title = benefit.amino_acid_title
+				assign amino_acids = benefit.amino_acids.value
+			-%}
+			{% capture benefit_content %}
+					<div class="product-benefits-2__content f-v f-j-c f-a-s">
+						{%- if paragraph != blank -%}
+							<p class="product-benefits-2__paragraph">
+								{{ paragraph }}
+							</p>
+						{%- endif -%}
+
+						{%- if list != blank -%}
+							<div class="product-benefits-2__feature f-v f-a-s">
+								{%- if list_title != blank -%}
+									<h4 class="product-benefits-2__subtitle">{{ list_title }}</h4>
+								{%- endif -%}
+
+								<ul class="product-benefits-2__list">
+									{%- for item in list -%}
+										<li class="product-benefits-2__list__item t-h-4">{{ item }}</li>
+									{%- endfor -%}
+								</ul>
+							</div>
+						{%- endif -%}
+
+						{%- if list != blank -%}
+							<div class="product-benefits-2__acid f-v f-a-c">
+								{%- if amino_title != blank -%}
+									<h4 class="product-benefits-2__subtitle">{{ amino_title }}</h4>
+								{%- endif -%}
+
+								<ul class="product-benefits-2__pills f-h f-j-c f-a-c">
+									{%- for item in amino_acids -%}
+										{%- liquid
+											assign name = item.name
+											assign info = item.information
+											assign abvr = item.abbreviation
+										-%}
+
+										<li class="product-benefits-2__pill t-h-4">
+											{%- if info != blank -%}
+												{%- render 'c-tooltip',
+													label: name,
+													label_mobile: abvr,
+													content: info,
+													hover_color: 'var(--cr-cream)'
+												-%}
+											{%- endif -%}
+										</li>
+									{%- endfor -%}
+								</ul>
+							</div>
+						{%- endif -%}
+					</div>
+			{% endcapture %}
+			{% capture benefit_title %}
+				{{ benefit.title }}
+			{% endcapture %}
+
+			{% render 'c-accordion-product-benefit-2',
+				title: benefit_title,
+				content: benefit_content,
+				isCloseSiblings: true
+			%}
+		{%- endfor -%}
+	</div>
+{%- endif -%}

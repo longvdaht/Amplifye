@@ -1,0 +1,138 @@
+{% comment %}
+	{%- render 'c-banner',
+		heading: string,
+		cta_label: string,
+		cta_url: url,
+		color_scheme: object,
+		activate_chat: boolean
+	-%}
+{% endcomment %}
+
+<style>
+	.landing-s-banner-2 .c-banner {
+		border-radius: 0;
+		padding: 40px 60px;
+	}
+
+	.landing-s-banner-2 .subheading {
+		font-family: "Basis Grotesque";
+		font-weight: 400;
+		font-style: normal;
+		font-size: 18px;
+		line-height: 125%;
+		letter-spacing: 0.1px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	.landing-s-banner-2 .c-banner-heading {
+		display: flex;
+		align-items: center;
+	}
+
+	.landing-s-banner-2 span.mainheading {
+		margin-left: 20px;
+		margin-right: 0;
+	}
+
+	.landing-s-banner-2 span.mainheading-text {
+		margin-left: 6px;
+	}
+
+	.landing-s-banner-2 .pre_subheading, .landing-s-banner-2 .mainheading {
+		font-family: "Basis Grotesque";
+		font-weight: 700;
+		font-style: normal;
+		font-size: 18px;
+		line-height: 1.25;
+		letter-spacing: 1.8px;
+		text-align: center;
+		text-transform: uppercase;
+		margin-right: 6px;
+	}
+
+	.landing-s-banner-2 span.mainheading.mainheading-mobile {
+		display: none;
+	}
+
+    #shopify-section-{{ section.id }}.landing-s-banner-2 span.mainheading-text {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.25;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+    }
+
+	@media (max-width: 599.98px) {
+		.landing-s-banner-2 .subheading {
+			font-size: 12px;
+		}
+
+		.landing-s-banner-2 .c-banner {
+			padding: 40px 45px;
+		}
+
+		.landing-s-banner-2 span.mainheading.mainheading-mobile {
+			display: block;
+		}
+
+		.landing-s-banner-2 span.mainheading.mainheading-desktop {
+			display: none;
+		}
+
+        #shopify-section-{{ section.id }}.landing-s-banner-2 span.mainheading-text {
+            font-size: 16px;
+        }
+
+        #shopify-section-{{ section.id }}.landing-s-banner-2 span.slash {
+            display: none;
+        }
+	}
+</style>
+
+{%- liquid
+	assign bg_color = color_scheme.settings.background
+	assign text_color = color_scheme.settings.text
+	assign hover_color = color_scheme.settings.hover_color
+
+	if bkg_color != blank
+		assign bg_color = bkg_color
+	endif
+-%}
+
+<div
+	class="c-banner f-h f-a-c f-w cr-cream"
+	style="--bg-color: {{ bg_color | default: '#c14b24' }}; --text-color: {{ text_color | default: '#fffaf1' }}; --hover-color: {{ hover_color | default: '#000000' }}"
+>
+	{%- if text_1 != blank or text_2 != blank -%}
+		<div class="c-banner-heading">
+            <span class="mainheading mainheading-text">
+                {%- if text_1 != blank -%}
+                    {{ text_1 }}
+                {%- endif -%}
+                
+                {%- if text_2 != blank -%}
+                    <span class="slash">/</span> {{ text_2 }}
+                {%- endif -%}
+            </span>
+		</div>
+	{%- endif -%}
+
+	{%- if cta_label != blank -%}
+		{%- if cta_url != blank -%}
+			<a
+				href="{{- cta_url -}}"
+				class="c-banner__cta btn-outline"
+			>
+				<span class="btn-outline__label">{{- cta_label -}}</span>
+			</a>
+		{%- else -%}
+			{% comment %}<button type="button" class="btn-outline js-gladly-trigger">
+				<span class="btn-outline__label">{{- cta_label -}}</span>
+			</button>{% endcomment %}
+            <div class="product-hero__form simple-product-form">
+                {% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, btn_outline: true, code: code  %}
+            </div>
+		{%- endif -%}
+	{%- endif -%}
+</div>

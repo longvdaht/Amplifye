@@ -1,0 +1,305 @@
+{% schema %}
+{
+	"name": "Testimonial Video",
+	"tag": "section",
+	"class": "m-y-section",
+	"presets": [
+		{
+			"name": "Testimonial Video",
+			"settings": {
+				"layout": "vertical",
+				"heading": "",
+				"subheading": "See what others are saying",
+				"cta_label": "See all reviews",
+				"cta_url": ""
+			},
+			"blocks": [
+				{
+					"type": "block",
+					"settings": {
+						"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+						"name": "Sarah D.",
+						"is_autoplay": true
+					}
+				},
+				{
+					"type": "block",
+					"settings": {
+						"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+						"name": "Sarah D.",
+						"is_autoplay": true
+					}
+				}
+			]
+		}
+	],
+	"settings": [
+		{
+			"type": "select",
+			"id": "layout",
+			"label": "Layout",
+			"options": [
+				{
+					"value": "vertical",
+					"label": "Vertical"
+				},
+				{
+					"value": "horizontal",
+					"label": "Horizontal"
+				}
+			]
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label",
+			"default": "See all reviews"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+        {
+            "type": "header",
+            "content": "Margin"
+        },
+        {
+            "type": "range",
+            "id": "margin_top",
+            "label": "Top",
+            "min": -200,
+            "max": 200,
+            "step": 4,
+            "unit": "px",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "margin_bottom",
+            "label": "Bottom",
+            "min": -200,
+            "max": 200,
+            "step": 4,
+            "unit": "px",
+            "default": 0
+        },
+        {
+            "type": "header",
+            "content": "Show dots"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_dots",
+            "label": "Show dots",
+            "default": true
+        }
+	],
+	"max_blocks": 10,
+	"blocks": [
+		{
+			"type": "block",
+			"name": "Block",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "video",
+					"id": "video",
+					"label": "Video",
+					"info": "Recommended aspect ratio is 9:16"
+				},
+				{
+					"type": "textarea",
+					"id": "title",
+					"label": "Paragraph",
+					"info": "Text exceeding 60 characters will be truncated."
+				},
+				{
+					"type": "text",
+					"id": "name",
+					"label": "Name"
+				},
+				{
+					"type": "checkbox",
+					"id": "is_autoplay",
+					"label": "Autoplay",
+					"info": "Autoplay video will be muted",
+					"visible_if": "{{ block.settings.video != blank }}",
+					"default": true
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{% style %}
+	#shopify-section-{{ section.id }}.m-y-section {
+		margin-top: {{ section.settings.margin_top }}px;
+		margin-bottom: {{ section.settings.margin_bottom }}px;
+	}
+
+	{% unless section.settings.show_dots %}
+		#shopify-section-{{ section.id }} .s-testimonial-video .c-slider__dots {
+			display: none;
+		}
+	{% endunless %}
+{% endstyle %}
+
+{% liquid
+	assign layout = section.settings.layout
+	assign heading = section.settings.heading
+	assign subheading = section.settings.subheading
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+%}
+
+{% if section.blocks.size > 0 %}
+	<div
+		class="s-testimonial-video {% if layout == 'vertical' %}is-vertical f-v f-a-s{% else %}is-horizontal f-h{% endif %}"
+	>
+		{%- if heading != blank or subheading != blank or cta_label != blank -%}
+			<div class="s-testimonial-video__header p-x-max">
+				<h2 class="s-testimonial-video__heading t-h-3">{{ heading }}</h2>
+				<p class="s-testimonial-video__subheading t-l-5">{{ subheading }}</p>
+
+				{%- if cta_label != blank and cta_url != blank -%}
+					<a
+						class="s-testimonial-video__cta btn-outline tablet-up-only"
+						href="{{- cta_url -}}"
+					>
+						<span class="btn-outline__label">
+							{{- cta_label -}}
+						</span>
+					</a>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		{%- capture slider_html -%}
+			{% for block in section.blocks %}
+				{% liquid
+					assign video = block.settings.video
+					assign image = block.settings.image
+					assign content = block.settings.title
+					assign name = block.settings.name
+					assign is_autoplay = block.settings.is_autoplay
+					if is_autoplay == true
+						assign show_btns = false
+					else
+						assign show_btns = true
+					endif
+
+					if video != null
+						assign selected_media_type = 'video'
+					elsif image != null
+						assign selected_media_type = 'image'
+					endif
+				%}
+
+				{% if video != null or image != null or content != blank %}
+					<div
+						class="c-slider__slide s-testimonial-video__block bg-black child-cover {%- if video == null and image == null %} is-text-block{% endif %} {%- if video == null and image != null %} is-image-block{% endif %}"
+						{% if video != null %}data-popup-trigger="{{ 'testimonial-' | append: forloop.index }}"{% endif %}
+					>
+						{% if video != null or image != null %}
+							{%- render 'c-media',
+								selected_media_type: selected_media_type,
+								image: image,
+								video: video,
+								show_btns: show_btns,
+								is_autoplay: is_autoplay
+							-%}
+						{% endif %}
+						{% if content != blank %}
+							<div class="s-testimonial-video__block__text bg-black cr-cream">
+								<div class="s-testimonial-video__block__text__stars f-h f-j-s">
+									{% for i in (1..5) %}
+										{% render 'svg-icons', icon: 'star' %}
+									{% endfor %}
+								</div>
+								<p class="s-testimonial-video__block__text__quote f-v f-j-s f-a-st">
+									<q class="t-h-4">{{ content | truncate: 300, '...' }}</q>
+									{% if name != blank %}
+										<cite class="t-b-2">{{ name }}</cite>
+									{% endif %}
+								</p>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			{% endfor %}
+		{%- endcapture -%}
+
+		{%- render 'c-slider',
+			classes: 's-testimonial-video__blocks',
+			slider_html: slider_html,
+			custom_slides_size: '--slide-size: 18%; --slide-gap: 20px;',
+			slider_options: "{'loop': true, 'skipSnaps': true, 'align': 'start'}",
+			is_full_width_on_mobile: true,
+			enable_nav: true,
+			enable_dots: true,
+			enable_wheel: true
+		-%}
+
+		{%- if cta_label != blank and cta_url != blank -%}
+			<a
+				class="s-testimonial-video__cta btn-outline tablet-down-only"
+				href="{{- cta_url -}}"
+			>
+				<span class="btn-outline__label">
+					{{- cta_label -}}
+				</span>
+			</a>
+		{%- endif -%}
+	</div>
+
+	{% comment %} POPUP CONTENT {% endcomment %}
+	{% for block in section.blocks %}
+		{% assign video = block.settings.video %}
+		<div
+			class="is-hidden"
+			data-popup-target="{{ 'testimonial-' | append: forloop.index }}"
+		>
+			<div class="s-testimonial-video__popup">
+				<button
+					type="button"
+					class="s-testimonial-video__popup__close cr-cream"
+					data-popup-close="{{ 'testimonial-' | append: forloop.index }}"
+					aria-label="Close popup"
+				>
+					<span class="icon-close"></span>
+				</button>
+				<button
+					type="button"
+					class="p-fill"
+					data-popup-close="{{ 'testimonial-' | append: forloop.index }}"
+					aria-label="Close popup"
+				></button>
+
+				{% render 'c-video',
+					video_type: 'video',
+					video: video,
+					controls: false,
+					is_autoplay: true,
+					has_play_btn: true,
+					has_mute_btn: true
+				%}
+			</div>
+		</div>
+	{% endfor %}
+{% endif %}

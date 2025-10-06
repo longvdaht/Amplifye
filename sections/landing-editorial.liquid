@@ -1,0 +1,133 @@
+{% schema %}
+{
+	"name": "Landing - Editorial",
+	"tag": "section",
+	"class": "s-editorial s-landing-editorial cr-cream",
+	"presets": [
+		{
+			"name": "Landing - Editorial",
+			"settings": {
+				"background_image": "shopify://shop_images/bottle.jpg",
+				"heading": "From rates of consumption to rates of absorption.",
+				"is_smaller_heading": false,
+				"paragraph": "Access your protein’s full potential. Try P24 for 30 days, worry free.",
+				"activate_orange_btn": true,
+				"cta_label": "Get P24",
+				"cta_url": "shopify://products/amplifye-p24"
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Media"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image_mobile",
+			"label": "Background Image (mobile)"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "color",
+			"id": "color",
+			"label": "Content Colour"
+		},
+		{
+			"type": "number",
+			"id": "content_max_width",
+			"default": 490,
+			"info": "We use px",
+			"label": "Content max width"
+		},
+		{
+			"type": "text_alignment",
+			"id": "alignment",
+			"label": "Text alignment",
+			"default": "center"
+		},
+		{
+			"type": "checkbox",
+			"id": "vertical_align_c",
+			"label": "Make vertical align is center"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_smaller_heading",
+			"label": "Use Smaller Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_smaller_paragraph",
+			"label": "Use Smaller Paragraph"
+		},
+		{
+			"type": "checkbox",
+			"id": "activate_orange_btn",
+			"label": "Activate orange button"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},		
+		{
+			"type": "checkbox",
+			"id": "use_btn_outline",
+			"label": "Use btn with outlie"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "source",
+			"label": "Source"
+		}
+	]
+}
+{% endschema %}
+
+{%- render 'landing-editorial',
+	subheading: section.settings.subheading,
+	color: section.settings.color,
+	content_max_width: section.settings.content_max_width,
+	alignment: section.settings.alignment,
+	vertical_align_c: section.settings.vertical_align_c,
+	heading: section.settings.heading,
+	is_smaller_heading: section.settings.is_smaller_heading,
+	paragraph: section.settings.paragraph,
+	is_smaller_paragraph: section.settings.is_smaller_paragraph,
+	cta_label: section.settings.cta_label,
+	cta_url: section.settings.cta_url,
+	use_btn_outline: section.settings.use_btn_outline,
+	source: section.settings.source,
+	background_image: section.settings.background_image,
+	background_image_mobile: section.settings.background_image_mobile,
+	activate_orange_btn: section.settings.activate_orange_btn,
+-%}

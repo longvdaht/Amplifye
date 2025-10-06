@@ -1,0 +1,338 @@
+{% comment %}
+	{%- render 'c-editorial',
+		subheading: string,
+		heading: string,
+		is_smaller_heading: boolean,
+		paragraph: string,
+		cta_label: string,
+		cta_url: url,
+		source: string,
+		background_image: image,
+		background_image_mobile: image
+	-%}
+{% endcomment %}
+
+{% style %}
+    .s-landing-editorial {
+        margin: 0;
+    }
+
+    .c-landing-editorial {
+        padding: 80px 144px;
+    }
+
+    #shopify-section-{{ section.id }} .c-landing-editorial__content {
+        max-width: {{  content_max_width }}px;
+        text-align: {{ alignment }};
+        {% if color != blank %}
+            color: {{ color }};
+        {% else %}
+            color: #000000;
+        {% endif %}
+    }
+    .c-landing-editorial__content .c-header__subheading {
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+    }
+
+    #shopify-section-{{ section.id }} .c-landing-editorial__content .c-header__heading {        
+        text-align: {{ alignment }};
+        margin-top: 40px;
+    }
+
+    #shopify-section-{{ section.id }} .c-landing-editorial__content .c-editorial__footer p {
+        text-align: {{ alignment }};
+    }
+
+    .c-landing-editorial__content .c-source {
+        text-transform: none;
+        border: 0;
+        padding: 0;
+    }
+
+    {% if is_smaller_paragraph %}
+        #shopify-section-{{ section.id }} .c-landing-editorial__content .c-editorial__footer p {
+            font-size: 24px;
+        }
+    {% endif %}
+
+    {% if use_btn_outline %}
+        #shopify-section-{{ section.id }} .btn-outline:hover span {
+            color: #000;
+            z-index: 2;
+        }
+    {% endif %}
+
+    .s-landing-editorial-2 .c-editorial__paragraph {
+        font-family: Basis Grotesque;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 1.25;
+        margin-top: 40px;
+    }
+
+    .s-landing-editorial-2 .c-editorial__footer {
+        margin-top: 40px;
+    }
+
+    .new-editorial.c-landing-editorial {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .new-editorial .c-landing-editorial__content .c-source {
+        max-width: none;
+        gap: 15px;
+        padding-block: 8px;
+        border-top: .8px dashed rgba(0, 0, 0, 0);
+        border-bottom: .8px dashed rgba(0, 0, 0, 0);
+        border-image-source: repeating-linear-gradient(to right, currentColor 0 6px, transparent 6px 12px);
+        border-image-slice: 1;
+        border-image-repeat: stretch;
+    }
+
+    @media (max-width: 600px) {
+        .s-landing-editorial-2 .c-landing-editorial {
+            padding: 30px 32px 48px;
+        }
+
+        .s-landing-editorial-2 .c-editorial__content {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #shopify-section-{{ section.id }} .c-landing-editorial__content .c-header__heading {
+            font-family: GT Pressura Mono;
+            font-size: 36px;
+            line-height: 120%;
+            text-align: center;
+        }
+
+        .s-landing-editorial-2 .c-editorial__paragraph {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    }
+
+    .new-editorial-2.c-landing-editorial {
+        padding: 90px 0 70px;
+        height: auto;
+    }
+
+    .new-editorial-2.c-landing-editorial .editorial-image {
+        width: 100%;
+        max-width: 670px;
+    }
+
+    .new-editorial-2.c-landing-editorial .c-editorial__content {
+        align-items: center;
+    }
+
+    .new-editorial-2.c-landing-editorial .btn {
+        width: 300px;
+    }
+
+    .editorial-faq {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .editorial-faq .editorial-faq__item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 5px solid #000;
+        padding-bottom: 25px;
+        margin-top: 60px;
+        align-content: space-between;
+        align-items: flex-end;
+    }
+
+    .editorial-faq__item .editorial-faq__item--right {
+        max-width: 340px;
+        text-align: left;
+    }
+
+    .editorial-faq__item .editorial-faq__item--right span {
+        font-family: GT Pressura Mono;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 125%;
+        letter-spacing: 0.32px;
+        vertical-align: middle;
+    }
+
+    .editorial-faq__item--left {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .editorial-faq__item--left > span {
+        width: 100%;
+    }
+
+    .editorial-faq__item--left .editorial-faq__item--number {
+        font-family: GT Pressura Mono;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 1.25;
+        letter-spacing: 0.32px;
+    }
+
+    .editorial-faq__item--left .editorial-faq__item--title {
+        font-family: GT Pressura Mono;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 1;
+        letter-spacing: 0;
+        margin-top: 18px;
+        margin-bottom: -3px;
+    }
+
+    .new-editorial-3.c-landing-editorial .editorial-image {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    .new-editorial-3.c-landing-editorial .editorial-image .c-video {
+        padding-top: calc(400 / 700 * 100%);
+    }
+
+    .new-editorial-3.c-landing-editorial .editorial-image .c-video video {
+        top: 0
+    }
+
+    @media (max-width: 600px) {
+        #shopify-section-{{ section.id }} .c-landing-editorial__content-3 {
+            /* max-width: calc(100% - 40px); */
+        }
+
+        .editorial-faq__item--left {
+            width: 100%;
+        }
+
+        .editorial-faq .editorial-faq__item {
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .editorial-faq__item .editorial-faq__item--right {
+            margin-top: 20px;
+        }
+
+        .editorial-faq__item--left .editorial-faq__item--number {
+            font-size: 14px;
+        }
+
+        .editorial-faq__item--left .editorial-faq__item--title {
+            font-size: 22px;
+        }
+
+        .editorial-faq__item .editorial-faq__item--right span {
+            font-size: 14px;
+            line-height: 1.3;
+            letter-spacing: 0.7px;
+        }
+    }
+{% endstyle %}
+
+<div class="new-editorial new-editorial-2 new-editorial-3 c-editorial c-landing-editorial f-v bg-subtle">
+    {% if section.settings.background_color != blank %}
+        {% style %}
+            #{{ section.id }} .new-editorial-2 {
+                background-color: {{ section.settings.background_color }}
+            }
+        {% endstyle %}
+    {% endif %}
+	<div class="c-editorial__content c-landing-editorial__content c-landing-editorial__content-3 f-v {% if vertical_align_c %}f-j-c{% endif %} p-x-max">
+		{% comment %}{%- render 'c-header',
+			subheading: subheading,
+			heading: heading,
+			is_smaller_heading: is_smaller_heading
+		-%}{% endcomment %}
+        {%- if subheading != blank or heading != blank -%}
+            <div class="c-editorial__header">
+                {%- if subheading != blank -%}
+                    <p class="c-header__subheading t-b-2">
+                        {{ subheading }}
+                    </p>
+                {%- endif -%}
+                {%- if heading != blank -%}
+                    <h2 class="c-header__heading {% if is_smaller_heading %}t-h-2{% else %}t-h-1{% endif %}">
+                        {{ heading }}
+                    </h2>
+                {%- endif -%}
+            </div>
+        {%- endif -%}        
+
+        {%- if paragraph != blank -%}                
+            {%- if paragraph != blank -%}
+                <p class="c-editorial__paragraph">
+                    {{ paragraph | newline_to_br }}
+                </p>
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if image != blank -%}
+            <span class="editorial-image">
+                {%- if video != blank -%}
+                    {%- render 'c-video',
+                        video_type: 'video',
+                        video: video,
+                        controls: false,
+                        is_autoplay: true,
+                        has_play_btn: false,
+                        has_mute_btn: false
+                    -%}
+                {%- else -%}
+                    {%- render 'c-img-srcset',
+                        image: image,
+                        responsive_image: image,
+                        alt: image.alt
+                    -%}
+                {%- endif -%}
+		    </span>
+        {%- endif -%}
+
+        {% if section.blocks.size > 0 %}
+            <div class="editorial-faq">
+                {% for block in section.blocks %}
+                    {% assign faq_title = block.settings.faq_title %}
+                    {% assign faq_text = block.settings.faq_text %}
+                    {% assign faq_index = forloop.index  %}
+                    {% if faq_title != blank or faq_text != blank %}
+                        <div class="editorial-faq__item">
+                            <div class="editorial-faq__item--left">
+                                <span class="editorial-faq__item--number">{% if faq_index < 10 %}0{{ faq_index }}{% else %}{{ faq_index }}{% endif %}</span>
+                                <span class="editorial-faq__item--title">{{ faq_title }}</span>
+                            </div>
+                            <div class="editorial-faq__item--right">
+                                <span class="editorial-faq__item--text">{{ faq_text }}</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+		{%- if source != blank or cta_label != blank -%}
+			<div class="c-editorial__footer">
+				{%- if cta_label != blank and cta_url != blank -%}
+					<a
+						class="c-editorial__cta {% if use_btn_outline %}btn-outline{% else %}btn {% if activate_orange_btn %} cr-orange hover-white{% endif %}{% endif %}"
+						href="{{- cta_url -}}"
+					>
+						<span>{{- cta_label -}}</span>
+					</a>
+				{%- endif -%}
+
+				{%- render 'c-source', source: source -%}
+			</div>
+		{%- endif -%}
+	</div>
+</div>

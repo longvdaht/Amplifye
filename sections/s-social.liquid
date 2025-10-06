@@ -1,0 +1,143 @@
+{% schema %}
+{
+	"name": "Social",
+	"tag": "section",
+	"class": "s-social m-y-section",
+	"presets": [
+		{
+			"name": "Social",
+			"settings": {
+				"heading": "Connect with the amplifye community.",
+				"cta_label": "Follow @amplifye_me",
+				"cta_url": "/"
+			},
+			"blocks": [
+				{
+					"type": "block",
+					"settings": {
+						"image": "shopify://shop_images/2beab723510c6033f1dc478be152346ac67cb903.jpg",
+						"url": "https://www.instagram.com/p/DIeP0irp6DE/?img_index=1"
+					}
+				},
+				{
+					"type": "block",
+					"settings": {
+						"image": "shopify://shop_images/swimming.jpg",
+						"url": "https://www.instagram.com/p/DIePyyYJISy/"
+					}
+				},
+				{
+					"type": "block",
+					"settings": {
+						"image": "shopify://shop_images/03920c279f81793541a6421b7461473dd21dd2c4.jpg",
+						"url": "https://www.instagram.com/p/DIePxFnJOql/?img_index=1"
+					}
+				},
+				{
+					"type": "block",
+					"settings": {
+						"image": "shopify://shop_images/420e78b9b1ee72c8f98040dda0a45d695164ad3d.jpg",
+						"url": ""
+					}
+				},
+				{
+					"type": "block",
+					"settings": {
+						"image": "shopify://shop_images/250491458c7b3e460d0f9bc51997fe2be29c6328.jpg",
+						"url": ""
+					}
+				}
+			]
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "Connect with the amplifye community."
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label",
+			"default": "Follow @amplifye_me"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		}
+	],
+	"blocks": [
+		{
+			"type": "block",
+			"name": "Block",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "url",
+					"id": "url",
+					"label": "URL"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{% liquid
+	assign heading = section.settings.heading
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+%}
+
+{% if section.blocks.size > 0 %}
+	<div class="s-social__header f-h f-a-c p-x-max">
+		{% if heading != blank %}
+			<h2 class="t-h-2">{{ heading }}</h2>
+		{% endif %}
+
+		{%- if cta_label != blank and cta_url != blank -%}
+			<a
+				class="s-social__link btn-outline tablet-up-only"
+				href="{{- cta_url -}}"
+			>
+				<span class="btn-outline__label">
+					{{- cta_label -}}
+				</span>
+			</a>
+		{%- endif -%}
+	</div>
+
+	<div class="s-social__blocks f-h f-nw f-j-s scrollbar-custom">
+		{% for block in section.blocks %}
+			{% liquid
+				assign image = block.settings.image
+				assign url = block.settings.url | default: cta_url
+			%}
+			{% if image != null and url != blank %}
+				<a href="{{ url }}" class="s-social__block bg-subtle">
+					<span class="object-fit">
+						{% render 'c-img-srcset', image: image, alt: image.alt %}
+					</span>
+				</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	{%- if cta_label != blank and cta_url != blank -%}
+		<a
+			class="s-social__link btn-outline tablet-down-only"
+			href="{{- cta_url -}}"
+		>
+			<span class="btn-outline__label">
+				{{- cta_label -}}
+			</span>
+		</a>
+	{%- endif -%}
+{% endif %}

@@ -1,0 +1,33 @@
+{% comment %}
+	{%- render 'c-header',
+		heading: string,
+		subheading: string,
+		max_width: number,
+		is_smaller_heading: boolean
+	-%}
+{% endcomment %}
+
+{% liquid
+	assign heading_font_class = 't-h-1'
+	if is_smaller_heading
+		assign heading_font_class = 't-h-2'
+	endif
+%}
+
+{%- if subheading != blank or heading != blank -%}
+	<div
+		class="c-header{% if class %} {{ class }}{%- endif -%}"
+		style="--max-width:{{ max_width | default: 800 | append: 'px' }}"
+	>
+		{%- if subheading != blank -%}
+			<p class="c-header__subheading t-b-3">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+		{%- if heading != blank -%}
+			<h2 class="c-header__heading {{ heading_font_class }}">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+	</div>
+{%- endif -%}

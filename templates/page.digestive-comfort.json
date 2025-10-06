@@ -1,0 +1,220 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "landing_hero_2_mGr8Gx": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "You’re Eating Enough Protein",
+        "subheading": "But Are You Absorbing It?",
+        "content": "Introducing amplifyeP24 — a clinically studied enzyme that helps your body break down and actually <span> absorb more protein, without the bloat.",
+        "cta_label": "Buy P24",
+        "cta_url": "",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/Amplifye_Desktop.png",
+        "background_image_mobile": "shopify://shop_images/Amplifye_Mobile.png",
+        "product": "amplifye-p24",
+        "custom_style": false,
+        "content_alignment": "right",
+        "mobile_align": "bottom_right",
+        "code": "WELCOME15"
+      }
+    },
+    "landing_s_banner_2_aHnHcH": {
+      "type": "landing-s-banner-2",
+      "name": "Landing Banner - 2",
+      "settings": {
+        "text_1": "<strong>15% off </strong>your first bottle",
+        "text_2": "Use code: <strong>WELCOME15</strong>",
+        "cta_label": "Maximize Protein, Minimize Bloat",
+        "cta_url": "",
+        "product": "",
+        "code": "WELCOME15",
+        "color_scheme": "scheme-fcc1c5bd-f961-4bec-b731-2870c953017a",
+        "bkg_color": ""
+      }
+    },
+    "s_its_FQKdML": {
+      "type": "s-its",
+      "name": "Image Text Split",
+      "settings": {
+        "content_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/Intake_Desktop.png",
+        "heading": "The Problem Isn’t Your Intake — It’s Absorption.",
+        "paragraph": "<p>You’re making the smoothies. Eating clean.<br/>Prioritizing protein. And still, you feel:</p><ul><li>Bloated after meals</li><li>Sluggish instead of energized</li><li>Like your protein powder is just…sitting there</li></ul>",
+        "note": "That’s not your fault. It’s your body telling you it needs support breaking protein down into a form it can actually use.",
+        "cta_label": "",
+        "cta_url": ""
+      }
+    },
+    "landing_intro_solution_X6PBWm": {
+      "type": "landing-intro-solution",
+      "name": "Landing Solution",
+      "settings": {
+        "subheading": "a clinically proven powerhouse",
+        "heading": "Meet the groundbreaking enzyme that allows you to get more from your protein, without eating more protein.",
+        "image": "shopify://shop_images/capsule_image.png",
+        "paragraph": "<p>Clinically shown to increase protein bioaccessibility by 115% (that's more than double the protein)</p><p>Supports lean muscle, hormone production, and tissue repair</p><p>Helps unlock the full-body benefits of protein — gut to skin to mood</p>",
+        "cta_label": "Buy P24",
+        "cta_url": "",
+        "product": "amplifye-p24",
+        "code": "WELCOME15"
+      }
+    },
+    "s_its_CrMTzX": {
+      "type": "s-its",
+      "custom_css": [],
+      "name": "Image Text Split",
+      "settings": {
+        "content_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/Todu_image.png",
+        "heading": "Why Gut Health and Protein Go Hand in Hand",
+        "paragraph": "<p>Your gut isn’t just a digestion center — it’s your second brain.<br/>It regulates:</p><ul><li>Inflammation</li><li>Hormones</li><li>Immune Response</li><li>Mental Clarity</li></ul>",
+        "note": "P24 is your daily ally for gut-happy protein.",
+        "cta_label": "",
+        "cta_url": ""
+      }
+    },
+    "landing_hero_2_fUKexK": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "Nobel Prize-Winning Science, Naturally Derived",
+        "subheading": "The Science You Can Feel",
+        "content": "Backed by 6 years of research and over 50 scientists, amplifyeP24 was developed to mimic how your body naturally breaks down protein. It helps you get more from the food you're already eating.",
+        "cta_label": "VIEW THE RESEARCH",
+        "cta_url": "shopify://pages/the-science",
+        "button_style": "outline",
+        "background_image": "shopify://shop_images/Science_desktop.png",
+        "background_image_mobile": "shopify://shop_images/Science_mobile.png",
+        "product": "",
+        "custom_style": true,
+        "content_alignment": "right",
+        "mobile_align": "center_center",
+        "code": "WELCOME15"
+      }
+    },
+    "landing_testimonial_video": {
+      "type": "s-testimonial-video",
+      "blocks": {
+        "block_E3haNa": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-25_at_9.19.37_AM.png",
+            "title": "I’ve had no issues with stomach upset due to higher protein consumption.",
+            "name": "Alexis",
+            "is_autoplay": false
+          }
+        },
+        "block_K638i8": {
+          "type": "block",
+          "settings": {
+            "title": "I could feel more energy and better food digestion. I would definitely recommend this product to go along with other workout supplements.",
+            "name": "Jamin Y.",
+            "is_autoplay": false
+          }
+        },
+        "block_JqGqYK": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-25_at_8.42.29_AM.png",
+            "title": "Felt noticeable results after taking this for the first month. Highly recommend.",
+            "name": "Carolyn H.",
+            "is_autoplay": false
+          }
+        },
+        "block_GCDqgA": {
+          "type": "block",
+          "settings": {
+            "title": "I sleep better, my energy is consistent and my tummy feels great!",
+            "name": "Clara V.",
+            "is_autoplay": false
+          }
+        },
+        "block_CDxCGK": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-25_at_8.43.01_AM.png",
+            "title": "Amplifye P24 changed everything. Within the first few days, I was eating meals that normally would have had me urgently looking for a bathroom, and nothing happened. I felt completely normal, which is something I hadn’t experienced in years.",
+            "name": "Michael S.",
+            "is_autoplay": false
+          }
+        },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "title": "One capsule with my biggest meal and boom, no bloat, no stress, just results I can actually feel.",
+            "name": "FAB",
+            "is_autoplay": false
+          }
+        },
+        "block_NGjjjR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-25_at_9.20.24_AM.png",
+            "title": "If you’re someone who struggles with digestion, or just wants to support gut health more proactively, I highly recommend giving Amplifye a try.",
+            "name": "Jacky",
+            "is_autoplay": false
+          }
+        },
+        "block_V7YFPi": {
+          "type": "block",
+          "settings": {
+            "title": "I noticed a positive change in my gut health.",
+            "name": "Remy M.",
+            "is_autoplay": false
+          }
+        },
+        "block_gWehgV": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "title": "I'm loving P24; I see a big difference on my body.",
+            "name": "Larry S.",
+            "is_autoplay": false
+          }
+        }
+      },
+      "block_order": [
+        "block_E3haNa",
+        "block_K638i8",
+        "block_JqGqYK",
+        "block_GCDqgA",
+        "block_CDxCGK",
+        "block_7y8TVr",
+        "block_NGjjjR",
+        "block_V7YFPi",
+        "block_gWehgV"
+      ],
+      "settings": {
+        "layout": "vertical",
+        "heading": "Don't just take it from us.",
+        "subheading": "",
+        "cta_label": "",
+        "cta_url": "#reviews",
+        "margin_top": 100,
+        "margin_bottom": 100,
+        "show_dots": true
+      }
+    }
+  },
+  "order": [
+    "landing_hero_2_mGr8Gx",
+    "landing_s_banner_2_aHnHcH",
+    "s_its_FQKdML",
+    "landing_intro_solution_X6PBWm",
+    "s_its_CrMTzX",
+    "landing_hero_2_fUKexK",
+    "landing_testimonial_video"
+  ]
+}

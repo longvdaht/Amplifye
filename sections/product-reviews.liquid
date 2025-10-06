@@ -1,0 +1,18 @@
+{% schema %}
+{
+	"name": "Product Reviews",
+	"tag": "section",
+	"class": "product-reviews p-y-section p-x-md",
+	"settings": []
+}
+{% endschema %}
+
+<div id="reviews" class="product-reviews__header">
+	<h2 class="t-h-3">Member Reviews</h2>
+</div>
+{% if shop.metafields.okendo.WidgetPreRenderBodyStyleTags != blank %}
+	{{- shop.metafields.okendo.WidgetPreRenderBodyStyleTags }}
+{% endif %}
+<div data-oke-widget data-oke-reviews-product-id="shopify-{{ product.id }}">
+	{{ product.metafields.okendo.ReviewsWidgetSnippet }}
+</div>

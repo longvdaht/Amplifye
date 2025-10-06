@@ -1,0 +1,99 @@
+{% schema %}
+{
+	"name": "Product Editorial",
+	"tag": "section",
+	"class": "product-editorial f-v cr-cream bg-subtle",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Media"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image_mobile",
+			"label": "Background Image (Mobile)"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		}
+	],
+	"max_blocks": 3,
+	"blocks": [
+		{
+			"type": "stat",
+			"name": "Stat",
+			"settings": [
+				{
+					"type": "text",
+					"id": "stat",
+					"label": "Stat"
+				},
+				{
+					"type": "textarea",
+					"id": "paragraph",
+					"label": "Paragraph"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign background_image = section.settings.background_image
+	assign background_image_mobile = section.settings.background_image_mobile
+-%}
+
+{%- if background_image != null -%}
+	<span class="object-fit">
+		{%- render 'c-img-srcset',
+			image: background_image,
+			responsive_image: background_image_mobile,
+			alt: background_image.alt
+		-%}
+	</span>
+{%- endif %}
+
+<div class="product-editorial__content f-v f-a-s p-x-max">
+	{%- render 'c-header',
+		class: 'product-editorial__header',
+		subheading: subheading,
+		heading: heading,
+		max_width: 500
+	-%}
+
+	{%- if section.blocks.size > 0 -%}
+		<ul class="product-editorial__blocks f-h f-a-c bg-cream cr-black">
+			{%- for block in section.blocks -%}
+				{%- liquid
+					assign stat = block.settings.stat
+					assign paragraph = block.settings.paragraph
+				-%}
+
+				<li class="product-editorial__block f-h f-a-c">
+					<span class="product-editorial__stat t-h-1">{{ stat }}</span>
+					<p class="product-editorial__paragraph t-b-2">{{ paragraph }}</p>
+				</li>
+			{%- endfor -%}
+		</ul>
+	{%- endif -%}
+</div>

@@ -1,0 +1,28 @@
+{% comment %}
+	{%- render 'c-tooltip',
+		label: string,
+		label_mobile: string
+		content: string,
+		hover_color: hex code,
+		position: string
+	-%}
+{% endcomment %}
+
+<div
+	class="c-tooltip js-tooltip"
+	style="--hover-color: {{ hover_color | default: '#000000' }}"
+	data-position={{ position | default: 'top' }}
+	data-info={{- label | handle -}}
+>
+	<span class="c-tooltip__trigger t-l-3 js-tooltip-trigger">
+		<span {% if label_mobile != blank %}class="c-tooltip__label mobile-up-only"{% endif %}>{{ label }}</span>
+		{%- if label_mobile != blank -%}<span class="c-tooltip__label mobile-down-only">{{ label_mobile }}</span>{%- endif -%}
+		{% render 'svg-icons', icon: 'info' -%}
+	</span>
+
+	{%- if content != blank -%}
+		<div class="c-tooltip__container user-select-disable">
+			<p class="c-tooltip__content bg-black cr-cream t-b-2">{{ content }}</p>
+		</div>
+	{%- endif -%}
+</div>

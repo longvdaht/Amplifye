@@ -1,0 +1,226 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "discovery-hero": {
+      "type": "discovery-hero",
+      "settings": {
+        "heading_1": "Nature is the original innovator",
+        "heading_2": "Human ingenuity is the catalyst.",
+        "media_type": "video",
+        "image": "shopify://shop_images/Property_1_Step4.jpg",
+        "video": "shopify://files/videos/Amplifye-Discovery_VideoComp (1).mp4"
+      }
+    },
+    "discovery-intro": {
+      "type": "discovery-intro",
+      "blocks": {
+        "paragraph_rimbVV": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph": "Our story starts in a hot spring in southern Japan. PhD researchers discovered an enzyme with superpowers. An unexpected but unsurprising finding — these <strong>micro-geniuses</strong> taught us a very valuable lesson: less can do more for us, as long as you find an unlock."
+          }
+        },
+        "paragraph_drERwd": {
+          "type": "paragraph",
+          "settings": {
+            "paragraph": "<strong>Enzymes</strong> are truly one of nature’s greatest inventions. They quietly work in the background, helping us transform food into fuel, just to start. We’re here to harness them for the greatest impact on human health and the world without using an acre of land."
+          }
+        }
+      },
+      "block_order": [
+        "paragraph_rimbVV",
+        "paragraph_drERwd"
+      ],
+      "settings": {}
+    },
+    "s_editorial_full_DGGtCj": {
+      "type": "s-editorial-full",
+      "settings": {
+        "activate_full_bleed": false,
+        "activate_overlay": false,
+        "activate_light_text": false,
+        "bg_color": "black",
+        "media_type": "image",
+        "image": "shopify://shop_images/Discovery_Product_D.png",
+        "image_mobile": "shopify://shop_images/Discovery_Product_D.png",
+        "subheading": "Introducing P24",
+        "heading": "The enzyme that’s unlocking protein.",
+        "paragraph": "The culmination of years of research and careful development, P24 enhances what your body already knows how to do best: digest food, absorb protein, and unlock nutrients.",
+        "cta_label": "Get P24",
+        "cta_url": "shopify://products/amplifye-p24"
+      }
+    },
+    "discovery-origin": {
+      "type": "discovery-origin",
+      "blocks": {
+        "feature_ae6j3j": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Amplifye_Makingof_1_40f26843-4a2c-4353-80cb-1c5b7523bbf7.png",
+            "label": "Biotech Expression",
+            "paragraph": "To produce P24, we use a highly controlled fermentation process that starts with inserting the enzyme’s gene into E. coli, a common host in biotech manufacturing. The bacteria are grown in nutrient-rich broth, and enzyme production is triggered using a lactose-based induction system. This method allows us to ensure high yields and consistent quality. Every step is carefully monitored to maintain purity and performance from the start."
+          }
+        },
+        "feature_gEEU4A": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Amplifye_Makingof_3.jpg",
+            "label": "Self-purifying Power",
+            "paragraph": "One of the most remarkable traits of P24 is its ability to purify itself. As a protease, it breaks down surrounding proteins from the fermentation process, eliminating the need for traditional purification methods like chromatography or crystallization. Its natural acid stability also helps remove unwanted bacterial fragments, making the process faster, simpler, and cleaner. This means fewer processing steps — and a purer enzyme for you."
+          }
+        },
+        "feature_8qRPHG": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/Amplifye_Makingof_3.png",
+            "label": "Global-standard Manufacturing",
+            "paragraph": "Our production facility in India was chosen after an extensive global search for the highest standards in quality and compliance. It excels in ethical sourcing, operator expertise, and cost-effective practices without compromising on safety or precision. By partnering with this facility, we ensure that each capsule meets rigorous international standards. It's a fusion of global science and trusted manufacturing you can feel confident in."
+          }
+        }
+      },
+      "block_order": [
+        "feature_ae6j3j",
+        "feature_gEEU4A",
+        "feature_8qRPHG"
+      ],
+      "settings": {
+        "subheading": "The Making of P24",
+        "heading": "Created by nature, perfected by science."
+      }
+    },
+    "s_advisory_NXENmk": {
+      "type": "s-advisory",
+      "disabled": true,
+      "settings": {
+        "subheading": "Backed by leading scientists and nutrition experts",
+        "heading": "Our Scientific Advisory Board",
+        "is_smaller_heading": true,
+        "advisory": [
+          "wilson-mak-ph-d",
+          "emily-fritz-ph-d-mba",
+          "keith-barr"
+        ]
+      }
+    },
+    "s_testimonial_WybkyB": {
+      "type": "s-testimonial",
+      "blocks": {
+        "testimonial_q74KkD": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Perimenopausal women and older adults face particular challenges getting enough protein due to decreased appetite and reduced absorption efficiency. These are just a few situations where P24 shows promise for improving protein digestion to help people get more from the food they eat.",
+            "name": "Emily Fritz, PhD, MBA",
+            "position": "Head of Nutrition at Amplifye"
+          }
+        },
+        "testimonial_KhYKji": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "P24 stands out not only for its clean formulation but for its absorption efficiency. In my clinical experience, this has made a noticeable difference in patient energy levels and post-exercise recovery—even in non-athletes.",
+            "name": "Dr. Maria Chen",
+            "position": "Clinical Nutritionist and Lecturer, Stanford School of Medicine"
+          }
+        },
+        "testimonial_zQNrmi": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "P24 fills a critical gap for those with busy lifestyles. Its high bioavailability and clean amino acid profile make it one of the best choices for anyone seeking consistent energy, better immune regulation, and healthy aging.",
+            "name": "Dr. Lisa Moretti",
+            "position": "Director of Preventive Health, Columbia Medical Center"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_q74KkD",
+        "testimonial_KhYKji",
+        "testimonial_zQNrmi"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Institutionally recognized",
+        "logo": "shopify://shop_images/UC-Davis-logo.png",
+        "show_testimonial_content": true
+      }
+    },
+    "s_brands_7KaCrh": {
+      "type": "s-brands",
+      "blocks": {
+        "logo_iEPb7y": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/the-ny-times_1.png"
+          }
+        },
+        "logo_dNUqtw": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/health_1.png"
+          }
+        },
+        "logo_GX4eXr": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/vogue_1.png"
+          }
+        },
+        "logo_C9LPw6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/womens-health.png"
+          }
+        },
+        "logo_piYdUT": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/fierce_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_iEPb7y",
+        "logo_dNUqtw",
+        "logo_GX4eXr",
+        "logo_C9LPw6",
+        "logo_piYdUT"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Featured In"
+      }
+    },
+    "s_editorial_full_nEJYcB": {
+      "type": "s-editorial-full",
+      "settings": {
+        "activate_full_bleed": true,
+        "activate_overlay": true,
+        "activate_light_text": true,
+        "bg_color": "none",
+        "media_type": "image",
+        "image": "shopify://shop_images/Sustained_Energy.jpg",
+        "subheading": "",
+        "heading": "Our mission is to amplifye your health.",
+        "paragraph": "Nature already built the tools we need — it’s just about using them in the right way. We leverage naturally occurring enzymes to help your body help itself.",
+        "cta_label": "Buy P24",
+        "cta_url": "shopify://products/amplifye-p24"
+      }
+    }
+  },
+  "order": [
+    "discovery-hero",
+    "discovery-intro",
+    "s_editorial_full_DGGtCj",
+    "discovery-origin",
+    "s_advisory_NXENmk",
+    "s_testimonial_WybkyB",
+    "s_brands_7KaCrh",
+    "s_editorial_full_nEJYcB"
+  ]
+}

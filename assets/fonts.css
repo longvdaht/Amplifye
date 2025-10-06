@@ -1,0 +1,21 @@
+@font-face {
+	font-family: "GT Pressura Mono";
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	src: url(../assets/font-gt-pressura-mono-regular.woff2) format("woff2");
+	ascent-override: 104.7%;
+	descent-override: 22.1%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: "Basis Grotesque";
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+	src: url(../assets/font-basis-grotesque-regular.woff2) format("woff2");
+	ascent-override: 96%;
+	descent-override: 26%;
+	line-gap-override: 0%;
+}

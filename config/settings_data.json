@@ -1,0 +1,152 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "facebook_url": "https://www.facebook.com/profile.php?id=61575694394871",
+    "instagram_url": "https://www.instagram.com/amplifye_me/",
+    "youtube_url": "",
+    "tiktok_url": "",
+    "sections": {
+      "g-announcement": {
+        "type": "g-announcement",
+        "blocks": {
+          "block_VMphUk": {
+            "type": "block",
+            "settings": {
+              "message": "<p>Free US shipping on every order. Try for 30 days or your money back.</p>",
+              "url": "shopify://products/amplifye-p24"
+            }
+          }
+        },
+        "block_order": [
+          "block_VMphUk"
+        ],
+        "settings": {
+          "background_color": "#000000",
+          "text_color": "#ffffff",
+          "emphasize_color": "#d5ff00",
+          "autoplay": false,
+          "autoplay_interval": 8
+        }
+      },
+      "g-header": {
+        "type": "g-header",
+        "settings": {
+          "menu": "main-menu",
+          "mobile_menu": "mobile-menu",
+          "mobile_submenu": "mobile-submenu",
+          "cta_label": "Buy P24",
+          "cta_url": "shopify://products/amplifye-p24"
+        }
+      },
+      "g-minicart": {
+        "type": "g-minicart",
+        "settings": {
+          "announcement": "",
+          "footnote": "Shipping & taxes calculated at checkout",
+          "empty_heading": "Your cart is empty",
+          "empty_message": "Continue shopping or browse the categories below to add items to your cart.",
+          "empty_collection_list": [],
+          "empty_cta_label": "",
+          "empty_cta_url": "",
+          "is_show_cart_note": false,
+          "is_show_gift_wrap": false,
+          "is_enable_discount_code": false,
+          "discount_success_message": "Discount applied!",
+          "discount_error_message": "No luck! Try another code?",
+          "is_enable_upsell": false,
+          "upsell_navigation_type": "arrow",
+          "is_enable_free_shipping": false,
+          "free_shipping_text": "away from free shipping",
+          "free_shipping_success": "Congrats! Your orders ships free"
+        }
+      },
+      "g-footer": {
+        "type": "g-footer",
+        "settings": {
+          "header_title": "Unlock the power of protein with P24.",
+          "cta_label": "buy now",
+          "cta_url": "shopify://products/amplifye-p24",
+          "product": "",
+          "email_capture_heading": "Access the latest nutritional news and scientific insights from amplifye.",
+          "email_capture_success_message": "Success! Thank you for signing up.",
+          "menu": "footer",
+          "menu_2": "footer-support-menu",
+          "menu_legal": "legal-menu",
+          "disclaimer_title": "FDA Disclaimer",
+          "disclaimer_content": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
+          "copyright_text": ""
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "733389323033596483": {
+        "type": "shopify://apps/okendo/blocks/theme-settings/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+        "disabled": false,
+        "settings": {
+          "show_preview_data": true
+        }
+      },
+      "17151115064775110295": {
+        "type": "shopify://apps/recharge-subscriptions/blocks/recharge-theme/371eed76-0b44-4869-9813-730372ea378e",
+        "disabled": false,
+        "settings": {
+          "color_brand": "#467C99",
+          "contrast_color": "#FFFFFF",
+          "color_brand_secondary": "#467C99",
+          "corners": "8px",
+          "app_background": "#f9f8f4",
+          "app_container": 1200,
+          "app_vertical_padding": 32,
+          "images_aspect_ratio": "1",
+          "cards_background": "#FFFFFF",
+          "cards_border_color": "rgba(0,0,0,0)"
+        }
+      },
+      "17676059084223943535": {
+        "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      },
+      "1877152918344802950": {
+        "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
+        "disabled": true,
+        "settings": {}
+      }
+    },
+    "color_schemes": {
+      "background-1": {
+        "settings": {
+          "background": "#000000",
+          "text": "#fffaf1",
+          "text_hover": "#000000"
+        }
+      },
+      "scheme-fcc1c5bd-f961-4bec-b731-2870c953017a": {
+        "settings": {
+          "background": "#c14b24",
+          "text": "#fffaf1",
+          "text_hover": "#000000"
+        }
+      }
+    }
+  }
+}

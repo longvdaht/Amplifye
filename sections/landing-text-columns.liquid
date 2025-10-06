@@ -1,0 +1,70 @@
+{%- render 'landing-text-columns' -%}
+
+{% schema %}
+{
+  "name": "Landing - Text Columns",
+  "settings": [
+    {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+    },
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Example title"
+        },
+        {
+            "type": "checkbox",
+            "id": "large_title",
+            "label": "Large Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Use this section to explain a set of product features, to link to a series of pages, or to answer common questions.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Landing - Text Columns",
+      "blocks": [
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        },
+        {
+          "type": "text_block"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": [
+      "custom.popups"
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,559 @@
+body #gladlyChat_container {
+    bottom: 50% !important;
+    right: 10px !important;
+    transform: translateY(50%);
+}
+
+#gladlyWidget .minimizedChatButton svg {
+    display: none !important;
+}
+
+#gladlyChat_container #gladlyWidget .minimizedChatButtonSelector {
+    background-image: url(chat-svg.svg) !important;
+    background-position: 50% 50% !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+#custom-gladly-chat-button {
+    background-image: url(chat-svg.svg);
+    background-position: 50% 50%;
+    width: 60px;
+}
+
+@media (max-width: 767.98px) {
+    #custom-gladly-chat-button {
+        bottom: calc(50% - 10px);
+        transform: translateY(50%);
+        right: 0
+    }
+
+    .frontpage-hero__text > .btn:last-child {
+        min-width: min(200px, 100%);
+        display: inline-flex;
+        justify-content: flex-start; /* <-- change from center to flex-start */
+        align-items: center;
+        text-align: left; /* optional: for non-flex children like <span> */
+        padding-left: 1rem; /* optional: to add spacing from left edge */
+    }
+
+}
+
+.frontpage-hero__text>.btn:last-child span {
+    line-height: 1;
+}
+
+.frontpage-hero__text>.btn:last-child::after {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.template-page-sign-up .shopify-block > .klaviyo-form {
+    background-image: url(https://cdn.shopify.com/s/files/1/0646/9235/5242/files/20250417-amplifye-01932_1.jpg?v=1754629226);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.template-page-landing-2 .s-testimonial-video__block__text {
+    top: auto;
+}
+
+body #gladlyChat_container {
+    bottom: 50% !important;
+    right: 10px !important;
+    transform: translateY(50%);
+}
+
+#gladlyWidget .minimizedChatButton svg {
+    display: none !important;
+}
+
+#gladlyChat_container #gladlyWidget .minimizedChatButtonSelector {
+    background-image: url(chat-svg.svg) !important;
+    background-position: 50% 50% !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+#custom-gladly-chat-button {
+    background-image: url(chat-svg.svg);
+    background-position: 50% 50%;
+    width: 60px;
+}
+
+@media (max-width: 767.98px) {
+    #custom-gladly-chat-button {
+        bottom: calc(50% - 10px);
+        transform: translateY(50%);
+        right: 0
+    }
+
+    .frontpage-hero__text > .btn:last-child {
+        min-width: min(200px, 100%);
+        display: inline-flex;
+        justify-content: flex-start; /* <-- change from center to flex-start */
+        align-items: center;
+        text-align: left; /* optional: for non-flex children like <span> */
+        padding-left: 1rem; /* optional: to add spacing from left edge */
+    }
+
+
+    .frontpage-hero__text>.btn:last-child span {
+        line-height: 1;
+    }
+
+    .frontpage-hero__text>.btn:last-child::after {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .s-editorial-2 .c-editorial__cta {
+        width: 100%;
+    }
+
+    .s-editorial-2 .c-editorial__footer {
+        width: 100%;
+    }
+    .template-index .s-brands {
+        padding-bottom: 10px;
+        padding-top: 72px;
+    }
+    .template-index .new-editorial-3 .c-editorial__cta:not(:last-child) {
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }
+    .frontpage-hero + .s-brands {padding-top: 20px;}
+
+    .frontpage-hero + .s-brands .s-brands__heading {
+        width: 106px;
+    }
+
+    .frontpage-hero + .s-brands .s-brands__heading img {
+    }
+
+    .frontpage-hero + .s-brands .s-brands__slide {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        flex: 0 0 198px;
+    }
+
+    .frontpage-hero + .s-brands .s-brands__review {
+        white-space: normal;
+    }
+
+    .frontpage-hero + .s-brands .s-reviews__marquee {
+        max-width: 198px;
+        margin: 0 auto;
+    }
+
+    .frontpage-hero + .s-brands .s-brands__marquee:before, 
+    .frontpage-hero + .s-brands .s-brands__marquee:after {
+        display: none;
+    }
+    .frontpage-hero + .s-brands .s-reviews__slide .s-reviews__author .s-brands__review {
+        margin-left: 0;
+    }
+    .frontpage-hero + .s-brands .c-slider__container {
+        align-items: flex-start;
+    }
+    .frontpage-hero + .s-brands .s-reviews__slide .s-reviews__text .s-brands__review {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 130%;
+        letter-spacing: 0;
+        text-align: center;
+    }
+    .frontpage-hero + .s-brands .s-reviews__slide .s-reviews__author .s-brands__review {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 130%;
+        letter-spacing: 0.01em;
+        margin-top: 15px;
+    }
+    .frontpage-hero + .s-brands .s-brands__content {
+        gap: 0;
+        margin-bottom: 24px;
+    }
+    .template-index .s-testimonial-video .s-testimonial-video__block {
+        min-width: 0;
+    }
+
+    .template-index .s-testimonial-video.is-vertical .s-testimonial-video__blocks {
+        padding-inline: calc(66px + var(--s-contain));
+        padding-right: calc(46px + var(--s-contain));
+    }
+
+    .template-index .s-testimonial-video .c-slider__container {
+        padding-right: 50px;
+    }
+    .template-index .s-testimonial-video .s-testimonial-video__block::before {
+        padding-top: 177.84%;
+    }
+}
+
+/* New HomePage */
+/* .template-page-new-homepage .landing-protein-evolves .c-header .c-header__heading {
+    font-size: 60px;
+    line-height: 1.15;
+    letter-spacing: -3px;
+    text-align: left;
+}
+
+.template-page-new-homepage .landing-protein-evolves .frontpage-benefits__header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.template-page-new-homepage .landing-protein-evolves .c-accordion {
+    max-width: none;
+} */
+
+@media (max-width: 600px) {
+    /* .template-page-new-homepage .landing-protein-evolves .c-header .c-header__heading {
+        font-size: 36px;
+        letter-spacing: 0;
+        text-align: center;
+    } */
+    /* .template-page-digestive-comfort .frontpage-hero ~ .frontpage-hero {
+        aspect-ratio: 390 / 509;
+        justify-content: center;
+        display: flex !important;
+    } */
+
+    .template-page-digestive-comfort .landing-solution .frontpage-intro__container {
+        width: calc(268/359*100%);
+    }
+}
+
+.template-page-mind-body-green #custom-gladly-chat-button {
+    display: none;
+}
+
+.s-testimonial-video__block.is-image-block::before {
+    display: none;
+}
+
+.g-footer__social li {
+    display: block;
+    width: 25px;
+}
+.g-announcement__blocks {
+    display: flex;
+    align-items: center;
+}
+/* Digestive Comfort page */
+.template-page-digestive-comfort .frontpage-hero__text .frontpage-hero__heading {
+    font-size: 20px !important;
+    line-height: 115% !important;
+    letter-spacing: -.01em !important;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.template-page-digestive-comfort .mobile-align-center_center .frontpage-hero__text .frontpage-hero__heading {
+    font-size: 12px !important;
+    line-height: 140% !important;
+    letter-spacing: .10em !important;
+    font-family: Basis Grotesque !important;
+}
+
+.template-page-digestive-comfort .frontpage-hero__text .frontpage-hero__subheading {
+    font-size: 40px !important;
+    line-height: 115% !important;
+    letter-spacing: 0 !important;
+    text-transform: capitalize !important;
+}
+
+.template-page-digestive-comfort .mobile-align-center_center .frontpage-hero__text .frontpage-hero__subheading {
+    font-size: 36px !important;
+}
+
+.template-page-digestive-comfort .frontpage-hero__container {
+    display: grid !important;
+    /* min-height: calc(var(--s-vp-height) - var(--s-header) - var(--s-announcement) - 60px - 70px) !important; */
+}
+
+.template-page-digestive-comfort .frontpage-hero__container .frontpage-hero__text {
+    height: 100%;
+}
+
+.template-page-digestive-comfort .frontpage-hero__image .mobile-image {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
+.template-page-digestive-comfort .landing-hero__text-content {
+    /* max-width: calc(308/346*100%); */
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.template-page-digestive-comfort .mobile-align-center_center .landing-hero__text-content {
+    max-width: 100%;
+}
+
+.template-page-digestive-comfort .landing-hero__text-content p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.template-page-digestive-comfort .landing-hero__text-content p * {
+    color: var(--cr-orange);
+    font-weight: 700;
+}
+
+.template-page-digestive-comfort .s-its .c-its__heading {
+    font-size: 40px;
+    line-height: 115%;
+    letter-spacing: 0;
+}
+
+.template-page-digestive-comfort .c-its__content p,
+.template-page-digestive-comfort .c-its__content ul li {
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0;
+    text-align: left;
+    position: relative;
+}
+
+.template-page-digestive-comfort .c-its__content ul li {
+    padding-left: 20px;
+}
+
+.template-page-digestive-comfort .c-its__content ul li:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #000000;
+    position: absolute;
+    left: 0;
+    top: 4px;
+}
+
+.template-page-digestive-comfort .c-its__content ul {
+    padding: 0 20px;
+}
+
+
+.template-page-digestive-comfort .c-its__content .c-its__note {
+    font-family: GT Pressura;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 125%;
+    letter-spacing: 0;
+    padding-top: 40px;
+    border-top: 1px solid #000000;
+}
+
+.template-page-digestive-comfort .frontpage-intro__heading {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 120%;
+    letter-spacing: 0;
+    text-align: center;
+    max-width: calc(292/359*100%);
+}
+
+.template-page-digestive-comfort .more-content p {
+    font-family: Basis Grotesque;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 125%;
+    letter-spacing: 0;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #FFFAF1;
+}
+
+.template-page-digestive-comfort .more-content p:last-child {
+    border-bottom: 0;
+}
+
+.template-page-digestive-comfort .more-content {
+    max-width: calc(310/359*100%);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.template-page-digestive-comfort .landing-solution {
+    gap: 40px;
+}
+
+.template-page-digestive-comfort .product-hero__form.simple-product-form .c-product-form__cta {
+    min-width: 270px;
+}
+
+.template-page-digestive-comfort .c-its__content {
+    align-items: flex-start;
+}
+
+.template-page-digestive-comfort .mobile-align-center_center .landing-hero__text {
+    gap: 20px;
+}
+
+@media (min-width: 601px) {
+    .template-page-digestive-comfort .frontpage-hero__text .frontpage-hero__heading {
+        font-size: 30px !important;
+    }
+
+    .template-page-digestive-comfort .mobile-align-center_center .frontpage-hero__text .frontpage-hero__heading {
+        font-size: 18px !important;
+        line-height: 125% !important;
+    }
+
+    .template-page-digestive-comfort .frontpage-hero__text .frontpage-hero__subheading {
+        font-size: 60px !important;
+    }
+
+    .template-page-digestive-comfort .mobile-align-center_center .frontpage-hero__text .frontpage-hero__subheading {
+        font-size: 60px !important;
+        letter-spacing: -.02em !important;
+    }
+
+    .template-page-digestive-comfort .landing-hero__text-content p {
+        font-size: 26px;
+        line-height: 125%;
+    }
+
+    .template-page-digestive-comfort .mobile-align-center_center .landing-hero__text-content p {
+        font-size: 18px;
+        line-height: 130%;
+        max-width: 441px;
+        margin: 0 auto;
+    }
+
+    .template-page-digestive-comfort .frontpage-hero__text {
+        max-width: 586px;
+    }
+
+    .template-page-digestive-comfort .landing-hero__text-content {
+        max-width: 100%;
+    }
+
+    .template-page-digestive-comfort .frontpage-hero__container .btn {
+        --btn-bg-color: var(--cr-accent);
+    }
+
+    .template-page-digestive-comfort .frontpage-hero__container .btn:after {
+        background-color: var(--cr-black);
+    }
+}
+
+@media (min-width: 768px) {
+    .template-page-digestive-comfort .s-its .c-its__heading {
+        font-size: 42px;
+        letter-spacing: -.02em;
+    }
+
+    .template-page-digestive-comfort .c-its__content p, .template-page-digestive-comfort .c-its__content ul li {
+        font-size: 26px;
+        line-height: 125%;
+    }
+
+    .template-page-digestive-comfort .c-its__content .c-its__note {
+        font-size: 26px;
+    }
+
+    .template-page-digestive-comfort .c-its__content ul li:before {
+        top: 8px;
+    }
+
+    .template-page-digestive-comfort .c-its__content {
+        max-width: 600px;
+    }
+
+    .template-page-digestive-comfort .frontpage-intro__heading {
+        font-size: 42px;
+        max-width: 100%;
+    }
+
+    .template-page-digestive-comfort .landing-solution {
+        gap: 0;
+    }
+
+    .template-page-digestive-comfort .frontpage-intro__subheading:not(:last-child) {
+        margin-bottom: 16px;
+    }
+
+    .template-page-digestive-comfort .more-content p {
+        font-size: 26px;
+    }
+
+    .template-page-digestive-comfort .more-content {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .template-page-digestive-comfort .frontpage-intro__subheading:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1025px) {
+    .template-page-digestive-comfort .s-its .c-its {
+        gap: 0;
+    }
+
+    .template-page-digestive-comfort .c-its__content {
+        padding-left: 40px;
+        padding-right: 40px;
+        width: calc(50% + 51px);
+        max-width: calc(50% + 51px);
+    }
+
+    .template-page-digestive-comfort .c-its__media {
+        width: calc(50% - 51px);
+        max-width: calc(50% - 51px);
+    }
+
+    .template-page-digestive-comfort .c-its__media .object-fit>*:not(picture) {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .template-page-digestive-comfort .c-its__media::before {
+        padding-top: calc(523/629*100%);
+    }
+
+    .template-page-digestive-comfort .shopify-section.s-its {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1365px) {
+    .template-page-digestive-comfort .shopify-section.s-its {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .template-page-digestive-comfort .c-its__content {
+        padding-right: 0;
+        gap: 24px;
+    }
+
+    .template-page-digestive-comfort .right .c-its__content {
+        padding-left: 0;
+        padding-right: 40px;
+    }
+
+    .template-page-digestive-comfort .c-its__content .c-its__note {
+        padding-top: 24px;
+    }
+}

@@ -1,0 +1,48 @@
+{% comment %}
+	{%- render 'c-media',
+		selected_media_type: string,
+		image: image,
+		image_mobile,
+		video: video,
+		video_mobile,
+		video_url: url,
+		id: string
+	-%}
+{% endcomment %}
+
+{% if show_btns == null %}
+	{% assign show_btns = show_btns %}
+{% endif %}
+
+{%- if selected_media_type == 'image' and image != null -%}
+	{% render 'c-img-srcset',
+		image: image,
+		responsive_image: image_mobile,
+		max_width: 1200
+	%}
+
+{%- elsif selected_media_type == 'video' and video != blank -%}
+	{% render 'c-video',
+		video_type: 'video',
+		video: video,
+		controls: false,
+		is_autoplay: is_autoplay,
+		has_play_btn: show_btns,
+		has_mute_btn: show_btns,
+		id: id
+	%}
+
+{%- elsif selected_media_type == 'video_url' and video_url != blank -%}
+	{% render 'c-video',
+		video_type: video_url.type,
+		video_id: video_url.id,
+		video: video_url,
+		controls: false,
+		is_background_video: is_autoplay,
+		has_audio: true,
+		is_autoplay: is_autoplay,
+		has_play_btn: show_btns,
+		has_mute_btn: show_btns,
+		id: id
+	%}
+{%- endif -%}

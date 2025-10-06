@@ -1,0 +1,94 @@
+{% schema %}
+{
+	"name": "Science Info",
+	"tag": "section",
+	"class": "science-info p-x-lg bg-black cr-cream f-v f-a-c",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "inline_richtext",
+			"id": "heading",
+			"label": "Heading",
+			"info": "Bold text to create a tooltip. Text should match to the information title created here: https://admin.shopify.com/store/amplifye-store/content/metaobjects/entries/information"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign image = section.settings.image
+-%}
+
+{%- if subheading != blank -%}
+	<div class="science-info__header f-v f-a-c">
+		{%- if subheading != blank -%}
+			<p class="science-info__subheading t-l-5">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+
+		{%- render 'c-info',
+			class: 'science-info__heading t-h-2',
+			content: heading,
+			theme_setting: 'light'
+		-%}
+	</div>
+{%- endif -%}
+
+{%- if image != null -%}
+	<div class="science-info__image">
+		<span class="object-fit">
+			{%- render 'c-img-srcset', image: image, alt: image.alt -%}
+		</span>
+	</div>
+{%- endif %}
+
+{%- if paragraph != blank -%}
+	<p class="science-info__paragraph t-b-1">
+		{{ paragraph }}
+	</p>
+{%- endif -%}
+
+{%- if cta_label != blank and cta_url != blank -%}
+	<a
+		class="science-info__cta btn cr-orange hover-white"
+		href="{{- cta_url -}}"
+	>
+		<span>
+			{{- cta_label -}}
+		</span>
+	</a>
+{%- endif -%}

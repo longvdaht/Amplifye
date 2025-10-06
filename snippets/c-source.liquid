@@ -1,0 +1,16 @@
+{% comment %}
+	{%- render 'c-source',
+		class: string,
+		source: string,
+		max_width: number
+	-%}
+{% endcomment %}
+{%- if source != blank -%}
+	<div
+		class="c-source f-h f-j-s t-b-4{% if class %} {{ class }}{% endif %}"
+		style="--max-width:{{ max_width | default: 530 | append: 'px' }}"
+	>
+		<p class="c-source__label">{{ label | default: 'Source:' }}</p>
+		<div class="c-source__content">{{ source }}</div>
+	</div>
+{%- endif -%}

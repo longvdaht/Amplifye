@@ -1,0 +1,33 @@
+{% schema %}
+{
+	"name": "Blog Hero",
+	"tag": "section",
+	"class": "blog-hero p-x-md",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading",
+			"default": "Amplifying the latest protein research, news, and nutritional tips."
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "Beyond the Gram"
+		},
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading | default: blog.title
+	assign subheading = section.settings.subheading
+-%}
+
+<div class="blog-hero__header">
+	{% if subheading != blank %}
+		<p class="blog-hero__header__subtitle t-b-1">{{- subheading -}}</p>
+	{% endif %}
+	<h1 class="blog-hero__header__title t-h-1">{{ heading }}</h1>
+</div>

@@ -1,0 +1,264 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "landing_hero_2_bzEcCq": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "More Protein\n≠\nMore Muscle.",
+        "subheading": "More Absorption Does.",
+        "content": "You’re stacking 150g of protein a day but still feel stalled (not to mention bloated or gassy). It's not how much you eat—its how well your body digests and absorbs.",
+        "cta_label": "Get P24",
+        "cta_url": "",
+        "background_image": "shopify://shop_images/Group_10125167_2.jpg",
+        "background_image_mobile": "shopify://shop_images/landing-02-mobile.jpg",
+        "product": "",
+        "content_alignment": "right",
+        "mobile_align": "other",
+        "code": "upgrade15"
+      }
+    },
+    "landing_s_banner_2_c8LNVE": {
+      "type": "landing-s-banner-2",
+      "name": "Landing Banner - 2",
+      "settings": {
+        "text_1": "<strong>15% off</strong> your first bottle",
+        "text_2": "Use code: <strong>UPGRADE15</strong>",
+        "cta_label": "Upgrade Your Protein Game",
+        "cta_url": "",
+        "product": "",
+        "code": "upgrade15",
+        "color_scheme": "",
+        "bkg_color": "#702013"
+      }
+    },
+    "landing_text_columns_TihmKU": {
+      "type": "landing-text-columns",
+      "blocks": {
+        "text_block_nW6XcE": {
+          "type": "text_block",
+          "settings": {
+            "title": "115%",
+            "large_title": true,
+            "text": "<p>increase protein bioaccessibility</p>",
+            "background_image": "shopify://shop_images/Fact_1.jpg"
+          }
+        },
+        "text_block_xF4AB9": {
+          "type": "text_block",
+          "settings": {
+            "title": "Reduce bloat",
+            "large_title": false,
+            "text": "<p>by working better and faster than your stomach’s digestive enzymes</p>",
+            "background_image": "shopify://shop_images/Fact_2.jpg"
+          }
+        },
+        "text_block_VKxfQJ": {
+          "type": "text_block",
+          "settings": {
+            "title": "ENHANCE MUSCLE RECOVERY",
+            "large_title": false,
+            "text": "<p>by Increasing essential amino acid yield</p>",
+            "background_image": "shopify://shop_images/Fact_3.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_nW6XcE",
+        "text_block_xF4AB9",
+        "text_block_VKxfQJ"
+      ],
+      "name": "Landing - Text Columns",
+      "settings": {
+        "subheading": "MEET P24",
+        "heading": "The Protein Enzyme That Can"
+      }
+    },
+    "landing_testimonial_video": {
+      "type": "s-testimonial-video",
+      "blocks": {
+        "block_E3haNa": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/UGC_Custom_Card.png",
+            "title": "I noticed positive changes in my gut health.",
+            "name": "Larry S.",
+            "is_autoplay": false
+          }
+        },
+        "block_K638i8": {
+          "type": "block",
+          "settings": {
+            "title": "Finally getting my protein in without the struggle of getting my protein in.",
+            "name": "FAB",
+            "is_autoplay": false
+          }
+        },
+        "block_4awBN6": {
+          "type": "block",
+          "settings": {
+            "title": "",
+            "name": "",
+            "is_autoplay": true
+          }
+        },
+        "block_GCDqgA": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/UGC_Custom-Card_2.png",
+            "title": "I started taking one capsule with my dinner, and within the first two weeks I noticed a difference. Less bloating, better energy, and my recovery after workouts? Way smoother.",
+            "name": "Riley",
+            "is_autoplay": false
+          }
+        },
+        "block_CDxCGK": {
+          "type": "block",
+          "settings": {
+            "title": "I've noticed better energy during workouts, faster recovery, and an overall feeling of being more dialed in.",
+            "name": "Matt",
+            "is_autoplay": false
+          }
+        },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/UGC_Custom_Card_1.png",
+            "title": "P24 is a game-changer.",
+            "name": "Michael S.",
+            "is_autoplay": false
+          }
+        },
+        "block_NGjjjR": {
+          "type": "block",
+          "settings": {
+            "title": "One capsule with my biggest meal and boom, no bloat, no stress, just results I can actually feel.",
+            "name": "FAB",
+            "is_autoplay": false
+          }
+        },
+        "block_V7YFPi": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/UGC_Custom_Card_3.png",
+            "title": "More recovery and focus. Can feel a difference in the first week of taking P24.",
+            "name": "Matt",
+            "is_autoplay": false
+          }
+        }
+      },
+      "block_order": [
+        "block_E3haNa",
+        "block_K638i8",
+        "block_4awBN6",
+        "block_GCDqgA",
+        "block_CDxCGK",
+        "block_7y8TVr",
+        "block_NGjjjR",
+        "block_V7YFPi"
+      ],
+      "settings": {
+        "layout": "vertical",
+        "heading": "Don't just take it from us.",
+        "subheading": "",
+        "cta_label": "see all reviews",
+        "cta_url": "#reviews",
+        "margin_top": 32,
+        "margin_bottom": 32,
+        "show_dots": true
+      }
+    },
+    "landing_editorial_Pq6JRH": {
+      "type": "landing-editorial",
+      "name": "Landing - Editorial",
+      "settings": {
+        "background_image": "shopify://shop_images/20250417-amplifye-01932_1.jpg",
+        "background_image_mobile": "shopify://shop_images/Rectangle_93.jpg",
+        "color": "",
+        "content_max_width": 490,
+        "alignment": "center",
+        "vertical_align_c": false,
+        "subheading": "Your Protein + P24 → AMINO ACIDS UNLOCKED → Muscle Synthesis ↑",
+        "heading": "Turn Every Gram Into Gains",
+        "is_smaller_heading": false,
+        "paragraph": "AmplifyeP24 is a patented digestive enzyme that makes the protein you already eat more usable, faster, more fully, and with less digestive blowback.",
+        "is_smaller_paragraph": false,
+        "activate_orange_btn": true,
+        "cta_label": "",
+        "use_btn_outline": false,
+        "cta_url": "shopify://products/amplifye-p24",
+        "source": ""
+      }
+    },
+    "landing_s_its_XH8YFc": {
+      "type": "landing-s-its",
+      "name": "L - Image Text Split",
+      "settings": {
+        "media_type": "video",
+        "video": "shopify://files/videos/Microscopye Zoom_588x418.mp4",
+        "heading": "Backed by Science",
+        "text_1": "Proven by Peer-Reviewed Published White Paper",
+        "text_2": "Third-party Tested",
+        "text_3": "Developed by Nobel Prize Winning Science ",
+        "text_4": "",
+        "text_5": "",
+        "cta_label": "LEARN MORE",
+        "cta_url": "shopify://pages/the-science"
+      }
+    },
+    "landing_benefits_KFnVYr": {
+      "type": "landing-benefits",
+      "name": "Landing Benefits",
+      "settings": {
+        "subheading": "Your body—and your relationship with protein—evolves over time.",
+        "heading": "Here’s how P24 supports men through the decades:",
+        "paragraph": "",
+        "label": "Swipe",
+        "protein_evolves": [
+          "copy-of-in-your-30-s",
+          "copy-of-in-your-40-s",
+          "copy-of-in-your-50-s-beyond"
+        ],
+        "notes": ""
+      }
+    },
+    "landing_editorial_2_cCNEqV": {
+      "type": "landing-editorial-2",
+      "name": "Landing - Editorial (2)",
+      "settings": {
+        "background_image": "shopify://shop_images/image_2972_f9b24137-876f-4c80-9498-ed78605f1ddf.jpg",
+        "background_image_mobile": "shopify://shop_images/image_2972.png",
+        "color": "#ffffff",
+        "content_max_width": 526,
+        "alignment": "left",
+        "vertical_align_c": true,
+        "subheading": "",
+        "heading": "Don’t Waste the Work. Or the Whey.",
+        "is_smaller_heading": true,
+        "paragraph": "You're putting in the reps. You're paying for the shakes. But without proper absorption, you're leaving muscle on the table (and money in the toilet). P24 is your edge.",
+        "activate_orange_btn": false,
+        "cta_label": "MAKE EVERY GRAM COUNT",
+        "use_btn_outline": true,
+        "cta_url": "shopify://products/amplifye-p24",
+        "source": "Guaranteed gains or your money back."
+      }
+    }
+  },
+  "order": [
+    "landing_hero_2_bzEcCq",
+    "landing_s_banner_2_c8LNVE",
+    "landing_text_columns_TihmKU",
+    "landing_testimonial_video",
+    "landing_editorial_Pq6JRH",
+    "landing_s_its_XH8YFc",
+    "landing_benefits_KFnVYr",
+    "landing_editorial_2_cCNEqV"
+  ]
+}

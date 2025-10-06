@@ -1,0 +1,117 @@
+{% schema %}
+	{
+		"name": "Landing Solution",
+		"tag": "section",
+		"class": "frontpage-intro p-x-max p-y-section bg-orange-dark cr-cream f-v f-a-c landing-solution",
+		"settings": [
+			{
+				"type": "text",
+				"id": "subheading",
+				"label": "Subheading"
+			},
+			{
+				"type": "textarea",
+				"id": "heading",
+				"label": "Heading"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Image"
+			},
+			{
+				"type": "richtext",
+				"id": "paragraph",
+				"label": "Paragraph"
+			},
+			{
+				"type": "text",
+				"id": "cta_label",
+				"label": "CTA Label"
+			},
+			{
+				"type": "url",
+				"id": "cta_url",
+				"label": "CTA URL"
+			},
+            {
+              "type": "product",
+              "id": "product",
+              "label": "Product"
+            },
+			{
+				"type": "text",
+				"id": "code",
+				"label": "Promo code"
+			},
+		],
+        "presets": [
+            {
+            "name": "Landing Solution"
+            }
+        ]
+	}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign code = section.settings.code
+    if section.settings.cta_label != blank
+    	assign cta_label = section.settings.cta_label
+    else
+       assign cta_label = 'Add to Cart'
+    endif
+	assign cta_url = section.settings.cta_url
+	assign image = section.settings.image
+
+    if section.settings.product != blank
+      assign product = section.settings.product
+    else
+      assign product = all_products['amplifye-p24']
+    endif
+-%}
+
+
+{%- if subheading != blank -%}
+	<p class="frontpage-intro__subheading t-b-3">{{ subheading }}</p>
+{%- endif -%}
+
+{%- if heading != blank -%}
+    <h2 class="frontpage-intro__heading t-h-1">{{ heading }}</h2>
+{%- endif -%}
+
+<div class="frontpage-intro__container f-h f-a-c">
+	
+	{%- if image != null -%}
+		<div class="frontpage-intro__image child-contain">
+			{% render 'c-img-srcset',
+				image: image,
+				alt: image.alt %}
+		</div>
+	{%- endif -%}
+</div>
+
+{%- if paragraph != blank -%}
+    <div class="more-content">
+	    {{ paragraph }}
+    </div>
+{%- endif -%}
+
+{%- if cta_label != blank -%}
+  {%- if cta_url != blank  -%}
+  	<a
+  		class="frontpage-intro__cta btn hover-white"
+  		href="{{- cta_url -}}"
+  	>
+  		<span>
+  			{{- cta_label -}}
+  		</span>
+  	</a>
+  {%- else -%}
+    <div class="product-hero__form simple-product-form">
+        {% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, code: code, button_class: 'hover-white'  %}
+    </div>
+  {%- endif -%}
+{%- endif -%}

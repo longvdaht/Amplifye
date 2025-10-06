@@ -1,0 +1,55 @@
+{% schema %}
+{
+	"name": "Editorial Text Visual",
+	"tag": "section",
+	"class": "s-editorial-text-visual cr-black f-v f-j-c f-a-c",
+	"presets": [
+		{
+			"name": "Editorial Text Visual",
+			"settings": {
+				"background_image": "shopify://shop_images/amplifye_capsule.jpg",
+				"background_image_mobile": "",
+				"content": "Take one capsule with your largest meal of the day (with protein)."
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "background_image",
+			"label": "Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "background_image_mobile",
+			"label": "Background Image (Mobile)"
+		},
+		{
+			"type": "textarea",
+			"id": "content",
+			"label": "Content"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign background_image = section.settings.background_image
+	assign background_image_mobile = section.settings.background_image_mobile
+	assign content = section.settings.content
+-%}
+
+{%- if background_image != null -%}
+	<span class="object-fit">
+		{%- render 'c-img-srcset',
+			image: background_image,
+			responsive_image: background_image_mobile
+		-%}
+	</span>
+{%- endif %}
+
+{% if content != blank %}
+	<div class="s-editorial-text-visual__content t-h-2">
+		{{ content | escape }}
+	</div>
+{% endif %}

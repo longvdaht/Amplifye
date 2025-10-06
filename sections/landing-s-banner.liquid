@@ -1,0 +1,92 @@
+{% schema %}
+{
+	"name": "Banner",
+	"tag": "section",
+	"class": "s-banner landing-s-banner",
+	"presets": [
+		{
+			"name": "Banner",
+			"settings": {
+				"subheading": "As seen on",
+				"heading": "mindbodygreen",
+				"heading_image": "",
+				"cta_label": "CLAIM YOUR EXCLUSIVE OFFER",
+				"cta_url": "",
+				"color_scheme": "",
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Sub Heading"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "image_picker",
+			"id": "heading_image",
+			"label": "Heading Image",
+			"info": "Leave blank if you want to use text"
+		},
+		{
+			"type": "image_picker",
+			"id": "heading_image_mobile",
+			"label": "Heading Image - Mobile",
+			"info": "Leave blank if you want to use text"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"default": "scheme_1",
+			"label": "Color scheme"
+		},
+	]
+}
+{% endschema %}
+
+{% liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign heading_image = section.settings.heading_image
+	assign heading_image_mobile = section.settings.heading_image_mobile
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign color_scheme = section.settings.color_scheme
+
+    if section.settings.product != blank
+      assign product = section.settings.product
+    else
+      assign product = all_products['amplifye-p24']
+    endif
+%}
+
+{%- render 'landing-c-banner',
+	subheading: subheading,
+	heading: heading,
+	heading_image: heading_image,
+	heading_image_mobile: heading_image_mobile,
+	cta_label: cta_label,
+	cta_url: cta_url,
+    product: product,
+	color_scheme: color_scheme,
+-%}

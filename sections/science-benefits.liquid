@@ -1,0 +1,101 @@
+{% schema %}
+{
+	"name": "Science Benefits",
+	"tag": "section",
+	"class": "science-benefits p-x-max bg-black cr-cream f-v f-a-c",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"metaobject_type": "benefits",
+			"type": "metaobject_list",
+			"id": "benefits",
+			"label": "Benefits"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign paragraph = section.settings.paragraph
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign benefits = section.settings.benefits
+-%}
+
+{%- render 'c-header',
+	class: 'science-benefits__header',
+	subheading: subheading,
+	max_width: 600
+-%}
+
+{%- if benefits.count > 0 -%}
+	<div class="science-benefits__blocks f-v f-a-c">
+		{%- for i in benefits -%}
+			{%- liquid
+				assign benefit = i.benefit
+				assign title = i.title
+			-%}
+			{%- if benefit != blank -%}
+				<button
+					type="button"
+					class="science-benefits__block js-target-parent"
+					data-trigger="{{ title | handle }}"
+					data-trigger-parent="true"
+					data-trigger-toggle="true"
+				>
+					<div class="science-benefits__trigger f-h t-h-1">
+						<span>{{ title }}</span>
+						{% render 'svg-icons', icon: 'info' -%}
+					</div>
+
+					<div
+						class="science-benefits__target bg-cream cr-black"
+						data-target="{{ title | handle }}"
+					>
+						{{-
+							benefit
+							| metafield_tag
+							| replace: '<div class="metafield-rich_text_field"',
+								'<div class="metafield-rich_text_field wysiwyg"'
+						-}}
+					</div>
+				</button>
+			{%- endif -%}
+		{%- endfor -%}
+	</div>
+{%- endif -%}
+
+{%- if paragraph != blank -%}
+	<p class="science-benefits__paragraph t-b-1">
+		{{ paragraph }}
+	</p>
+{%- endif -%}
+
+{%- if cta_label != blank and cta_url != blank -%}
+	<a
+		class="btn-underline is-reverse"
+		href="{{- cta_url -}}"
+	>
+		{{- cta_label -}}
+	</a>
+{%- endif -%}

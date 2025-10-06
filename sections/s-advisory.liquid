@@ -1,0 +1,144 @@
+{% schema %}
+{
+	"name": "Advisory",
+	"tag": "section",
+	"class": "s-advisory p-y-section",
+	"presets": [
+		{
+			"name": "Advisory",
+			"settings": {
+				"subheading": "Backed by leading scientists and nutrition experts",
+				"heading": "Our Scientific Advisory Board",
+				"advisory": [
+					"john-melo",
+					"julie-hirsch-ph-d",
+					"wilson-mak-ph-d",
+					"emily-fritz-ph-d-mba"
+				]
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "checkbox",
+			"id": "is_smaller_heading",
+			"label": "Use Smaller Heading",
+			"default": true
+		},
+		{
+			"metaobject_type": "advisory",
+			"type": "metaobject_list",
+			"id": "advisory",
+			"label": "Advisory"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign advisory = section.settings.advisory
+	assign is_smaller_heading = section.settings.is_smaller_heading
+-%}
+
+<div class="s-advisory__header p-x-max f-v f-a-c">
+	{%- render 'c-header',
+		subheading: subheading,
+		heading: heading,
+		is_smaller_heading: is_smaller_heading,
+		max_width: 1100
+	-%}
+</div>
+
+{%- if advisory.count > 0 -%}
+	<div class="s-advisory__blocks p-x-md f-h f-j-c f-a-s">
+		{%- for i in advisory -%}
+			{%- liquid
+				assign image = i.image
+				assign name = i.name
+				assign position = i.position
+				assign bio = i.bio
+			-%}
+			<div
+				class="s-advisory__block f-v f-j-s f-a-s"
+				data-popup-trigger="{{ name | handle | append: forloop.index }}"
+			>
+				{%- if image != null -%}
+					<div class="s-advisory__image bg-subtle">
+						{%- render 'c-img-srcset', image: image, alt: name -%}
+					</div>
+				{%- endif -%}
+
+				<div class="s-advisory__info bg-black cr-cream f-v f-a-s">
+					<div class="s-advisory__name f-h">
+						<p class="t-l-3">{{ name }}</p>
+						<button
+							type="button"
+							class="s-advisory__btn btn-outline f-j-c"
+							style="--hover-color: var(--cr-black);"
+							aria-label="Plus"
+						>
+							{%- render 'svg-icons', icon: 'plus' -%}
+						</button>
+					</div>
+
+					{%- if position != blank -%}
+						<p class="btn-square t-l-4">{{ position }}</p>
+					{%- endif -%}
+				</div>
+			</div>
+
+			<div
+				class="is-hidden"
+				data-popup-target="{{ name | handle | append: forloop.index }}"
+			>
+				<div class="s-advisory__popup f-v f-a-s bg-black cr-cream">
+					<div class="s-advisory__popup__header">
+						<p class="s-advisory__popup__name t-h-3">{{ name }}</p>
+						{%- if position != blank -%}
+							<p class="btn-square t-l-4">{{ position }}</p>
+						{%- endif -%}
+					</div>
+
+					<button
+						type="button"
+						class="s-advisory__popup__close"
+						data-popup-close="{{ name | handle | append: forloop.index }}"
+						aria-label="Close popup"
+					>
+						<span class="icon-close"></span>
+					</button>
+
+					<div class="s-advisory__popup__content f-h f-a-e">
+						{{-
+							bio
+							| metafield_tag
+							| replace: '<div class="metafield-rich_text_field"',
+								'<div class="s-advisory__popup__bio metafield-rich_text_field wysiwyg"'
+						-}}
+						{%- if image != null -%}
+							<div class="s-advisory__popup__image child-cover bg-subtle">
+								{%- render 'c-img-srcset',
+									image: image,
+									alt: name,
+									is_non_lazy: true
+								-%}
+							</div>
+						{%- endif -%}
+					</div>
+				</div>
+			</div>
+		{%- endfor -%}
+	</div>
+{%- endif -%}

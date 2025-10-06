@@ -1,0 +1,135 @@
+{% schema %}
+{
+	"name": "Science",
+	"tag": "section",
+	"class": "frontpage-science p-x-md f-v f-a-c",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "textarea",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "header",
+			"content": "Science Content"
+		},
+		{
+			"type": "text",
+			"id": "label",
+			"label": "Label"
+		},
+		{
+			"type": "richtext",
+			"id": "source",
+			"label": "Source"
+		}
+	],
+	"max_blocks": 2,
+	"blocks": [
+		{
+			"type": "media",
+			"name": "Media",
+			"settings": [
+				{
+					"type": "radio",
+					"id": "media_type",
+					"label": "Media Type",
+					"options": [
+						{
+							"value": "image",
+							"label": "Image"
+						},
+						{
+							"value": "video",
+							"label": "Shopify-Hosted Video"
+						}
+					],
+					"default": "image"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "video",
+					"id": "video",
+					"label": "Video"
+				},
+				{
+					"type": "text",
+					"id": "caption",
+					"label": "Caption"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign label = section.settings.label
+	assign source = section.settings.source
+-%}
+
+{%- if subheading != blank -%}
+	<p class="frontpage-science__subheading t-l-5">
+		{{ subheading }}
+	</p>
+{%- endif -%}
+
+{%- if heading != blank -%}
+	<h2 class="frontpage-science__heading t-h-3">
+		{{ heading }}
+	</h2>
+{%- endif -%}
+
+{%- if label != blank -%}
+	<p class="frontpage-science__label t-l-3">
+		{{ label }}
+	</p>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+	<div class="frontpage-science__blocks f-h f-j-c">
+		{%- for block in section.blocks -%}
+			{%- liquid
+				assign media_type = block.settings.media_type
+				assign image = block.settings.image
+				assign video = block.settings.video
+				assign caption = block.settings.caption
+
+				if media_type == 'image' and image != null
+					assign selected_media_type = 'image'
+				elsif media_type == 'video' and video != null
+					assign selected_media_type = 'video'
+				endif
+			-%}
+
+			{%- if selected_media_type != null -%}
+				<div class="frontpage-science__block f-v f-a-c">
+					<div class="frontpage-science__media bg-subtle">
+						<span class="object-fit">
+							{%- render 'c-media',
+								selected_media_type: selected_media_type,
+								image: image,
+								video: video
+							-%}
+						</span>
+					</div>
+
+					<p class="frontpage-science__caption t-l-3">{{ caption }}</p>
+				</div>
+			{%- endif -%}
+		{%- endfor -%}
+	</div>
+{%- endif -%}
+
+{%- render 'c-source', source: source, max_width: 820 -%}

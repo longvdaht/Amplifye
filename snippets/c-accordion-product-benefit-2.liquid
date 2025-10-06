@@ -1,0 +1,27 @@
+{% comment %}
+	{% render 'c-accordion-product-benefits-2',
+		title: string,
+		content: string,
+		isCloseSiblings: boolean %}
+{% endcomment %}
+
+<c-accordion
+	class="c-accordion c-accordion-product-benefits-2{% if isCloseSiblings %} is-close-siblings{% endif %}"
+>
+	<button
+		class="product-benefits-2__accordion f-h f-j-c f-a-c user-select-disable js-accordion-toggle"
+		aria-expanded="false"
+		aria-label="Toggle accordion"
+	>
+		<div class="product-benefits-2__accordion__title">
+			{{ title }}
+		</div>
+		<div class="product-benefits-2__accordion__plus-button f-v f-j-c f-a-c bg-orange cr-cream">
+			<div class="icon-plus"></div>
+		</div>
+	</button>
+
+	<div class="c-accordion__content js-accordion-content" aria-hidden="true">
+		<div class="c-accordion__content-interior">{{ content }}</div>
+	</div>
+</c-accordion>

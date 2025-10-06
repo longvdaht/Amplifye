@@ -1,0 +1,208 @@
+{%- comment -%}
+	{% render 'c-item-selling-plan',
+		item: selectedVariant,
+		is_default_to_subscription: false,
+		is_hide_one_time: false,
+		is_hide_one_time_price: false,
+		is_hide_subscription_price: false,
+		is_hide_subscription_price_adj_label: false,
+		is_hide_frequency_label: true,
+		subscription_info: subscription_info,
+		one_time_info: one_time_info %}
+
+	- is_default_to_subscription: By default, this selection is set to subscription, as opposed to one-time purchase.
+	- is_hide_one_time: Hides the one-time purchasing option. "Subscription" is turned into a checkbox.
+	- is_hide_one_time_price: Hides the one-time pricing. It is assumed that the pricing is shown in the product form already.
+	- is_hide_subscription_price: Hides subscription pricing.
+	- is_hide_subscription_price_adj_label: Hides the price adjustment label "save 10%".
+	- is_hide_frequency_label: Makes frequency selection inline.
+	- subscription_info: Subscription block information.
+	- one_time_info: One time purchase block information.
+{%- endcomment -%}
+
+{%- liquid
+	assign item_product = item.product
+	assign selling_plan_handle = 'selling-plan-' | append: item_product.id
+	assign subscription = item_product.selling_plan_groups
+	assign subscription_only = item_product.requires_selling_plan
+
+	if is_default_to_subscription == true or subscription_only == true
+		assign is_check_subscription = true
+	else
+		assign is_check_subscription = false
+	endif
+-%}
+
+{% if subscription %}
+	<div
+		class="c-item-selling-plan{% if is_default_to_subscription %} is-active{% endif %}"
+		data-selling-plan-container
+	>
+		{% comment %} one-time {% endcomment %}
+		<div class="c-item-selling-plan__options f-v f-j-s cr-black">
+			{% comment %} subscription {% endcomment %}
+			{%- liquid
+				assign subscription_price_adj = subscription[0].selling_plans[0].price_adjustments[0].value
+				assign subscription_price_adj_perc = 100 | minus: subscription_price_adj | divided_by: 100.00
+				assign subscription_price_adj_price = item_product.price | times: subscription_price_adj | divided_by: 100.00
+				assign subscription_price = item_product.price | times: subscription_price_adj_perc | money
+			-%}
+
+			<div
+				class="c-item-selling-plan__option f-v f-a-c f-j-s{% if is_check_subscription %} is-expanded{% endif %}"
+				data-selling-plan-option="subscription"
+			>
+				<div class="c-item-selling-plan__option__header f-h f-a-c f-j-s">
+					<label
+						class="c-item-selling-plan__option__label p-fill"
+						for="{{- selling_plan_handle | append: '-subscription' -}}"
+					>
+						<span class="screen-reader-only">Select subscription option</span>
+					</label>
+					<input
+						name="{{- selling_plan_handle -}}"
+						id="{{- selling_plan_handle | append: '-subscription' -}}"
+						data-item-selling-plan-price="{{ subscription_price }}"
+						value="subscription"
+						{% if is_hide_one_time == true and subscription_only == false -%}
+							type="checkbox"
+						{% else -%}
+							type="radio"
+						{%- endif -%}
+						{%- if is_check_subscription == true -%}
+							checked
+						{%- endif -%}
+					>
+					<span class="t-l-3">
+						Subscribe
+						{%- if is_hide_subscription_price_adj_label != true -%}
+							{{ subscription_price_adj_price | money | prepend: ' | Save ' }}
+						{%- endif -%}
+					</span>
+					{% if is_hide_subscription_price != true %}
+						<span class="c-item-price__group f-h f-a-c f-j-s">
+							{% render 'c-item-price',
+								item: item,
+								regular_price_adj: subscription_price_adj_perc,
+								skip_price_update: true
+							%}
+							{% render 'c-item-price',
+								item: item,
+								hide_trailing_zeros: true,
+								skip_price_update: true
+							%}
+						</span>
+					{% endif %}
+				</div>
+
+				<div
+					class="c-item-selling-plan__option__content"
+					{% if is_selling_plan_content_collapsible %}
+						data-collapsible-content
+					{% endif %}
+				>
+					<div class="c-item-selling-plan__frequency c-field f-h f-a-c t-l-3">
+						<label
+							{% if is_hide_frequency_label == true -%}
+								class="screen-reader-only"
+							{%- endif -%}
+							for="{{- selling_plan_handle | append: '-frequency' -}}"
+						>
+							Deliver every
+						</label>
+
+						<div class="c-item-selling-plan__frequency__select f-h f-a-c">
+							<select
+								name="selling_plan"
+								id="{{- selling_plan_handle | append: '-frequency' -}}"
+								{%- if is_check_subscription == false -%}
+									disabled
+								{%- endif -%}
+							>
+								{% for frequency in subscription %}
+									{%- liquid
+										assign plan_option = frequency.selling_plans[0]
+										assign id = plan_option.id
+									-%}
+
+									{%- assign value = plan_option.options[1].value
+										| replace: 'Day(s)', 'Days'
+										| replace: 'Week(s)', 'Weeks'
+										| replace: 'Month(s)', 'Months'
+										| replace: '1 Days', '1 Day'
+										| replace: '1 Weeks', '1 Week'
+										| replace: '1-month', '1 Month'
+										| replace: '2-month', '2 Months'
+									-%}
+
+									<option
+										value="{{ id }}"
+										{%- if forloop.index == 1 %}
+											selected
+										{%- endif -%}
+									>
+										{%- if is_hide_frequency_label == true -%}
+											Deliver every
+										{% endif -%}
+
+										{{ value }}
+									</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					{%- if subscription_info != blank -%}
+						<div class="c-item-selling-plan__option__content__info wysiwyg js-subscription-info">
+							{{ subscription_info }}
+						</div>
+					{%- endif -%}
+				</div>
+			</div>
+
+			{% if subscription_only == false and is_hide_one_time != true %}
+				<div
+					class="c-item-selling-plan__option f-v f-a-c f-j-s{% unless is_check_subscription %} is-expanded{% endunless %}"
+					data-selling-plan-option="one-time"
+				>
+					<div class="c-item-selling-plan__option__header f-h f-a-c f-j-s">
+						<label
+							class="c-item-selling-plan__option__label p-fill"
+							for="{{ selling_plan_handle | append: '-one-time' }}"
+						>
+							<span class="screen-reader-only">
+								Select one-time purchase option
+							</span>
+						</label>
+						<input
+							name="{{- selling_plan_handle -}}"
+							id="{{ selling_plan_handle | append: '-one-time' }}"
+							data-item-selling-plan-price="{{ product.price | money }}"
+							type="radio"
+							value="one-time"
+							{%- if is_default_to_subscription == false -%}
+								checked
+							{%- endif -%}
+						>
+						<span class="t-l-3">One time purchase</span>
+						{%- if is_hide_one_time_price != true -%}
+							{% render 'c-item-price', item: item, skip_price_update: true %}
+						{%- endif -%}
+					</div>
+
+					<div
+						class="c-item-selling-plan__option__content"
+						{% if is_selling_plan_content_collapsible %}
+							data-collapsible-content
+						{% endif %}
+					>
+						{%- if one_time_info != blank -%}
+							<div class="c-item-selling-plan__option__content__info wysiwyg js-one-time-info">
+								{{ one_time_info }}
+							</div>
+						{%- endif -%}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

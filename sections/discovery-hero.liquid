@@ -1,0 +1,170 @@
+{% schema %}
+{
+	"name": "Discovery Hero",
+	"tag": "section",
+	"class": "discovery-hero",
+	"settings": [
+		{
+			"type": "textarea",
+			"id": "heading_1",
+			"label": "Heading 1"
+		},
+		{
+			"type": "textarea",
+			"id": "heading_2",
+			"label": "Heading 2"
+		},
+		{
+			"type": "radio",
+			"id": "media_type",
+			"label": "Media Type",
+			"options": [
+				{
+					"value": "image",
+					"label": "Image"
+				},
+				{
+					"value": "video",
+					"label": "Shopify-Hosted Video"
+				}
+			],
+			"default": "image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mobile",
+			"label": "Image (Mobile)"
+		},
+		{
+			"type": "video",
+			"id": "video",
+			"label": "Shopify-Hosted Video"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading_1 = section.settings.heading_1
+	assign heading_2 = section.settings.heading_2
+	assign media_type = section.settings.media_type
+	assign image = section.settings.image
+	assign image_mobile = section.settings.image_mobile
+	assign video = section.settings.video
+-%}
+
+<div class="discovery-hero__sticky p-y-section p-x-max">
+	<div class="discovery-hero__heading-1 w-lg">
+		{%- if heading_1 != blank -%}
+			<h1 class="t-h-1 p-fill p-y-section p-x-max f-v f-a-c">
+				{%- assign words = heading_1 | split: ' ' -%}
+				{%- assign midpoint = words.size | divided_by: 2 -%}
+				<span>
+					{%- for word in words limit: midpoint -%}
+						{{ word }}
+					{%- endfor -%}
+				</span>
+				<span>
+					{%- for word in words offset: midpoint -%}
+						{{ word }}
+					{%- endfor -%}
+				</span>
+			</h1>
+		{%- endif -%}
+	</div>
+	{%- if image != null -%}
+		<div class="discovery-hero__image p-fill bg-cream-dark">
+			<span class="object-fit">
+				{%- render 'c-media',
+					selected_media_type: media_type,
+					image: image,
+					image_mobile: image_mobile,
+					video: video
+				-%}
+			</span>
+		</div>
+	{%- endif %}
+	<div class="discovery-hero__heading-2 w-lg p-center p-y-section p-x-max f-v f-a-c f-j-c cr-cream">
+		{%- if heading_2 != blank -%}
+			<h1 class="t-h-1">
+				{{ heading_2 }}
+			</h1>
+		{%- endif -%}
+	</div>
+</div>
+
+{% javascript %}
+	// FIXME: this logic could and should be improved, there are a lot of magic numbers in here
+
+	window.addEventListener('load', function () {
+		const section = document.querySelector('.discovery-hero');
+		const image = section?.querySelector('.discovery-hero__image');
+
+		if (!image || !section) return;
+		const initialRadius = 12;
+		const safeTimeout = 500;
+		let offset = 0;
+		let refH1Top = 0;
+		let refH1Bottom = 0;
+
+		function calculateOffsets() {
+			image.classList.add('is-visible');
+			const h1Element = section.querySelector('.discovery-hero__heading-1 h1');
+			if (!h1Element) return;
+
+			const h1ElementTop = h1Element.children[0];
+			const h1ElementBottom = h1Element.children[1];
+			if (!h1ElementTop || !h1ElementBottom) return;
+
+			const parentRect = h1Element.getBoundingClientRect();
+			const topRect = h1ElementTop.getBoundingClientRect();
+			const bottomRect = h1ElementBottom.getBoundingClientRect();
+
+			if (topRect && bottomRect && parentRect) {
+				refH1Top = topRect.top - parentRect.top + topRect.height;
+				refH1Bottom = parentRect.bottom - bottomRect.bottom + bottomRect.height;
+				offset = (bottomRect.top - topRect.top - topRect.height) / 4;
+			}
+		}
+
+		function handleScroll() {
+			// const initialTopInset = (window.innerHeight - 300) / 2;
+			const initialTopInset =
+				refH1Top + offset ?? (window.innerHeight - 300) / 2;
+			const initialBottomInset =
+				refH1Bottom + offset ?? (window.innerHeight - 300) / 2;
+			const initialSideInset = Math.max((window.innerWidth - 600) / 2, 30);
+			const scrollY = window.scrollY;
+			const sectionTop = section.offsetTop;
+			const sectionHeight = section.offsetHeight;
+			const totalScroll = sectionTop + sectionHeight - window.innerHeight;
+			const progress = Math.min(Math.max(scrollY / totalScroll, 0), 1);
+
+			const top = initialTopInset * (1 - progress);
+			const bottom = initialBottomInset * (1 - progress);
+			const side = initialSideInset * (1 - progress);
+			const radius = initialRadius * (1 - progress);
+
+			image.style.clipPath = `inset(${top}px ${side}px ${bottom}px ${side}px round ${radius}px)`;
+
+			progress == 1
+				? section.classList.add('is-fin')
+				: section.classList.remove('is-fin');
+		}
+
+		function init() {
+			setTimeout(() => {
+				calculateOffsets();
+				handleScroll();
+			}, safeTimeout);
+		}
+		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('resize', init);
+		init();
+	});
+{% endjavascript %}

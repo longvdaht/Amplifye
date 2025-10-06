@@ -1,0 +1,188 @@
+{% schema %}
+{
+	"name": "Article",
+	"tag": "section",
+
+	"settings": []
+}
+{% endschema %}
+
+{%- liquid
+	assign author = article.metafields.custom.author
+	assign main_category = article.metafields.custom.category.value.title | default: article.tags.first | default: blog.title
+-%}
+
+<article class="article-content">
+	<div class="article-content__hero f-h f-w f-j-s m-y-section p-x-max">
+		<span class="article-content__hero__category btn-square f-h f-a-c t-l-2">
+			{{- main_category | append: ':' -}}
+		</span>
+
+		<div class="article-content__hero__info-top f-h f-j-e t-l-2">
+			<span
+				class="js-article-read-time"
+				data-content="{{ article.content | strip_html | strip_newlines | escape }}"
+			></span>
+
+			<div class="article-content__hero__share js-share-button is-hoverable">
+				<div class="article-content__hero__share__trigger">Share ↗</div>
+
+				<div class="article-content__hero__share__content f-v f-a-e">
+					<a
+						href="https://www.twitter.com/share?url={{ article.url }}"
+						class="btn-outline bg-cream"
+					>
+						<span class="btn-outline__label">X</span>
+					</a>
+					<div class="btn-outline bg-cream">
+						<copy-link-btn class="btn-outline__label">Link</copy-link-btn>
+					</div>
+					<a
+						href="https://www.linkedin.com/sharing/share-offsite/?url={{ article.url }}"
+						class="btn-outline bg-cream"
+					>
+						<span class="btn-outline__label">Linkedin</span>
+					</a>
+					<a
+						href="https://www.facebook.com/sharer/sharer.php?u={{ article.url }}"
+						class="btn-outline bg-cream"
+					>
+						<span class="btn-outline__label">Facebook</span></a
+					>
+				</div>
+			</div>
+		</div>
+
+		<h1 class="article-content__hero__title">{{- article.title -}}</h1>
+
+		{% if article.excerpt != blank %}
+			<h2 class="article-content__hero__subtitle">{{ article.excerpt }}</h2>
+		{% endif %}
+
+		{%- if article.image != null -%}
+			<div class="article-content__hero__image bg-subtle">
+				<span class="object-fit">
+					{%- render 'c-img-srcset',
+						image: article.image,
+						alt: article.image.alt
+					-%}
+				</span>
+			</div>
+		{%- endif -%}
+
+		<div class="article-content__hero__info-bottom f-h f-j-s">
+			{% if author != blank %}
+				<address class="article-content__hero__author" rel="author">
+					By {{ author }}
+				</address>
+			{% endif %}
+
+			<p class="article-content__hero__date">
+				<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+					{{ article.published_at | date: '%B %d, %Y' }}
+				</time>
+			</p>
+		</div>
+	</div>
+
+	<div class="article-content__wysiwyg m-y-section wysiwyg wysiwyg-page p-x-sm">
+		{{- article.content -}}
+	</div>
+
+	<div class="article-content__footer f-v f-a-c t-l-2 m-y-section-half">
+		<p>spread the word</p>
+		<div class="article-content__footer__links f-h f-a-c">
+			<a
+				href="https://www.linkedin.com/sharing/share-offsite/?url={{ article.url }}"
+				class="article-content__footer__link"
+			>
+				Linkedin ↗
+			</a>
+			<a
+				href="https://www.facebook.com/sharer/sharer.php?u={{ article.url }}"
+				class="article-content__footer__link"
+			>
+				Facebook ↗
+			</a>
+			<a
+				href="https://www.twitter.com/share?url={{ article.url }}"
+				class="article-content__footer__link"
+			>
+				X ↗
+			</a>
+			<copy-link-btn
+				class="article-content__footer__link"
+			>
+				Link ↗
+			</copy-link-btn>
+		</div>
+	</div>
+</article>
+
+<div class="article-content__related m-y-section f-v f-a-c">
+	<div class="article-content__related__heading f-h f-a-c p-x-max">
+		<h2 class="t-h-3">Related reading</h2>
+
+		<a href="{{ blog.url }}" class="btn-outline tablet-up-only">
+			<span class="btn-outline__label">All articles</span>
+		</a>
+	</div>
+
+	<div class="article-content__related__articles scrollbar-custom f-h f-nw f-a-s p-x-max">
+		{% liquid
+			assign main_category = article.metafields.custom.category.value.title
+			assign match_count = 0
+		%}
+
+		{%- comment -%} Count matching articles {%- endcomment -%}
+		{% for art in blog.articles %}
+			{% assign art_main_category = art.metafields.custom.category.value.title %}
+			{% if art_main_category == main_category and art.id != article.id %}
+				{% assign match_count = match_count | plus: 1 %}
+			{% endif %}
+		{% endfor %}
+
+		{%- assign rendered_count = 0 -%}
+		{% for art in blog.articles %}
+			{% assign art_main_category = art.metafields.custom.category.value.title %}
+			{% if art_main_category == main_category
+				and art.id != article.id
+				and rendered_count < 10
+			%}
+				{%- render 'c-article-card',
+					article: art,
+					class: '',
+					layout: 'small'
+				-%}
+				{% assign rendered_count = rendered_count | plus: 1 %}
+
+				{% if rendered_count < match_count and rendered_count < 10 %}
+					<div class="divider"></div>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+		{%- comment -%} Fallback: if no match type, show 10 others articles {%- endcomment -%}
+		{%- if match_count == 0 -%}
+			{%- assign fallback_count = 0 -%}
+			{% for art in blog.articles %}
+				{% if art.id != article.id and fallback_count < 10 %}
+					{%- render 'c-article-card',
+						article: art,
+						class: '',
+						layout: 'small'
+					-%}
+					{% assign fallback_count = fallback_count | plus: 1 %}
+
+					{% if fallback_count < 10 %}
+						<div class="divider"></div>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		{%- endif -%}
+	</div>
+
+	<a href="{{ blog.url }}" class="btn-outline tablet-down-only">
+		<span class="btn-outline__label">All articles</span>
+	</a>
+</div>

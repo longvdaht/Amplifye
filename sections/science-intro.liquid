@@ -1,0 +1,168 @@
+{% schema %}
+{
+	"name": "Science Intro",
+	"tag": "section",
+	"class": "science-intro p-x-max p-y-section f-v f-a-c",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "textarea",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "text",
+			"id": "label",
+			"label": "Label"
+		},
+		{
+			"metaobject_type": "amino_acids",
+			"type": "metaobject_list",
+			"id": "amino_acids",
+			"label": "Amino Acids"
+		},
+		{
+			"type": "textarea",
+			"id": "notes",
+			"label": "Notes"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign heading = section.settings.heading
+	assign paragraph = section.settings.paragraph
+	assign label = section.settings.label
+	assign amino_acids = section.settings.amino_acids
+-%}
+
+{%- if amino_acids.count > 0 -%}
+	<div class="science-intro__header f-v f-a-c">
+		{%- if heading != blank -%}
+			<h2 class="science-intro__heading t-h-2">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+		{%- if paragraph != blank -%}
+			<p class="science-intro__paragraph t-b-1">
+				{{ paragraph }}
+			</p>
+		{%- endif -%}
+
+		{%- if label != blank -%}
+			<p class="science-intro__label t-l-5">
+				{{ label }}
+			</p>
+		{%- endif -%}
+	</div>
+
+	{%- capture slider_html -%}
+		{%- for i in amino_acids -%}
+			{%- liquid
+				assign image = i.image
+				assign name = i.name
+				assign number = i.increase_number
+				assign number_label = i.increase_number_label
+				assign sources = i.sources.value
+				assign functions = i.functions.value
+			-%}
+
+			<div class="science-intro__block c-slider__slide js-card">
+				<div class="science-intro__block__front p-fill f-v f-a-s">
+					<div class="science-intro__block__header f-h f-a-c">
+						<span class="t-l-1">{{ name }}</span>
+						<span
+							class="science-intro__block__trigger js-card-trigger"
+							aria-label="Toggle info"
+						>
+							{% render 'svg-icons', icon: 'info' -%}
+						</span>
+					</div>
+
+					{%- if image != null -%}
+						<div class="science-intro__image child-contain">
+							{%- render 'c-img-srcset',
+								image: image,
+								alt: image.alt
+							-%}
+						</div>
+					{%- endif %}
+				</div>
+
+				<div class="science-intro__block__back f-v f-a-s bg-orange cr-cream">
+					<div class="science-intro__block__header f-h f-a-c">
+						<span class="t-l-1">{{ name }}</span>
+						<span
+							class="science-intro__block__trigger js-card-trigger"
+							aria-label="Toggle info"
+						>
+							{% render 'svg-icons', icon: 'info' -%}
+						</span>
+					</div>
+
+					<div class="science-intro__block__number f-v">
+						{%- if number_label != blank -%}
+							<p class="t-l-4 cr-black">{{ number_label }}</p>
+						{%- endif -%}
+						{%- if number != blank -%}
+						<p class="t-h-4">{{ number }} ↑</p>
+						{%- endif -%}
+					</div>
+
+					{%- if sources != blank and sources.size > 0 or functions != blank and functions.size > 0-%}
+						<div class="science-intro__block__content f-h">
+							{%- if sources != blank and sources.size > 0 -%}
+								<div class="science-intro__block__sources f-v">
+									<p class="t-l-4 cr-black">Sources</p>
+									<ul class="science-intro__block__list">
+										{%- for i in sources -%}
+											<li class="t-l-4">{{ i }}</li>
+										{%- endfor -%}
+									</ul>
+								</div>
+							{%- endif -%}
+
+							{%- if functions != blank and functions.size > 0 -%}
+								<div class="science-intro__block__functions f-v">
+									<p class="t-l-4 cr-black">Functions</p>
+									<ul class="science-intro__block__list">
+										{%- for i in functions -%}
+											<li class="t-l-4">{{ i }}</li>
+										{%- endfor -%}
+									</ul>
+								</div>
+							{%- endif -%}
+						</div>
+					{%- endif -%}
+				</div>
+
+				<button type="button" class="science-intro__block__toggle p-fill js-card-trigger">
+					<span class="screen-reader-only">Toggle info</span>
+				</button>
+			</div>
+		{%- endfor -%}
+	{%- endcapture -%}
+
+	{%- render 'c-slider',
+		classes: 'science-intro__blocks',
+		slider_html: slider_html,
+		slider_options: "{'loop': true, 'watchDrag': true, 'skipSnaps': true, 'align': 'start'}",
+		enable_nav: true,
+		enable_wheel: true
+	-%}
+
+	{% if section.settings.notes != blank %}
+		<div class="science-intro__notes w-max">
+			{%- render 'c-source',
+				source: section.settings.notes,
+				label: 'Disclaimer',
+				max_width: 2000
+			-%}
+		</div>
+	{% endif %}
+{%- endif -%}

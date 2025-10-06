@@ -1,0 +1,144 @@
+{% comment %}
+	{%- render 'c-editorial',
+		subheading: string,
+		heading: string,
+		is_smaller_heading: boolean,
+		paragraph: string,
+		cta_label: string,
+		cta_url: url,
+		source: string,
+		background_image: image,
+		background_image_mobile: image
+	-%}
+{% endcomment %}
+
+{% style %}
+    .s-landing-editorial {
+        margin: 0;
+    }
+
+    .c-landing-editorial {
+        padding: 80px 144px;
+    }
+
+    #shopify-section-{{ section.id }} .c-landing-editorial__content {
+        max-width: {{  content_max_width }}px;
+        text-align: {{ alignment }};
+        {% if color != blank %}
+            color: {{ color }};
+        {% else %}
+            color: #000000;
+        {% endif %}
+    }
+    .c-landing-editorial__content .c-header__subheading {
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+    }
+
+    #shopify-section-{{ section.id }} .c-landing-editorial__content .c-header__heading {        
+        text-align: {{ alignment }};
+    }
+
+    #shopify-section-{{ section.id }} .c-landing-editorial__content .c-editorial__footer p {
+        text-align: {{ alignment }};
+    }
+
+    .c-landing-editorial__content .c-source {
+        text-transform: none;
+        border: 0;
+        padding: 0;
+    }
+
+    {% if is_smaller_paragraph %}
+        #shopify-section-{{ section.id }} .c-landing-editorial__content .c-editorial__footer p {
+            font-size: 24px;
+        }
+    {% endif %}
+
+    {% if use_btn_outline %}
+        #shopify-section-{{ section.id }} .btn-outline:hover span {
+            color: #000;
+            z-index: 2;
+        }
+    {% endif %}
+
+    @media (max-width: 600px) {
+        #shopify-section-{{ section.id }} .c-editorial.c-landing-editorial.f-v.bg-subtle {
+            padding: 40px 22px;
+            padding-top: 340px;
+            height: 645px;
+        }
+
+        .c-landing-editorial__content .c-header__subheading {
+            font-size: 18px;
+        }
+
+        #shopify-section-{{ section.id }} .c-landing-editorial__content {
+            width: 100%;
+            max-width: none;
+            padding: 0 16px;
+        }
+    }
+{% endstyle %}
+
+<div class="c-editorial c-landing-editorial f-v bg-subtle">
+	{%- if background_image != null -%}
+		<span class="object-fit">
+			{%- render 'c-img-srcset',
+				image: background_image,
+				responsive_image: background_image_mobile,
+				alt: background_image.alt
+			-%}
+		</span>
+	{%- endif %}
+
+	<div class="c-editorial__content c-landing-editorial__content f-v {% if vertical_align_c %}f-j-c{% endif %}">
+		{% comment %}{%- render 'c-header',
+			subheading: subheading,
+			heading: heading,
+			is_smaller_heading: is_smaller_heading
+		-%}{% endcomment %}
+        {%- if subheading != blank -%}
+			<p class="c-header__subheading t-b-2">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+		{%- if heading != blank -%}
+			<h2 class="c-header__heading {% if is_smaller_heading %}t-h-2{% else %}t-h-1{% endif %}">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+
+		{%- if paragraph != blank
+			or source != blank
+			or cta_label != blank
+			and cta_url != blank
+		-%}
+			<div class="c-editorial__footer">
+				{%- if paragraph != blank -%}
+					<p class="c-editorial__paragraph t-b-1">
+						{{ paragraph | newline_to_br }}
+					</p>
+				{%- endif -%}
+
+				{%- if cta_label != blank and cta_url != blank -%}
+					<a
+						class="c-editorial__cta {% if use_btn_outline %}btn-outline{% else %}btn {% if activate_orange_btn %} cr-orange hover-white{% endif %}{% endif %}"
+						href="{{- cta_url -}}"
+					>
+						<span>{{- cta_label -}}</span>
+					</a>
+				{%- endif -%}
+
+				{%- if source != blank -%}
+                    <div
+                        class="c-source f-h f-j-s t-b-3"
+                        style="--max-width:{{ max_width | default: 530 | append: 'px' }}"
+                    >
+                        <div class="c-source__content">{{ source }}</div>
+                    </div>
+                {%- endif -%}
+			</div>
+		{%- endif -%}
+	</div>
+</div>

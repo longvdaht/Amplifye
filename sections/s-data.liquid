@@ -1,0 +1,256 @@
+{% schema %}
+{
+	"name": "Data",
+	"tag": "section",
+	"class": "s-data p-x-max p-y-section bg-black cr-cream",
+	"presets": [
+		{
+			"name": "Data",
+			"settings": {
+				"heading": "Lorem",
+				"subheading": "Lorem",
+				"proteins": [
+					"beef",
+					"chicken",
+					"tofu",
+					"atlantic-salmon",
+					"pork",
+					"eggs",
+					"whey-protein",
+					"brown-lentils",
+					"greek-yogurt"
+				]
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"metaobject_type": "proteins",
+			"type": "metaobject_list",
+			"id": "proteins",
+			"label": "Proteins"
+		},
+		{
+			"type": "textarea",
+			"id": "disclaimer",
+			"label": "Disclaimer"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign proteins = section.settings.proteins
+	assign disclaimer = section.settings.disclaimer
+-%}
+
+{%- if proteins.count > 0 -%}
+	{%- if heading != blank -%}
+		<div class="s-data__header f-v f-a-c">
+			{%- if heading != blank -%}
+				<h2 class="c-header__heading t-h-1">
+					{{ heading }}
+				</h2>
+			{%- endif -%}
+
+			{%- if subheading != blank -%}
+				<p class="c-header__subheading t-b-3">
+					{{ subheading }}
+				</p>
+			{%- endif -%}
+		</div>
+	{%- endif -%}
+
+	<div class="s-data__blocks">
+		{%- capture slider_html -%}
+			{%- for i in proteins -%}
+				{%- liquid
+					assign image = i.image
+					assign name = i.name
+				-%}
+
+				{%- if image != null -%}
+						{% assign is_dark_theme = i.dark_theme %}
+
+					<div
+						class="s-data__block c-slider__slide f-v f-a-c bg-subtle {% if is_dark_theme %}cr-black{% else %}cr-cream{% endif %}"
+						data-popup-trigger="{{ name | handle | append: forloop.index }}"
+						style="--hover-color: {% if is_dark_theme %}var(--cr-cream){% else %}var(--cr-black){% endif %};">
+						<div class="s-data__image object-fit bg-subtle">
+							{%- render 'c-img-srcset',
+								image: image,
+								alt: image.alt
+							-%}
+						</div>
+						<h1 class="s-data__name t-l-1">{{ name }}</h1>
+						<button type="button" class="s-data__link btn-outline f-j-c" aria-label="Plus">
+							{%- render 'svg-icons', icon: 'plus' -%}
+						</button>
+					</div>
+				{%- endif -%}
+			{%- endfor -%}
+		{%- endcapture -%}
+
+		{% comment %}
+			{%- render 'c-slider',
+				slider_html: slider_html,
+				slider_options: "{'loop': true, 'watchDrag': true, 'align': 'start', 'breakpoints': {'(max-width: 600px)': {'axis': 'y'}}}",
+				enable_nav: true,
+				enable_wheel: true
+			-%}
+		{% endcomment %}
+		{%- render 'c-slider',
+			slider_html: slider_html,
+			slider_options: "{'loop': true, 'align': 'start', 'breakpoints': {'(max-width: 600px)': {'axis': 'y'}}}",
+			enable_nav: true,
+			enable_wheel: true
+		-%}
+
+		{%- for i in proteins -%}
+			{%- liquid
+				assign image = i.image
+				assign name = i.name
+				assign feature_title = i.feature_title
+				assign feature_label_top = i.feature_label_top
+				assign feature_number = i.feature_number
+				assign feature_label_bottom = i.feature_label_bottom
+				assign amino_title = i.amino_acid_title
+				assign amino_stats = i.amino_acid_stats.value
+				assign amino_acids = i.amino_acids.value
+				assign amino_stats_size = amino_stats.size
+				assign amino_acids_size = amino_acids.count
+				assign link = i.link.value
+				assign source = i.source
+			-%}
+
+			{%- if image != null -%}
+				<div
+					class="is-hidden"
+					data-popup-target="{{ name | handle | append: forloop.index }}"
+				>
+					<div class="s-data__popup bg-black cr-cream">
+						<div class="s-data__popup__image">
+							{%- render 'c-img-srcset', image: image, alt: image.alt -%}
+						</div>
+
+						<button
+							type="button"
+							class="s-data__popup__close"
+							data-popup-close="{{ name | handle | append: forloop.index }}"
+							aria-label="Close popup"
+						>
+							<span class="icon-close mobile-up-only"></span>
+							<span class="icon-minus mobile-down-only"></span>
+						</button>
+
+						<p class="s-data__popup__name t-l-1">{{ name }}</p>
+						<div class="s-data__popup__content f-h f-a-s">
+							<div class="s-data__popup__feature f-v f-a-c">
+								{%- if feature_title != blank -%}
+									<p class="s-data__popup__title t-l-4">{{ feature_title }}</p>
+								{%- endif -%}
+
+								{%- if feature_number != blank -%}
+									<div class="s-data__popup__block f-v f-a-c">
+										{%- if feature_label_top != blank -%}
+											<p class="s-data__popup__label t-h-4">
+												{{ feature_label_top }}
+											</p>
+										{%- endif -%}
+
+										<h1 class="s-data__popup__number t-h-1">
+											{{ feature_number }}
+										</h1>
+
+										{%- if feature_label_bottom != blank -%}
+											<p class="s-data__popup__label t-h-4">
+												{{ feature_label_bottom }}
+											</p>
+										{%- endif -%}
+									</div>
+								{%- endif -%}
+
+								{%- if feature_title != blank -%}
+									<p
+										class="s-data__popup__title t-l-4"
+										style="visibility:hidden"
+									>
+										{{ feature_title }}
+									</p>
+								{%- endif -%}
+							</div>
+							<div class="s-data__popup__amino f-v f-a-c">
+								{%- if amino_title != blank -%}
+									<p class="s-data__popup__title t-l-4">{{ amino_title }}</p>
+								{%- endif -%}
+
+								{%- if amino_stats_size > 0
+									and amino_acids_size > 0
+									and amino_stats_size == amino_acids_size
+								-%}
+									<ul class="s-data__popup__list">
+										{%- for i in amino_stats -%}
+											{% assign index_parent = forloop.index %}
+											{% assign length = i | size %}
+											<li class="s-data__popup__item f-h f-j-s f-a-c">
+												<div class="s-data__popup__stat f-h f-a-c f-j-c bg-orange {% if length > 4 %}t-l-4{% else %}t-h-4{% endif %}">
+													<span>
+														{{- i -}}
+														{% comment %} {{- length -}} {% endcomment %}
+													</span>
+												</div>
+												{%- for i in amino_acids -%}
+													{% assign index = forloop.index %}
+													{%- if index_parent == index -%}
+														<span class="s-data__popup__paragraph f-v">
+															<span class="t-l-4">{{ i.name }}</span>
+															<p class="t-b-4">{{ i.benefit }}</p>
+														</span>
+													{%- endif -%}
+												{%- endfor -%}
+											</li>
+										{%- endfor -%}
+									</ul>
+								{%- endif -%}
+								{%- if link.text != blank and link.url != blank -%}
+									<a
+										href="{{ link.url }}"
+										class="s-data__popup__cta btn-outline is-small"
+										style="--hover-color: var(--cr-black);"
+									>
+										<span class="btn-outline__label">{{ link.text }}</span>
+										{%- render 'svg-icons', icon: 'arrow-right-long' -%}
+									</a>
+								{%- endif -%}
+							</div>
+						</div>
+
+						{%- if disclaimer != blank -%}
+							<p class="s-data__popup__footer t-b-4">
+								{{ disclaimer }}
+							</p>
+						{%- endif -%}
+
+						{%- render 'c-source',
+							class: 's-data__popup__source',
+							source: source,
+							max_width: 750
+						-%}
+					</div>
+				</div>
+			{%- endif -%}
+		{%- endfor -%}
+	</div>
+{%- endif -%}

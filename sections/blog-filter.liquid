@@ -1,0 +1,146 @@
+{% schema %}
+{
+	"name": "Blog Filter",
+	"tag": "section",
+	"class": "blog-filter p-x-max bg-cream",
+	"settings": [
+		{
+			"type": "metaobject_list",
+			"id": "categories",
+			"label": "Categories",
+			"metaobject_type": "blog_category",
+			"limit": 10
+		}
+	]
+}
+{% endschema %}
+
+{% assign categories = section.settings.categories %}
+
+{% if categories != blank %}
+	{%- liquid
+		if current_tags
+			# category filtered
+			assign tag_page = true
+		else
+			# all
+			assign tag_page = false
+		endif
+		assign current_tags_h = current_tags | join: '###' | handle | split: '###'
+	%}
+
+	<ul class="blog-filter__categories f-h f-w f-j-c t-l-2 tablet-up-only">
+		<li>
+			<a
+				href="{{ blog.url }}"
+				{%- if tag_page == false -%}
+					class="blog-filter__category f-h f-a-c is-active"
+				{% else %}
+					class="blog-filter__category f-h f-a-c"
+				{%- endif -%}
+			>
+				All<sup class="blog-filter__category__count">
+					{{- blogs.research.articles_count -}}
+				</sup>
+			</a>
+		</li>
+
+		{%- for category in categories -%}
+			{% liquid
+				assign count = 0
+				assign category_title = category.title
+				assign category_title_h = category_title | handle
+
+				for article in blogs.research.articles
+					if article.tags contains category_title
+						assign count = count | plus: 1
+					endif
+				endfor
+			%}
+			<li>
+				<a
+					href="
+						{{- blog.url
+						| append: '/tagged/' | append: category_title_h -}}
+					"
+					{%- if current_tags_h contains category_title_h -%}
+						class="blog-filter__category f-h f-a-c is-active"
+					{% else %}
+						class="blog-filter__category f-h f-a-c"
+					{%- endif -%}
+				>
+					{{- category.title | capitalize -}}
+					<sup class="blog-filter__category__count">{{ count }}</sup>
+				</a>
+			</li>
+		{%- endfor -%}
+	</ul>
+
+	<c-accordion
+		class="c-accordion t-l-2 tablet-down-only"
+	>
+		<button
+			type="button"
+			class="c-accordion__toggle f-h f-a-c js-accordion-toggle"
+			data-trigger="filter"
+		>
+			<span class="c-accordion__title">Filter</span>
+			<span class="icon-plus"></span>
+		</button>
+
+		<div
+			class="c-accordion__content js-accordion-content"
+			data-target="filter"
+			aria-hidden="true"
+		>
+			<div class="c-accordion__content-interior">
+				<ul class="blog-filter__categories f-v">
+					<li>
+						<a
+							href="{{ blog.url }}"
+							{%- if tag_page == false -%}
+								class="blog-filter__category f-h f-a-c is-active"
+							{% else %}
+								class="blog-filter__category f-h f-a-c"
+							{%- endif -%}
+						>
+							All<sup class="blog-filter__category__count">
+								{{- blogs.research.articles_count -}}
+							</sup>
+						</a>
+					</li>
+
+					{%- for category in categories -%}
+						{% liquid
+							assign count = 0
+							assign category_title = category.title
+							assign category_title_h = category_title | handle
+
+							for article in blogs.research.articles
+								if article.tags contains category_title
+									assign count = count | plus: 1
+								endif
+							endfor
+						%}
+						<li>
+							<a
+								href="
+									{{- blog.url
+									| append: '/tagged/' | append: category_title_h -}}
+								"
+								{%- if current_tags_h contains category_title_h -%}
+									class="blog-filter__category f-h f-a-c is-active"
+								{% else %}
+									class="blog-filter__category f-h f-a-c"
+								{%- endif -%}
+							>
+								{{- category.title | capitalize -}}
+								<sup class="blog-filter__category__count">{{ count }}</sup>
+							</a>
+						</li>
+					{%- endfor -%}
+				</ul>
+			</div>
+		</div>
+	</c-accordion>
+{% endif %}

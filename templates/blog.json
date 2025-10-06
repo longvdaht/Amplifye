@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "blog-hero": {
+      "type": "blog-hero",
+      "settings": {
+        "subheading": "Amplifying the latest protein research, news, and nutritional tips.",
+        "heading": "Beyond the gram"
+      }
+    },
+    "blog-filter": {
+      "type": "blog-filter",
+      "settings": {
+        "categories": [
+          "research",
+          "nutrition",
+          "recipes",
+          "wellbeing",
+          "news"
+        ]
+      }
+    },
+    "blog-content": {
+      "type": "blog-content",
+      "blocks": {
+        "featured_article_X7XAdB": {
+          "type": "featured_article",
+          "disabled": true,
+          "settings": {
+            "featured_article": "research/guidance-for-best-in-class-nyt-op-eds"
+          }
+        },
+        "featured_article_DA7K8j": {
+          "type": "featured_article",
+          "settings": {
+            "featured_article": "research/protein-digestion-steps-and-the-protease-enzyme-amplifyep24protein-digestion-steps-and-the-protease-enzyme-amplifyep24"
+          }
+        }
+      },
+      "block_order": [
+        "featured_article_X7XAdB",
+        "featured_article_DA7K8j"
+      ],
+      "settings": {
+        "articles_shown_at_once": 24,
+        "main_article": "research/protein-glossary",
+        "empty_message": "There are currently no articles.",
+        "empty_cta_label": "Back to home",
+        "empty_cta_url": "/",
+        "is_infinite_scroll": true,
+        "infinite_btn_message": "Load More Articles",
+        "infinite_end_message": "You’ve reached the end!"
+      }
+    },
+    "s_social_GLWJHw": {
+      "type": "s-social",
+      "blocks": {
+        "block_WVzW9B": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/2beab723510c6033f1dc478be152346ac67cb903.jpg",
+            "url": "https://www.instagram.com/p/DIeP0irp6DE/?img_index=1"
+          }
+        },
+        "block_C4LE6Y": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/swimming.jpg",
+            "url": "https://www.instagram.com/p/DIePyyYJISy/"
+          }
+        },
+        "block_jaCeaR": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/03920c279f81793541a6421b7461473dd21dd2c4.jpg",
+            "url": "https://www.instagram.com/p/DIePxFnJOql/?img_index=1"
+          }
+        },
+        "block_yKHy4c": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/420e78b9b1ee72c8f98040dda0a45d695164ad3d.jpg",
+            "url": ""
+          }
+        },
+        "block_Crntkx": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/250491458c7b3e460d0f9bc51997fe2be29c6328.jpg",
+            "url": ""
+          }
+        },
+        "block_t74z8h": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/1e5f1ccb70ee930d810c9a1f60f09f8e272abb5c.jpg",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_WVzW9B",
+        "block_C4LE6Y",
+        "block_jaCeaR",
+        "block_yKHy4c",
+        "block_Crntkx",
+        "block_t74z8h"
+      ],
+      "settings": {
+        "heading": "Connect with the amplifye community.",
+        "cta_label": "Follow @amplifye_me",
+        "cta_url": "https://www.instagram.com/amplifye_me/"
+      }
+    }
+  },
+  "order": [
+    "blog-hero",
+    "blog-filter",
+    "blog-content",
+    "s_social_GLWJHw"
+  ]
+}

@@ -1,0 +1,59 @@
+{% comment %}
+	{%- render 'c-its',
+		heading: string,
+		paragraph: string,
+		cta_label: string,
+		cta_url: url,
+		selected_media_type: string,
+		image: image,
+		video: video,
+		video_url: url
+	-%}
+{% endcomment %}
+
+<div class="c-its f-h f-a-c {{ content_align }} section-{{ section.id }}">
+	{%- if cta_label != blank and cta_url != blank -%}
+		<a
+			class="c-its__cta btn mobile-down-only"
+			href="{{- cta_url -}}"
+		>
+			<span>{{- cta_label -}}</span>
+		</a>
+	{%- endif -%}
+
+	{%- if selected_media_type != null -%}
+		<div class="c-its__media bg-subtle">
+			<span class="object-fit">
+				{%- render 'c-media',
+					selected_media_type: selected_media_type,
+					image: image,
+					video: video,
+					video_url: video_url
+				-%}
+			</span>
+		</div>
+	{%- endif -%}
+
+	<div class="c-its__content f-v">
+		{%- if heading != blank -%}
+			<h2 class="c-its__heading t-h-2">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+
+		{%- if paragraph != blank -%}
+			{{ paragraph }}
+		{%- endif -%}
+		{%- if note != blank -%}
+			<p class="c-its__note --t-h-4">{{ note }}</p>
+		{%- endif -%}
+		{%- if cta_label != blank and cta_url != blank -%}
+			<a
+				class="c-its__cta btn mobile-up-only"
+				href="{{- cta_url -}}"
+			>
+				<span>{{- cta_label -}}</span>
+			</a>
+		{%- endif -%}
+	</div>
+</div>

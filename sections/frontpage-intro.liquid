@@ -1,0 +1,92 @@
+{% schema %}
+	{
+		"name": "Intro",
+		"tag": "section",
+		"class": "frontpage-intro p-x-max p-y-section bg-orange cr-cream f-v f-a-c",
+		"settings": [
+			{
+				"type": "text",
+				"id": "subheading",
+				"label": "Subheading"
+			},
+			{
+				"type": "textarea",
+				"id": "heading_left",
+				"label": "Heading Left"
+			},
+			{
+				"type": "textarea",
+				"id": "heading_right",
+				"label": "Heading Right"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Image"
+			},
+			{
+				"type": "textarea",
+				"id": "paragraph",
+				"label": "Paragraph"
+			},
+			{
+				"type": "text",
+				"id": "cta_label",
+				"label": "CTA Label"
+			},
+			{
+				"type": "url",
+				"id": "cta_url",
+				"label": "CTA URL"
+			},
+		],
+	}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading_left = section.settings.heading_left
+	assign heading_right = section.settings.heading_right
+	assign paragraph = section.settings.paragraph
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign image = section.settings.image
+-%}
+
+
+{%- if subheading != blank -%}
+	<p class="frontpage-intro__subheading t-b-3">{{ subheading }}</p>
+{%- endif -%}
+
+<div class="frontpage-intro__container f-h f-a-c">
+	{%- if heading_left != blank -%}
+		<h2 class="frontpage-intro__heading t-h-1">{{ heading_left }}</h2>
+	{%- endif -%}
+
+	{%- if image != null -%}
+		<div class="frontpage-intro__image child-contain">
+			{% render 'c-img-srcset',
+				image: image,
+				alt: image.alt %}
+		</div>
+	{%- endif -%}
+
+	{%- if heading_right != blank -%}
+		<h2 class="frontpage-intro__heading t-h-1">{{ heading_right }}</h2>
+	{%- endif -%}
+</div>
+
+{%- if paragraph != blank -%}
+	<p class="frontpage-intro__paragraph t-b-1">{{ paragraph }}</p>
+{%- endif -%}
+
+{%- if cta_label != blank and cta_url != blank -%}
+	<a
+		class="frontpage-intro__cta btn hover-white"
+		href="{{- cta_url -}}"
+	>
+		<span>
+			{{- cta_label -}}
+		</span>
+	</a>
+{%- endif -%}

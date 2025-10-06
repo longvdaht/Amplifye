@@ -1,0 +1,103 @@
+{% comment %}
+	{%- render 'c-banner',
+		heading: string,
+		cta_label: string,
+		cta_url: url,
+		color_scheme: object,
+		activate_chat: boolean
+	-%}
+{% endcomment %}
+
+<style>
+	.landing-s-banner .c-banner {
+		border-radius: 0;
+		padding: 40px 60px;
+	}
+
+	.landing-s-banner .subheading {
+		font-family: "Basis Grotesque";
+		font-weight: 400;
+		font-style: normal;
+		font-size: 18px;
+		line-height: 125%;
+		letter-spacing: 0.1px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+
+	.landing-s-banner .c-banner-heading {
+		display: flex;
+		align-items: center;
+	}
+
+	.landing-s-banner span.mainheading {
+		margin-left: 20px;
+	}
+
+	.landing-s-banner span.mainheading.mainheading-mobile {
+		display: none;
+	}
+
+	@media (max-width: 767.98px) {
+		.landing-s-banner .subheading {
+			font-size: 12px;
+		}
+
+		.landing-s-banner .c-banner {
+			padding: 40px 45px;
+		}
+
+		.landing-s-banner span.mainheading.mainheading-mobile {
+			display: block;
+		}
+
+		.landing-s-banner span.mainheading.mainheading-desktop {
+			display: none;
+		}
+	}
+</style>
+
+{%- liquid
+	assign bg_color = color_scheme.settings.background
+	assign text_color = color_scheme.settings.text
+	assign hover_color = color_scheme.settings.hover_color
+-%}
+
+<div
+	class="c-banner f-h f-a-c f-w cr-cream"
+	style="--bg-color: {{ bg_color | default: '#c14b24' }}; --text-color: {{ text_color | default: '#fffaf1' }}; --hover-color: {{ hover_color | default: '#000000' }}"
+>
+	{%- if heading != blank or heading_image != blank -%}
+		<div class="c-banner-heading">
+			<span class="subheading">{{ subheading }}</span>
+			{% if heading_image != blank %}
+				{% if heading_image_mobile != blank %}
+					<span class="mainheading mainheading-desktop"><img src="{{ heading_image | img_url: 'master' }}" alt="{{ heading_image.alt }}" /></span>
+					<span class="mainheading mainheading-mobile"><img src="{{ heading_image_mobile | img_url: 'master' }}" alt="{{ heading_image_mobile.alt }}" /></span>
+				{% else %}
+					<span class="mainheading"><img src="{{ heading_image | img_url: 'master' }}" alt="{{ heading_image.alt }}" /></span>
+				{% endif %}
+			{% else %}
+				<span class="mainheading">{{ heading }}</span>
+			{% endif %}		
+		</div>
+	{%- endif -%}
+
+	{%- if cta_label != blank -%}
+		{%- if cta_url != blank -%}
+			<a
+				href="{{- cta_url -}}"
+				class="c-banner__cta btn-outline"
+			>
+				<span class="btn-outline__label">{{- cta_label -}}</span>
+			</a>
+		{%- else -%}
+			{% comment %}<button type="button" class="btn-outline js-gladly-trigger">
+				<span class="btn-outline__label">{{- cta_label -}}</span>
+			</button>{% endcomment %}
+            <div class="product-hero__form simple-product-form">
+                {% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, btn_outline: true  %}
+            </div>
+		{%- endif -%}
+	{%- endif -%}
+</div>

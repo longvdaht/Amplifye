@@ -1,0 +1,20 @@
+{%- comment -%}
+	{% render 'c-linklist',
+		linklist: linklist_object,
+		list_classes: string %}
+{%- endcomment -%}
+
+{%- if linklist.links != blank -%}
+	<ul
+		class="
+			c-linklist user-select-disable
+			{% if class != blank %} {{ class }}{% endif %}
+		"
+	>
+		{%- for link in linklist.links -%}
+			<li class="c-linklist__item btn-underline{% if link.active == true %} is-active{% endif %}">
+				<a href="{{- link.url -}}">{{- link.title -}}</a>
+			</li>
+		{%- endfor -%}
+	</ul>
+{%- endif -%}

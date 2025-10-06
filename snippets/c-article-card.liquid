@@ -1,0 +1,82 @@
+{% if article.content != blank %}
+	{%- liquid
+		assign author = article.metafields.custom.author
+		assign main_category = article.metafields.custom.category.value.title | default: article.tags.first | default: blog.title
+
+		assign hover_bg = article.metafields.custom.color | default: 'var(--cr-black)'
+		assign hover_color = 'var(--cr-black)'
+
+		if hover_bg == 'White'
+			assign hover_bg = 'var(--cr-cream-dark)'
+		elsif hover_bg == 'Orange'
+			assign hover_bg = 'var(--cr-orange-dark)'
+			assign hover_color = 'var(--cr-cream)'
+		elsif hover_bg == 'Blue'
+			assign hover_bg = 'var(--cr-blue)'
+		else
+			assign hover_bg = 'var(--cr-black)'
+			assign hover_color = 'var(--cr-cream)'
+		endif
+	-%}
+
+	<div
+		class="c-article-card f-v f-a-s {%- if class != blank %} {{ class }}{% endif %}"
+		data-layout="{{ layout | default: 'medium' }}"
+		style="--hover-bg: {{ hover_bg }}; --hover-color: {{ hover_color }};"
+	>
+		<div class="c-article-card__text f-h f-w">
+			<span class="c-article-card__category btn-square f-h f-a-c t-l-2">
+				{{- main_category | append: ':' -}}
+			</span>
+
+			<div class="c-article-card__info f-h f-j-e f-a-c t-l-2 mobile-up-only">
+				<span
+					class="btn-square js-article-read-time"
+					data-content="{{ article.content | strip_html | strip_newlines | escape }}"
+				></span>
+
+				<time
+					datetime="{{- article.published_at | date: '%m.%Y' -}}"
+					class="btn-square"
+				>
+					{{- article.published_at | date: '%m.%Y' -}}
+				</time>
+			</div>
+
+			<h3 class="c-article-card__title t-h-3">{{- article.title -}}</h3>
+
+			{%- if author != blank -%}
+				<address class="c-article-card__author t-b-1" rel="author">
+					{{ author }}
+				</address>
+			{%- endif -%}
+		</div>
+
+		{%- if article.image != null -%}
+			<div class="c-article-card__image bg-subtle">
+				<span class="object-fit">
+					{%- render 'c-img-srcset',
+						image: article.image,
+						alt: article.title
+					-%}
+				</span>
+			</div>
+		{%- endif -%}
+
+		<div class="c-article-card__info f-h f-j-s t-l-2 mobile-down-only">
+			<span
+				class="js-article-read-time"
+				data-content="{{ article.content | strip_html | strip_newlines | escape }}"
+			></span>
+			<span>
+				{{- published_date | default: article.published_at | date: '%m.%Y' -}}
+			</span>
+		</div>
+
+		<a
+			class="c-article-card__cta p-fill"
+			href="{{- article.url -}}"
+			title="{{- article.title | escape -}}"
+		></a>
+	</div>
+{% endif %}

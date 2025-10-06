@@ -1,0 +1,127 @@
+{% schema %}
+{
+	"name": "Image Text Split",
+	"tag": "section",
+	"class": "s-its m-y-section p-x-md",
+	"presets": [
+		{
+			"name": "Image Text Split",
+			"settings": {
+				"media_type": "image",
+				"image": "shopify://shop_images/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
+				"heading": "From rates of consumption to rates of absorption.",
+				"paragraph": "<p>P24 jump-starts digestion and breaks down protein with precision. This allows your body to access and absorb more peptides and amino acids.</p>",
+				"cta_label": "The Science",
+				"cta_url": "shopify://pages/the-science"
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Media"
+		},
+		{
+			"type": "radio",
+			"id": "content_alignment",
+			"label": "Image Alignment",
+			"default": "right",
+			"options": [
+				{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			]
+		},
+		{
+			"type": "radio",
+			"id": "media_type",
+			"label": "Media Type",
+			"options": [
+				{
+					"value": "image",
+					"label": "Image"
+				},
+				{
+					"value": "video",
+					"label": "Shopify-Hosted Video"
+				}
+			],
+			"default": "image"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image"
+		},
+		{
+			"type": "video",
+			"id": "video",
+			"label": "Shopify-Hosted Video"
+		},
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "richtext",
+			"id": "paragraph",
+			"label": "Paragraph"
+		},
+		{
+			"type": "textarea",
+			"id": "note",
+			"label": "Text note"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		}
+	]
+}
+{% endschema %}
+{%  style  %}
+	@media (min-width: 768px) {
+		.section-{{ section.id }}.right {
+			flex-direction: row-reverse;
+		}
+	}
+{% endstyle %}
+{%- liquid
+	assign media_type = section.settings.media_type
+	assign image = section.settings.image
+	assign video = section.settings.video
+
+	if media_type == 'image' and image != null
+		assign selected_media_type = 'image'
+	elsif media_type == 'video' and video != null
+		assign selected_media_type = 'video'
+	endif
+-%}
+
+{%- render 'c-its',
+	heading: section.settings.heading,
+	paragraph: section.settings.paragraph,
+	note: section.settings.note,
+	cta_label: section.settings.cta_label,
+	cta_url: section.settings.cta_url,
+	content_align: section.settings.content_alignment,
+	selected_media_type: selected_media_type,
+	image: image,
+	video: video
+-%}

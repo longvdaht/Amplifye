@@ -1,0 +1,90 @@
+{% schema %}
+{
+	"name": "Landing Banner - 2",
+	"tag": "section",
+	"class": "s-banner landing-s-banner  landing-s-banner-2",
+	"presets": [
+		{
+			"name": "Landing Banner - 2",
+			"settings": {
+				"text_1": "15% off your first bottle ",
+				"text_2": "Use code: UPGRADE15",
+				"cta_label": "Upgrade Your Protein Game",
+				"cta_url": "",
+				"color_scheme": "",
+			}
+		}
+	],
+	"settings": [
+		{
+			"type": "inline_richtext",
+			"id": "text_1",
+			"label": "Text 1"
+		},
+        {
+			"type": "inline_richtext",
+			"id": "text_2",
+			"label": "Text_2"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA Label"
+		},
+		{
+			"type": "url",
+			"id": "cta_url",
+			"label": "CTA URL"
+		},
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+		{
+			"type": "text",
+			"id": "code",
+			"label": "Code",
+			"default": "MBG15"
+		},
+		{
+			"type": "color_scheme",
+			"id": "color_scheme",
+			"default": "scheme_1",
+			"label": "Color scheme"
+		},
+		{
+			"type": "color",
+			"id": "bkg_color",
+			"label": "Background Color"
+		}
+	]
+}
+{% endschema %}
+
+{% liquid
+	assign text_1 = section.settings.text_1
+	assign text_2 = section.settings.text_2
+	assign cta_label = section.settings.cta_label
+	assign cta_url = section.settings.cta_url
+	assign color_scheme = section.settings.color_scheme
+	assign bkg_color = section.settings.bkg_color
+	assign code = section.settings.code
+
+    if section.settings.product != blank
+      assign product = section.settings.product
+    else
+      assign product = all_products['amplifye-p24']
+    endif
+%}
+
+{%- render 'landing-c-banner-2',
+	text_1: text_1,
+	text_2: text_2,
+	cta_label: cta_label,
+	cta_url: cta_url,
+    product: product,
+	color_scheme: color_scheme,
+	bkg_color: bkg_color,
+	code: code,
+-%}

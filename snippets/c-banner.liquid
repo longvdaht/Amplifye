@@ -1,0 +1,38 @@
+{% comment %}
+	{%- render 'c-banner',
+		heading: string,
+		cta_label: string,
+		cta_url: url,
+		color_scheme: object,
+		activate_chat: boolean
+	-%}
+{% endcomment %}
+
+{%- liquid
+	assign bg_color = color_scheme.settings.background
+	assign text_color = color_scheme.settings.text
+	assign hover_color = color_scheme.settings.hover_color
+-%}
+
+<div
+	class="c-banner f-h f-a-c f-w cr-cream"
+	style="--bg-color: {{ bg_color | default: '#c14b24' }}; --text-color: {{ text_color | default: '#fffaf1' }}; --hover-color: {{ hover_color | default: '#000000' }}"
+>
+	{%- if heading != blank -%}
+		<h1 class="t-h-3">{{ heading }}</h1>
+	{%- endif -%}
+
+	{%- if activate_chatbot and cta_label != blank -%}
+		<button type="button" class="btn-outline js-gladly-trigger">
+			<span class="btn-outline__label">{{- cta_label -}}</span>
+			{% render 'svg-icons', icon: 'dialog' -%}
+		</button>
+	{%- elsif cta_label != blank and cta_url != blank -%}
+		<a
+			href="{{- cta_url -}}"
+			class="c-banner__cta btn-outline"
+		>
+			<span class="btn-outline__label">{{- cta_label -}}</span>
+		</a>
+	{%- endif -%}
+</div>

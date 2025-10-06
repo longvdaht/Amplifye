@@ -1,0 +1,139 @@
+{% schema %}
+{
+	"name": "Discovery Origin",
+	"tag": "section",
+	"class": "discovery-origin p-y-section f-v f-a-s js-slider-sync",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading"
+		}
+	],
+	"max_blocks": 6,
+	"blocks": [
+		{
+			"type": "feature",
+			"name": "Feature",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "label",
+					"label": "Label"
+				},
+				{
+					"type": "textarea",
+					"id": "paragraph",
+					"label": "Paragraph"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+-%}
+
+{%- if section.blocks.size > 0 -%}
+	<div class="discovery-origin__header p-x-max f-v f-a-c">
+		{%- if subheading != blank -%}
+			<p class="discovery-origin__subheading t-l-5">
+				{{ subheading }}
+			</p>
+		{%- endif -%}
+		{%- if heading != blank -%}
+			<h1 class="discovery-origin__heading t-h-2">
+				{{ heading }}
+			</h1>
+		{%- endif -%}
+	</div>
+
+	{%- capture slider_html -%}
+		{%- for block in section.blocks -%}
+			{%- liquid
+				assign image = block.settings.image
+				assign label = block.settings.label
+				assign paragraph = block.settings.paragraph
+			-%}
+
+			<div
+				class="discovery-origin__block c-slider__slide f-v f-a-c f-j-s"
+				data-trigger-sync="{{ forloop.index0 }}">
+				<div class="discovery-origin__media bg-subtle">
+					{%- if image != null -%}
+						<span class="object-fit">
+							{%- render 'c-img-srcset',
+								image: image,
+								alt: image.alt | default: label
+							-%}
+						</span>
+					{%- endif %}
+				</div>
+			</div>
+		{%- endfor -%}
+	{%- endcapture -%}
+
+	{%- render 'c-slider',
+		classes: 'discovery-origin__blocks p-x-max',
+		slider_html: slider_html,
+		slider_options: "{'loop': true, 'watchDrag': true}",
+		enable_fade: true,
+		enable_dots: true,
+		enable_autoheight: true,
+		enable_sync: true
+	-%}
+
+	<div class="f-v f-a-c">
+		<ul class="discovery-origin__list f-h f-j-s scrollbar-hide p-x-md">
+			{%- for block in section.blocks -%}
+				{%- liquid
+					assign label = block.settings.label
+					assign paragraph = block.settings.paragraph
+				-%}
+				<li
+					class="discovery-origin__option{% if forloop.first %} is-active{%- endif -%}"
+					data-trigger="{{ forloop.index0 }}"
+				>
+					<button
+						type="button"
+						class="discovery-origin__btn f-h f-a-c f-j-c t-l-2"
+					>
+						{% render 'svg-icons', icon: 'info' -%}
+						{{ label }}
+					</button>
+				</li>
+			{%- endfor -%}
+		</ul>
+
+		<div class="discovery-origin__content p-x-md">
+			{%- for block in section.blocks -%}
+				{%- liquid
+					assign label = block.settings.label
+					assign paragraph = block.settings.paragraph
+				-%}
+
+				{%- if paragraph != blank -%}
+					<p
+						class="discovery-origin__paragraph t-b-1{% if forloop.first %} is-active{%- endif -%}"
+						data-target="{{ forloop.index0 }}"
+					>
+						{{ paragraph }}
+					</p>
+				{%- endif -%}
+			{%- endfor -%}
+		</div>
+	</div>
+{%- endif -%}

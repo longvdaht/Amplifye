@@ -1,0 +1,7 @@
+{%- if content != blank -%}
+	<p
+		class="c-info js-info{% if class %} {{ class }}{% endif %}"
+		data-theme-setting="{{ theme_setting | default: 'dark' }}">
+		{{ content }}
+	</p>
+{%- endif -%}

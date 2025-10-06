@@ -1,0 +1,167 @@
+{% schema %}
+{
+	"name": "Product Explore",
+	"tag": "section",
+	"class": "product-explore",
+	"settings": [
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+			"type": "textarea",
+			"id": "heading",
+			"label": "Heading"
+		},
+		{
+			"type": "text",
+			"id": "label",
+			"label": "Label",
+			"default": "Tap to explore the benefits of P24"
+		},
+		{
+			"metaobject_type": "benefits",
+			"type": "metaobject_list",
+			"id": "benefits",
+			"label": "Benefits"
+		},
+		{
+			"type": "textarea",
+			"id": "notes",
+			"label": "Benefits Notes"
+		}
+	]
+}
+{% endschema %}
+
+{%- liquid
+	assign subheading = section.settings.subheading
+	assign heading = section.settings.heading
+	assign label = section.settings.label
+	assign benefits = section.settings.benefits
+-%}
+{%- if benefits.count > 0 -%}
+	{% capture filter_html %}
+		{%- for i in benefits -%}
+			<li
+				class="c-filter__option{% if forloop.first %} is-active{%- endif -%}"
+				data-trigger="{{ i.title | handle }}">
+				<button
+					type="button"
+					class="c-filter__btn btn-square t-l-1">{{ i.title }}</button>
+			</li>
+		{%- endfor -%}
+	{% endcapture %}
+
+	{%- render 'c-header',
+		class: 'product-explore__header',
+		subheading: subheading,
+		heading: heading,
+		max_width: 1100
+	-%}
+
+	<div class="product-explore__filter f-v f-a-s">
+		{%- if label != blank -%}
+			<p class="t-l-3 mobile-down-only p-x-max">{{ label }}</p>
+		{%- endif -%}
+
+		{%- render 'c-filter', filter_html: filter_html -%}
+	</div>
+
+	<div class="product-explore__blocks">
+		{%- for i in benefits -%}
+			{%- liquid
+				assign image = i.image
+				assign heading = i.heading
+				assign paragraph = i.paragraph
+				assign list_title = i.list_title
+				assign list = i.list.value
+				assign amino_title = i.amino_acid_title
+				assign amino_acids = i.amino_acids.value
+			-%}
+
+			<div
+				class="product-explore__block f-h f-a-s{% if forloop.first %} is-active{%- endif -%}"
+				data-target="{{ i.title | handle }}"
+			>
+				<div class="product-explore__content f-h f-a-c">
+					<div class="product-explore__container f-v f-j-c f-a-s">
+						{%- if heading != blank or paragraph != blank -%}
+							<div class="product-explore__heading f-v f-a-c">
+								{%- if heading != blank -%}
+									<h3 class="t-h-2">{{ heading }}</h3>
+								{%- endif -%}
+
+								{%- if paragraph != blank -%}
+									<p class="t-b-2">{{ paragraph }}</p>
+								{%- endif -%}
+							</div>
+						{%- endif -%}
+
+						{%- if list != blank -%}
+							<div class="product-explore__feature f-v f-a-s">
+								{%- if list_title != blank -%}
+									<h4 class="t-b-3">{{ list_title }}</h4>
+								{%- endif -%}
+
+								<ul class="product-explore__list">
+									{%- for item in list -%}
+										<li class="product-explore__item t-h-4">{{ item }}</li>
+									{%- endfor -%}
+								</ul>
+							</div>
+						{%- endif -%}
+
+						{%- if list != blank -%}
+							<div class="product-explore__acid f-v f-a-c">
+								{%- if amino_title != blank -%}
+									<h4 class="t-b-3">{{ amino_title }}</h4>
+								{%- endif -%}
+
+								<ul class="product-explore__pills f-h f-w f-j-c f-a-c">
+									{%- for item in amino_acids -%}
+										{%- liquid
+											assign name = item.name
+											assign info = item.information
+											assign abvr = item.abbreviation
+										-%}
+
+										<li class="product-explore__pill t-h-4">
+											{%- if info != blank -%}
+												{%- render 'c-tooltip',
+													label: name,
+													label_mobile: abvr,
+													content: info,
+													hover_color: 'var(--cr-cream)'
+												-%}
+											{%- endif -%}
+										</li>
+									{%- endfor -%}
+								</ul>
+							</div>
+						{%- endif -%}
+					</div>
+				</div>
+
+				{%- if image != null -%}
+					<div class="product-explore__image bg-subtle">
+						<span class="object-fit">
+							{% render 'c-img-srcset', image: image, alt: image.alt %}
+						</span>
+					</div>
+				{%- endif -%}
+			</div>
+		{%- endfor -%}
+	</div>
+
+	{% if section.settings.notes != blank %}
+		<div class="product-explore__notes">
+			{%- render 'c-source',
+				source: section.settings.notes,
+				label: 'Disclaimer',
+				max_width: 2000
+			-%}
+		</div>
+	{% endif %}
+{%- endif -%}

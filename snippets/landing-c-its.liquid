@@ -1,0 +1,135 @@
+{% comment %} {%- render 'c-its',
+	heading: string,
+	paragraph: string,
+	cta_label: string,
+	cta_url: url,
+	selected_media_type: string,
+	image: image,
+	video: video,
+	video_url: url
+-%} {% endcomment %}
+
+{% style %}
+    .landing-s-its p:before {
+        content: "";
+        width: 100%;
+        height: 1px;
+        border: solid;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 0;
+        border-top: 1px dashed #000;
+    }
+
+    .landing-s-its p {
+        position: relative;
+        padding: 20px 0;
+    }
+
+    .landing-s-its p:first-child {padding-top: 0;}
+
+    .landing-s-its p:first-child::before {
+        display: none;
+    }
+
+    .landing-s-its p:last-child {
+        padding-bottom: 0;
+    }
+
+    .landing-s-its {
+        padding-inline: 80px;
+    }
+
+    .landing-s-its .c-its__content {
+        max-width: 580px;
+    }
+
+    .landing-s-its .c-its__media::before {display: none}
+
+    .landing-s-its .c-video {
+        padding-top: calc(418 / 588 * 100%);
+    }
+
+    .landing-s-its .c-video video {
+        top: 0;
+    }
+
+    @media (max-width: 600px) {
+        .landing-s-its {
+            padding-inline: 16px;
+        }
+
+        .landing-s-its .c-its__heading {
+            font-family: GT Pressura Mono;
+            font-size: 22px;
+            line-height: 1.2;
+        }
+
+        .landing-s-its .c-its__cta {
+            width: 270px;
+            margin: 0 auto;
+            min-width: 270px;
+        }
+    }
+{% endstyle %}
+
+<div class="c-its f-h f-a-c">
+	{%- if cta_label != blank and cta_url != blank -%}
+		<a
+			class="c-its__cta btn mobile-down-only"
+			href="{{- cta_url -}}"
+		>
+			<span>{{- cta_label -}}</span>
+		</a>
+	{%- endif -%}
+
+	{%- if selected_media_type != null -%}
+		<div class="c-its__media child-cover bg-subtle">
+			{%- render 'c-media',
+				selected_media_type: selected_media_type,
+				image: image,
+				video: video,
+				video_url: video_url,
+                show_btns: false
+			-%}
+		</div>
+	{%- endif -%}
+
+	<div class="c-its__content f-v">
+		{%- if heading != blank -%}
+			<h2 class="c-its__heading t-h-2">
+				{{ heading }}
+			</h2>
+		{%- endif -%}
+
+		{%- if text_1 != blank or text_2 != blank or text_3 != blank or text_4 != blank or text_5 != blank -%}
+			<div class="c-its__paragraph t-b-1">
+                {%- if text_1 != blank %}
+                    <p>{{ text_1 }}</p>
+                {%- endif -%}
+                {%- if text_2 != blank %}
+                    <p>{{ text_2 }}</p>
+                {%- endif -%}
+                {%- if text_3 != blank %}
+                    <p>{{ text_3 }}</p>
+                {%- endif -%}
+                {%- if text_4 != blank %}
+                    <p>{{ text_4 }}</p>
+                {%- endif -%}
+                {%- if text_5 != blank %}
+                    <p>{{ text_5 }}</p>
+                {%- endif -%}
+            </div>
+		{%- endif -%}
+
+		{%- if cta_label != blank and cta_url != blank -%}
+			<a
+				class="c-its__cta btn mobile-up-only cr-orange"
+				href="{{- cta_url -}}"
+			>
+				<span>{{- cta_label -}}</span>
+			</a>
+		{%- endif -%}
+	</div>
+</div>
