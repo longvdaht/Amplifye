@@ -298,9 +298,28 @@
 				method="post"
 				class="c-cart__summary f-v f-a-s"
 			>
+				
 				<div class="c-cart__summary__subtotal f-h t-l-3">
 					<span>Subtotal: </span>
 					<span class="js-cart-total-price">
+						{{- cart.original_total_price  | money | remove: '.00' -}}
+					</span>
+				</div>
+
+				{% if cart.total_discount > 0 %}
+					<div class="c-cart__summary__discount f-h t-l-3">
+						<span>Discount: </span>
+						<span class="price-value">
+							- <span class="js-cart-discount-total">
+								{{ cart.total_discount | money }}
+							</span>
+						</span>
+					</div>
+				{% endif %}
+
+				<div class="c-cart__summary__total f-h t-l-3">
+					<span>Total amount: </span>
+					<span class="js-cart-total-price-amount">
 						{{- cart.total_price | money | remove: '.00' -}}
 					</span>
 				</div>

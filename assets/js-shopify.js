@@ -482,14 +482,34 @@ const cCart = {
 					.querySelectorAll(".c-cart")
 					.forEach((el) => el.setAttribute("data-item-count", itemCount));
 
-				// update cart total
-				const cartPrice = data.total_price / 100;
+				// update cart discount
+				const cartDiscountPrice = data.total_discount / 100;
+				const cartDiscountPriceFormatted = `${formatNumberCommas(
+					cartDiscountPrice.toFixed(2)
+				).replace(".00", "")}`;
+
+				document.querySelectorAll(".js-cart-discount-total").forEach((el) => {
+					el.innerText = `$${cartDiscountPriceFormatted}`;
+				});
+
+				// update cart subtotal
+				const cartPrice = data.original_total_price / 100;
 				const cartPriceFormatted = `${formatNumberCommas(
 					cartPrice.toFixed(2)
 				).replace(".00", "")}`;
 
 				document.querySelectorAll(".js-cart-total-price").forEach((el) => {
 					el.innerText = `$${cartPriceFormatted}`;
+				});
+
+				// update cart total amount
+				const cartPriceAmount = data.total_price / 100;
+				const cartPriceAmountFormatted = `${formatNumberCommas(
+					cartPriceAmount.toFixed(2)
+				).replace(".00", "")}`;
+
+				document.querySelectorAll(".js-cart-total-price-amount").forEach((el) => {
+					el.innerText = `$${cartPriceAmountFormatted}`;
 				});
 
 				// free shipping
