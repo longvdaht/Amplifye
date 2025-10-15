@@ -83,7 +83,7 @@
 			{%- endif -%}
 		</span>
 	{%- endif %}
-
+	
 	{%- if item.selling_plan_allocation -%}
 		{%- assign recharge_line = item.selling_plan_allocation.selling_plan -%}
 		{% if recharge_line.price_adjustments and recharge_line.price_adjustments[0].value_type == 'percentage' %}
@@ -93,11 +93,11 @@
 			{% assign full_price = item.final_price | divided_by: one_minus_discount %}
 		  
 			<p class="cart-item__price original-price">
-			  <s>{{ full_price | money }}</s>
+			  <s>{{ item.selling_plan_allocation.compare_at_price | money }}</s>
 			</p>
 		{% endif %}
 	{%- else -%}
-		{%- if item.discounts-%}
+		{%- if item.discounts.size > 0 -%}
 			<p class="cart-item__price original-price">
 				<s>{{ item.original_price | money }}</s>
 			</p>

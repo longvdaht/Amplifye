@@ -298,13 +298,39 @@
 				method="post"
 				class="c-cart__summary f-v f-a-s"
 			>
-				
+				{% assign total_subscription_saving = 0 %}
+
+				{% for item in cart.items %}
+					{% if item.selling_plan_allocation %}
+						{% assign price = item.selling_plan_allocation.price %}
+						{% assign compare_at = item.selling_plan_allocation.compare_at_price %}
+						{% assign save = compare_at | minus: price %}
+						{% assign line_save = save | times: item.quantity %}
+						{% assign total_subscription_saving = total_subscription_saving | plus: line_save %}
+					{% endif %}
+				{% endfor %}
+
 				<div class="c-cart__summary__subtotal f-h t-l-3">
 					<span>Subtotal: </span>
 					<span class="js-cart-total-price">
-						{{- cart.original_total_price  | money | remove: '.00' -}}
+						{% if total_subscription_saving > 0 %}
+							{{ total_subscription_saving | plus: cart.original_total_price | money }}
+						{% else %}
+							{{- cart.original_total_price  | money | remove: '.00' -}}
+						{% endif %}
 					</span>
 				</div>
+				
+				{% if total_subscription_saving > 0 %}
+					<div class="c-cart__summary__discount f-h t-l-3">
+						<span>Subscription discount: </span>
+						<span class="price-value">
+							- <span class="js-cart-discount-subscription">
+								{{ total_subscription_saving | money }}
+							</span>
+						</span>
+					</div>
+				{% endif %}
 
 				{% if cart.total_discount > 0 %}
 					<div class="c-cart__summary__discount f-h t-l-3">

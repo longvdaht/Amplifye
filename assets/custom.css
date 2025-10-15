@@ -29,6 +29,10 @@ body #gladlyChat_container {
     color: var(--cr-orange-dark);
 }
 
+.c-cart__summary__discount.hidden {
+    display: none;
+}
+
 @media (max-width: 767.98px) {
     #custom-gladly-chat-button {
         bottom: calc(50% - 10px);
