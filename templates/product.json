@@ -198,7 +198,6 @@
     },
     "s_editorial_n6Bpjt": {
       "type": "s-editorial",
-      "disabled": true,
       "name": "Editorial",
       "settings": {
         "is_full_bleed": false,
