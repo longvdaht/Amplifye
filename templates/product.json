@@ -123,6 +123,7 @@
         "block_V7YFPi",
         "block_gWehgV"
       ],
+      "disabled": true,
       "settings": {
         "layout": "vertical",
         "heading": "Don’t just take it from us.",
@@ -197,6 +198,7 @@
     },
     "s_editorial_n6Bpjt": {
       "type": "s-editorial",
+      "disabled": true,
       "name": "Editorial",
       "settings": {
         "is_full_bleed": false,
@@ -282,7 +284,7 @@
     "s_data_Mqw3An": {
       "type": "s-data",
       "settings": {
-        "heading": "How bioaccessible is your protein?",
+        "heading": "How bioavailable is your protein?",
         "subheading": "Explore how p24 amplifyes all types of protein",
         "proteins": [
           "beef",
