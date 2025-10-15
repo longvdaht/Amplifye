@@ -482,14 +482,70 @@ const cCart = {
 					.querySelectorAll(".c-cart")
 					.forEach((el) => el.setAttribute("data-item-count", itemCount));
 
-				// update cart total
-				const cartPrice = data.total_price / 100;
-				const cartPriceFormatted = `${formatNumberCommas(
-					cartPrice.toFixed(2)
+				// update cart discount subscription
+				let totalSubscriptionDiscount = 0;
+
+				data.items.forEach(item => {
+					if (item.selling_plan_allocation) {
+						const price = item.selling_plan_allocation.price || 0;
+						const compareAt = item.selling_plan_allocation.compare_at_price || 0;
+						const save = (compareAt - price) * item.quantity;
+						totalSubscriptionDiscount += save;
+					}
+				});
+				
+				if (totalSubscriptionDiscount > 0) {
+					const totalSubscriptionDiscountPrice = totalSubscriptionDiscount / 100;
+					const totalSubscriptionDiscountPriceFormatted = `${formatNumberCommas(
+						totalSubscriptionDiscountPrice.toFixed(2)
+					).replace(".00", "")}`;
+
+					document.querySelectorAll(".js-cart-discount-subscription").forEach((el) => {
+						el.innerText = `$${totalSubscriptionDiscountPriceFormatted}`;
+					});
+
+					const subtotalSubscription = (totalSubscriptionDiscount + data.original_total_price) / 100;
+					const subtotalSubscriptionFormatted = `${formatNumberCommas(
+						subtotalSubscription.toFixed(2)
+					).replace(".00", "")}`;
+
+					document.querySelectorAll(".js-cart-total-price").forEach((el) => {
+						el.innerText = `$${subtotalSubscriptionFormatted}`;
+					});
+				} else {
+					document.querySelectorAll(".js-cart-discount-subscription").forEach((el) => {
+						el.innerText = "";
+						el.closest(".c-cart__summary__discount")?.classList.add("hidden");
+					});
+
+					// update cart subtotal without subscription
+					const cartPrice = data.original_total_price / 100;
+					const cartPriceFormatted = `${formatNumberCommas(
+						cartPrice.toFixed(2)
+					).replace(".00", "")}`;
+
+					document.querySelectorAll(".js-cart-total-price").forEach((el) => {
+						el.innerText = `$${cartPriceFormatted}`;
+					});
+				}
+				// update cart discount
+				const cartDiscountPrice = data.total_discount / 100;
+				const cartDiscountPriceFormatted = `${formatNumberCommas(
+					cartDiscountPrice.toFixed(2)
 				).replace(".00", "")}`;
 
-				document.querySelectorAll(".js-cart-total-price").forEach((el) => {
-					el.innerText = `$${cartPriceFormatted}`;
+				document.querySelectorAll(".js-cart-discount-total").forEach((el) => {
+					el.innerText = `$${cartDiscountPriceFormatted}`;
+				});
+
+				// update cart total amount
+				const cartPriceAmount = data.total_price / 100;
+				const cartPriceAmountFormatted = `${formatNumberCommas(
+					cartPriceAmount.toFixed(2)
+				).replace(".00", "")}`;
+
+				document.querySelectorAll(".js-cart-total-price-amount").forEach((el) => {
+					el.innerText = `$${cartPriceAmountFormatted}`;
 				});
 
 				// free shipping

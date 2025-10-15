@@ -83,7 +83,26 @@
 			{%- endif -%}
 		</span>
 	{%- endif %}
-
+	
+	{%- if item.selling_plan_allocation -%}
+		{%- assign recharge_line = item.selling_plan_allocation.selling_plan -%}
+		{% if recharge_line.price_adjustments and recharge_line.price_adjustments[0].value_type == 'percentage' %}
+			{% assign discount_percent = recharge_line.price_adjustments[0].value | plus: 0 %}
+			{% assign discount_fraction = discount_percent | divided_by: 100 %}
+			{% assign one_minus_discount = 1 | minus: discount_fraction %}
+			{% assign full_price = item.final_price | divided_by: one_minus_discount %}
+		  
+			<p class="cart-item__price original-price">
+			  <s>{{ item.selling_plan_allocation.compare_at_price | money }}</s>
+			</p>
+		{% endif %}
+	{%- else -%}
+		{%- if item.discounts.size > 0 -%}
+			<p class="cart-item__price original-price">
+				<s>{{ item.original_price | money }}</s>
+			</p>
+		{%- endif -%}
+	{%- endif -%}
 	<s class="c-item-price--compare js-price-compare">
 		{%- if price_compare != blank and price_compare != price_max -%}
       {%- if currency_count > 1 -%}
