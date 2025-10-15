@@ -33,6 +33,14 @@ body #gladlyChat_container {
     display: none;
 }
 
+.c-item-selling-plan__frequency__select::after {
+    display: none;
+}
+
+.c-item-selling-plan__frequency__select select {
+    pointer-events: none;
+}
+
 @media (max-width: 767.98px) {
     #custom-gladly-chat-button {
         bottom: calc(50% - 10px);

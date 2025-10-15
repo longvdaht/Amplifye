@@ -3,6 +3,11 @@
 	"name": "Product Hero",
 	"tag": "section",
 	"class": "product-hero f-h f-j-s",
+	"blocks": [
+    {
+      "type": "@app"
+    }
+  ],
 	"settings": [
 		{
 			"type": "richtext",
@@ -65,7 +70,12 @@
 			</p>
 		{%- endif -%}
 	</div>
-
+	{%- for block in section.blocks -%}
+		{%- case block.type -%}
+		  {%- when '@app' -%}
+			{% render block %}
+		{%- endcase -%}
+	{%- endfor -%}
 	<div class="product-hero__accordions">
 		{%- capture body_benefits -%}
 				{{- product.metafields.custom.benefits
@@ -206,3 +216,4 @@
 		</div>
 	{%- endif -%}
 </div>
+
