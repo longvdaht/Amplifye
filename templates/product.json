@@ -31,25 +31,6 @@
         "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease."
       }
     },
-    "176050371414adf8bd": {
-      "type": "apps",
-      "blocks": {
-        "flex_pay_with_hsa_fsa_wide_fbf7RR": {
-          "type": "shopify://apps/flex-pay-with-hsa-fsa/blocks/wide/c0438c22-7b33-4278-b0c3-ef6c6b7b5f83",
-          "disabled": true,
-          "settings": {
-            "text": "use-hsa-fsa",
-            "style": "light",
-            "alignment": "right",
-            "width": 385
-          }
-        }
-      },
-      "block_order": [
-        "flex_pay_with_hsa_fsa_wide_fbf7RR"
-      ],
-      "settings": {}
-    },
     "s_testimonial_video_hF3AGh": {
       "type": "s-testimonial-video",
       "blocks": {
@@ -413,7 +394,6 @@
   },
   "order": [
     "product-hero",
-    "176050371414adf8bd",
     "s_testimonial_video_hF3AGh",
     "s_brands_JXaBpE",
     "s_editorial_n6Bpjt",
