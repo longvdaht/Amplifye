@@ -15,7 +15,7 @@
         "flex_pay_with_hsa_fsa_wide_WfAwwF": {
           "type": "shopify://apps/flex-pay-with-hsa-fsa/blocks/wide/c0438c22-7b33-4278-b0c3-ef6c6b7b5f83",
           "settings": {
-            "text": "save-30-flex",
+            "text": "flex-save",
             "style": "light",
             "alignment": "center",
             "width": 325
