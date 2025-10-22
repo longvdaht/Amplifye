@@ -12,18 +12,18 @@
     "product-hero": {
       "type": "product-hero",
       "blocks": {
-        "flex_pay_with_hsa_fsa_wide_WfAwwF": {
-          "type": "shopify://apps/flex-pay-with-hsa-fsa/blocks/wide/c0438c22-7b33-4278-b0c3-ef6c6b7b5f83",
+        "flex_flex_badge_KrX9zn": {
+          "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
           "settings": {
-            "text": "use-hsa-fsa",
+            "lomn": "yes",
             "style": "light",
             "alignment": "center",
-            "width": 325
+            "width": 300
           }
         }
       },
       "block_order": [
-        "flex_pay_with_hsa_fsa_wide_WfAwwF"
+        "flex_flex_badge_KrX9zn"
       ],
       "settings": {
         "subscription_info": "<ul><li>Save $10 on every order</li><li>Free standard US shipping</li><li>Pause, skip or cancel anytime</li><li>Try for 30 days or your money back</li></ul>",
