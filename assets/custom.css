@@ -41,6 +41,10 @@ body #gladlyChat_container {
     pointer-events: none;
 }
 
+.shopify-app-block .flex-dialog__close:focus-visible {
+    outline: none !important;
+}
+
 @media (max-width: 767.98px) {
     #custom-gladly-chat-button {
         bottom: calc(50% - 10px);
