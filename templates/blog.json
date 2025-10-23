@@ -31,22 +31,14 @@
     "blog-content": {
       "type": "blog-content",
       "blocks": {
-        "featured_article_X7XAdB": {
-          "type": "featured_article",
-          "disabled": true,
-          "settings": {
-            "featured_article": "research/guidance-for-best-in-class-nyt-op-eds"
-          }
-        },
         "featured_article_DA7K8j": {
           "type": "featured_article",
           "settings": {
-            "featured_article": "research/protein-digestion-steps-and-the-protease-enzyme-amplifyep24protein-digestion-steps-and-the-protease-enzyme-amplifyep24"
+            "featured_article": "research/4-ways-protein-absorption-supports-sustained-energy"
           }
         }
       },
       "block_order": [
-        "featured_article_X7XAdB",
         "featured_article_DA7K8j"
       ],
       "settings": {
