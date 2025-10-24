@@ -25,7 +25,7 @@
 
   .icon-with-text__item {
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
   }
 }
