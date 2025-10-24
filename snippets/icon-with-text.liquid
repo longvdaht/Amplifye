@@ -51,9 +51,6 @@
 >
   {%- unless heading_1_empty -%}
     <li class="icon-with-text__item">
-      {%- if block.settings.image_1 == null -%}
-        {%- render 'icon-accordion', icon: block.settings.icon_1 -%}
-      {%- else -%}
         <img
           src="{{ block.settings.image_1 | image_url }}"
           {% if block.settings.image_1.alt != blank %}
@@ -65,17 +62,13 @@
           width="auto"
           loading="lazy"
         >
-      {%- endif -%}
-      <span class="h4 inline-richtext">
+      <span class="h4 inline-richtext t-l-3">
         {{- block.settings.heading_1 -}}
       </span>
     </li>
   {%- endunless -%}
   {%- unless heading_2_empty -%}
     <li class="icon-with-text__item">
-      {%- if block.settings.image_2 == null -%}
-        {% render 'icon-accordion', icon: block.settings.icon_2 -%}
-      {%- else -%}
         <img
           src="{{ block.settings.image_2 | image_url }}"
           {% if block.settings.image_2.alt != blank %}
@@ -87,17 +80,13 @@
           width="auto"
           loading="lazy"
         >
-      {%- endif -%}
-      <span class="h4 inline-richtext">
+      <span class="h4 inline-richtext t-l-3">
         {{- block.settings.heading_2 -}}
       </span>
     </li>
   {%- endunless -%}
   {%- unless heading_3_empty -%}
     <li class="icon-with-text__item">
-      {%- if block.settings.image_3 == null -%}
-        {% render 'icon-accordion', icon: block.settings.icon_3 -%}
-      {%- else -%}
         <img
           src="{{ block.settings.image_3 | image_url }}"
           {% if block.settings.image_3.alt != blank %}
@@ -109,17 +98,13 @@
           width="auto"
           loading="lazy"
         >
-      {%- endif -%}
-      <span class="h4 inline-richtext">
+      <span class="h4 inline-richtext t-l-3">
         {{- block.settings.heading_3 -}}
       </span>
     </li>
   {%- endunless -%}
   {%- unless heading_4_empty -%}
     <li class="icon-with-text__item">
-      {%- if block.settings.image_4 == null -%}
-        {% render 'icon-accordion', icon: block.settings.icon_3 -%}
-      {%- else -%}
         <img
           src="{{ block.settings.image_4 | image_url }}"
           {% if block.settings.image_4.alt != blank %}
@@ -131,8 +116,7 @@
           width="auto"
           loading="lazy"
         >
-      {%- endif -%}
-      <span class="h4 inline-richtext">
+      <span class="h4 inline-richtext t-l-3">
         {{- block.settings.heading_4 -}}
       </span>
     </li>
