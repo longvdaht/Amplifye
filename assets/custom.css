@@ -41,6 +41,15 @@ body #gladlyChat_container {
     pointer-events: none;
 }
 
+.c-item-selling-plan__option__content__info,
+.c-item-selling-plan__option__content {
+    display: none;
+}
+
+.highlight {
+    text-transform: capitalize;
+}
+
 .shopify-app-block .flex-dialog__close:focus-visible {
     outline: none !important;
 }
