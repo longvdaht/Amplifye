@@ -47,7 +47,7 @@ body #gladlyChat_container {
 }
 
 .highlight {
-    color: var(--cr-orange);
+    text-transform: capitalize;
 }
 
 .shopify-app-block .flex-dialog__close:focus-visible {
