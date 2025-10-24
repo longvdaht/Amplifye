@@ -20,10 +20,20 @@
             "alignment": "center",
             "width": 250
           }
+        },
+        "icon_with_text_rrEtjF": {
+          "type": "icon-with-text",
+          "settings": {
+            "heading_1": "Heading",
+            "heading_2": "Heading",
+            "heading_3": "Heading",
+            "heading_4": "Heading"
+          }
         }
       },
       "block_order": [
-        "flex_flex_badge_KrX9zn"
+        "flex_flex_badge_KrX9zn",
+        "icon_with_text_rrEtjF"
       ],
       "settings": {
         "subscription_info": "<ul><li>Save $10 on every order</li><li>Free standard US shipping</li><li>Pause, skip or cancel anytime</li><li>Try for 30 days or your money back</li></ul>",
