@@ -24,10 +24,14 @@
         "icon_with_text_rrEtjF": {
           "type": "icon-with-text",
           "settings": {
-            "heading_1": "Heading",
-            "heading_2": "Heading",
-            "heading_3": "Heading",
-            "heading_4": "Heading"
+            "image_1": "shopify://shop_images/shipping.png",
+            "heading_1": "Free standard US shipping",
+            "image_2": "shopify://shop_images/moneyback.png",
+            "heading_2": "Save $10 on every order",
+            "image_3": "shopify://shop_images/pause.png",
+            "heading_3": "Pause, skip or cancel anytime",
+            "image_4": "shopify://shop_images/try.png",
+            "heading_4": "Try for 30 days or your money back"
           }
         }
       },
