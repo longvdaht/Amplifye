@@ -42,7 +42,8 @@
       "settings": {
         "subscription_info": "<ul><li>Save $10 on every order</li><li>Free standard US shipping</li><li>Pause, skip or cancel anytime</li><li>Try for 30 days or your money back</li></ul>",
         "one_time_info": "<ul><li>Free standard US shipping</li><li>Try for 30 days or your money back</li></ul>",
-        "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease."
+        "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
+        "gallery_layout": "stacked"
       }
     },
     "s_testimonial_video_hF3AGh": {
