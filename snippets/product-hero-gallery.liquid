@@ -5,6 +5,37 @@
 	- product: product object
 {% endcomment %}
 
+{% if section.settings.gallery_layout == 'stacked' %}
+  <div class="product-layout-stacked">
+    {% for media in product.media %}
+      <div class="c-slider__slide">
+        {% case media.media_type %}
+          {% when 'image' %}
+            <div class="object-fits product-image">
+              {% render 'c-img-srcset', image: media, alt: product.title %}
+            </div>
+          {% when 'model' %}
+            {{ media | model_viewer_tag }}
+            {% comment %} set attributes via js {% endcomment %}
+          {% when 'video' %}
+            {% render 'c-video',
+              video_type: 'video',
+              video: media,
+              has_mute_btn: true
+            %}
+          {% when 'external_video' %}
+            {% render 'c-video',
+              video_type: media.host,
+              video: media,
+              video_id: media.external_id,
+              has_mute_btn: true
+            %}
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+{%- endif -%}
+
 {%- capture slider_html -%}
 	{% for media in product.media %}
 		<div class="c-slider__slide">
