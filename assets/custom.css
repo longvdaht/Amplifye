@@ -54,11 +54,35 @@ body #gladlyChat_container {
     outline: none !important;
 }
 
+.product-layout-stacked .c-slider__slide {
+    width: calc(50% - 4px);
+}
+
+.product-layout-stacked .c-slider__slide:first-child {
+    width: 100%;
+}
+
+.product-layout-stacked {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+@media (min-width: 768px) {
+    .product-layout-stacked + .product-hero__gallery.js-product-hero-slider {
+        display: none;
+    }
+}
+
 @media (max-width: 767.98px) {
     #custom-gladly-chat-button {
         bottom: calc(50% - 10px);
         transform: translateY(50%);
         right: 0
+    }
+
+    .product-layout-stacked {
+        display: none;
     }
 
     .frontpage-hero__text > .btn:last-child {
