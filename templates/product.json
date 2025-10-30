@@ -231,8 +231,8 @@
       "settings": {
         "is_full_bleed": false,
         "is_full_bleed_mobile": true,
-        "background_image": "shopify://shop_images/PDP_DESKTOP_8e44adaa-9aea-46d4-8cac-89e90874b5cc.png",
-        "background_image_mobile": "shopify://shop_images/PDP_MOBILE_6b3b139a-4840-4c40-a58e-6063c768419f.png",
+        "background_image": "shopify://shop_images/fish-right.png",
+        "background_image_mobile": "shopify://shop_images/fish-mobile-gradient.jpg",
         "subheading": "",
         "heading": "",
         "is_smaller_heading": false,
