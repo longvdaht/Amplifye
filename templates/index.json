@@ -25,7 +25,7 @@
         "custom_style": false,
         "content_alignment": "right",
         "heading_font_size": 32,
-        "mobile_align": "bottom_center",
+        "mobile_align": "top_center",
         "code": ""
       }
     },
