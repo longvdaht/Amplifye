@@ -366,8 +366,29 @@
         "padding_top_mobile": 100
       }
     },
+    "landing_hero_2_a9fG8g": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "Meet P24: The Protein Amplifier",
+        "subheading": "",
+        "content": "P24 is a precision enzyme that boosts protein absorption at the source - so your muscles, metabolism, and recovery get more from every bite and every scoop. So you can feel the difference where it matters most: strength, energy, recovery, and overall vitality.",
+        "cta_label": "Buy P24",
+        "cta_url": "shopify://products/amplifye-p24",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/SOLUTION_-_DESKTOP_v1_2.png",
+        "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_4.png",
+        "product": "amplifye-p24",
+        "custom_style": false,
+        "content_alignment": "center",
+        "heading_font_size": 32,
+        "mobile_align": "top_center",
+        "code": ""
+      }
+    },
     "new_editorial_2_AtB4jB": {
       "type": "new-editorial-2",
+      "disabled": true,
       "name": "New - Editorial (2)",
       "settings": {
         "background_color": "#fdf3e0",
@@ -515,6 +536,7 @@
     "s_brands_3axFpA",
     "frontpage-benefits",
     "new_editorial_GqCrKp",
+    "landing_hero_2_a9fG8g",
     "new_editorial_2_AtB4jB",
     "s_data_aMCyUH",
     "s_banner_X7rRhM",
