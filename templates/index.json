@@ -380,7 +380,7 @@
         "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_4.png",
         "product": "amplifye-p24",
         "custom_style": false,
-        "content_alignment": "center",
+        "content_alignment": "right",
         "heading_font_size": 32,
         "mobile_align": "top_center",
         "code": ""
