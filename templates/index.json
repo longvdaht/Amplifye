@@ -496,7 +496,7 @@
       "disabled": true,
       "name": "Editorial (2)",
       "settings": {
-        "is_full_bleed": false,
+        "is_full_bleed": true,
         "is_full_bleed_mobile": false,
         "section_height": 508,
         "section_height_m": 508,
