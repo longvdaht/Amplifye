@@ -491,6 +491,27 @@
         "source": "1. Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone. 2. Translating Science to Application for the FODMAP Generation NIH Stefan M Pasiakos. December 2022 John W Carbone. 3.Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. IMFD  EduStefan M Pasiakos."
       }
     },
+    "landing_hero_2_Pppjdm": {
+      "type": "landing-hero-2",
+      "disabled": true,
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "Get more from what you already eat.",
+        "subheading": "SAME meals, MORE PROTEIN",
+        "content": "Try P24 for 30 days, worry free.",
+        "cta_label": "Buy P24",
+        "cta_url": "shopify://products/amplifye-p24",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/footer-extended-3_1_1.png",
+        "background_image_mobile": "shopify://shop_images/extended-mobile-footer_1.png",
+        "product": "amplifye-p24",
+        "custom_style": true,
+        "content_alignment": "left",
+        "heading_font_size": 32,
+        "mobile_align": "top_center",
+        "code": ""
+      }
+    },
     "s_editorial_2_zKrmqe": {
       "type": "s-editorial-2",
       "disabled": true,
@@ -542,6 +563,7 @@
     "s_data_aMCyUH",
     "s_banner_X7rRhM",
     "new_editorial_3_VeitJY",
+    "landing_hero_2_Pppjdm",
     "s_editorial_2_zKrmqe",
     "s_articles_BapfYY"
   ]
