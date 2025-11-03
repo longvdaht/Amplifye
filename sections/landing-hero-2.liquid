@@ -209,11 +209,11 @@
     }
 
 	{% if section.settings.content_alignment == 'center' %}
-		.frontpage-hero {
+		{{ shopify_section_id }}.frontpage-hero {
 			align-items: center;
 		}
 	{% elsif section.settings.content_alignment == 'right' %}
-		.frontpage-hero {
+		{{ shopify_section_id }}.frontpage-hero {
 			align-items: flex-end;
 		}
 	{% endif %}
