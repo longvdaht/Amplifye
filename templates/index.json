@@ -493,7 +493,6 @@
     },
     "s_editorial_2_zKrmqe": {
       "type": "s-editorial-2",
-      "disabled": true,
       "name": "Editorial (2)",
       "settings": {
         "is_full_bleed": false,
@@ -502,8 +501,8 @@
         "section_height_m": 508,
         "gradient_overlay": "",
         "background_image": "shopify://shop_images/footer-extended-3_1.png",
-        "background_image_w": 3000,
-        "background_image_h": 2000,
+        "background_image_w": 1900,
+        "background_image_h": 584,
         "background_image_mobile": "shopify://shop_images/extended-mobile-footer_1.png",
         "background_image_m_w": 600,
         "background_image_m_h": 536,
