@@ -368,7 +368,6 @@
     },
     "landing_hero_2_a9fG8g": {
       "type": "landing-hero-2",
-      "disabled": true,
       "name": "Landing Hero (2)",
       "settings": {
         "heading": "Meet P24: The Protein Amplifier",
@@ -377,18 +376,19 @@
         "cta_label": "Buy P24",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/SOLUTION_-_DESKTOP_v1_2.png",
+        "background_image": "shopify://shop_images/SOLUTION_-_DESKTOP_v1_3.png",
         "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_4.png",
         "product": "amplifye-p24",
         "custom_style": true,
-        "content_alignment": "right",
+        "content_alignment": "center",
         "heading_font_size": 32,
-        "mobile_align": "top_center",
+        "mobile_align": "bottom_center",
         "code": ""
       }
     },
     "new_editorial_2_AtB4jB": {
       "type": "new-editorial-2",
+      "disabled": true,
       "name": "New - Editorial (2)",
       "settings": {
         "background_color": "#fdf3e0",
