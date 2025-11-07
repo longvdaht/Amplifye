@@ -102,7 +102,9 @@
 			{%- if max_width >= 200 -%},{{- image | img_url: '200x'}} 200w{%- endif -%}
 			{%- if max_width >= 300 -%},{{- image | img_url: '300x'}} 300w{%- endif -%}
 			{%- if max_width >= 400 -%},{{- image | img_url: '400x'}} 400w{%- endif -%}
+			{%- if max_width >= 420 -%},{{- image | img_url: '420x'}} 420w{%- endif -%}
 			{%- if max_width >= 600 -%},{{- image | img_url: '600x'}} 600w{%- endif -%}
+			{%- if max_width >= 620 -%},{{- image | img_url: '620x'}} 620w{%- endif -%}
 			{%- if max_width >= 800 -%},{{- image | img_url: '800x'}} 800w{%- endif -%}
 			{%- if max_width >= 1200 -%},{{- image | img_url: '1200x'}} 1200w{%- endif -%}
 			{%- if max_width >= 1600 -%},{{- image | img_url: '1600x'}} 1600w{%- endif -%}
@@ -118,6 +120,7 @@
 				{%- if max_width >= 300 -%},{{- responsive_image | img_url: '300x'}} 300w{%- endif -%}
 				{%- if max_width >= 400 -%},{{- responsive_image | img_url: '400x'}} 400w{%- endif -%}
 				{%- if max_width >= 600 -%},{{- responsive_image | img_url: '600x'}} 600w{%- endif -%}
+				{%- if max_width >= 620 -%},{{- responsive_image | img_url: '620x'}} 620w{%- endif -%}
 				{%- if max_width >= 800 -%},{{- responsive_image | img_url: '800x'}} 800w{%- endif -%}
 				{%- if max_width >= 1200 -%},{{- responsive_image | img_url: '1200x'}} 1200w{%- endif -%}
 				{%- if max_width >= 1600 -%},{{- responsive_image | img_url: '1600x'}} 1600w{%- endif -%}
@@ -175,23 +178,33 @@
 		</picture>
 
 	{%- else -%}
-		<img
-			width="{{- width | round -}}"
-			height="{{- height | round -}}"
-			alt="{{- alt | default: image.alt | strip_html | escape -}}"
-			{% if is_non_lazy == true %}
-				src="{{- img_src -}}"
-				class="{{ class }}"
-			{% else %}
+		{% if is_non_lazy == true %}
+			<img
+				src="{{ img_src }}"
+				srcset="{{ img_srcset }}"
+				data-sizes="auto"
+				sizes="(max-width: 415px) 210px, (max-width: 1351px) 310px, 100vw"
+				{{- attributes -}}
+				loading="eager"
+				fetchpriority="high"
+				class="image"
+				width="{{- width | round -}}"
+				height="{{- height | round -}}"
+			/>
+		{% else %}
+			<img
+				width="{{- width | round -}}"
+				height="{{- height | round -}}"
+				alt="{{- alt | default: image.alt | strip_html | escape -}}"
 				data-src="{{- img_src -}}"
 				data-srcset="{{- img_srcset -}}"
 				data-sizes="auto"
 				class="{{ class | prepend: 'lazyload ' }}"
-			{% endif %}
-			{{- attributes -}}
-			{% if focal_point and focal_point != '50.0% 50.0%' -%}
-				style="object-position: {{ focal_point }};"
-			{%- endif -%}
-		>
+				{{- attributes -}}
+				{% if focal_point and focal_point != '50.0% 50.0%' -%}
+					style="object-position: {{ focal_point }};"
+				{%- endif -%}
+			>
+		{% endif %}
 	{%- endif -%}
 {%- endif -%}

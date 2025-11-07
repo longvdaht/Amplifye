@@ -26,12 +26,38 @@
 			Preload font files
 			<link rel="preload" href="{{ 'font-fontname-regular.woff2' | asset_url }}" as="font" type="font/woff2">
 		{% endcomment %}
+		{%- if request.page_type == 'product' -%}
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ product.media[0] | image_url: width: 420 }}"
+			  fetchpriority="high"
+			>
+			
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ product.media[0] | image_url: width: 620 }}"
+			  fetchpriority="high"
+			>
+		{%- endif -%}
 
+		<style>
+			@media (max-width: 600px) {
+				:root {
+					--s-header: 79px;
+					--s-announcement: 56px;
+				}
+			}
+		</style>
 		{{ 'preload.min.css' | asset_url | stylesheet_tag }}
-		{{ 'fonts.css' | asset_url | stylesheet_tag }}
-		{{ 'main.min.css' | asset_url | stylesheet_tag }}
-		{{ 'custom.css' | asset_url | stylesheet_tag }}
-		{{ '__preload.min.js' | asset_url | script_tag }}
+		<link rel="preload" href="{{ 'fonts.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    	<noscript><link rel="stylesheet" href="{{ 'main.min.css' | asset_url }}"></noscript>
+		<link rel="preload" href="{{ 'main.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    	<noscript><link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}"></noscript>
+		<link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    	<noscript><link rel="stylesheet" href="{{ 'custom.css' | asset_url }}"></noscript>
+		<script src="{{ '__preload.min.js' | asset_url }}" defer></script>
 		<script src="{{ '__preload-defer.min.js' | asset_url }}" defer></script>
 
 		{{ content_for_header }}
@@ -103,7 +129,7 @@
 				document.body.appendChild(youtubeScript);
 			}
 		</script>
-		{{ '__preload-plugins.js' | asset_url | script_tag }}
+		<script src="{{ '__preload-plugins.js' | asset_url }}" defer></script>
 		<script
 			src="{{ 'js-plugin-infinite-scroll.js' | asset_url }}"
 			defer

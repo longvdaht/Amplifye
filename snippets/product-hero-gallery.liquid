@@ -12,7 +12,7 @@
         {% case media.media_type %}
           {% when 'image' %}
             <div class="object-fits product-image">
-              {% render 'c-img-srcset', image: media, alt: product.title %}
+				{% render 'c-img-srcset', image: media, alt: product.title, is_non_lazy: true %}
             </div>
           {% when 'model' %}
             {{ media | model_viewer_tag }}
@@ -42,7 +42,7 @@
 			{% case media.media_type %}
 				{% when 'image' %}
 					<div class="object-fit">
-						{% render 'c-img-srcset', image: media, alt: product.title %}
+						{% render 'c-img-srcset', image: media, alt: product.title, is_non_lazy: true %}
 					</div>
 				{% when 'model' %}
 					{{ media | model_viewer_tag }}
