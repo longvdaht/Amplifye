@@ -19,9 +19,9 @@
 		{% comment %} preload assets {% endcomment %}
 		<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 		{{ 'preload.min.css' | asset_url | preload_tag: as: 'style' }}
-		{{ '__preload.min.js' | asset_url | preload_tag: as: 'script' }}
+		{% comment %} {{ '__preload.min.js' | asset_url | preload_tag: as: 'script' }}
 		{{ '__preload-plugins.js' | asset_url | preload_tag: as: 'script' }}
-		{{ '__preload-defer.min.js' | asset_url | preload_tag: as: 'script' }}
+		{{ '__preload-defer.min.js' | asset_url | preload_tag: as: 'script' }} {% endcomment %}
 		{% comment %}
 			Preload font files
 			<link rel="preload" href="{{ 'font-fontname-regular.woff2' | asset_url }}" as="font" type="font/woff2">
@@ -37,7 +37,23 @@
 			<link
 			  rel="preload"
 			  as="image"
-			  href="{{ product.media[0] | image_url: width: 620 }}"
+			  href="{{ product.media[0] | image_url: width: 675 }}"
+			  fetchpriority="high"
+			>
+		{%- endif -%}
+
+		{%- if request.page_type == 'index' -%}
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ settings.background_image_mobile | image_url: width: 390 }}"
+			  fetchpriority="high"
+			>
+			
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ settings.background_image | image_url: width: 1350 }}"
 			  fetchpriority="high"
 			>
 		{%- endif -%}
@@ -47,6 +63,13 @@
 				:root {
 					--s-header: 79px;
 					--s-announcement: 56px;
+				}
+			}
+
+			@media (min-width: 1025px) {
+				:root {
+					--s-header: 100px;
+					--s-announcement: 41px;
 				}
 			}
 		</style>

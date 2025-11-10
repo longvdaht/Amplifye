@@ -13,6 +13,8 @@
     "instagram_url": "https://www.instagram.com/amplifye_me/",
     "youtube_url": "",
     "tiktok_url": "",
+    "background_image": "shopify://shop_images/HP_HERO_-_DESKTOP.png",
+    "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_3_e10d3eb2-73a2-43d2-811d-b4434e11acb3.png",
     "sections": {
       "g-announcement": {
         "type": "g-announcement",
