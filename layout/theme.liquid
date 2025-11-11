@@ -19,9 +19,9 @@
 		{% comment %} preload assets {% endcomment %}
 		<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 		{{ 'preload.min.css' | asset_url | preload_tag: as: 'style' }}
-		{{ '__preload.min.js' | asset_url | preload_tag: as: 'script' }}
+		{% comment %} {{ '__preload.min.js' | asset_url | preload_tag: as: 'script' }}
 		{{ '__preload-plugins.js' | asset_url | preload_tag: as: 'script' }}
-		{{ '__preload-defer.min.js' | asset_url | preload_tag: as: 'script' }}
+		{{ '__preload-defer.min.js' | asset_url | preload_tag: as: 'script' }} {% endcomment %}
 		{% comment %}
 			Preload font files
 			<link rel="preload" href="{{ 'font-fontname-regular.woff2' | asset_url }}" as="font" type="font/woff2">
