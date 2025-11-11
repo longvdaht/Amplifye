@@ -77,6 +77,23 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Home page banner images",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "background_image",
+				"label": "Background Image",
+				"info": "Should be the same image with landing(2) section at homepage"
+			},
+			{
+				"type": "image_picker",
+				"id": "background_image_mobile",
+				"label": "Background Image (mobile)",
+				"info": "Should be the same image with landing(2) section at homepage"
+			}
+		]
 	}
 	// {
 	// 	"name": "Sitewide Settings",

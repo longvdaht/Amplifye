@@ -19,19 +19,68 @@
 		{% comment %} preload assets {% endcomment %}
 		<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 		{{ 'preload.min.css' | asset_url | preload_tag: as: 'style' }}
-		{{ '__preload.min.js' | asset_url | preload_tag: as: 'script' }}
+		{% comment %} {{ '__preload.min.js' | asset_url | preload_tag: as: 'script' }}
 		{{ '__preload-plugins.js' | asset_url | preload_tag: as: 'script' }}
-		{{ '__preload-defer.min.js' | asset_url | preload_tag: as: 'script' }}
+		{{ '__preload-defer.min.js' | asset_url | preload_tag: as: 'script' }} {% endcomment %}
 		{% comment %}
 			Preload font files
 			<link rel="preload" href="{{ 'font-fontname-regular.woff2' | asset_url }}" as="font" type="font/woff2">
 		{% endcomment %}
+		{%- if request.page_type == 'product' -%}
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ product.media[0] | image_url: width: 420 }}"
+			  fetchpriority="high"
+			>
+			
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ product.media[0] | image_url: width: 675 }}"
+			  fetchpriority="high"
+			>
+		{%- endif -%}
 
+		{%- if request.page_type == 'index' -%}
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ settings.background_image_mobile | image_url: width: 390 }}"
+			  fetchpriority="high"
+			>
+			
+			<link
+			  rel="preload"
+			  as="image"
+			  href="{{ settings.background_image | image_url: width: 1350 }}"
+			  fetchpriority="high"
+			>
+		{%- endif -%}
+
+		<style>
+			@media (max-width: 600px) {
+				:root {
+					--s-header: 79px;
+					--s-announcement: 56px;
+				}
+			}
+
+			@media (min-width: 1025px) {
+				:root {
+					--s-header: 100px;
+					--s-announcement: 41px;
+				}
+			}
+		</style>
 		{{ 'preload.min.css' | asset_url | stylesheet_tag }}
-		{{ 'fonts.css' | asset_url | stylesheet_tag }}
-		{{ 'main.min.css' | asset_url | stylesheet_tag }}
-		{{ 'custom.css' | asset_url | stylesheet_tag }}
-		{{ '__preload.min.js' | asset_url | script_tag }}
+		<link rel="preload" href="{{ 'fonts.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    	<noscript><link rel="stylesheet" href="{{ 'main.min.css' | asset_url }}"></noscript>
+		<link rel="preload" href="{{ 'main.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    	<noscript><link rel="stylesheet" href="{{ 'fonts.css' | asset_url }}"></noscript>
+		<link rel="preload" href="{{ 'custom.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    	<noscript><link rel="stylesheet" href="{{ 'custom.css' | asset_url }}"></noscript>
+		<script src="{{ '__preload.min.js' | asset_url }}" defer></script>
 		<script src="{{ '__preload-defer.min.js' | asset_url }}" defer></script>
 
 		{{ content_for_header }}
@@ -103,7 +152,7 @@
 				document.body.appendChild(youtubeScript);
 			}
 		</script>
-		{{ '__preload-plugins.js' | asset_url | script_tag }}
+		<script src="{{ '__preload-plugins.js' | asset_url }}" defer></script>
 		<script
 			src="{{ 'js-plugin-infinite-scroll.js' | asset_url }}"
 			defer

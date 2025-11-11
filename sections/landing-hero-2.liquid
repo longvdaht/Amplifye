@@ -219,12 +219,12 @@
 	{% endif %}
 
     @media (min-width: 601px) {
-		{{ shopify_section_id }} .object-fit>*:not(picture) {
+		/* {{ shopify_section_id }} .object-fit>*:not(picture) {
 			width: 100% !important;
 			height: auto !important;
 			left: 0;
 			transform: translateY(-56%);
-		}
+		} */
 
 		.template-page-digestive-comfort {{ shopify_section_id }} .object-fit>*:not(picture) {
 			height: 100% !important;
@@ -332,6 +332,12 @@
     		--btn-accent: var(--cr-black);
 		}
     }
+
+	@media (max-width: 480px) {
+        {{ shopify_section_id }} .frontpage-hero__container.mobile-align-bottom_center {
+            margin-top: 100px;
+        }
+    }
 {% endstyle %}
 
 {%- liquid
@@ -360,8 +366,42 @@
 					responsive_image: background_image_mobile,
 					alt: background_image.alt
 				-%} {% endcomment %}
-				<img class="desktop-image" src="{{ background_image | img_url: 'master' }}" alt="{{ background_image.alt }}" width="" height="" />
-				<img class="mobile-image" src="{{ background_image_mobile | img_url: '606x908' }}" alt="{{ background_image_mobile.alt }}" width="" height="" />
+				<img
+					src="{{ background_image | img_url: 'master' }}"
+					srcset="
+						{{ background_image | img_url: '375x' }} 375w,
+						{{ background_image | img_url: '600x' }} 600w,
+						{{ background_image | img_url: '900x' }} 900w,
+						{{ background_image | img_url: '1200x' }} 1200w,
+						{{ background_image | img_url: '1350x' }} 1350w,
+						{{ background_image | img_url: '1600x' }} 1600w,
+						{{ background_image | img_url: '1920x' }} 1920w,
+					"
+					sizes="(max-width: 1351px) 675px, 100vw"
+					alt="{{ background_image.alt | default: 'Banner image alt' }}"
+					loading="eager"
+					fetchpriority="high"
+					class="desktop-image"
+					width="{{ background_image.width }}"
+					height="{{ background_image.height }}"
+				/>
+				<img
+					src="{{ background_image_mobile | img_url: '750' }}"
+					srcset="
+						{{ background_image_mobile | img_url: '375x' }} 375w,
+						{{ background_image_mobile | img_url: '600x' }} 600w,
+						{{ background_image_mobile | img_url: '900x' }} 900w,
+						{{ background_image_mobile | img_url: '1200x' }} 1200w,
+						{{ background_image_mobile | img_url: '1600x' }} 1600w
+					"
+					sizes="(max-width: 768px) 100vw, 100vw"
+					alt="{{ background_image_mobile.alt | default: 'Banner image alt' }}"
+					loading="eager"
+					fetchpriority="high"
+					class="mobile-image"
+					width="{{ background_image_mobile.width }}"
+					height="{{ background_image_mobile.height }}"
+				/>
 			</span>
 		</div>
 	{%- endif %}
