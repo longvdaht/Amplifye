@@ -142,7 +142,7 @@
       },
       "3710736905754417822": {
         "type": "shopify://apps/fj-functions-script-editor/blocks/change-collection-price/c2ca1f48-d94c-42e9-b6c1-35bc32a00bef",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "show_badge": true,
           "color": "#fffaf1",
