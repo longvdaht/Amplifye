@@ -11,7 +11,7 @@
   "shopify": {
     "checkout": {
       "order_summary": {
-        "recurring_subtotal_label": " "
+        "recurring_subtotal_label": " Recurring subtotal"
       }
     }
   }
