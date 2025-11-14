@@ -12,6 +12,12 @@
     "product-hero": {
       "type": "product-hero",
       "blocks": {
+        "sami_product_labels_app_block_trust_badge_HUxUri": {
+          "type": "shopify://apps/sami-product-labels/blocks/app-block-trust-badge/b9b44663-5d51-4be1-8104-faedd68da8c5",
+          "settings": {
+            "shortcode": "<div class=\"samitaPL-trustBadge\" data-id=\"false\"></div>"
+          }
+        },
         "abra_promotions_dynamic_text_DQaazT": {
           "type": "shopify://apps/abra-promotions/blocks/dynamic-text/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
           "settings": {
@@ -49,6 +55,7 @@
         }
       },
       "block_order": [
+        "sami_product_labels_app_block_trust_badge_HUxUri",
         "abra_promotions_dynamic_text_DQaazT",
         "flex_flex_badge_KrX9zn",
         "icon_with_text_rrEtjF"
