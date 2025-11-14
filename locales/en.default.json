@@ -7,4 +7,12 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{}
+{
+  "shopify": {
+    "checkout": {
+      "order_summary": {
+        "recurring_subtotal_label": " "
+      }
+    }
+  }
+}
