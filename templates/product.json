@@ -12,6 +12,19 @@
     "product-hero": {
       "type": "product-hero",
       "blocks": {
+        "abra_promotions_dynamic_text_VTAtnA": {
+          "type": "shopify://apps/abra-promotions/blocks/dynamic-text/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "settings": {
+            "name": "BFCM",
+            "dynamic_text_color": "#000000",
+            "dynamic_text_icon_color": "#000000",
+            "dynamic_text_font_size": 14,
+            "dynamic_text_icon_size": 16,
+            "dynamic_text_padding_y": 0,
+            "dynamic_text_padding_x": 0,
+            "text_align": "center"
+          }
+        },
         "flex_flex_badge_KrX9zn": {
           "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
           "settings": {
@@ -36,6 +49,7 @@
         }
       },
       "block_order": [
+        "abra_promotions_dynamic_text_VTAtnA",
         "flex_flex_badge_KrX9zn",
         "icon_with_text_rrEtjF"
       ],
