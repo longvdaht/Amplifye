@@ -16,13 +16,13 @@
           "type": "shopify://apps/abra-promotions/blocks/dynamic-text/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
           "settings": {
             "name": "Default",
-            "dynamic_text_color": "#000000",
-            "dynamic_text_icon_color": "#000000",
-            "dynamic_text_font_size": 14,
-            "dynamic_text_icon_size": 16,
+            "dynamic_text_color": "#7c97ac",
+            "dynamic_text_icon_color": "#7c97ac",
+            "dynamic_text_font_size": 18,
+            "dynamic_text_icon_size": 20,
             "dynamic_text_padding_y": 0,
             "dynamic_text_padding_x": 0,
-            "text_align": "left"
+            "text_align": "center"
           }
         },
         "flex_flex_badge_KrX9zn": {
