@@ -170,6 +170,11 @@
           "announcement_bar_padding_x": 10,
           "sale_price_color": "#FF0000"
         }
+      },
+      "3824936769257688723": {
+        "type": "shopify://apps/sami-product-labels/blocks/app-embed-block/b9b44663-5d51-4be1-8104-faedd68da8c5",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
