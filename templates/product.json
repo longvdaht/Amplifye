@@ -16,8 +16,8 @@
           "type": "shopify://apps/abra-promotions/blocks/dynamic-text/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
           "settings": {
             "name": "Default",
-            "dynamic_text_color": "#7c97ac",
-            "dynamic_text_icon_color": "#7c97ac",
+            "dynamic_text_color": "#c14b24",
+            "dynamic_text_icon_color": "#c14b24",
             "dynamic_text_font_size": 18,
             "dynamic_text_icon_size": 20,
             "dynamic_text_padding_y": 0,
