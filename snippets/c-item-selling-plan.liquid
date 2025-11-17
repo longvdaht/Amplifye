@@ -160,6 +160,69 @@
 				</div>
 			</div>
 
+			<div
+					class="c-item-selling-plan__option__content"
+					{% if is_selling_plan_content_collapsible %}
+						data-collapsible-content
+					{% endif %}
+				>
+					<div class="c-item-selling-plan__frequency c-field f-h f-a-c t-l-3">
+						<label
+							{% if is_hide_frequency_label == true -%}
+								class="screen-reader-only"
+							{%- endif -%}
+							for="{{- selling_plan_handle | append: '-frequency' -}}"
+						>
+							Deliver every
+						</label>
+
+						<div class="c-item-selling-plan__frequency__select f-h f-a-c">
+							<select
+								name="selling_plan"
+								id="{{- selling_plan_handle | append: '-frequency' -}}"
+								{%- if is_check_subscription == false -%}
+									disabled
+								{%- endif -%}
+							>
+								{% for frequency in subscription %}
+									{%- liquid
+										assign plan_option = frequency.selling_plans[0]
+										assign id = plan_option.id
+									-%}
+
+									{%- assign value = plan_option.options[1].value
+										| replace: 'Day(s)', 'Days'
+										| replace: 'Week(s)', 'Weeks'
+										| replace: 'Month(s)', 'Months'
+										| replace: '1 Days', '1 Day'
+										| replace: '1 Weeks', '1 Week'
+										| replace: '1-month', '1 Month'
+										| replace: '2-month', '2 Months'
+									-%}
+
+									<option
+										value="{{ id }}"
+										{%- if forloop.index == 1 %}
+											selected
+										{%- endif -%}
+									>
+										{%- if is_hide_frequency_label == true -%}
+											Deliver every
+										{% endif -%}
+
+										{{ value }}
+									</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					{%- if subscription_info != blank -%}
+						<div class="c-item-selling-plan__option__content__info wysiwyg js-subscription-info">
+							{{ subscription_info }}
+						</div>
+					{%- endif -%}
+				</div>
+
 			{% if subscription_only == false and is_hide_one_time != true %}
 				<div
 					class="c-item-selling-plan__option f-v f-a-c f-j-s{% unless is_check_subscription %} is-expanded{% endunless %}"
