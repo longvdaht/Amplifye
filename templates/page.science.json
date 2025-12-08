@@ -1,20 +1,11 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "science-hero": {
       "type": "science-hero",
       "settings": {
         "media_type": "video",
-        "image": "shopify://shop_images/Frame_883379493_a9c9d2aa-125d-4399-8e5d-feee5cb3e3f1.png",
-        "video": "shopify://files/videos/Micropscopy Video_Science Page_CC.mp4",
+        "image": "shopify:\/\/shop_images\/Frame_883379493_a9c9d2aa-125d-4399-8e5d-feee5cb3e3f1.png",
+        "video": "shopify:\/\/files\/videos\/Micropscopy Video_Science Page_CC.mp4",
         "subheading": "",
         "heading": "Nobel Prize-winning research transforming how we access protein.",
         "paragraph": "Our scientific team realized the potential of a naturally occurring enzyme to amplifye protein digestion and absorption.",
@@ -29,7 +20,7 @@
           "type": "feature",
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/Protein-101_Primary.png",
+            "image": "shopify:\/\/shop_images\/Protein-101_Primary.png",
             "name": "Amino Acid",
             "label": "Basic building blocks of protein"
           }
@@ -38,7 +29,7 @@
           "type": "feature",
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/Protein-101_Secondary.png",
+            "image": "shopify:\/\/shop_images\/Protein-101_Secondary.png",
             "name": "Alpha Helix",
             "label": "Amino acids link together with hydrogen bonds"
           }
@@ -47,7 +38,7 @@
           "type": "feature",
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/Protein-101_Tertiary.png",
+            "image": "shopify:\/\/shop_images\/Protein-101_Tertiary.png",
             "name": "Polypeptide chain",
             "label": "Amino acids join via peptide bonds"
           }
@@ -56,7 +47,7 @@
           "type": "feature",
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/Protein-101_Quaternary.png",
+            "image": "shopify:\/\/shop_images\/Protein-101_Quaternary.png",
             "name": "Complex Protein Molecule",
             "label": "Polypeptide chains interact to deliver specific functions"
           }
@@ -112,23 +103,23 @@
         "activate_light_text": false,
         "bg_color": "blue",
         "media_type": "image",
-        "image": "shopify://shop_images/Fish-Scale.jpg",
+        "image": "shopify:\/\/shop_images\/Fish-Scale.jpg",
         "subheading": "The problem",
         "heading": "Grams Consumed ≠ Grams Absorbed",
         "paragraph": "More doesn’t always mean more. Your individual metabolism, gut health, and the type of protein you’re eating all influence how much protein and amino acids you absorb. Research indicates we’re not absorbing all the protein we consume.",
         "cta_label": "The product",
-        "cta_url": "shopify://products/amplifye-p24"
+        "cta_url": "shopify:\/\/products\/amplifye-p24"
       }
     },
     "science-info": {
       "type": "science-info",
       "settings": {
-        "image": "shopify://shop_images/Amplifye_Capsule.png",
+        "image": "shopify:\/\/shop_images\/Amplifye_Capsule.png",
         "subheading": "a proven powerhouse",
-        "heading": "P24 is a groundbreaking enzyme that amplifyes the <strong>bioaccessibility</strong> of every protein.",
+        "heading": "P24 is a groundbreaking enzyme that amplifyes the <strong>bioaccessibility<\/strong> of every protein.",
         "paragraph": "It enhances digestion by precisely breaking down proteins to release more amino acids — all without having to consume more food.",
         "cta_label": "Buy P24",
-        "cta_url": "shopify://products/amplifye-p24"
+        "cta_url": "shopify:\/\/products\/amplifye-p24"
       }
     },
     "science-mechanism": {
@@ -140,7 +131,7 @@
             "label": "The Activation",
             "paragraph": "The acid environment of your stomach “turns on” P24, so it can begin to efficiently break down protein.",
             "media_type": "image",
-            "image": "shopify://shop_images/Activation_1.jpg"
+            "image": "shopify:\/\/shop_images\/Activation_1.jpg"
           }
         },
         "mechanism_qWyiGz": {
@@ -149,7 +140,7 @@
             "label": "The Unlock",
             "paragraph": "With ultimate precision during gastric digestion, P24 slices protein chains into smaller peptides and amino acids, making them usable for the body.",
             "media_type": "image",
-            "image": "shopify://shop_images/Unlock_1.jpg"
+            "image": "shopify:\/\/shop_images\/Unlock_1.jpg"
           }
         },
         "mechanism_zHtQjp": {
@@ -158,7 +149,7 @@
             "label": "The Absorption",
             "paragraph": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition. On average, P24 can double protein absorption.",
             "media_type": "image",
-            "image": "shopify://shop_images/Absorption_1.jpg"
+            "image": "shopify:\/\/shop_images\/Absorption_1.jpg"
           }
         }
       },
@@ -185,21 +176,21 @@
         ],
         "paragraph": "Clinical research shows P24 improves protein absorption and amino acid bioaccessibility across 20 proteins — animal-based, plant-based, and powders.",
         "cta_label": "Read the study",
-        "cta_url": "shopify://blogs/research/study-of-amino-acid-absorption-across-protein-sources-with-p24-enzyme"
+        "cta_url": "shopify:\/\/blogs\/research\/study-of-amino-acid-absorption-across-protein-sources-with-p24-enzyme"
       }
     },
     "s_editorial_rQaq89": {
       "type": "s-editorial",
       "settings": {
-        "background_image": "shopify://shop_images/Science_Sponge-Product_D_108c63d9-b848-4116-9ddb-845a2b328b14.jpg",
-        "background_image_mobile": "shopify://shop_images/Science_Sponge-Product_M_2b21650d-35c8-45a6-9ca3-90a7699809f9.jpg",
+        "background_image": "shopify:\/\/shop_images\/Science_Sponge-Product_D_108c63d9-b848-4116-9ddb-845a2b328b14.jpg",
+        "background_image_mobile": "shopify:\/\/shop_images\/Science_Sponge-Product_M_2b21650d-35c8-45a6-9ca3-90a7699809f9.jpg",
         "subheading": "",
         "heading": "From rates of consumption to rates of absorption.",
         "is_smaller_heading": true,
         "paragraph": "Access your protein’s full potential. \nTry P24 for 30 days, worry free.",
         "activate_orange_btn": true,
         "cta_label": "Get P24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "source": ""
       }
     },
@@ -255,7 +246,7 @@
       "disabled": true,
       "settings": {
         "heading": "Institutionally recognized",
-        "logo": "shopify://shop_images/UC-Davis-logo.png",
+        "logo": "shopify:\/\/shop_images\/UC-Davis-logo.png",
         "show_testimonial_content": false
       }
     },
@@ -264,7 +255,7 @@
       "settings": {
         "heading": "Explore protein beyond the gram.",
         "cta_label": "All Articles",
-        "cta_url": "shopify://blogs/research",
+        "cta_url": "shopify:\/\/blogs\/research",
         "blog": "research"
       }
     }

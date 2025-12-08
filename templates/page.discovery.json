@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "discovery-hero": {
@@ -15,8 +6,8 @@
         "heading_1": "Nature is the original innovator",
         "heading_2": "Human ingenuity is the catalyst.",
         "media_type": "video",
-        "image": "shopify://shop_images/Property_1_Step4.jpg",
-        "video": "shopify://files/videos/Amplifye-Discovery_VideoComp (1).mp4"
+        "image": "shopify:\/\/shop_images\/Property_1_Step4.jpg",
+        "video": "shopify:\/\/files\/videos\/Amplifye-Discovery_VideoComp (1).mp4"
       }
     },
     "discovery-intro": {
@@ -25,13 +16,13 @@
         "paragraph_rimbVV": {
           "type": "paragraph",
           "settings": {
-            "paragraph": "Our story starts in a hot spring in southern Japan. PhD researchers discovered an enzyme with superpowers. An unexpected but unsurprising finding — these <strong>micro-geniuses</strong> taught us a very valuable lesson: less can do more for us, as long as you find an unlock."
+            "paragraph": "Our story starts in a hot spring in southern Japan. PhD researchers discovered an enzyme with superpowers. An unexpected but unsurprising finding — these <strong>micro-geniuses<\/strong> taught us a very valuable lesson: less can do more for us, as long as you find an unlock."
           }
         },
         "paragraph_drERwd": {
           "type": "paragraph",
           "settings": {
-            "paragraph": "<strong>Enzymes</strong> are truly one of nature’s greatest inventions. They quietly work in the background, helping us transform food into fuel, just to start. We’re here to harness them for the greatest impact on human health and the world without using an acre of land."
+            "paragraph": "<strong>Enzymes<\/strong> are truly one of nature’s greatest inventions. They quietly work in the background, helping us transform food into fuel, just to start. We’re here to harness them for the greatest impact on human health and the world without using an acre of land."
           }
         }
       },
@@ -49,13 +40,13 @@
         "activate_light_text": false,
         "bg_color": "black",
         "media_type": "image",
-        "image": "shopify://shop_images/Discovery_Product_D.png",
-        "image_mobile": "shopify://shop_images/Discovery_Product_D.png",
+        "image": "shopify:\/\/shop_images\/Discovery_Product_D.png",
+        "image_mobile": "shopify:\/\/shop_images\/Discovery_Product_D.png",
         "subheading": "Introducing P24",
-        "heading": "The enzyme that’s unlocking protein.",
+        "heading": "The enzyme that’s\u2028unlocking protein.",
         "paragraph": "The culmination of years of research and careful development, P24 enhances what your body already knows how to do best: digest food, absorb protein, and unlock nutrients.",
         "cta_label": "Get P24",
-        "cta_url": "shopify://products/amplifye-p24"
+        "cta_url": "shopify:\/\/products\/amplifye-p24"
       }
     },
     "discovery-origin": {
@@ -64,7 +55,7 @@
         "feature_ae6j3j": {
           "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/Amplifye_Makingof_1_40f26843-4a2c-4353-80cb-1c5b7523bbf7.png",
+            "image": "shopify:\/\/shop_images\/Amplifye_Makingof_1_40f26843-4a2c-4353-80cb-1c5b7523bbf7.png",
             "label": "Biotech Expression",
             "paragraph": "To produce P24, we use a highly controlled fermentation process that starts with inserting the enzyme’s gene into E. coli, a common host in biotech manufacturing. The bacteria are grown in nutrient-rich broth, and enzyme production is triggered using a lactose-based induction system. This method allows us to ensure high yields and consistent quality. Every step is carefully monitored to maintain purity and performance from the start."
           }
@@ -72,7 +63,7 @@
         "feature_gEEU4A": {
           "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/Amplifye_Makingof_3.jpg",
+            "image": "shopify:\/\/shop_images\/Amplifye_Makingof_3.jpg",
             "label": "Self-purifying Power",
             "paragraph": "One of the most remarkable traits of P24 is its ability to purify itself. As a protease, it breaks down surrounding proteins from the fermentation process, eliminating the need for traditional purification methods like chromatography or crystallization. Its natural acid stability also helps remove unwanted bacterial fragments, making the process faster, simpler, and cleaner. This means fewer processing steps — and a purer enzyme for you."
           }
@@ -80,9 +71,9 @@
         "feature_8qRPHG": {
           "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/Amplifye_Makingof_3.png",
+            "image": "shopify:\/\/shop_images\/Amplifye_Makingof_3.png",
             "label": "Global-standard Manufacturing",
-            "paragraph": "Our production facility in India was chosen after an extensive global search for the highest standards in quality and compliance. It excels in ethical sourcing, operator expertise, and cost-effective practices without compromising on safety or precision. By partnering with this facility, we ensure that each capsule meets rigorous international standards. It's a fusion of global science and trusted manufacturing you can feel confident in."
+            "paragraph": "Our production facility in India was chosen after an extensive global search for the\u2028highest standards in quality and compliance. It excels in ethical sourcing, operator expertise, and cost-effective practices without compromising on safety or precision. By partnering with this facility, we ensure that each capsule meets rigorous international standards. It's a fusion of global science and trusted manufacturing you can feel confident in."
           }
         }
       },
@@ -146,7 +137,7 @@
       "disabled": true,
       "settings": {
         "heading": "Institutionally recognized",
-        "logo": "shopify://shop_images/UC-Davis-logo.png",
+        "logo": "shopify:\/\/shop_images\/UC-Davis-logo.png",
         "show_testimonial_content": true
       }
     },
@@ -156,31 +147,31 @@
         "logo_iEPb7y": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/the-ny-times_1.png"
+            "logo": "shopify:\/\/shop_images\/the-ny-times_1.png"
           }
         },
         "logo_dNUqtw": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/health_1.png"
+            "logo": "shopify:\/\/shop_images\/health_1.png"
           }
         },
         "logo_GX4eXr": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/vogue_1.png"
+            "logo": "shopify:\/\/shop_images\/vogue_1.png"
           }
         },
         "logo_C9LPw6": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/womens-health.png"
+            "logo": "shopify:\/\/shop_images\/womens-health.png"
           }
         },
         "logo_piYdUT": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/fierce_1.png"
+            "logo": "shopify:\/\/shop_images\/fierce_1.png"
           }
         }
       },
@@ -204,12 +195,12 @@
         "activate_light_text": true,
         "bg_color": "none",
         "media_type": "image",
-        "image": "shopify://shop_images/Sustained_Energy.jpg",
+        "image": "shopify:\/\/shop_images\/Sustained_Energy.jpg",
         "subheading": "",
         "heading": "Our mission is to amplifye your health.",
         "paragraph": "Nature already built the tools we need — it’s just about using them in the right way. We leverage naturally occurring enzymes to help your body help itself.",
         "cta_label": "Buy P24",
-        "cta_url": "shopify://products/amplifye-p24"
+        "cta_url": "shopify:\/\/products\/amplifye-p24"
       }
     }
   },

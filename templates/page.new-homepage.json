@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "landing_hero_2_bzEcCq": {
@@ -18,8 +9,8 @@
         "content": "We took the best of nature and Nobel Prize-winning science to create P24, an enzyme that makes protein 2X more bioaccessible.",
         "cta_label": "Get P24",
         "cta_url": "",
-        "background_image": "shopify://shop_images/284fafa4e2306ed05d1e87ce3e2079dca0da34f4.jpg",
-        "background_image_mobile": "shopify://shop_images/f495419bb4e5f7c4c9b53c3f248490d17addf248.jpg",
+        "background_image": "shopify:\/\/shop_images\/284fafa4e2306ed05d1e87ce3e2079dca0da34f4.jpg",
+        "background_image_mobile": "shopify:\/\/shop_images\/f495419bb4e5f7c4c9b53c3f248490d17addf248.jpg",
         "product": "",
         "content_alignment": "right",
         "mobile_align": "top_left",
@@ -59,7 +50,7 @@
       "name": "Reviews",
       "settings": {
         "heading": "Featured In",
-        "heading_image": "shopify://shop_images/5-stars.svg",
+        "heading_image": "shopify:\/\/shop_images\/5-stars.svg",
         "padding_top": 30,
         "padding_right": 0,
         "padding_bottom": 25,
@@ -72,7 +63,7 @@
         "block_E3haNa": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/2e0e3ae8798b43a19eabed8c2d8abe5a (1).mov",
+            "video": "shopify:\/\/files\/videos\/2e0e3ae8798b43a19eabed8c2d8abe5a (1).mov",
             "title": "I noticed positive changes in my gut health.",
             "name": "Casey",
             "is_autoplay": false
@@ -89,7 +80,7 @@
         "block_JqGqYK": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/eadb854bb0b04900a3a92345cc552f8a.mov",
+            "video": "shopify:\/\/files\/videos\/eadb854bb0b04900a3a92345cc552f8a.mov",
             "title": "",
             "name": "",
             "is_autoplay": false
@@ -98,7 +89,7 @@
         "block_GCDqgA": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/85c1530be4a54b6194965d878d0be795 (1).mov",
+            "video": "shopify:\/\/files\/videos\/85c1530be4a54b6194965d878d0be795 (1).mov",
             "title": "I’ll never travel without it.",
             "name": "Remy M.",
             "is_autoplay": false
@@ -115,7 +106,7 @@
         "block_7y8TVr": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/5d0377487f364062b8ed5f3c1f557693.mov",
+            "video": "shopify:\/\/files\/videos\/5d0377487f364062b8ed5f3c1f557693.mov",
             "title": "I can totally feel the difference.",
             "name": "Rosie A.",
             "is_autoplay": false
@@ -132,7 +123,7 @@
         "block_V7YFPi": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/5a5d6494481f4844849ac7d9464bf828.mov",
+            "video": "shopify:\/\/files\/videos\/5a5d6494481f4844849ac7d9464bf828.mov",
             "title": "",
             "name": "",
             "is_autoplay": false
@@ -176,19 +167,19 @@
         "logo_7qFkGK": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/the-ny-times_1.png"
+            "logo": "shopify:\/\/shop_images\/the-ny-times_1.png"
           }
         },
         "logo_WMrqaD": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/health_1.png"
+            "logo": "shopify:\/\/shop_images\/health_1.png"
           }
         },
         "logo_pmnwLA": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/vogue_1.png"
+            "logo": "shopify:\/\/shop_images\/vogue_1.png"
           }
         }
       },
@@ -231,13 +222,13 @@
       "type": "new-editorial",
       "name": "New - Editorial",
       "settings": {
-        "background_image": "shopify://shop_images/ANIMATED_Mesh.png",
+        "background_image": "shopify:\/\/shop_images\/ANIMATED_Mesh.png",
         "color": "",
         "content_max_width": 800,
         "alignment": "center",
         "vertical_align_c": true,
         "subheading": "THE PROTEIN PROBLEM",
-        "heading": "We absorb <strong>less than 50%</strong> of the protein we eat.",
+        "heading": "We absorb <strong>less than 50%<\/strong> of the protein we eat.",
         "is_smaller_heading": false,
         "paragraph": "",
         "activate_orange_btn": false,
@@ -262,11 +253,11 @@
         "heading": "The enzyme that’sunlocking protein.",
         "is_smaller_heading": false,
         "paragraph": "P24 enhances digestion by precisely breaking down proteins into peptides, releasing more amino acids — all without having to consume more food.",
-        "image": "shopify://shop_images/Amplifye_Bottle_Front_1.jpg",
+        "image": "shopify:\/\/shop_images\/Amplifye_Bottle_Front_1.jpg",
         "activate_orange_btn": true,
         "cta_label": "GET P24",
         "use_btn_outline": false,
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "source": ""
       }
     },
@@ -344,8 +335,8 @@
         "heading": "Nature’s intelligence meets human ingenuity.",
         "is_smaller_heading": false,
         "paragraph": "P24 is a naturally occurring enzyme, discovered in a Japanese hot spring. We leveraged Nobel Prize-winning research to develop the P24 capsule, designed to accompany your biggest meal of the day and improve protein bioaccessibility.",
-        "image": "shopify://shop_images/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
-        "video": "shopify://files/videos/584d1c2437d0449684c061c4893998d7 (1).mp4",
+        "image": "shopify:\/\/shop_images\/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
+        "video": "shopify:\/\/files\/videos\/584d1c2437d0449684c061c4893998d7 (1).mp4",
         "activate_orange_btn": true,
         "cta_label": "the science",
         "use_btn_outline": false,
@@ -359,7 +350,7 @@
       "settings": {
         "is_full_bleed": false,
         "is_full_bleed_mobile": false,
-        "background_image": "shopify://shop_images/20250417-amplifye-0306_3.jpg",
+        "background_image": "shopify:\/\/shop_images\/20250417-amplifye-0306_3.jpg",
         "subheading": "SAME meals, MORE PROTEIN",
         "heading": "Get more from what you already eat.",
         "is_smaller_heading": false,
@@ -367,7 +358,7 @@
         "paragraph_align_mobile": "left",
         "activate_orange_btn": false,
         "cta_label": "Get P24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "source": ""
       }
     },
@@ -377,7 +368,7 @@
       "settings": {
         "heading": "Explore the research from our team of clinical experts.",
         "cta_label": "All Articles",
-        "cta_url": "shopify://blogs/research",
+        "cta_url": "shopify:\/\/blogs\/research",
         "blog": "research"
       }
     }

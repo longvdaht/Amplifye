@@ -1,13 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
   "sections": {
     "main-product": {
       "name": "Product information",
@@ -79,7 +70,7 @@
             },
             "swatch_shape": {
               "label": "Swatch",
-              "info": "Learn more about [swatches](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) on product options",
+              "info": "Learn more about [swatches](https:\/\/help.shopify.com\/en\/manual\/online-store\/themes\/theme-structure\/theme-settings#options-with-swatches) on product options",
               "options__1": {
                 "label": "Circle"
               },
@@ -97,11 +88,11 @@
           "settings": {
             "show_dynamic_checkout": {
               "label": "Dynamic checkout buttons",
-              "info": "Customers will see their preferred payment option. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+              "info": "Customers will see their preferred payment option. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/change-the-layout\/dynamic-checkout)"
             },
             "show_gift_card_recipient": {
               "label": " Gift card sending options",
-              "info": "Customers can add a personal message and schedule the send date. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
+              "info": "Customers can add a personal message and schedule the send date. [Learn more](https:\/\/help.shopify.com\/manual\/online-store\/themes\/customizing-themes\/add-gift-card-recipient-fields)"
             }
           }
         },
@@ -303,7 +294,7 @@
           "name": "Product rating",
           "settings": {
             "paragraph": {
-              "content": "An app is required for product ratings. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/page-types/product-pages#product-rating-block)"
+              "content": "An app is required for product ratings. [Learn more](https:\/\/help.shopify.com\/manual\/online-store\/themes\/theme-structure\/page-types\/product-pages#product-rating-block)"
             }
           }
         },
@@ -311,7 +302,7 @@
           "name": "Complementary products",
           "settings": {
             "paragraph": {
-              "content": "Manage complementary products in the [Search & Discovery app](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)"
+              "content": "Manage complementary products in the [Search & Discovery app](https:\/\/help.shopify.com\/manual\/online-store\/search-and-discovery\/product-recommendations)"
             },
             "heading": {
               "label": "Heading",
@@ -383,7 +374,7 @@
             },
             "pairing_2": {
               "label": "Pairing 2"
-            },            
+            },
             "icon_2": {
               "label": "Icon"
             },
@@ -395,8 +386,8 @@
               "default": "Heading"
             },
             "pairing_3": {
-            "label": "Pairing 3"
-            },             
+              "label": "Pairing 3"
+            },
             "icon_3": {
               "label": "Icon"
             },
@@ -408,8 +399,8 @@
               "default": "Heading"
             },
             "pairing_4": {
-            "label": "Pairing 4"
-            },             
+              "label": "Pairing 4"
+            },
             "icon_4": {
               "label": "Icon"
             },

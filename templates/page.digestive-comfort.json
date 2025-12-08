@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "landing_hero_2_mGr8Gx": {
@@ -19,8 +10,8 @@
         "cta_label": "Buy P24",
         "cta_url": "",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/Amplifye_Desktop.png",
-        "background_image_mobile": "shopify://shop_images/Amplifye_Mobile.png",
+        "background_image": "shopify:\/\/shop_images\/Amplifye_Desktop.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/Amplifye_Mobile.png",
         "product": "amplifye-p24",
         "custom_style": false,
         "content_alignment": "right",
@@ -32,8 +23,8 @@
       "type": "landing-s-banner-2",
       "name": "Landing Banner - 2",
       "settings": {
-        "text_1": "<strong>15% off </strong>your first bottle",
-        "text_2": "Use code: <strong>WELCOME15</strong>",
+        "text_1": "<strong>15% off <\/strong>your first bottle",
+        "text_2": "Use code: <strong>WELCOME15<\/strong>",
         "cta_label": "Maximize Protein, Minimize Bloat",
         "cta_url": "",
         "product": "",
@@ -48,9 +39,9 @@
       "settings": {
         "content_alignment": "right",
         "media_type": "image",
-        "image": "shopify://shop_images/Intake_Desktop.png",
+        "image": "shopify:\/\/shop_images\/Intake_Desktop.png",
         "heading": "The Problem Isn’t Your Intake — It’s Absorption.",
-        "paragraph": "<p>You’re making the smoothies. Eating clean.<br/>Prioritizing protein. And still, you feel:</p><ul><li>Bloated after meals</li><li>Sluggish instead of energized</li><li>Like your protein powder is just…sitting there</li></ul>",
+        "paragraph": "<p>You’re making the smoothies. Eating clean.<br\/>Prioritizing protein. And still, you feel:<\/p><ul><li>Bloated after meals<\/li><li>Sluggish instead of energized<\/li><li>Like your protein powder is just…sitting there<\/li><\/ul>",
         "note": "That’s not your fault. It’s your body telling you it needs support breaking protein down into a form it can actually use.",
         "cta_label": "",
         "cta_url": ""
@@ -62,8 +53,8 @@
       "settings": {
         "subheading": "a clinically proven powerhouse",
         "heading": "Meet the groundbreaking enzyme that allows you to get more from your protein, without eating more protein.",
-        "image": "shopify://shop_images/capsule_image.png",
-        "paragraph": "<p>Clinically shown to increase protein bioaccessibility by 115% (that's more than double the protein)</p><p>Supports lean muscle, hormone production, and tissue repair</p><p>Helps unlock the full-body benefits of protein — gut to skin to mood</p>",
+        "image": "shopify:\/\/shop_images\/capsule_image.png",
+        "paragraph": "<p>Clinically shown to increase protein bioaccessibility by 115% (that's more than double the protein)<\/p><p>Supports lean muscle, hormone production, and tissue repair<\/p><p>Helps unlock the full-body benefits of protein — gut to skin to mood<\/p>",
         "cta_label": "Buy P24",
         "cta_url": "",
         "product": "amplifye-p24",
@@ -77,9 +68,9 @@
       "settings": {
         "content_alignment": "left",
         "media_type": "image",
-        "image": "shopify://shop_images/Todu_image.png",
+        "image": "shopify:\/\/shop_images\/Todu_image.png",
         "heading": "Why Gut Health and Protein Go Hand in Hand",
-        "paragraph": "<p>Your gut isn’t just a digestion center — it’s your second brain.<br/>It regulates:</p><ul><li>Inflammation</li><li>Hormones</li><li>Immune Response</li><li>Mental Clarity</li></ul>",
+        "paragraph": "<p>Your gut isn’t just a digestion center — it’s your second brain.<br\/>It regulates:<\/p><ul><li>Inflammation<\/li><li>Hormones<\/li><li>Immune Response<\/li><li>Mental Clarity<\/li><\/ul>",
         "note": "P24 is your daily ally for gut-happy protein.",
         "cta_label": "",
         "cta_url": ""
@@ -93,10 +84,10 @@
         "subheading": "The Science You Can Feel",
         "content": "Backed by 6 years of research and over 50 scientists, amplifyeP24 was developed to mimic how your body naturally breaks down protein. It helps you get more from the food you're already eating.",
         "cta_label": "VIEW THE RESEARCH",
-        "cta_url": "shopify://pages/the-science",
+        "cta_url": "shopify:\/\/pages\/the-science",
         "button_style": "outline",
-        "background_image": "shopify://shop_images/Science_desktop.png",
-        "background_image_mobile": "shopify://shop_images/Science_mobile.png",
+        "background_image": "shopify:\/\/shop_images\/Science_desktop.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/Science_mobile.png",
         "product": "",
         "custom_style": true,
         "content_alignment": "right",
@@ -110,7 +101,7 @@
         "block_E3haNa": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-25_at_9.19.37_AM.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2025-09-25_at_9.19.37_AM.png",
             "title": "I’ve had no issues with stomach upset due to higher protein consumption.",
             "name": "Alexis",
             "is_autoplay": false
@@ -127,7 +118,7 @@
         "block_JqGqYK": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-25_at_8.42.29_AM.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2025-09-25_at_8.42.29_AM.png",
             "title": "Felt noticeable results after taking this for the first month. Highly recommend.",
             "name": "Carolyn H.",
             "is_autoplay": false
@@ -144,7 +135,7 @@
         "block_CDxCGK": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-25_at_8.43.01_AM.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2025-09-25_at_8.43.01_AM.png",
             "title": "Amplifye P24 changed everything. Within the first few days, I was eating meals that normally would have had me urgently looking for a bathroom, and nothing happened. I felt completely normal, which is something I hadn’t experienced in years.",
             "name": "Michael S.",
             "is_autoplay": false
@@ -161,7 +152,7 @@
         "block_NGjjjR": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-25_at_9.20.24_AM.png",
+            "image": "shopify:\/\/shop_images\/Screenshot_2025-09-25_at_9.20.24_AM.png",
             "title": "If you’re someone who struggles with digestion, or just wants to support gut health more proactively, I highly recommend giving Amplifye a try.",
             "name": "Jacky",
             "is_autoplay": false
