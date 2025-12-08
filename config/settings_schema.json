@@ -1,108 +1,98 @@
 [
-	{
-		"name": "theme_info",
-		"theme_name": "View Source Dev",
-		"theme_author": "View Source",
-		"theme_version": "1.0.0",
-		"theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-		"theme_support_url": "https://support.shopify.com/"
-	},
-	{
-		"name": "Social Media Accounts",
-		"settings": [
-			{
-				"type": "url",
-				"id": "facebook_url",
-				"label": "Facebook URL"
-			},
-			{
-				"type": "url",
-				"id": "instagram_url",
-				"label": "Instagram URL"
-			},
-			{
-				"type": "url",
-				"id": "x_url",
-				"label": "X URL"
-			},
-			{
-				"type": "url",
-				"id": "youtube_url",
-				"label": "Youtube URL"
-			},
-			{
-				"type": "url",
-				"id": "tiktok_url",
-				"label": "TikTok URL"
-			}
-		]
-	},
-	{
-		"name": "Color Schemes",
-		"settings": [
-			{
-				"type": "color_scheme_group",
-				"id": "color_schemes",
-				"definition": [
-					{
-						"type": "color",
-						"id": "background",
-						"label": "Background",
-						"default": "#000000"
-					},
-					{
-						"type": "color",
-						"id": "text",
-						"label": "Text Color",
-						"default": "#fffaf1"
-					},
-					{
-						"type": "color",
-						"id": "text_hover",
-						"label": "Text Color Hover",
-						"default": "#000000"
-					}
-				],
-				"role": {
-					"text": "text",
-					"background": "background",
-					"links": "text",
-					"icons": "text",
-					"primary_button": "background",
-					"on_primary_button": "text",
-					"primary_button_border": "background",
-					"secondary_button": "background",
-					"on_secondary_button": "text",
-					"secondary_button_border": "text"
-				}
-			}
-		]
-	},
-	{
-		"name": "Home page banner images",
-		"settings": [
-			{
-				"type": "image_picker",
-				"id": "background_image",
-				"label": "Background Image",
-				"info": "Should be the same image with landing(2) section at homepage"
-			},
-			{
-				"type": "image_picker",
-				"id": "background_image_mobile",
-				"label": "Background Image (mobile)",
-				"info": "Should be the same image with landing(2) section at homepage"
-			}
-		]
-	}
-	// {
-	// 	"name": "Sitewide Settings",
-	// 	"settings": [
-	// 		{
-	// 			"type": "text",
-	// 			"id": "id",
-	// 			"label": "Label"
-	// 		}
-	// 	]
-	// }
+  {
+    "name": "theme_info",
+    "theme_name": "View Source Dev",
+    "theme_author": "View Source",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
+  },
+  {
+    "name": "Social Media Accounts",
+    "settings": [
+      {
+        "type": "url",
+        "id": "facebook_url",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "x_url",
+        "label": "X URL"
+      },
+      {
+        "type": "url",
+        "id": "youtube_url",
+        "label": "Youtube URL"
+      },
+      {
+        "type": "url",
+        "id": "tiktok_url",
+        "label": "TikTok URL"
+      }
+    ]
+  },
+  {
+    "name": "Color Schemes",
+    "settings": [
+      {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Background",
+            "default": "#000000"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Text Color",
+            "default": "#fffaf1"
+          },
+          {
+            "type": "color",
+            "id": "text_hover",
+            "label": "Text Color Hover",
+            "default": "#000000"
+          }
+        ],
+        "role": {
+          "text": "text",
+          "background": "background",
+          "links": "text",
+          "icons": "text",
+          "primary_button": "background",
+          "on_primary_button": "text",
+          "primary_button_border": "background",
+          "secondary_button": "background",
+          "on_secondary_button": "text",
+          "secondary_button_border": "text"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Home page banner images",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image",
+        "info": "Should be the same image with landing(2) section at homepage"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_mobile",
+        "label": "Background Image (mobile)",
+        "info": "Should be the same image with landing(2) section at homepage"
+      }
+    ]
+  }
 ]

@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "article": {
@@ -19,42 +10,42 @@
         "block_WVzW9B": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/2beab723510c6033f1dc478be152346ac67cb903.jpg",
-            "url": "https://www.instagram.com/p/DIeP0irp6DE/?img_index=1"
+            "image": "shopify:\/\/shop_images\/2beab723510c6033f1dc478be152346ac67cb903.jpg",
+            "url": "https:\/\/www.instagram.com\/p\/DIeP0irp6DE\/?img_index=1"
           }
         },
         "block_C4LE6Y": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/swimming.jpg",
-            "url": "https://www.instagram.com/p/DIePyyYJISy/"
+            "image": "shopify:\/\/shop_images\/swimming.jpg",
+            "url": "https:\/\/www.instagram.com\/p\/DIePyyYJISy\/"
           }
         },
         "block_jaCeaR": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/03920c279f81793541a6421b7461473dd21dd2c4.jpg",
-            "url": "https://www.instagram.com/p/DIePxFnJOql/?img_index=1"
+            "image": "shopify:\/\/shop_images\/03920c279f81793541a6421b7461473dd21dd2c4.jpg",
+            "url": "https:\/\/www.instagram.com\/p\/DIePxFnJOql\/?img_index=1"
           }
         },
         "block_yKHy4c": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/420e78b9b1ee72c8f98040dda0a45d695164ad3d.jpg",
+            "image": "shopify:\/\/shop_images\/420e78b9b1ee72c8f98040dda0a45d695164ad3d.jpg",
             "url": ""
           }
         },
         "block_Crntkx": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/250491458c7b3e460d0f9bc51997fe2be29c6328.jpg",
+            "image": "shopify:\/\/shop_images\/250491458c7b3e460d0f9bc51997fe2be29c6328.jpg",
             "url": ""
           }
         },
         "block_t74z8h": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/1e5f1ccb70ee930d810c9a1f60f09f8e272abb5c.jpg",
+            "image": "shopify:\/\/shop_images\/1e5f1ccb70ee930d810c9a1f60f09f8e272abb5c.jpg",
             "url": ""
           }
         }
@@ -71,7 +62,7 @@
       "settings": {
         "heading": "Connect with the amplifye community.",
         "cta_label": "Follow @amplifye_me",
-        "cta_url": "https://www.instagram.com/amplifye_me/"
+        "cta_url": "https:\/\/www.instagram.com\/amplifye_me\/"
       }
     }
   },

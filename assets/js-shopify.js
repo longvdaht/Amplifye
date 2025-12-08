@@ -121,6 +121,7 @@ const cItemSellingPlan = {
 					const selector = sellingPlanComponent.querySelector(
 						'[name="selling_plan"]'
 					);
+					if (!selector) return;
 					// if subscription is not selected, set selling_plan selector to disabled
 					sellingPlanComponent.classList.toggle(
 						"is-active",

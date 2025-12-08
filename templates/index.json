@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "landing_hero_2_GhYqWU": {
@@ -17,10 +8,10 @@
         "subheading": "",
         "content": "amplifyeP24 is an enzyme that helps you digest and absorb all protein more efficiently, so you feel stronger, think clearer, and recover faster.",
         "cta_label": "Buy P24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/HP_HERO_-_DESKTOP.png",
-        "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_3_e10d3eb2-73a2-43d2-811d-b4434e11acb3.png",
+        "background_image": "shopify:\/\/shop_images\/HP_HERO_-_DESKTOP.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/HP_HERO_-_MOBILE_3_e10d3eb2-73a2-43d2-811d-b4434e11acb3.png",
         "product": "amplifye-p24",
         "custom_style": false,
         "content_alignment": "right",
@@ -134,7 +125,7 @@
       "name": "Reviews",
       "settings": {
         "heading": "Featured In",
-        "heading_image": "shopify://shop_images/5-stars.svg",
+        "heading_image": "shopify:\/\/shop_images\/5-stars.svg",
         "padding_top": 30,
         "padding_right": 25,
         "padding_bottom": 25,
@@ -147,7 +138,7 @@
         "block_E3haNa": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/2e0e3ae8798b43a19eabed8c2d8abe5a (1) (2).mov",
+            "video": "shopify:\/\/files\/videos\/2e0e3ae8798b43a19eabed8c2d8abe5a (1) (2).mov",
             "title": "I noticed positive changes in my gut health.",
             "name": "Casey P.",
             "is_autoplay": false
@@ -164,7 +155,7 @@
         "block_JqGqYK": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/eadb854bb0b04900a3a92345cc552f8a (1).mov",
+            "video": "shopify:\/\/files\/videos\/eadb854bb0b04900a3a92345cc552f8a (1).mov",
             "title": "",
             "name": "",
             "is_autoplay": false
@@ -173,7 +164,7 @@
         "block_GCDqgA": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/85c1530be4a54b6194965d878d0be795 (1) (1).mov",
+            "video": "shopify:\/\/files\/videos\/85c1530be4a54b6194965d878d0be795 (1) (1).mov",
             "title": "I’ll never travel without it.",
             "name": "Remy M.",
             "is_autoplay": false
@@ -190,7 +181,7 @@
         "block_7y8TVr": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/5d0377487f364062b8ed5f3c1f557693_b261d37f-f1ae-46a0-b315-9b3a4616931f.mov",
+            "video": "shopify:\/\/files\/videos\/5d0377487f364062b8ed5f3c1f557693_b261d37f-f1ae-46a0-b315-9b3a4616931f.mov",
             "title": "I can totally feel the difference.",
             "name": "Rosie A.",
             "is_autoplay": false
@@ -207,7 +198,7 @@
         "block_V7YFPi": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/5a5d6494481f4844849ac7d9464bf828_8be48db9-7fd4-461d-af36-d5ac7afbcdaa.mov",
+            "video": "shopify:\/\/files\/videos\/5a5d6494481f4844849ac7d9464bf828_8be48db9-7fd4-461d-af36-d5ac7afbcdaa.mov",
             "title": "",
             "name": "",
             "is_autoplay": false
@@ -251,55 +242,55 @@
         "logo_7qFkGK": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/the-ny-times_1.png"
+            "logo": "shopify:\/\/shop_images\/the-ny-times_1.png"
           }
         },
         "logo_WMrqaD": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/health_1.png"
+            "logo": "shopify:\/\/shop_images\/health_1.png"
           }
         },
         "logo_pmnwLA": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/vogue_1.png"
+            "logo": "shopify:\/\/shop_images\/vogue_1.png"
           }
         },
         "logo_dhc98M": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/download_1.png"
+            "logo": "shopify:\/\/shop_images\/download_1.png"
           }
         },
         "logo_XkfNt6": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/yahoo-finance-transparent.png"
+            "logo": "shopify:\/\/shop_images\/yahoo-finance-transparent.png"
           }
         },
         "logo_zW7raE": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/trendhunter.png"
+            "logo": "shopify:\/\/shop_images\/trendhunter.png"
           }
         },
         "logo_ezMWNq": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/althletech_news.png"
+            "logo": "shopify:\/\/shop_images\/althletech_news.png"
           }
         },
         "logo_kryP94": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/AFN.png"
+            "logo": "shopify:\/\/shop_images\/AFN.png"
           }
         },
         "logo_XfLCBr": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/fittinsider_black.png"
+            "logo": "shopify:\/\/shop_images\/fittinsider_black.png"
           }
         }
       },
@@ -348,13 +339,13 @@
       "type": "new-editorial",
       "name": "New - Editorial",
       "settings": {
-        "background_image": "shopify://shop_images/ANIMATED_Mesh.png",
+        "background_image": "shopify:\/\/shop_images\/ANIMATED_Mesh.png",
         "color": "",
         "content_max_width": 800,
         "alignment": "center",
         "vertical_align_c": true,
         "subheading": "THE PROTEIN PROBLEM",
-        "heading": "We absorb <strong>less than 50%</strong> of the protein we eat.",
+        "heading": "We absorb <strong>less than 50%<\/strong> of the protein we eat.",
         "is_smaller_heading": false,
         "paragraph": "Eating more isn’t the answer",
         "activate_orange_btn": false,
@@ -374,10 +365,10 @@
         "subheading": "",
         "content": "P24 is a precision enzyme that boosts protein absorption at the source - so your muscles, metabolism, and recovery get more from every bite and every scoop. So you can feel the difference where it matters most: strength, energy, recovery, and overall vitality.",
         "cta_label": "Buy P24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/SOLUTION_-_DESKTOP_v1_4.png",
-        "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_4.png",
+        "background_image": "shopify:\/\/shop_images\/SOLUTION_-_DESKTOP_v1_4.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/HP_HERO_-_MOBILE_4.png",
         "product": "amplifye-p24",
         "custom_style": true,
         "content_alignment": "center",
@@ -400,11 +391,11 @@
         "heading": "Meet P24: The Protein Amplifier",
         "is_smaller_heading": false,
         "paragraph": "P24 is a precision enzyme that boosts protein absorption at the source — so your muscles, metabolism, and recovery get more from every bite and every scoop. So you can feel the difference where it matters most: strength, energy, recovery, and overall vitality.",
-        "image": "shopify://shop_images/Amplifye_Bottle_Front_1.jpg",
+        "image": "shopify:\/\/shop_images\/Amplifye_Bottle_Front_1.jpg",
         "activate_orange_btn": true,
         "cta_label": "Buy P24",
         "use_btn_outline": false,
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "source": ""
       }
     },
@@ -482,13 +473,13 @@
         "heading": "Nature’s intelligence meets human ingenuity.",
         "is_smaller_heading": false,
         "paragraph": "P24 is a naturally occurring enzyme, discovered in a Japanese hot spring. We leveraged Nobel Prize-winning research to develop the P24 capsule, designed to accompany your biggest meal of the day and improve protein bioaccessibility.",
-        "image": "shopify://shop_images/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
-        "video": "shopify://files/videos/584d1c2437d0449684c061c4893998d7 (1).mp4",
+        "image": "shopify:\/\/shop_images\/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
+        "video": "shopify:\/\/files\/videos\/584d1c2437d0449684c061c4893998d7 (1).mp4",
         "activate_orange_btn": true,
         "cta_label": "the science",
         "use_btn_outline": false,
-        "cta_url": "shopify://pages/the-science",
-        "source": "1. Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone. 2. Translating Science to Application for the FODMAP Generation NIH Stefan M Pasiakos. December 2022 John W Carbone. 3.Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. IMFD  EduStefan M Pasiakos."
+        "cta_url": "shopify:\/\/pages\/the-science",
+        "source": "1. Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone.\u20282. Translating Science to Application for the FODMAP Generation NIH Stefan M Pasiakos. December 2022 John W Carbone.\u20283.Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. IMFD  EduStefan M Pasiakos."
       }
     },
     "s_editorial_2_zKrmqe": {
@@ -500,10 +491,10 @@
         "section_height": 508,
         "section_height_m": 508,
         "gradient_overlay": "linear-gradient(90.84deg,#f5efed 71.28%, rgba(245, 239, 237) 99.3%)",
-        "background_image": "shopify://shop_images/footer-extended-3_1_1.png",
+        "background_image": "shopify:\/\/shop_images\/footer-extended-3_1_1.png",
         "background_image_w": 1900,
         "background_image_h": 584,
-        "background_image_mobile": "shopify://shop_images/extended-mobile-footer_1.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/extended-mobile-footer_1.png",
         "background_image_m_w": 600,
         "background_image_m_h": 536,
         "subheading": "SAME meals, MORE PROTEIN",
@@ -513,7 +504,7 @@
         "paragraph_align_mobile": "left",
         "activate_orange_btn": false,
         "cta_label": "Buy P24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify:\/\/products\/amplifye-p24",
         "button_width": "small",
         "source": ""
       }
@@ -524,7 +515,7 @@
       "settings": {
         "heading": "Explore the research from our team of clinical experts.",
         "cta_label": "All Articles",
-        "cta_url": "shopify://blogs/research",
+        "cta_url": "shopify:\/\/blogs\/research",
         "blog": "research"
       }
     }
