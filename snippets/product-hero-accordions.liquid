@@ -1,0 +1,121 @@
+<div class="product-hero__accordions">
+  {%- capture body_benefits -%}
+      {{- product.metafields.custom.benefits
+        | metafield_tag
+        | replace: '<div class="metafield-rich_text_field"', '<div class="metafield-rich_text_field wysiwyg"'
+      -}}
+      <div class="product-benefits g-2">
+        {%- for i in product.metafields.custom.benefits_icon.value -%}
+          <div class="product-benefits__item f-h f-a-c">
+            <div class="product-benefits__item__icon">
+              {%- if i.icon != null -%}
+                <span class="object-contain">
+                  {% render 'c-img-srcset',
+                    image: i.icon,
+                    alt: i.icon.alt
+                  %}
+                </span>
+              {%- endif -%}
+            </div>
+            <div class="product-benefits__item__title t-l-3">{{ i.title }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+      {% if section.settings.notes != blank %}
+        <div class="product-benefits__notes">
+          {%- render 'c-source',
+            source: section.settings.notes,
+            label: 'Disclaimer',
+            max_width: 2000
+          -%}
+        </div>
+      {% endif %}
+    {%- endcapture -%}
+
+  {% render 'c-accordion',
+    title: 'Benefits',
+    classes: 'is-active',
+    content: body_benefits,
+    isCloseSiblings: true
+  %}
+
+  {% comment %} 	TODO: This should be reviewed {% endcomment %}
+  {%- capture body_product_details -%}
+      {{- product.metafields.custom.product_details
+        | metafield_tag
+        | replace: '<div class="metafield-rich_text_field"', '<div class="metafield-rich_text_field wysiwyg"'
+      -}}
+      <div class="product-product-details g-2">
+        {%- for i in product.metafields.custom.product_details_icon.value -%}
+          <div class="product-product-details__item f-h f-a-c">
+            <div class="product-product-details__item__icon">
+              {%- if i.icon != null -%}
+                <span class="object-contain">
+                  {% render 'c-img-srcset',
+                    image: i.icon,
+                    alt: i.icon.alt
+                  %}
+                </span>
+              {%- endif -%}
+            </div>
+            <div class="product-product-details__item__title t-l-3">{{ i.title }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endcapture -%}
+
+  {% render 'c-accordion',
+    title: 'Ingredients',
+    content: body_product_details,
+    isCloseSiblings: true
+  %}
+  {% comment %} 	TODO: This should be reviewed {% endcomment %}
+  {%- capture body_suggested_use -%}
+      {{- product.metafields.custom.body_suggested_use
+        | metafield_tag
+        | replace: '<div class="metafield-rich_text_field"', '<div class="metafield-rich_text_field wysiwyg"'
+      -}}
+      <div class="product-suggested-use g-1">
+        {%- for i in product.metafields.custom.suggested_use_icon.value -%}
+          <div class="product-suggested-use__item f-h f-a-c">
+            <div class="product-suggested-use__item__icon">
+              {%- if i.icon != null -%}
+                <span class="object-contain">
+                  {% render 'c-img-srcset',
+                    image: i.icon,
+                    alt: i.icon.alt
+                  %}
+                </span>
+              {%- endif -%}
+            </div>
+            <div class="product-suggested-use__item__title t-l-3">{{ i.title }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endcapture -%}
+
+  {% render 'c-accordion',
+    title: 'Suggested Use',
+    content: body_suggested_use,
+    isCloseSiblings: true
+  %}
+
+  {% comment %}
+    TODO: This should be removed
+    {%- if product.metafields.custom.accordions.value -%}
+      {%- for i in product.metafields.custom.accordions.value -%}
+        {% assign body = i.body
+          | metafield_tag
+          | replace: '<div class="metafield-rich_text_field"',
+            '<div class="metafield-rich_text_field wysiwyg"'
+        %}
+
+        {% render 'c-accordion',
+          title: i.title,
+          content: body,
+          isCloseSiblings: true
+        %}
+      {%- endfor -%}
+    {%- endif -%}
+  {% endcomment %}
+</div>

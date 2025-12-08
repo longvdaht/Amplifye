@@ -103,21 +103,23 @@
 			</p>
 		{%- endif -%}
 	{%- endif -%}
-	<s class="c-item-price--compare js-price-compare">
-		{%- if price_compare != blank and price_compare != price_max -%}
-      {%- if currency_count > 1 -%}
-        {%- if hide_trailing_zeros == true -%}
-          {{- price_compare | money_without_currency_trailing_zeros -}}
-        {%- else -%}
-          {{- price_compare | money_with_currency -}}
-        {%- endif -%}
-      {%- else -%}
-        {%- if hide_trailing_zeros == true -%}
-          {{- price_compare | money_without_trailing_zeros -}}
-        {%- else -%}
-          {{- price_compare | money -}}
-        {%- endif -%}
-      {%- endif -%}
-    {%- endif -%}
-	</s>
+	{%- if price_compare > price_min -%}
+		<s class="c-item-price--compare js-price-compare">
+			{%- if price_compare != blank and price_compare != price_max -%}
+		{%- if currency_count > 1 -%}
+			{%- if hide_trailing_zeros == true -%}
+			{{- price_compare | money_without_currency_trailing_zeros -}}
+			{%- else -%}
+			{{- price_compare | money_with_currency -}}
+			{%- endif -%}
+		{%- else -%}
+			{%- if hide_trailing_zeros == true -%}
+			{{- price_compare | money_without_trailing_zeros -}}
+			{%- else -%}
+			{{- price_compare | money -}}
+			{%- endif -%}
+		{%- endif -%}
+		{%- endif -%}
+		</s>
+	{%- endif -%}
 </span>

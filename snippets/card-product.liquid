@@ -1,0 +1,157 @@
+{% comment %}
+	{%- render 'c-item-card',
+		item: productDrop | variantDrop ,
+		item_variant_title: string,
+		class: string
+	-%}
+{% endcomment %}
+
+{%- if item != blank -%}
+	{%- liquid
+		if item.variants
+			assign item_product = item
+			assign item_variant = false
+			assign thumb = item.featured_image
+			assign url = item.url | within: collection
+
+		else
+			assign item_product = item.product
+			assign item_variant = item
+			if item.image != null
+				assign thumb = item.image
+			else
+				assign thumb = item_product.featured_image
+			endif
+			assign url = item.url
+		endif
+	-%}
+
+	<div class="c-item-card{% if class %} {{ class }}{% endif %}">
+		<div class="c-item-card__thumbnail bg-subtle">
+			<span class="object-fit">
+				{%- render 'c-img-srcset', image: thumb, alt: item_product.title -%}
+			</span>
+
+			<a
+				class="c-item-card__url p-fill"
+				href="{{- url -}}"
+				title="{{- item_product.title | escape -}}"
+			></a>
+		</div>
+
+		<div class="c-item-card__content">
+			<div class="c-item-card__content__title t-l-3">
+				{{- item_product.title -}}
+				{%- if item_variant -%}
+					{{- item_variant_title | prepend: ' - ' -}}
+				{%- endif -%}
+			</div>
+
+			<div class="c-item-card__content__price t-l-4">
+				{%- render 'c-item-price', item: item, is_show_price_range: true -%}
+			</div>
+
+      {% assign product_form_id = 'quick-add-' | append: section_id | append: item_product.id %}
+      {% if quick_add %}
+        <div class="quick-add no-js-hidden">
+          {%- liquid
+            assign qty_rules = false
+            if item_product.selected_or_first_available_variant.quantity_rule.min > 1 or item_product.selected_or_first_available_variant.quantity_rule.max != null or item_product.selected_or_first_available_variant.quantity_rule.increment > 1
+              assign qty_rules = true
+            endif
+          -%}
+          {%- if item_product.variants_count > 1 or qty_rules -%}
+            <modal-opener data-modal="#QuickAdd-{{ item_product.id }}">
+              <button
+                id="{{ product_form_id }}-submit"
+                type="submit"
+                name="add"
+                class="quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} card--horizontal__quick-add animate-arrow{% endif %}"
+                aria-haspopup="dialog"
+                aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ item_product.id }}"
+                data-product-url="{{ item_product.url }}"
+              >
+                {{ 'products.product.choose_options' | t }}
+                {%- if horizontal_quick_add -%}
+                  <span class="icon-wrap">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </span>
+                {%- endif -%}
+                {%- render 'loading-spinner' -%}
+              </button>
+            </modal-opener>
+            <quick-add-modal id="QuickAdd-{{ item_product.id }}" class="quick-add-modal">
+              <div
+                role="dialog"
+                aria-label="{{ 'products.product.choose_product_options' | t: product_name: item_product.title | escape }}"
+                aria-modal="true"
+                class="quick-add-modal__content global-settings-popup"
+                tabindex="-1"
+              >
+                <button
+                  id="ModalClose-{{ item_product.id }}"
+                  type="button"
+                  class="quick-add-modal__toggle"
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </button>
+                <div id="QuickAddInfo-{{ item_product.id }}" class="quick-add-modal__content-info"></div>
+              </div>
+            </quick-add-modal>
+          {%- else -%}
+            <product-form data-section-id="{{ section.id }}">
+              {%- form 'product',
+                item_product,
+                id: product_form_id,
+                class: 'form',
+                novalidate: 'novalidate',
+                data-type: 'add-to-cart-form'
+              -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ item_product.selected_or_first_available_variant.id }}"
+                  class="product-variant-id"
+                  {% if item_product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                <button
+                  id="{{ product_form_id }}-submit"
+                  type="submit"
+                  name="add"
+                  class="btn quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} card--horizontal__quick-add{% endif %}"
+                  aria-haspopup="dialog"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ item_product.id }}"
+                  aria-live="polite"
+                  data-sold-out-message="true"
+                  {% if item_product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                  <span>
+                    {%- if item_product.selected_or_first_available_variant.available -%}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="sold-out-message hidden">
+                    {{ 'products.product.sold_out' | t }}
+                  </span>
+                  {%- if horizontal_quick_add -%}
+                    <span class="icon-wrap">
+                      {{- 'icon-plus.svg' | inline_asset_content -}}
+                    </span>
+                  {%- endif -%}
+                  {%- render 'loading-spinner' -%}
+                </button>
+              {%- endform -%}
+            </product-form>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+		</div>
+	</div>
+{%- endif -%}

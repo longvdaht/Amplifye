@@ -1,0 +1,14 @@
+{%- if product.metafields.custom.upsell_products.value -%}
+  {{ 'upsell-product.css' | asset_url | stylesheet_tag }}
+  <div class="upsell-products">
+    {%- liquid
+      assign upsell_products = product.metafields.custom.upsell_products.value
+    -%}
+
+    {% for product in upsell_products %}
+      <div class="product-item">
+        {%- render 'card-product', item: product, class: class, quick_add: true -%}
+      </div>
+    {% endfor %}
+  </div>
+{%- endif -%}

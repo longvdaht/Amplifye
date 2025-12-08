@@ -4,6 +4,23 @@ body #gladlyChat_container {
     transform: translateY(50%);
 }
 
+@media screen and (max-width: 1024px) {
+    .product-hero__header,
+    [id*="okendo_star_rating"] {
+        order: 1;
+    }
+}
+
+.product-hero__header {
+    margin-bottom: -10px;
+}
+
+@media screen and (min-width: 1025px) {
+    .product-hero__header {
+        margin-bottom: -30px;
+    }
+}
+
 #gladlyWidget .minimizedChatButton svg {
     display: none !important;
 }
@@ -20,7 +37,9 @@ body #gladlyChat_container {
     background-position: 50% 50%;
     width: 60px;
 }
-
+.hidden {
+    display: none !important;
+}
 .original-price {
     margin-left: 6px;
 }

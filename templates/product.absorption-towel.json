@@ -12,30 +12,44 @@
     "product-hero": {
       "type": "product-hero",
       "blocks": {
-        "title_zhh8JV": {
+        "title_DxqcnK": {
           "type": "title",
           "settings": {}
         },
-        "sub_title_HpXKiz": {
-          "type": "sub-title",
-          "settings": {}
-        },
-        "okendo_star_rating_iiRUbw": {
+        "okendo_star_rating_jmYXnw": {
           "type": "shopify://apps/okendo/blocks/star-rating/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
           "settings": {
             "product": "{{product}}"
           }
         },
-        "description_W8EtCK": {
+        "description_AdaFbQ": {
           "type": "description",
           "settings": {}
         },
-        "hero_form_6tUAYX": {
+        "accordions_GaEyjy": {
+          "type": "accordions",
+          "settings": {}
+        },
+        "hero_form_b48M97": {
           "type": "hero-form",
           "settings": {}
         },
+        "abra_promotions_dynamic_text_DQaazT": {
+          "type": "shopify://apps/abra-promotions/blocks/dynamic-text/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "settings": {
+            "name": "Default",
+            "dynamic_text_color": "#c14b24",
+            "dynamic_text_icon_color": "#c14b24",
+            "dynamic_text_font_size": 18,
+            "dynamic_text_icon_size": 20,
+            "dynamic_text_padding_y": 0,
+            "dynamic_text_padding_x": 0,
+            "text_align": "center"
+          }
+        },
         "flex_flex_badge_KrX9zn": {
           "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
+          "disabled": true,
           "settings": {
             "lomn": "yes",
             "style": "light",
@@ -45,6 +59,7 @@
         },
         "icon_with_text_rrEtjF": {
           "type": "icon-with-text",
+          "disabled": true,
           "settings": {
             "image_1": "shopify://shop_images/shipping.png",
             "heading_1": "Free standard US shipping",
@@ -55,41 +70,22 @@
             "image_4": "shopify://shop_images/try.png",
             "heading_4": "Try for 30 days or your money back"
           }
-        },
-        "accordions_LQjdqt": {
-          "type": "accordions",
-          "settings": {}
-        },
-        "text_rcfkBt": {
-          "type": "text",
-          "settings": {}
-        },
-        "chat_note_KmgddD": {
-          "type": "chat-note",
-          "settings": {}
-        },
-        "upsell_product_fmkqwD": {
-          "type": "upsell-product",
-          "settings": {}
         }
       },
       "block_order": [
-        "title_zhh8JV",
-        "sub_title_HpXKiz",
-        "okendo_star_rating_iiRUbw",
-        "description_W8EtCK",
-        "hero_form_6tUAYX",
+        "title_DxqcnK",
+        "okendo_star_rating_jmYXnw",
+        "description_AdaFbQ",
+        "accordions_GaEyjy",
+        "hero_form_b48M97",
+        "abra_promotions_dynamic_text_DQaazT",
         "flex_flex_badge_KrX9zn",
-        "icon_with_text_rrEtjF",
-        "accordions_LQjdqt",
-        "text_rcfkBt",
-        "chat_note_KmgddD",
-        "upsell_product_fmkqwD"
+        "icon_with_text_rrEtjF"
       ],
       "settings": {
-        "subscription_info": "<ul><li>Save $10 on every order</li><li>Free standard US shipping</li><li>Pause, skip or cancel anytime</li><li>Try for 30 days or your money back</li></ul>",
-        "one_time_info": "<ul><li>Free standard US shipping</li><li>Try for 30 days or your money back</li></ul>",
-        "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
+        "subscription_info": "",
+        "one_time_info": "",
+        "notes": "",
         "gallery_layout": "stacked"
       }
     },
@@ -259,6 +255,7 @@
         "logo_7KVqCn",
         "logo_6hkKbh"
       ],
+      "disabled": true,
       "name": "Brands",
       "settings": {
         "heading": "Featured In",
@@ -274,6 +271,7 @@
     },
     "s_editorial_n6Bpjt": {
       "type": "s-editorial",
+      "disabled": true,
       "name": "Editorial",
       "settings": {
         "is_full_bleed": false,
@@ -295,6 +293,7 @@
     },
     "s_editorial_text_visual_FLmGw6": {
       "type": "s-editorial-text-visual",
+      "disabled": true,
       "name": "Editorial Text Visual",
       "settings": {
         "background_image": "shopify://shop_images/amplifye_capsule.jpg",
@@ -358,6 +357,7 @@
     },
     "s_data_Mqw3An": {
       "type": "s-data",
+      "disabled": true,
       "settings": {
         "heading": "How bioavailable is your protein?",
         "subheading": "Explore how p24 amplifyes all types of protein",
@@ -388,6 +388,7 @@
     },
     "product-benefits-2": {
       "type": "product-benefits-2",
+      "disabled": true,
       "settings": {
         "heading": "Better protein absorption means better health benefits.",
         "subheading": "p24’s research-backed impact",
@@ -435,6 +436,7 @@
     },
     "s_faq_fbD3iH": {
       "type": "s-faq",
+      "disabled": true,
       "settings": {
         "subheading": "FAQ",
         "heading": "We’re here to break it down, literally.",
@@ -447,10 +449,12 @@
     },
     "product-reviews": {
       "type": "product-reviews",
+      "disabled": true,
       "settings": {}
     },
     "product-purchase-bar": {
       "type": "product-purchase-bar",
+      "disabled": true,
       "settings": {}
     }
   },
