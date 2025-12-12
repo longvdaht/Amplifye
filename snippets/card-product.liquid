@@ -46,7 +46,11 @@
 					{{- item_variant_title | prepend: ' - ' -}}
 				{%- endif -%}
 			</div>
-
+      {%- if item_product.metafields.custom.subtitle != blank -%}
+        <div class="product-hero__subtitle t-l-3">
+          <p>{{- item_product.metafields.custom.subtitle -}}</p>
+        </div>
+      {%- endif -%}
 			<div class="c-item-card__content__price t-l-4">
 				{%- render 'c-item-price', item: item, is_show_price_range: true -%}
 			</div>

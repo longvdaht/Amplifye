@@ -11,8 +11,14 @@
 
 .upsell-products .c-item-card .c-item-card__content {
   padding-left: 16px;
+  padding-top: 8px;
   display: flex;
   flex-direction: column;
+}
+
+.upsell-products .c-item-card__content__title,
+.upsell-products .product-hero__subtitle {
+  margin-bottom: 4px;
 }
 
 .quick-add__submit {

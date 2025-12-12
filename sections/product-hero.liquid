@@ -93,6 +93,11 @@
       "name": "Product Subtitle",
 	  "limit": 1
     },
+  {
+    "type": "price",
+    "name": "Product price",
+    "limit": 1
+  },
 	{
       "type": "description",
       "name": "Product description",
@@ -155,20 +160,28 @@
 {%- render 'product-hero-gallery', product: product -%}
 
 <div class="product-hero__content f-v f-j-s f-a-s">
+  <div class="product-hero__header f-v">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {% render block %}
+        {%- when 'title' -%}
+          <h1 class="t-h-2 product-hero__header">{{ product.title }}</h1>
+        {%- when 'price' -%}
+          {% render 'c-item-price', block: block, item: product, is_show_price_range: true %}
+        {%- when 'sub-title' -%}
+          {%- if product.metafields.custom.subtitle != blank -%}
+            <h2 class="product-hero__subtitle t-l-5 product-hero__header">
+              {{- product.metafields.custom.subtitle -}}
+            </h2>
+          {%- endif -%}
+      {%- endcase -%}
+	  {%- endfor -%}
+  </div>
 	{%- for block in section.blocks -%}
 		{%- case block.type -%}
-		  {%- when '@app' -%}
-			  {% render block %}
       {%- when 'icon-with-text' -%}
         {% render 'icon-with-text', block: block %}
-      {%- when 'title' -%}
-        <h1 class="t-h-2 product-hero__header">{{ product.title }}</h1>
-      {%- when 'sub-title' -%}
-        {%- if product.metafields.custom.subtitle != blank -%}
-          <h2 class="product-hero__subtitle t-l-5 product-hero__header">
-            {{- product.metafields.custom.subtitle -}}
-          </h2>
-        {%- endif -%}
       {%- when 'description' -%}
         {%- if product.description != blank -%}
           <div class="product-hero__description wysiwyg">

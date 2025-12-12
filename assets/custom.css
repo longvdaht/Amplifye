@@ -6,18 +6,10 @@ body #gladlyChat_container {
 
 @media screen and (max-width: 1024px) {
     .product-hero__header,
-    [id*="okendo_star_rating"] {
+    .c-item-price,
+    [id*="okendo_star_rating"],
+    [id*="flex_flex_badge"] {
         order: 1;
-    }
-}
-
-.product-hero__header {
-    margin-bottom: -10px;
-}
-
-@media screen and (min-width: 1025px) {
-    .product-hero__header {
-        margin-bottom: -30px;
     }
 }
 
