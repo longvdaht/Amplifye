@@ -11,10 +11,17 @@
 
 .upsell-products .c-item-card .c-item-card__content {
   padding-left: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .quick-add__submit {
   margin-top: 16px;
+  width: 100%;
+}
+
+.upsell-products .quick-add {
+  margin-top: auto;
 }
 
 @media (max-width: 767px) {
@@ -30,9 +37,5 @@
   .upsell-products .c-item-card .c-item-card__content {
     padding-left: 0;
     padding-top: 16px;
-  }
-
-  .quick-add__submit {
-    width: 100%;
   }
 }

@@ -31,14 +31,14 @@
         </div>
       {% endif %}
     {%- endcapture -%}
-
-  {% render 'c-accordion',
-    title: 'Benefits',
-    classes: 'is-active',
-    content: body_benefits,
-    isCloseSiblings: true
-  %}
-
+  {% if product.metafields.custom.benefits %}
+    {% render 'c-accordion',
+      title: 'Benefits',
+      classes: 'is-active',
+      content: body_benefits,
+      isCloseSiblings: true
+    %}
+  {% endif %}
   {% comment %} 	TODO: This should be reviewed {% endcomment %}
   {%- capture body_product_details -%}
       {{- product.metafields.custom.product_details
@@ -63,12 +63,14 @@
         {%- endfor -%}
       </div>
     {%- endcapture -%}
-
-  {% render 'c-accordion',
-    title: 'Ingredients',
-    content: body_product_details,
-    isCloseSiblings: true
-  %}
+  
+  {% if product.metafields.custom.product_details %}
+    {% render 'c-accordion',
+      title: 'Ingredients',
+      content: body_product_details,
+      isCloseSiblings: true
+    %}
+  {%- endif -%}
   {% comment %} 	TODO: This should be reviewed {% endcomment %}
   {%- capture body_suggested_use -%}
       {{- product.metafields.custom.body_suggested_use
@@ -93,29 +95,28 @@
         {%- endfor -%}
       </div>
     {%- endcapture -%}
+  
+  {% if product.metafields.custom.body_suggested_use %}
+    {% render 'c-accordion',
+      title: 'Suggested Use',
+      content: body_suggested_use,
+      isCloseSiblings: true
+    %}
+  {%- endif -%}
 
-  {% render 'c-accordion',
-    title: 'Suggested Use',
-    content: body_suggested_use,
-    isCloseSiblings: true
-  %}
+  {%- if product.metafields.custom.accordions.value -%}
+    {%- for i in product.metafields.custom.accordions.value -%}
+      {% assign body = i.body
+        | metafield_tag
+        | replace: '<div class="metafield-rich_text_field"',
+          '<div class="metafield-rich_text_field wysiwyg"'
+      %}
 
-  {% comment %}
-    TODO: This should be removed
-    {%- if product.metafields.custom.accordions.value -%}
-      {%- for i in product.metafields.custom.accordions.value -%}
-        {% assign body = i.body
-          | metafield_tag
-          | replace: '<div class="metafield-rich_text_field"',
-            '<div class="metafield-rich_text_field wysiwyg"'
-        %}
-
-        {% render 'c-accordion',
-          title: i.title,
-          content: body,
-          isCloseSiblings: true
-        %}
-      {%- endfor -%}
-    {%- endif -%}
-  {% endcomment %}
+      {% render 'c-accordion',
+        title: i.title,
+        content: body,
+        isCloseSiblings: true
+      %}
+    {%- endfor -%}
+  {%- endif -%}
 </div>
