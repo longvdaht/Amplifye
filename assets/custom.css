@@ -35,7 +35,13 @@ body #gladlyChat_container {
 .original-price {
     margin-left: 6px;
 }
-
+.c-upsell-item__add {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+.c-upsell-item__add:hover {
+    text-decoration: none;
+}
 .c-cart__summary__discount .price-value {
     color: var(--cr-orange-dark);
 }
