@@ -327,6 +327,26 @@
         "padding_left_mobile": 25
       }
     },
+    "landing_hero_2_a9fG8g": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "Meet the Limited Edition Travel Case",
+        "subheading": "",
+        "content": "Because consistency is key and forgetfulness is human.",
+        "cta_label": "Get the Travel Case",
+        "cta_url": "shopify://products/the-travel-case",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/A33I9352_1.png",
+        "background_image_mobile": "shopify://shop_images/Homepage_Module_Mobile_78b615d2-0f39-430f-8397-c39ed42400a9.png",
+        "product": "amplifye-p24",
+        "custom_style": true,
+        "content_alignment": "right",
+        "heading_font_size": 32,
+        "mobile_align": "bottom_center",
+        "code": ""
+      }
+    },
     "frontpage-benefits": {
       "type": "frontpage-benefits",
       "settings": {
@@ -366,7 +386,7 @@
         "padding_top_mobile": 100
       }
     },
-    "landing_hero_2_a9fG8g": {
+    "landing_hero_2_We6AHf": {
       "type": "landing-hero-2",
       "name": "Landing Hero (2)",
       "settings": {
@@ -534,9 +554,10 @@
     "s_reviews_dnaDbY",
     "landing_testimonial_video",
     "s_brands_3axFpA",
+    "landing_hero_2_a9fG8g",
     "frontpage-benefits",
     "new_editorial_GqCrKp",
-    "landing_hero_2_a9fG8g",
+    "landing_hero_2_We6AHf",
     "new_editorial_2_AtB4jB",
     "s_data_aMCyUH",
     "s_banner_X7rRhM",

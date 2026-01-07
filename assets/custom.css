@@ -4,6 +4,15 @@ body #gladlyChat_container {
     transform: translateY(50%);
 }
 
+@media screen and (max-width: 1024px) {
+    .product-hero__header,
+    .c-item-price,
+    [id*="okendo_star_rating"],
+    [id*="flex_flex_badge"] {
+        order: 1;
+    }
+}
+
 #gladlyWidget .minimizedChatButton svg {
     display: none !important;
 }
@@ -20,11 +29,19 @@ body #gladlyChat_container {
     background-position: 50% 50%;
     width: 60px;
 }
-
+.hidden {
+    display: none !important;
+}
 .original-price {
     margin-left: 6px;
 }
-
+.c-upsell-item__add {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+.c-upsell-item__add:hover {
+    text-decoration: none;
+}
 .c-cart__summary__discount .price-value {
     color: var(--cr-orange-dark);
 }

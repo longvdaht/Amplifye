@@ -12,6 +12,36 @@
     "product-hero": {
       "type": "product-hero",
       "blocks": {
+        "title_DxqcnK": {
+          "type": "title",
+          "settings": {}
+        },
+        "sub_title_KXPrWa": {
+          "type": "sub-title",
+          "settings": {}
+        },
+        "price_F4trV6": {
+          "type": "price",
+          "settings": {}
+        },
+        "okendo_star_rating_jmYXnw": {
+          "type": "shopify://apps/okendo/blocks/star-rating/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}"
+          }
+        },
+        "description_AdaFbQ": {
+          "type": "description",
+          "settings": {}
+        },
+        "accordions_GaEyjy": {
+          "type": "accordions",
+          "settings": {}
+        },
+        "hero_form_b48M97": {
+          "type": "hero-form",
+          "settings": {}
+        },
         "abra_promotions_dynamic_text_DQaazT": {
           "type": "shopify://apps/abra-promotions/blocks/dynamic-text/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
           "settings": {
@@ -35,6 +65,10 @@
             "width": 250
           }
         },
+        "upsell_product_tr69hV": {
+          "type": "upsell-product",
+          "settings": {}
+        },
         "icon_with_text_rrEtjF": {
           "type": "icon-with-text",
           "disabled": true,
@@ -51,8 +85,16 @@
         }
       },
       "block_order": [
+        "title_DxqcnK",
+        "sub_title_KXPrWa",
+        "price_F4trV6",
+        "okendo_star_rating_jmYXnw",
+        "description_AdaFbQ",
+        "accordions_GaEyjy",
+        "hero_form_b48M97",
         "abra_promotions_dynamic_text_DQaazT",
         "flex_flex_badge_KrX9zn",
+        "upsell_product_tr69hV",
         "icon_with_text_rrEtjF"
       ],
       "settings": {
@@ -429,6 +471,39 @@
       "type": "product-purchase-bar",
       "disabled": true,
       "settings": {}
+    },
+    "landing_s_banner_2_pM4zPr": {
+      "type": "landing-s-banner-2",
+      "name": "Landing Banner - 2",
+      "settings": {
+        "text_1": "",
+        "text_2": "",
+        "cta_label": "",
+        "cta_url": "",
+        "product": "",
+        "code": "",
+        "color_scheme": "background-1",
+        "bkg_color": "#fffaf1"
+      }
+    },
+    "landing_hero_2_7QbBRg": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "heading": "Take P24 anywhere, anytime with The Travel Case. ",
+        "subheading": "",
+        "content": "Absorbing more protein consistently unlocks its benefits on every level.",
+        "cta_label": "",
+        "cta_url": "",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/PDP_Banner_Travel_Case_Desktop_1.png",
+        "background_image_mobile": "shopify://shop_images/PDP_Banner_Travel_Case_Mobile.png",
+        "product": "",
+        "custom_style": false,
+        "content_alignment": "left",
+        "mobile_align": "bottom_center",
+        "code": ""
+      }
     }
   },
   "order": [
@@ -444,6 +519,8 @@
     "product-stats",
     "s_faq_fbD3iH",
     "product-reviews",
-    "product-purchase-bar"
+    "product-purchase-bar",
+    "landing_s_banner_2_pM4zPr",
+    "landing_hero_2_7QbBRg"
   ]
 }

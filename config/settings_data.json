@@ -50,6 +50,18 @@
       },
       "g-minicart": {
         "type": "g-minicart",
+        "blocks": {
+          "upsell_product_XPMCth": {
+            "type": "upsell_product",
+            "settings": {
+              "title": "You may also like",
+              "product": "the-travel-case"
+            }
+          }
+        },
+        "block_order": [
+          "upsell_product_XPMCth"
+        ],
         "settings": {
           "announcement": "",
           "footnote": "Shipping & taxes calculated at checkout",
@@ -63,7 +75,7 @@
           "is_enable_discount_code": false,
           "discount_success_message": "Discount applied!",
           "discount_error_message": "No luck! Try another code?",
-          "is_enable_upsell": false,
+          "is_enable_upsell": true,
           "upsell_navigation_type": "arrow",
           "is_enable_free_shipping": false,
           "free_shipping_text": "away from free shipping",
@@ -113,11 +125,6 @@
           "cards_border_color": "rgba(0,0,0,0)"
         }
       },
-      "17676059084223943535": {
-        "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
-        "disabled": false,
-        "settings": {}
-      },
       "2567389343055140935": {
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
@@ -132,6 +139,13 @@
         "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
         "disabled": true,
         "settings": {}
+      },
+      "10605408327587305396": {
+        "type": "shopify://apps/eg-auto-add-to-cart/blocks/app-embed/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
+        "disabled": false,
+        "settings": {
+          "version": "v3"
+        }
       },
       "2296928500563504527": {
         "type": "shopify://apps/abra-promotions/blocks/abra/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
@@ -162,13 +176,6 @@
           "announcement_bar_padding_y": 10,
           "announcement_bar_padding_x": 10,
           "sale_price_color": "#FF0000"
-        }
-      },
-      "10605408327587305396": {
-        "type": "shopify://apps/eg-auto-add-to-cart/blocks/app-embed/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
-        "disabled": true,
-        "settings": {
-          "version": "v3"
         }
       }
     },

@@ -94,5 +94,16 @@
         "info": "Should be the same image with landing(2) section at homepage"
       }
     ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "product_list",
+        "id": "product_list",
+        "label": "Upsell product",
+        "limit": 2
+      }
+    ]
   }
 ]
