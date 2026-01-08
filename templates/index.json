@@ -376,7 +376,7 @@
         "subheading": "THE PROTEIN PROBLEM",
         "heading": "We absorb <strong>less than 50%</strong> of the protein we eat.",
         "is_smaller_heading": false,
-        "paragraph": "Eating more isn’t the answer",
+        "paragraph": "<p>Eating more isn’t the answer</p><p></p>",
         "activate_orange_btn": false,
         "cta_label": "",
         "use_btn_outline": false,
