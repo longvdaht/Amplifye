@@ -108,6 +108,11 @@
 				{{ heading }}
 			</h2>
 		{%- endif -%}
+        {%- if heading_1 != blank -%}
+			<h2 class="c-header__heading {% if is_smaller_heading %}t-h-2{% else %}t-h-1{% endif %}">
+				{{ heading_1 }}
+			</h2>
+		{%- endif -%}
 
 		{%- if paragraph != blank
 			or source != blank
