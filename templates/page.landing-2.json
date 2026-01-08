@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "landing_hero_2_bzEcCq": {
@@ -9,9 +18,11 @@
         "content": "You’re stacking 150g of protein a day but still feel stalled (not to mention bloated or gassy). It's not how much you eat—its how well your body digests and absorbs.",
         "cta_label": "Get P24",
         "cta_url": "",
-        "background_image": "shopify:\/\/shop_images\/Group_10125167_2.jpg",
-        "background_image_mobile": "shopify:\/\/shop_images\/landing-02-mobile.jpg",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/Group_10125167_2.jpg",
+        "background_image_mobile": "shopify://shop_images/landing-02-mobile.jpg",
         "product": "",
+        "custom_style": false,
         "content_alignment": "right",
         "mobile_align": "other",
         "code": "upgrade15"
@@ -21,8 +32,8 @@
       "type": "landing-s-banner-2",
       "name": "Landing Banner - 2",
       "settings": {
-        "text_1": "<strong>15% off<\/strong> your first bottle",
-        "text_2": "Use code: <strong>UPGRADE15<\/strong>",
+        "text_1": "<strong>15% off</strong> your first bottle",
+        "text_2": "Use code: <strong>UPGRADE15</strong>",
         "cta_label": "Upgrade Your Protein Game",
         "cta_url": "",
         "product": "",
@@ -39,8 +50,8 @@
           "settings": {
             "title": "115%",
             "large_title": true,
-            "text": "<p>increase protein bioaccessibility<\/p>",
-            "background_image": "shopify:\/\/shop_images\/Fact_1.jpg"
+            "text": "<p>increase protein bioaccessibility</p>",
+            "background_image": "shopify://shop_images/Fact_1.jpg"
           }
         },
         "text_block_xF4AB9": {
@@ -48,8 +59,8 @@
           "settings": {
             "title": "Reduce bloat",
             "large_title": false,
-            "text": "<p>by working better and faster than your stomach’s digestive enzymes<\/p>",
-            "background_image": "shopify:\/\/shop_images\/Fact_2.jpg"
+            "text": "<p>by working better and faster than your stomach’s digestive enzymes</p>",
+            "background_image": "shopify://shop_images/Fact_2.jpg"
           }
         },
         "text_block_VKxfQJ": {
@@ -57,8 +68,8 @@
           "settings": {
             "title": "ENHANCE MUSCLE RECOVERY",
             "large_title": false,
-            "text": "<p>by Increasing essential amino acid yield<\/p>",
-            "background_image": "shopify:\/\/shop_images\/Fact_3.jpg"
+            "text": "<p>by Increasing essential amino acid yield</p>",
+            "background_image": "shopify://shop_images/Fact_3.jpg"
           }
         }
       },
@@ -79,7 +90,7 @@
         "block_E3haNa": {
           "type": "block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/UGC_Custom_Card.png",
+            "image": "shopify://shop_images/UGC_Custom_Card.png",
             "title": "I noticed positive changes in my gut health.",
             "name": "Larry S.",
             "is_autoplay": false
@@ -104,7 +115,7 @@
         "block_GCDqgA": {
           "type": "block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/UGC_Custom-Card_2.png",
+            "image": "shopify://shop_images/UGC_Custom-Card_2.png",
             "title": "I started taking one capsule with my dinner, and within the first two weeks I noticed a difference. Less bloating, better energy, and my recovery after workouts? Way smoother.",
             "name": "Riley",
             "is_autoplay": false
@@ -121,7 +132,7 @@
         "block_7y8TVr": {
           "type": "block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/UGC_Custom_Card_1.png",
+            "image": "shopify://shop_images/UGC_Custom_Card_1.png",
             "title": "P24 is a game-changer.",
             "name": "Michael S.",
             "is_autoplay": false
@@ -138,7 +149,7 @@
         "block_V7YFPi": {
           "type": "block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/UGC_Custom_Card_3.png",
+            "image": "shopify://shop_images/UGC_Custom_Card_3.png",
             "title": "More recovery and focus. Can feel a difference in the first week of taking P24.",
             "name": "Matt",
             "is_autoplay": false
@@ -170,21 +181,22 @@
       "type": "landing-editorial",
       "name": "Landing - Editorial",
       "settings": {
-        "background_image": "shopify:\/\/shop_images\/20250417-amplifye-01932_1.jpg",
-        "background_image_mobile": "shopify:\/\/shop_images\/Rectangle_93.jpg",
+        "background_image": "shopify://shop_images/20250417-amplifye-01932_1.jpg",
+        "background_image_mobile": "shopify://shop_images/Rectangle_93.jpg",
         "color": "",
         "content_max_width": 490,
         "alignment": "center",
         "vertical_align_c": false,
         "subheading": "Your Protein + P24 → AMINO ACIDS UNLOCKED → Muscle Synthesis ↑",
-        "heading": "Turn Every Gram Into Gains",
+        "heading": "",
+        "heading_1": "<p>Turn Every Gram Into Gains</p>",
         "is_smaller_heading": false,
         "paragraph": "AmplifyeP24 is a patented digestive enzyme that makes the protein you already eat more usable, faster, more fully, and with less digestive blowback.",
         "is_smaller_paragraph": false,
         "activate_orange_btn": true,
         "cta_label": "",
         "use_btn_outline": false,
-        "cta_url": "shopify:\/\/products\/amplifye-p24",
+        "cta_url": "shopify://products/amplifye-p24",
         "source": ""
       }
     },
@@ -193,7 +205,7 @@
       "name": "L - Image Text Split",
       "settings": {
         "media_type": "video",
-        "video": "shopify:\/\/files\/videos\/Microscopye Zoom_588x418.mp4",
+        "video": "shopify://files/videos/Microscopye Zoom_588x418.mp4",
         "heading": "Backed by Science",
         "text_1": "Proven by Peer-Reviewed Published White Paper",
         "text_2": "Third-party Tested",
@@ -201,7 +213,7 @@
         "text_4": "",
         "text_5": "",
         "cta_label": "LEARN MORE",
-        "cta_url": "shopify:\/\/pages\/the-science"
+        "cta_url": "shopify://pages/the-science"
       }
     },
     "landing_benefits_KFnVYr": {
@@ -224,8 +236,8 @@
       "type": "landing-editorial-2",
       "name": "Landing - Editorial (2)",
       "settings": {
-        "background_image": "shopify:\/\/shop_images\/image_2972_f9b24137-876f-4c80-9498-ed78605f1ddf.jpg",
-        "background_image_mobile": "shopify:\/\/shop_images\/image_2972.png",
+        "background_image": "shopify://shop_images/image_2972_f9b24137-876f-4c80-9498-ed78605f1ddf.jpg",
+        "background_image_mobile": "shopify://shop_images/image_2972.png",
         "color": "#ffffff",
         "content_max_width": 526,
         "alignment": "left",
@@ -237,7 +249,7 @@
         "activate_orange_btn": false,
         "cta_label": "MAKE EVERY GRAM COUNT",
         "use_btn_outline": true,
-        "cta_url": "shopify:\/\/products\/amplifye-p24",
+        "cta_url": "shopify://products/amplifye-p24",
         "source": "Guaranteed gains or your money back."
       }
     }
