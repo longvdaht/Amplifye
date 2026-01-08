@@ -135,5 +135,12 @@
       "to": "To",
       "clear_filter": "Remove filter"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "contact": {
+        "optional_phone_label": "Enter mobile phone # for order & shipping text updates. Reply Stop to unsubcribe."
+      }
+    }
   }
 }
