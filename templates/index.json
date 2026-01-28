@@ -547,6 +547,31 @@
         "cta_url": "shopify://blogs/research",
         "blog": "research"
       }
+    },
+    "1769630463ace51ffd": {
+      "type": "apps",
+      "blocks": {
+        "abra_promotions_banner_NLUHRC": {
+          "type": "shopify://apps/abra-promotions/blocks/banner/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "settings": {
+            "name": "Default",
+            "banner_background_color": "#119D52",
+            "banner_border_color": "#119D52",
+            "banner_color": "#FFFFFF",
+            "banner_icon_color": "#FFFFFF",
+            "banner_border_radius": 0,
+            "banner_font_size": 16,
+            "banner_icon_size": 16,
+            "banner_padding_y": 10,
+            "banner_padding_x": 10,
+            "text_align": "left"
+          }
+        }
+      },
+      "block_order": [
+        "abra_promotions_banner_NLUHRC"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -563,6 +588,7 @@
     "s_banner_X7rRhM",
     "new_editorial_3_VeitJY",
     "s_editorial_2_zKrmqe",
-    "s_articles_BapfYY"
+    "s_articles_BapfYY",
+    "1769630463ace51ffd"
   ]
 }
