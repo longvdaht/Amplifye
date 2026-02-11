@@ -480,6 +480,102 @@ body #gladlyChat_container {
     gap: 20px;
 }
 
+.template-page-new-landing-page .s-social__header h2,
+.template-page-new-landing-page .s-social__header p,
+.template-page-new-landing-page .s-social__text {
+    color: var(--cr-cream);
+}
+
+.template-page-new-landing-page .s-social__header {
+    flex-direction: column;
+}
+
+.template-page-new-landing-page .content-wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.template-page-new-landing-page .s-social__subheading {
+    text-transform: capitalize;
+}
+
+.template-page-new-landing-page .s-social__block::before {
+    display: none;
+}
+
+.social-item.s-social__block .s-social__block-item {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100%;
+}
+
+.template-page-new-landing-page .social-item.s-social__block .s-social__block-item {
+    position: relative;
+}
+
+.template-page-new-landing-page .social-item.s-social__block .s-social__block-item .object-fit,
+.template-page-new-landing-page .social-item.s-social__block .s-social__block-item .object-fit img {
+    position: relative;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
+.template-page-new-landing-page .s-social__text {
+    text-transform: uppercase;
+    margin-top: 16px;
+    text-align: left;
+    padding-bottom: 16px;
+    max-width: 240px;
+}
+
+.template-page-new-landing-page .s-social__text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    border: 0;
+    border-bottom: 1px solid #FFFAF1;
+    border-style: dashed;
+    left: 0;
+}
+
+/* .template-page-new-landing-page .scrollbar-custom::-webkit-scrollbar {
+    height: 0;
+} */
+
+.template-page-new-landing-page .s-social__block {
+    width: clamp(160px,20%,340px);
+}
+.template-page-new-landing-page  .s-social__blocks {
+    margin-bottom: 0;
+}
+@media (max-width: 600px) {
+    .template-page-new-landing-page .image-text-split .c-its {
+        flex-direction: column;
+    }
+
+    .template-page-new-landing-page .image-text-split .c-its .c-its__cta {
+        order: 3;
+    }
+
+    .template-page-new-landing-page .image-text-split .c-its .c-its__media {
+        order: 1;
+    }
+
+    .template-page-new-landing-page .image-text-split .c-its .c-its__content {
+        order: 2;
+    }
+}
+@media (min-width: 1820px) {
+    .template-page-new-landing-page .s-social__blocks {
+        justify-content: center;
+    }
+}
 @media (min-width: 601px) {
     .template-page-digestive-comfort .frontpage-hero__text .frontpage-hero__heading {
         font-size: 30px !important;
@@ -603,6 +699,10 @@ body #gladlyChat_container {
 
     .template-page-digestive-comfort .c-its__media::before {
         padding-top: calc(523/629*100%);
+    }
+
+    .template-page-new-landing-page .c-its__media::before {
+        padding-top: 100%;
     }
 
     .template-page-digestive-comfort .shopify-section.s-its {
