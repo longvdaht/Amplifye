@@ -71,13 +71,13 @@
                   {%- if block.type == 'benefit' -%}
                     <div class="benefit-item" {{ block.shopify_attributes }}>
                       <button 
-                        class="benefit-item__trigger {% unless block.settings.show_icon_at_first %}show-icon-end{% endunless %}"
+                        class="benefit-item__trigger"
                         data-benefit-trigger="{{ block.id }}"
                         aria-expanded="false"
                         aria-controls="benefit-dropdown-{{ block.id }}"
                       >
-                        <span class="mb-plus mobile">{{ 'mb-plus.svg' | inline_asset_content }}</span>
-                        <span class="dk-plus desktop">{{ 'dk-plus.svg' | inline_asset_content }}</span>
+                        <span class="mb-plus">{{ 'mb-plus.svg' | inline_asset_content }}</span>
+                        {% comment %} <span class="dk-plus desktop">{{ 'dk-plus.svg' | inline_asset_content }}</span> {% endcomment %}
                         <span class="benefit-item__title">{{ block.settings.title }}</span>
                       </button>
 
@@ -321,7 +321,49 @@
     });
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function equalizeCardHeights(containerSelector, cardSelector) {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      
+      const cards = container.querySelectorAll(cardSelector);
+      if (!cards.length) return;
+      
+      // Reset heights
+      cards.forEach(card => {
+        card.style.height = 'auto';
+      });
+      
+      // Find max height
+      let maxHeight = 0;
+      cards.forEach(card => {
+        const height = card.offsetHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+      });
+      
+      // Apply max height
+      cards.forEach(card => {
+        card.style.height = maxHeight + 'px';
+      });
+    }
 
+    // Call function
+    equalizeCardHeights('.s-social', '.s-social__text');
+
+    // Re-run on resize
+    window.addEventListener('resize', function() {
+      equalizeCardHeights('.s-social', '.s-social__text');
+    });
+
+    // Re-run after images load
+    window.addEventListener('load', function() {
+      equalizeCardHeights('.s-social', '.s-social__text');
+    });
+  });
+</script>
 {% schema %}
 {
   "name": "Module Benefits",
@@ -389,12 +431,6 @@
       "name": "Benefit Item",
       "limit": 4,
       "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_icon_at_first",
-          "label": "Show icon at first",
-          "default": true
-        },
         {
           "type": "text",
           "id": "title",
