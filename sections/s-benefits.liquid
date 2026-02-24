@@ -1,0 +1,493 @@
+{{ 'section-module-benefits.css' | asset_url | stylesheet_tag }}
+
+<section class="module-benefits module-benefits-{{ section.id }} module-benefits--{{ section.settings.layout }} section-{{ section.id }}-padding">
+  {%- if section.settings.layout == 'full-width' -%}
+    {%- comment -%} FULL WIDTH LAYOUT {%- endcomment -%}
+    <div class="module-benefits__background">
+      {%- if section.settings.background_image != blank -%}
+        <div class="module-benefits__bg-image module-benefits__bg-image--desktop">
+          {{
+            section.settings.background_image
+            | image_url: width: 2000
+            | image_tag:
+              sizes: '100vw',
+              widths: '375, 750, 1100, 1500, 2000'
+          }}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.background_image_mobile != blank -%}
+        <div class="module-benefits__bg-image module-benefits__bg-image--mobile">
+          {{
+            section.settings.background_image_mobile
+            | image_url: width: 750
+            | image_tag:
+              loading: 'lazy',
+              sizes: '100vw',
+              class: 'lazyload',
+              widths: '375, 750'
+          }}
+        </div>
+      {%- else -%}
+        <div class="module-benefits__bg-image module-benefits__bg-image--mobile">
+          {{
+            section.settings.background_image
+            | image_url: width: 750
+            | image_tag:
+              loading: 'lazy',
+              sizes: '100vw',
+              class: 'lazyload',
+              widths: '375, 750'
+          }}
+        </div>
+      {%- endif -%}
+      <div class="module-benefits__bg-overlay"></div>
+    </div>
+
+    <div class="module-benefits__container">
+      <div class="module-benefits__grid">
+        <div class="module-benefits__left">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="module-benefits__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <p class="module-benefits__description">{{ section.settings.description }}</p>
+          {%- endif -%}
+          {%- if section.settings.subtitle != blank -%}
+            <p class="module-benefits__subtitle module-benefits__subtitle--top">{{ section.settings.subtitle }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="module-benefits__right">
+          <div class="module-benefits__image-wrapper">
+            <div class="module-benefits__bg-overlay"></div>
+
+            <div class="content-wrapper">
+              {%- if section.settings.subtitle != blank -%}
+                <p class="module-benefits__subtitle module-benefits__subtitle--overlay">{{ section.settings.subtitle }}</p>
+              {%- endif -%}
+
+              <div class="module-benefits__buttons">
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'benefit' -%}
+                    <div class="benefit-item" {{ block.shopify_attributes }}>
+                      <button 
+                        class="benefit-item__trigger"
+                        data-benefit-trigger="{{ block.id }}"
+                        aria-expanded="false"
+                        aria-controls="benefit-dropdown-{{ block.id }}"
+                      >
+                        <span class="mb-plus">{{ 'mb-plus.svg' | inline_asset_content }}</span>
+                        {% comment %} <span class="dk-plus desktop">{{ 'dk-plus.svg' | inline_asset_content }}</span> {% endcomment %}
+                        <span class="benefit-item__title">{{ block.settings.title }}</span>
+                      </button>
+
+                      <div 
+                        class="benefit-item__dropdown"
+                        id="benefit-dropdown-{{ block.id }}"
+                        data-benefit-dropdown="{{ block.id }}"
+                        hidden
+                      >
+                        <div class="benefit-item__dropdown-inner">
+                          <button class="benefit-item__close" aria-label="Close">
+                            <span class="mb-plus mobile">{{ 'mb-plus-dropdown.svg' | inline_asset_content }}</span>
+                            <span class="dk-plus desktop">{{ 'dk-plus-dropdown.svg' | inline_asset_content }}</span>
+                          </button>
+                          <h3 class="benefit-item__dropdown-title">{{ block.settings.title }}</h3>
+                          {%- if block.settings.description != blank -%}
+                            <p class="benefit-item__dropdown-desc">{{ block.settings.description }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.research_title != blank -%}
+                            <div class="benefit-item__research">
+                              <h4 class="benefit-item__research-title">{{ block.settings.research_title }}</h4>
+                              {%- if block.settings.research_citation != blank -%}
+                                <p class="benefit-item__research-citation">{{ block.settings.research_citation }}</p>
+                              {%- endif -%}
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              <div class="module-benefits__left mobile-content">
+                {%- if section.settings.heading != blank -%}
+                  <h2 class="module-benefits__heading">{{ section.settings.heading }}</h2>
+                {%- endif -%}
+                {%- if section.settings.description != blank -%}
+                  <p class="module-benefits__description">{{ section.settings.description }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {%- else -%}
+    {%- comment -%} HALF WIDTH LAYOUT {%- endcomment -%}
+    <div class="module-benefits__container">
+      <div class="module-benefits__grid">
+        <div class="module-benefits__left">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="module-benefits__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <p class="module-benefits__description">{{ section.settings.description }}</p>
+          {%- endif -%}
+          {%- if section.settings.subtitle != blank -%}
+            <p class="module-benefits__subtitle module-benefits__subtitle--top">{{ section.settings.subtitle }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="module-benefits__right">
+          <div class="module-benefits__image-wrapper">
+            {%- if section.settings.background_image != blank -%}
+              <div class="module-benefits__bg-image">
+                {{
+                  section.settings.background_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '(min-width: 750px) 50vw, 100vw',
+                    widths: '375, 750, 1000, 1200'
+                }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.background_image_mobile != blank -%}
+              <div class="module-benefits__bg-image module-benefits__bg-image--mobile">
+                {{
+                  section.settings.background_image_mobile
+                  | image_url: width: 750
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '100vw',
+                    class: 'lazyload',
+                    widths: '375, 750'
+                }}
+              </div>
+            {%- else -%}
+              <div class="module-benefits__bg-image module-benefits__bg-image--mobile">
+                {{
+                  section.settings.background_image
+                  | image_url: width: 750
+                  | image_tag:
+                    loading: 'lazy',
+                    sizes: '100vw',
+                    class: 'lazyload',
+                    widths: '375, 750'
+                }}
+              </div>
+            {%- endif -%}
+            <div class="module-benefits__bg-overlay"></div>
+
+            <div class="content-wrapper">
+              {%- if section.settings.subtitle != blank -%}
+                <p class="module-benefits__subtitle module-benefits__subtitle--overlay">{{ section.settings.subtitle }}</p>
+              {%- endif -%}
+
+              <div class="module-benefits__buttons">
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'benefit' -%}
+                    <div class="benefit-item" {{ block.shopify_attributes }}>
+                      <button 
+                        class="benefit-item__trigger {% unless block.settings.show_icon_at_first %}show-icon-end{% endunless %}"
+                        data-benefit-trigger="{{ block.id }}"
+                        aria-expanded="false"
+                        aria-controls="benefit-dropdown-{{ block.id }}"
+                      >
+                        <span class="mb-plus mobile">{{ 'mb-plus.svg' | inline_asset_content }}</span>
+                        <span class="dk-plus desktop">{{ 'dk-plus.svg' | inline_asset_content }}</span>
+                        <span class="benefit-item__title">{{ block.settings.title }}</span>
+                      </button>
+
+                      <div 
+                        class="benefit-item__dropdown"
+                        id="benefit-dropdown-{{ block.id }}"
+                        data-benefit-dropdown="{{ block.id }}"
+                        hidden
+                      >
+                        <div class="benefit-item__dropdown-inner">
+                          <button class="benefit-item__close" aria-label="Close">
+                            <span class="mb-plus mobile">{{ 'mb-plus-dropdown.svg' | inline_asset_content }}</span>
+                            <span class="dk-plus desktop">{{ 'dk-plus-dropdown.svg' | inline_asset_content }}</span>
+                          </button>
+                          <h3 class="benefit-item__dropdown-title">{{ block.settings.title }}</h3>
+                          {%- if block.settings.description != blank -%}
+                            <p class="benefit-item__dropdown-desc">{{ block.settings.description }}</p>
+                          {%- endif -%}
+                          {%- if block.settings.research_title != blank -%}
+                            <div class="benefit-item__research">
+                              <h4 class="benefit-item__research-title">{{ block.settings.research_title }}</h4>
+                              {%- if block.settings.research_citation != blank -%}
+                                <p class="benefit-item__research-citation">{{ block.settings.research_citation }}</p>
+                              {%- endif -%}
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              <div class="module-benefits__left mobile-content">
+                {%- if section.settings.heading != blank -%}
+                  <h2 class="module-benefits__heading">{{ section.settings.heading }}</h2>
+                {%- endif -%}
+                {%- if section.settings.description != blank -%}
+                  <p class="module-benefits__description">{{ section.settings.description }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.module-benefits-{{ section.id }}');
+    if (!section) return;
+
+    const triggers = section.querySelectorAll('[data-benefit-trigger]');
+    const dropdowns = section.querySelectorAll('[data-benefit-dropdown]');
+    const parentElements = section.querySelectorAll('.benefit-item');
+
+    function closeAllDropdowns() {
+      dropdowns.forEach(dropdown => {
+        dropdown.hidden = true;
+        dropdown.classList.remove('is-active');
+      });
+      triggers.forEach(trigger => {
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.classList.remove('is-active');
+      });
+      parentElements.forEach(parentElement => {
+        parentElement.classList.remove('is-active');
+      });
+    }
+
+    function openDropdown(id) {
+      closeAllDropdowns();
+      const dropdown = section.querySelector(`[data-benefit-dropdown="${id}"]`);
+      const trigger = section.querySelector(`[data-benefit-trigger="${id}"]`);
+      const parentElement = trigger.closest('.benefit-item');
+      
+      if (dropdown && trigger) {
+        dropdown.hidden = false;
+        dropdown.classList.add('is-active');
+        trigger.setAttribute('aria-expanded', 'true');
+        trigger.classList.add('is-active');
+        parentElement.classList.add('is-active');
+      }
+    }
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = this.getAttribute('data-benefit-trigger');
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+          closeAllDropdowns();
+        } else {
+          openDropdown(id);
+        }
+      });
+    });
+
+    // Close buttons inside dropdowns
+    section.querySelectorAll('.benefit-item__close').forEach(closeBtn => {
+      closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        closeAllDropdowns();
+      });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.benefit-item')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Close on ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAllDropdowns();
+      }
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function equalizeCardHeights(containerSelector, cardSelector) {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      
+      const cards = container.querySelectorAll(cardSelector);
+      if (!cards.length) return;
+      
+      // Reset heights
+      cards.forEach(card => {
+        card.style.height = 'auto';
+      });
+      
+      // Find max height
+      let maxHeight = 0;
+      cards.forEach(card => {
+        const height = card.offsetHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+      });
+      
+      // Apply max height
+      cards.forEach(card => {
+        card.style.height = maxHeight + 'px';
+      });
+    }
+
+    // Call function
+    equalizeCardHeights('.s-social', '.s-social__text');
+
+    // Re-run on resize
+    window.addEventListener('resize', function() {
+      equalizeCardHeights('.s-social', '.s-social__text');
+    });
+
+    // Re-run after images load
+    window.addEventListener('load', function() {
+      equalizeCardHeights('.s-social', '.s-social__text');
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Module Benefits",
+  "tag": "section",
+  "class": "section-module-benefits",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "full-width",
+          "label": "Full Width Background"
+        },
+        {
+          "value": "half-width",
+          "label": "Half Width (Text + Image)"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Without optimized protein absorption, every system can be affected:"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Think of P24 like an insurance policy for anyone on a GLP-1."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "When calories drop, protein absorption matters more than ever."
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image (Desktop)",
+      "info": "For layout full width, we should use a full width image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background Image (Mobile)",
+      "info": "Optional. Falls back to desktop image."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "RECOVERY"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Amino acids are essential for muscle repair. Lorem ipsum dolor sit amet consectetur. Lorsit amet iconsetur."
+        },
+        {
+          "type": "text",
+          "id": "research_title",
+          "label": "Research Title",
+          "default": "Scientific Research"
+        },
+        {
+          "type": "textarea",
+          "id": "research_citation",
+          "label": "Research Citation",
+          "default": "Denk, D., Petrocelli, V., Rinsch, C. Expansion of T memory stem cells with superior anti-tumor immunity by Urolithin A-induced mitophagy. Immunity, 55, Issue 11 (2022)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Module Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "SKIN & HAIR"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "MUSCLE"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "RECOVERY"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "ENERGY"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

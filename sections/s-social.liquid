@@ -59,6 +59,16 @@
 		},
 		{
 			"type": "text",
+			"id": "subheading",
+			"label": "Subheading"
+		},
+		{
+            "type": "color",
+            "id": "background",
+            "label": "Background color"
+          },
+		{
+			"type": "text",
 			"id": "cta_label",
 			"label": "CTA Label",
 			"default": "Follow @amplifye_me"
@@ -83,6 +93,11 @@
 					"type": "url",
 					"id": "url",
 					"label": "URL"
+				},
+				{
+					"type": "text",
+					"id": "content",
+					"label": "Text content"
 				}
 			]
 		}
@@ -92,14 +107,27 @@
 
 {% liquid
 	assign heading = section.settings.heading
+	assign subheading = section.settings.subheading
 	assign cta_label = section.settings.cta_label
 	assign cta_url = section.settings.cta_url
 %}
 
+{% style %}
+	{% if section.settings.background != blank %}
+		.s-social .content-wrapper {
+			background-color: {{ section.settings.background }};
+		}
+	{% endif %}
+{% endstyle %}
+
 {% if section.blocks.size > 0 %}
+	<div class="content-wrapper">
 	<div class="s-social__header f-h f-a-c p-x-max">
 		{% if heading != blank %}
 			<h2 class="t-h-2">{{ heading }}</h2>
+		{% endif %}
+		{% if subheading != blank %}
+			<p class="s-social__subheading t-l-5">{{ subheading }}</p>
 		{% endif %}
 
 		{%- if cta_label != blank and cta_url != blank -%}
@@ -119,14 +147,20 @@
 			{% liquid
 				assign image = block.settings.image
 				assign url = block.settings.url | default: cta_url
+				assign text_content = block.settings.content
 			%}
-			{% if image != null and url != blank %}
-				<a href="{{ url }}" class="s-social__block bg-subtle">
-					<span class="object-fit">
-						{% render 'c-img-srcset', image: image, alt: image.alt %}
-					</span>
-				</a>
-			{% endif %}
+			<div class="social-item s-social__block">
+				{% if image != null and url != blank %}
+					<a href="{{ url }}" class="s-social__block-item bg-subtle">
+						<span class="object-fit">
+							{% render 'c-img-srcset', image: image, alt: image.alt %}
+						</span>
+					</a>
+				{% endif %}
+				{% if text_content != blank %}
+					<p class="s-social__text t-l-5">{{ text_content }}</p>
+				{% endif %}
+			</div>
 		{% endfor %}
 	</div>
 
@@ -140,4 +174,5 @@
 			</span>
 		</a>
 	{%- endif -%}
+	</div>
 {% endif %}
