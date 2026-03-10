@@ -1,0 +1,103 @@
+{% schema %}
+  {
+    "name": "Stats Banner",
+    "tag": "section",
+    "class": "stats-banner-section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Proven to increase protein's bioavailability."
+      },
+      {
+        "type": "richtext",
+        "id": "source_label",
+        "label": "Source label",
+        "default": "<p>SOURCE: FRONTIERS OF NUTRITION, 2024</p>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "stat",
+        "name": "Stat",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon (optional)"
+          },
+          {
+            "type": "text",
+            "id": "value",
+            "label": "Stat value",
+            "default": "115%"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Stat label",
+            "default": "INCREASE IN THE STOMACH"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Stats Banner",
+        "blocks": [
+          { "type": "stat", "settings": { "value": "115%", "label": "INCREASE IN THE STOMACH" } },
+          { "type": "stat", "settings": { "value": "15%", "label": "INCREASE IN THE SMALL INTESTINE" } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  
+  {{ 'stats-banner.css' | asset_url | stylesheet_tag }}
+
+  <div class="stats-banner--{{ section.id }} stats-wrapper" style="background: {{ section.settings.background }};">
+    <div class="stats-banner__grid">
+      <div class="stats-banner__text">
+        {% if section.settings.heading != blank %}
+          <h2 class="stats-banner__heading t-h-2">{{ section.settings.heading }}</h2>
+        {% endif %}
+  
+        {% if section.settings.source_label != blank %}
+          <div class="source-label">
+            {{ section.settings.source_label }}
+          </div>
+        {% endif %}
+      </div>
+  
+      {% if section.blocks.size > 0 %}
+        <div class="stats-banner__stats">
+          {% for block in section.blocks %}
+            <div class="stats-banner__stat" {{ block.shopify_attributes }}>
+              <div class="stats-banner__stat-value t-h-1">
+                {% if block.settings.icon != blank %}
+                  <img class="stats-banner__stat-icon"
+                    src="{{ block.settings.icon | image_url: width: 80 }}"
+                    alt=""
+                    width="40"
+                    height="40"
+                    loading="lazy">
+                {% endif %}
+                {{ block.settings.value }}
+              </div>
+              {% if block.settings.label != blank %}
+                <p class="stats-banner__stat-label t-l-6">{{ block.settings.label }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>

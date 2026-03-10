@@ -5,6 +5,12 @@
 	"class": "frontpage-hero p-y-section p-x-lg f-v f-j-c js-frontpage-hero",
 	"settings": [
 		{
+			"type": "color",
+			"id": "text_color",
+			"label": "Text color",
+			"default": "#ffffff"
+			},
+		{
 			"type": "textarea",
 			"id": "heading",
 			"label": "Heading"
@@ -37,6 +43,10 @@
 				{
 					"value": "primary",
 					"label": "Primary hover white"
+				},
+				{
+					"value": "secondary",
+					"label": "Secondary hover black"
 				},
 				{
 					"value": "outline",
@@ -99,6 +109,12 @@
 			"id": "heading_font_size",
 			"label": "Heading's font size"
 		},
+		{
+			"type": "checkbox",
+			"id": "mobile_text_below",
+			"label": "Mobile: text below image (not overlay)",
+			"default": false
+			},
 		{
 			"type": "select",
 			"id": "mobile_align",
@@ -168,9 +184,58 @@
 {% assign shopify_section_id = '#shopify-section-' | append: section.id %}
 
 {% style %}
-    .landing-hero__text {
-        color: #FFFFFF;
+    {{ shopify_section_id }} .landing-hero__text {
+        color: {{ section.settings.text_color  }};
     }
+
+	{% if section.settings.mobile_text_below %}
+	@media (max-width: 600px) {
+		{{ shopify_section_id }}.frontpage-hero {
+			padding: 0;
+		}
+
+		{{ shopify_section_id }} .frontpage-hero__text.landing-hero__text {
+			background: #EEE5D6;
+		}
+
+		{{ shopify_section_id }} .frontpage-hero__container {
+			flex-direction: column;
+			min-height: auto;
+		}
+
+		{{ shopify_section_id }} .frontpage-hero__image.p-fill {
+			position: relative;
+			width: 100%;
+			aspect-ratio: 1 / 1.2;
+		}
+
+		{{ shopify_section_id }} .frontpage-hero__image .object-fit {
+			position: absolute;
+			inset: 0;
+			transform: none;
+		}
+
+		{{ shopify_section_id }} .frontpage-hero__image .object-fit img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		{{ shopify_section_id }} .landing-hero__text {
+			position: relative;
+			color: {{ section.settings.text_color_mobile }};
+			background: {{ section.settings.bg_color_mobile }};
+			padding: 32px 22px 40px;
+			align-content: flex-start;
+			height: auto;
+		}
+
+		{{ shopify_section_id }} .landing-hero__text-heading,
+		{{ shopify_section_id }} .landing-hero__text-content {
+			text-align: center;
+		}
+	}
+	{% endif %}
   
     .product-hero__form.simple-product-form .c-product-form__cta {
       width: auto;
@@ -305,13 +370,13 @@
             width: 100%;
         }
 
-        {{ shopify_section_id }} .frontpage-hero__heading {
-            font-family: GT Pressura Mono;
-            font-size: var(--mb-font-size);
-            line-height: 1.15;
-            letter-spacing: 0;
-            margin-bottom: 15px;
-        }
+		{{ shopify_section_id }} .frontpage-hero__heading {
+			font-family: GT Pressura Mono;
+			font-size: var(--mb-font-size);
+			line-height: 1.15;
+			letter-spacing: 0;
+			margin-bottom: 15px;
+		}
 
         {{ shopify_section_id }} .frontpage-hero__subheading {
             font-size: 22px;
@@ -411,7 +476,7 @@
 			<div class="landing-hero__text-heading">
 				{%- if heading != blank -%}
 					{% assign heading_font_size = section.settings.heading_font_size | default : 40 %}
-					<h1 class="frontpage-hero__heading t-h-1" style="--mb-font-size: {{ heading_font_size }}px">
+				<h1 class="frontpage-hero__heading t-h-1" style="--mb-font-size: {{ heading_font_size }}px;">
 						{{ heading | newline_to_br }}
 					</h1>
 				{%- endif -%}
@@ -442,6 +507,13 @@
 						{{ content }}
 					</p>
 				{%- endif -%}
+				{%- liquid
+					if button_style == 'secondary'
+						assign btn_class = ' cr-orange'
+					else
+						assign btn_class = ' hover-white'
+					endif
+				-%}
 				{%- if cta_label != blank -%}
 					{%- if cta_url != blank  -%}
 						<a
@@ -454,7 +526,7 @@
 						</a>
 					{%- else -%}
 						<div class="product-hero__form simple-product-form">
-							{% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, button_class: ' hover-white', code: code  %}
+							{% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, button_class: btn_class, code: code %}
 						</div>
 					{%- endif -%}
 				{%- endif -%}

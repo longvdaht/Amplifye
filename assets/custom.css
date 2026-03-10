@@ -554,6 +554,96 @@ body #gladlyChat_container {
 .template-page-new-landing-page  .s-social__blocks {
     margin-bottom: 0;
 }
+.template-page-active-agers .image-text-split .c-its {
+    flex-direction: column;
+    gap: 0;
+}
+.template-page-active-agers .image-text-split .c-its__media::before {
+    padding-top: calc(85% - 0.5px);
+}
+.template-page-active-agers .c-its__content {
+    padding: 50px 20px;
+    gap: 0;
+}
+.template-page-active-agers .c-its__heading {
+    letter-spacing: 0;
+    margin-bottom: 30px;
+}
+.template-page-active-agers .image-text-split p {
+    max-width: calc(300/346*100%);
+    margin-bottom: 24px;
+    font: var(--t-b-1);
+    font-weight: 400;
+}
+.template-page-active-agers .c-its__note {
+    margin-bottom: 35px;
+}
+.template-page-active-agers .c-its__note p {
+    font: var(--t-l-1);
+    line-height: 120%;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+.template-page-active-agers .c-its__note a {
+    color: var(--cr-orange-dark);
+}
+.template-page-active-agers .image-text-split .product-hero__form {
+    min-width: 266px;
+}
+.template-page-active-agers .landing-solution .frontpage-intro__heading {
+    margin-bottom: 40px;
+}
+.template-page-active-agers .landing-solution .more-content {
+    max-width: calc(350 / 358 * 100%);
+    border: 1px dashed;
+    border-left: 0;
+    border-right: 0;
+    padding: 12px 0;
+}
+.template-page-active-agers .landing-solution .more-content ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    max-width: calc(300 / 358 * 100%);
+    margin: 0 auto;
+}
+.template-page-active-agers .landing-solution .more-content li {
+    font: var(--t-l-6);
+    line-height: 120%;
+    letter-spacing: .06em;
+    padding-left: 16px;
+    position: relative;
+}
+.template-page-active-agers .landing-solution .more-content li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--cr-cream);
+}
+.template-page-active-agers .landing-solution .product-hero__form {
+    min-width: 270px;
+}
+.template-page-active-agers .landing-solution .product-hero__form {
+    order: unset;
+    margin-top: 36px;
+}
+.template-page-active-agers .landing-solution .p-y-section {
+    padding-bottom: 0;
+}
+.template-page-active-agers .frontpage-intro__container {
+    margin-top: 36px;
+}
+.template-page-active-agers .frontpage-intro__heading {
+    max-width: 100%;
+}
 @media (max-width: 600px) {
     .template-page-new-landing-page .image-text-split .c-its {
         flex-direction: column;
@@ -691,7 +781,55 @@ body #gladlyChat_container {
         width: calc(50% - 51px);
         max-width: calc(50% - 51px);
     }
-
+    .template-page-active-agers .c-its__media {
+        width: calc(45% - 18px);
+        max-width: calc(45% - 18px);
+    }
+    .template-page-active-agers .c-its__content {
+        width: calc(55% + 18px);
+        max-width: 666px;
+        padding-right: 82px;
+    }
+    .template-page-active-agers .right .c-its__content {
+        margin-left: auto;
+        padding-right: 20px;
+        padding-left: 82px;
+    }
+    .template-page-active-agers .image-text-split .c-its {
+        flex-direction: row;
+    }
+    .template-page-active-agers .image-text-split .c-its.right {
+        flex-direction: row-reverse;
+    }
+    .template-page-active-agers .image-text-split .c-its__heading {
+        margin-bottom: 50px;
+    }
+    .template-page-active-agers .image-text-split p {
+        margin-bottom: 30px;
+    }
+    .template-page-active-agers .image-text-split .c-its__note {
+        margin-bottom: 50px;
+    }
+    .template-page-active-agers .image-text-split .product-hero__form {
+        min-width: 300px;
+    }
+    .template-page-active-agers .image-text-split .c-its__note p {
+        font-size: 14px;
+    }
+    .template-page-active-agers .image-text-split .c-its__media:before {
+        padding-top: calc(784/629*100%);;
+    }
+    .template-page-active-agers .landing-solution .frontpage-intro__subheading:not(:last-child) {
+        margin-bottom: 40px;
+    }
+    .template-page-active-agers .landing-solution .more-content {
+        max-width: calc(1083 / 1246 * 100%);
+        width: 100%;
+    }
+    .template-page-active-agers .landing-solution .more-content ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    }
     .template-page-digestive-comfort .c-its__media .object-fit>*:not(picture) {
         width: 100% !important;
         height: auto !important;
