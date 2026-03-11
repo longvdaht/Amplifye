@@ -561,6 +561,9 @@ body #gladlyChat_container {
 .template-page-active-agers .image-text-split .c-its__media::before {
     padding-top: calc(85% - 0.5px);
 }
+.template-page-active-agers .image-text-split .c-its__media img {
+    object-position: center top;
+}
 .template-page-active-agers .c-its__content {
     padding: 50px 20px;
     gap: 0;

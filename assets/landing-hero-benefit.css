@@ -76,6 +76,10 @@
     aspect-ratio: 390/1013;
   }
 
+  .hero-benefits .hero-benefits__list {
+    margin-bottom: 24px;
+  }
+
   .hero-benefits .hero-benefits__bg .desktop-image {
     display: none;
   }
@@ -92,7 +96,7 @@
   }
 
   .hero-benefits .hero-benefits__heading {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
 
   .hero-benefits .hero-benefits__item-desc {
@@ -100,6 +104,6 @@
   }
 
   .hero-benefits .hero-benefits__item {
-    padding: 16px 0;
+    padding: 12px 0;
   }
 }

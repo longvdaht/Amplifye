@@ -17,7 +17,7 @@
 {%- if selected_media_type == 'image' and image != null -%}
 	{% render 'c-img-srcset',
 		image: image,
-		responsive_image: image_mobile,
+		responsive_image: responsive_image,
 		max_width: 1200
 	%}
 
