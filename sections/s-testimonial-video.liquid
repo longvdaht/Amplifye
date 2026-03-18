@@ -166,11 +166,14 @@
 	assign subheading = section.settings.subheading
 	assign cta_label = section.settings.cta_label
 	assign cta_url = section.settings.cta_url
+	if section.blocks.size < 5
+		assign count_item = 'less-items'
+	endif
 %}
 
 {% if section.blocks.size > 0 %}
 	<div
-		class="s-testimonial-video {% if layout == 'vertical' %}is-vertical f-v f-a-s{% else %}is-horizontal f-h{% endif %}"
+		class="s-testimonial-video {% if layout == 'vertical' %}is-vertical f-v f-a-s{% else %}is-horizontal f-h{% endif %} {{ count_item }}"
 	>
 		{%- if heading != blank or subheading != blank or cta_label != blank -%}
 			<div class="s-testimonial-video__header p-x-max">
