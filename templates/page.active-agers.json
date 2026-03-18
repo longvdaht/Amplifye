@@ -194,6 +194,15 @@
     "landing_testimonial_video": {
       "type": "s-testimonial-video",
       "blocks": {
+        "block_CDxCGK": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/Amplifye_2026_03_Paid_Assets_440584_Steven_L_Short_9x16_Final_7aaaa88f-8898-4a50-ad6a-790f4a43bde0.mp4",
+            "title": "",
+            "name": "Steven",
+            "is_autoplay": false
+          }
+        },
         "block_E3haNa": {
           "type": "block",
           "settings": {
@@ -210,6 +219,15 @@
             "is_autoplay": false
           }
         },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/Amplifye_2026_01_Paid_Assets_Lori_H_437548_9x16_Final.mp4",
+            "title": "",
+            "name": "Lori",
+            "is_autoplay": false
+          }
+        },
         "block_K638i8": {
           "type": "block",
           "settings": {
@@ -223,25 +241,6 @@
           "settings": {
             "title": "As a vegan with MS, maximizing bioavailability while minimizing metabolic expenditure is critical. P24 is a game-changer for nutrient assimilation.",
             "name": "Katherine",
-            "is_autoplay": false
-          }
-        },
-        "block_CDxCGK": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Screenshot_2025-09-25_at_8.43.01_AM.png",
-            "title": "Amplifye P24 changed everything. Within the first few days, I was eating meals that normally would have had me urgently looking for a bathroom, and nothing happened. I felt completely normal, which is something I hadn’t experienced in years.",
-            "name": "Michael S.",
-            "is_autoplay": false
-          }
-        },
-        "block_7y8TVr": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "title": "One capsule with my biggest meal and boom, no bloat, no stress, just results I can actually feel.",
-            "name": "FAB",
             "is_autoplay": false
           }
         },
@@ -275,12 +274,12 @@
         }
       },
       "block_order": [
+        "block_CDxCGK",
         "block_E3haNa",
         "block_JqGqYK",
+        "block_7y8TVr",
         "block_K638i8",
         "block_GCDqgA",
-        "block_CDxCGK",
-        "block_7y8TVr",
         "block_NGjjjR",
         "block_V7YFPi",
         "block_gWehgV"
