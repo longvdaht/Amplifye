@@ -28,6 +28,7 @@
 				{%- render 'c-media',
 					selected_media_type: selected_media_type,
 					image: image,
+					responsive_image: image_mobile,
 					video: video,
 					video_url: video_url
 				-%}
@@ -37,7 +38,7 @@
 
 	<div class="c-its__content f-v">
 		{%- if heading != blank -%}
-			<h2 class="c-its__heading t-h-2">
+			<h2 class="c-its__heading t-h-1">
 				{{ heading }}
 			</h2>
 		{%- endif -%}
@@ -46,11 +47,11 @@
 			{{ paragraph }}
 		{%- endif -%}
 		{%- if note != blank -%}
-			<p class="c-its__note --t-h-4">{{ note }}</p>
+			<div class="c-its__note --t-h-4">{{ note }}</div>
 		{%- endif -%}
 		{%- if product_url != blank and cta_label != blank -%}
 			<div class="product-hero__form simple-product-form">
-				{% render 'simple-product-form', product: product_url, item: product_url, is_update_variant_url: true, cta_label: cta_label, button_class: ' hover-white', code: code  %}
+				{% render 'simple-product-form', product: product_url, item: product_url, is_update_variant_url: true, cta_label: cta_label, button_class: ' cr-orange', code: code  %}
 			</div>
 		{%- else -%}
 			{%- if cta_label != blank and cta_url != blank -%}

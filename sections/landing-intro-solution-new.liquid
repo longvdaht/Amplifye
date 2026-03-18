@@ -1,0 +1,166 @@
+{% schema %}
+  {
+    "name": "Landing Solution (2)",
+    "tag": "section",
+    "class": "frontpage-intro landing-solution new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background color",
+        "default": "#C14B24"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "subheading",
+        "name": "Subheading",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Subheading"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "name": "Heading",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Heading"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "name": "Paragraph",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Paragraph"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "Button",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "cta_label",
+            "label": "CTA Label"
+          },
+          {
+            "type": "url",
+            "id": "cta_url",
+            "label": "CTA URL"
+          },
+          {
+            "type": "text",
+            "id": "code",
+            "label": "Promo code"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Solution (2)",
+        "blocks": [
+          { "type": "subheading" },
+          { "type": "heading" },
+          { "type": "image" },
+          { "type": "paragraph" },
+          { "type": "button" }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  
+  {%- liquid
+    if section.settings.product != blank
+      assign product = section.settings.product
+    else
+      assign product = all_products['amplifye-p24']
+    endif
+  -%}
+  
+  <div class="p-x-max p-y-section cr-cream f-v f-a-c" style="background-color: {{ section.settings.background }};">
+    {% for block in section.blocks %}
+      {% case block.type %}
+  
+        {% when 'subheading' %}
+          {% if block.settings.text != blank %}
+            <p class="frontpage-intro__subheading t-b-3" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+          {% endif %}
+  
+        {% when 'heading' %}
+          {% if block.settings.text != blank %}
+            <h2 class="frontpage-intro__heading t-h-2" {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+          {% endif %}
+  
+        {% when 'image' %}
+          {% if block.settings.image != null %}
+            <div class="frontpage-intro__container f-h f-a-c" {{ block.shopify_attributes }}>
+              <div class="frontpage-intro__image child-contain">
+                {% render 'c-img-srcset', image: block.settings.image, alt: block.settings.image.alt %}
+              </div>
+            </div>
+          {% endif %}
+  
+        {% when 'paragraph' %}
+          {% if block.settings.text != blank %}
+            <div class="more-content" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+  
+        {% when 'button' %}
+          {%- liquid
+            if block.settings.cta_label != blank
+              assign cta_label = block.settings.cta_label
+            else
+              assign cta_label = 'Add to Cart'
+            endif
+          -%}
+          {% if cta_label != blank %}
+            {% if block.settings.cta_url != blank %}
+              <a class="frontpage-intro__cta btn hover-white" href="{{ block.settings.cta_url }}" {{ block.shopify_attributes }}>
+                <span>{{ cta_label }}</span>
+              </a>
+            {% else %}
+              <div class="product-hero__form simple-product-form" {{ block.shopify_attributes }}>
+                {% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, code: block.settings.code, button_class: 'hover-white' %}
+              </div>
+            {% endif %}
+          {% endif %}
+  
+      {% endcase %}
+    {% endfor %}
+  </div>

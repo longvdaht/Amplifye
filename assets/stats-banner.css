@@ -1,0 +1,124 @@
+:root {
+  --cr-white: #ffffff;
+}
+
+.stats-wrapper {
+  padding: 60px 40px;
+}
+
+.stats-banner__grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.stats-banner__heading {
+  color: var(--cr-white);
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.source-label p,
+.source-label * {
+  font: var(--t-l-1);
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--cr-white);
+  text-align: center;
+}
+
+.source-label p a {
+  text-decoration: underline;
+}
+
+.stats-banner__source {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.stats-banner__source a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.stats-banner__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  text-align: center;
+}
+
+.stats-banner__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.stats-banner__stat-value {
+  font-size: 60px;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cr-white);
+}
+
+.stats-banner__stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.stats-banner__stat-label {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 120%;
+  color: var(--cr-white);
+  max-width: 70%;
+}
+
+@media (min-width: 768px) {
+  .source-label p, .source-label * {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .stats-banner__grid {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+  }
+
+  .stats-banner__stats {
+    flex-direction: row;
+    gap: 48px;
+  }
+
+  .stats-banner__stat {
+    flex: 1;
+  }
+
+  .stats-banner__heading {
+    font-size: 42px;
+    text-align: left;
+    margin-bottom: 45px;
+  }
+  .source-label p,
+  .source-label * {
+    font-size: 14px;
+    text-align: left;
+  }
+  .stats-banner__stat-value {
+    font-size: 85px;
+  }
+}

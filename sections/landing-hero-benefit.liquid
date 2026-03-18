@@ -1,0 +1,227 @@
+{% schema %}
+  {
+    "name": "Landing Hero Benefits",
+    "tag": "section",
+    "class": "hero-benefits",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Protein benefits you can feel."
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image (Desktop)"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_mobile",
+        "label": "Background Image (Mobile)"
+      },
+      {
+        "type": "text",
+        "id": "cta_label",
+        "label": "CTA Label",
+        "default": "BUY P24"
+      },
+      {
+        "type": "url",
+        "id": "cta_url",
+        "label": "CTA URL"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product (if no CTA URL, renders Add to Cart)"
+      },
+      {
+        "type": "text",
+        "id": "code",
+        "label": "Promo code"
+      },
+      {
+        "type": "select",
+        "id": "content_position",
+        "label": "Content position (desktop)",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "range",
+        "id": "content_max_width",
+        "label": "Content max width (px)",
+        "min": 300,
+        "max": 700,
+        "step": 10,
+        "default": 480
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "divider_color",
+        "label": "Divider color",
+        "default": "#ffffff"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "benefit",
+        "name": "Benefit",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Maintain Strength"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "Protein absorption is essential to staying strong and active on your terms."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Hero Benefits",
+        "blocks": [
+          { "type": "benefit", "settings": { "title": "Maintain Strength", "description": "Protein absorption is essential to staying strong and active on your terms." } },
+          { "type": "benefit", "settings": { "title": "All-Day Energy", "description": "Unlock more amino acids that fuel metabolism, regulate hormones, and keep energy flowing." } },
+          { "type": "benefit", "settings": { "title": "Digestive Comfort", "description": "P24 helps your body break down protein more efficiently, leading to less gas and bloat." } },
+          { "type": "benefit", "settings": { "title": "Restorative Sleep", "description": "Key amino acids from protein help you get sleep that's actually restful." } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+
+  {{ 'landing-hero-benefit.css' | asset_url | stylesheet_tag }}
+
+  {%- liquid
+    assign heading = section.settings.heading
+    assign cta_label = section.settings.cta_label
+    assign cta_url = section.settings.cta_url
+    assign bg = section.settings.background_image
+    assign bg_mobile = section.settings.background_image_mobile
+    assign code = section.settings.code
+    assign position = section.settings.content_position
+  
+    if section.settings.product != blank
+      assign product = section.settings.product
+    else
+      assign product = all_products['amplifye-p24']
+    endif
+  -%}
+  
+  {%- assign max_width_percent = section.settings.content_max_width | times: 100.0 | divided_by: 1440.0 -%}
+
+  {%  style  %}
+    .hero-benefits .hero-benefits__wrap {
+      color: {{ section.settings.text_color }};
+    }
+    .hero-benefits .hero-benefits__item {
+      border-top: 1px solid {{ section.settings.divider_color }};
+    }
+
+    .hero-benefits .hero-benefits__item:last-child {
+      border-bottom: 1px solid {{ section.settings.divider_color }};
+    }
+    @media (min-width: 768px) {
+      .hero-benefits .hero-benefits__content {
+        max-width: {{ max_width_percent }}%;
+        {% if position == 'center' %}
+          margin: 0 auto;
+        {% elsif position == 'right' %}
+          margin-left: auto;
+          margin-right: 40px;
+        {% else %}
+          margin-right: auto;
+          margin-left: 40px;
+        {% endif %}
+      }
+    }
+  {% endstyle %}
+  
+  <div class="hero-benefits__wrap">
+    {% if bg != null %}
+      <div class="hero-benefits__bg">
+        <img
+          src="{{ bg | image_url: width: 1920 }}"
+          srcset="{{ bg | image_url: width: 900 }} 900w,
+                  {{ bg | image_url: width: 1200 }} 1200w,
+                  {{ bg | image_url: width: 1600 }} 1600w,
+                  {{ bg | image_url: width: 1920 }} 1920w"
+          sizes="100vw"
+          alt="{{ bg.alt | default: heading | escape }}"
+          loading="eager"
+          fetchpriority="high"
+          class="desktop-image"
+          width="{{ bg.width }}"
+          height="{{ bg.height }}"
+        >
+        {% if bg_mobile != null %}
+          <img
+            src="{{ bg_mobile | image_url: width: 750 }}"
+            srcset="{{ bg_mobile | image_url: width: 375 }} 375w,
+                    {{ bg_mobile | image_url: width: 600 }} 600w,
+                    {{ bg_mobile | image_url: width: 750 }} 750w"
+            sizes="100vw"
+            alt="{{ bg_mobile.alt | default: heading | escape }}"
+            loading="eager"
+            fetchpriority="high"
+            class="mobile-image"
+            width="{{ bg_mobile.width }}"
+            height="{{ bg_mobile.height }}"
+          >
+        {% endif %}
+      </div>
+    {% endif %}
+  
+    <div class="hero-benefits__content">
+      {% if heading != blank %}
+        <h2 class="hero-benefits__heading t-h-1">{{ heading | newline_to_br }}</h2>
+      {% endif %}
+  
+      {% if section.blocks.size > 0 %}
+        <div class="hero-benefits__list">
+          {% for block in section.blocks %}
+            <div class="hero-benefits__item" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h3 class="hero-benefits__item-title t-h-3">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="hero-benefits__item-desc t-b-1">{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+  
+      {% if cta_label != blank %}
+        <div class="hero-benefits__cta-wrap">
+          {% if cta_url != blank %}
+            <a class="frontpage-intro__cta btn hover-white" href="{{ cta_url }}">
+              <span>{{ cta_label }}</span>
+            </a>
+          {% else %}
+            <div class="product-hero__form simple-product-form">
+              {% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, code: code, button_class: 'cr-orange' %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
