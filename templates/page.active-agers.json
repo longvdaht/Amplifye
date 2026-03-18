@@ -211,6 +211,15 @@
             "is_autoplay": false
           }
         },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/Amplifye_2026_01_Paid_Assets_Lori_H_437548_9x16_Final.mp4",
+            "title": "",
+            "name": "Lori",
+            "is_autoplay": false
+          }
+        },
         "block_JqGqYK": {
           "type": "block",
           "settings": {
@@ -219,12 +228,12 @@
             "is_autoplay": false
           }
         },
-        "block_7y8TVr": {
+        "block_V7YFPi": {
           "type": "block",
           "settings": {
-            "video": "shopify://files/videos/Amplifye_2026_01_Paid_Assets_Lori_H_437548_9x16_Final.mp4",
+            "video": "shopify://files/videos/Amplifye_2026_01_Paid_Assets_440719_Courtney_D_9x16_Final (1) (1).mp4",
             "title": "",
-            "name": "Lori",
+            "name": "Courtney",
             "is_autoplay": false
           }
         },
@@ -254,15 +263,6 @@
             "is_autoplay": false
           }
         },
-        "block_V7YFPi": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "title": "I noticed a positive change in my gut health.",
-            "name": "Remy M.",
-            "is_autoplay": false
-          }
-        },
         "block_gWehgV": {
           "type": "block",
           "disabled": true,
@@ -276,12 +276,12 @@
       "block_order": [
         "block_CDxCGK",
         "block_E3haNa",
-        "block_JqGqYK",
         "block_7y8TVr",
+        "block_JqGqYK",
+        "block_V7YFPi",
         "block_K638i8",
         "block_GCDqgA",
         "block_NGjjjR",
-        "block_V7YFPi",
         "block_gWehgV"
       ],
       "settings": {
