@@ -1,0 +1,153 @@
+img.desktop-only,
+.desktop-only {
+  display: none;
+}
+.mcs-media img {
+  opacity: 1;
+  border-radius: 10px;
+}
+
+.mcs-section {
+  padding: 30px 20px;
+}
+
+.mcs-section .mcs-container {
+  padding: 30px 20px;
+  box-shadow: 0.66px 0.66px 6px 0px #00000040 inset;
+  border-radius: 20px;
+}
+
+.mcs-container .mcs-card {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 30px;
+}
+
+.mcs-content .mcs-eyebrow {
+  font: var(--t-l-5);
+  position: relative;
+  margin: 0 0 20px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding-left: 23px;
+}
+
+.mcs-content .mcs-eyebrow:before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: var(--cr-orange);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mcs-heading {
+  font: var(--t-h-3);
+  margin: 0 0 40px;
+}
+
+.mcs-heading.larger {
+  font: var(--t-h-1);
+  margin-bottom: 30px;
+}
+
+.mcs-body {
+  font: var(--t-b-1);
+  font-weight: 400;
+}
+
+.mcs-heading em {
+  color: var(--cr-orange);
+  font-style: normal;
+}
+
+.mcs-stats-box {
+  border: 0.8px solid #000000;
+  border-style: dashed;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mcs-stats-box .mcs-stats-label {
+  font: var(--t-b-2);
+  letter-spacing: 0;
+}
+
+.mcs-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mcs-stat-row .mcs-badge {
+  width: 100%;
+  padding: 0 20px;
+  border-radius: 20px;
+  background: var(--cr-orange);
+  font: var(--t-h-3);
+  color: var(--cr-white);
+  max-width: 90px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mcs-stat-row .mcs-stat-desc {
+  font: var(--t-l-2);
+  letter-spacing: .05em;
+  padding-right: 16px;
+}
+
+.note-source.mobile-only {
+  margin-top: 30px;
+}
+
+.note-source {
+  padding: 6px;
+}
+
+.note-source p {
+  display: flex;
+  gap: 15px;
+  font: var(--t-l-5);
+}
+
+.note-source p em {
+  font-style: normal;
+}
+
+.mcs-cta-wrap {
+  max-width: calc(235/310*100%);
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.mcs-cta-wrap.mobile-only {
+  display: flex;
+}
+
+.mcs-cta-wrap .mcs-cta-sub {
+  font: var(--t-b-1);
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  img.desktop-only,
+  .desktop-only {
+    display: block;
+  }
+
+  img.mobile-only,
+  .mobile-only {
+    display: none;
+  }
+}
