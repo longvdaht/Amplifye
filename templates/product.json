@@ -427,6 +427,7 @@
       "disabled": true,
       "name": "Landing Hero (2)",
       "settings": {
+        "text_color": "#ffffff",
         "heading": "Meet the Limited Edition Travel Case",
         "subheading": "",
         "content": "Because consistency is key and forgetfulness is human.",
@@ -439,6 +440,7 @@
         "custom_style": true,
         "content_alignment": "right",
         "heading_font_size": 32,
+        "mobile_text_below": false,
         "mobile_align": "bottom_center",
         "code": ""
       }
@@ -481,7 +483,7 @@
       "settings": {
         "subheading": "FAQ",
         "heading": "We’re here to break it down, literally.",
-        "faq_limit": 12,
+        "faq_limit": 6,
         "search_placeholder": "Search FAQs",
         "search_empty": "No results found. Please try a different search term.",
         "label": "Not seeing what you need?",
