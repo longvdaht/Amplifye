@@ -1,0 +1,38 @@
+.s-protein-benefits__card-image img {
+  opacity: 1;
+}
+
+.s-protein-benefits {
+  padding: 20px;
+}
+
+.s-protein-benefits__heading {
+  font: var(--t-h-1);
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+.s-protein-benefits__cta {
+  max-width: 235px;
+  margin: 0 auto;
+  min-width: 235px;
+  display: flex;
+}
+
+.s-protein-benefits__header {
+  margin-bottom: 40px;
+}
+
+.c-slider.s-protein-benefits__blocks {
+  margin-right: -20px;
+}
+
+.c-slider__slide.s-protein-benefits__slide {
+  width: calc(290/370*100%);
+}
+
+@media (max-width: 600px) {
+  .s-protein-benefits .c-slider__container.is-full-width-on-mobile .c-slider__slide {
+    flex: none;
+  }
+}
