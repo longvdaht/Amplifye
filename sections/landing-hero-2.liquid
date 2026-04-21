@@ -26,6 +26,11 @@
 			"label": "Content"
 		},
 		{
+			"type": "richtext",
+			"id": "content_richtext",
+			"label": "Content richtext type"
+		},
+		{
 			"type": "text",
 			"id": "cta_label",
 			"label": "CTA Label"
@@ -189,52 +194,52 @@
     }
 
 	{% if section.settings.mobile_text_below %}
-	@media (max-width: 600px) {
-		{{ shopify_section_id }}.frontpage-hero {
-			padding: 0;
-		}
+		@media (max-width: 600px) {
+			{{ shopify_section_id }}.frontpage-hero {
+				padding: 0;
+			}
 
-		{{ shopify_section_id }} .frontpage-hero__text.landing-hero__text {
-			background: #EEE5D6;
-		}
+			{{ shopify_section_id }} .frontpage-hero__text.landing-hero__text {
+				background: #EEE5D6;
+			}
 
-		{{ shopify_section_id }} .frontpage-hero__container {
-			flex-direction: column;
-			min-height: auto;
-		}
+			{{ shopify_section_id }} .frontpage-hero__container {
+				flex-direction: column;
+				min-height: auto;
+			}
 
-		{{ shopify_section_id }} .frontpage-hero__image.p-fill {
-			position: relative;
-			width: 100%;
-			aspect-ratio: 1 / 1.2;
-		}
+			{{ shopify_section_id }} .frontpage-hero__image.p-fill {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 1 / 1.2;
+			}
 
-		{{ shopify_section_id }} .frontpage-hero__image .object-fit {
-			position: absolute;
-			inset: 0;
-			transform: none;
-		}
+			{{ shopify_section_id }} .frontpage-hero__image .object-fit {
+				position: absolute;
+				inset: 0;
+				transform: none;
+			}
 
-		{{ shopify_section_id }} .frontpage-hero__image .object-fit img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+			{{ shopify_section_id }} .frontpage-hero__image .object-fit img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 
-		{{ shopify_section_id }} .landing-hero__text {
-			position: relative;
-			color: {{ section.settings.text_color_mobile }};
-			background: {{ section.settings.bg_color_mobile }};
-			padding: 32px 22px 40px;
-			align-content: flex-start;
-			height: auto;
-		}
+			{{ shopify_section_id }} .landing-hero__text {
+				position: relative;
+				color: {{ section.settings.text_color_mobile }};
+				background: {{ section.settings.bg_color_mobile }};
+				padding: 32px 22px 40px;
+				align-content: flex-start;
+				height: auto;
+			}
 
-		{{ shopify_section_id }} .landing-hero__text-heading,
-		{{ shopify_section_id }} .landing-hero__text-content {
-			text-align: center;
+			{{ shopify_section_id }} .landing-hero__text-heading,
+			{{ shopify_section_id }} .landing-hero__text-content {
+				text-align: center;
+			}
 		}
-	}
 	{% endif %}
   
     .product-hero__form.simple-product-form .c-product-form__cta {
@@ -415,6 +420,7 @@
 	assign heading = section.settings.heading
 	assign subheading = section.settings.subheading
 	assign content = section.settings.content
+	assign content_richtext = section.settings.content_richtext
     assign cta_label = section.settings.cta_label
 	assign button_style = section.settings.button_style
 	assign cta_url = section.settings.cta_url
@@ -512,6 +518,8 @@
 					<p class="frontpage-hero__content t-b-1">
 						{{ content }}
 					</p>
+				{%- elsif content_richtext != blank -%}
+					<div class="frontpage-hero__content t-b-1">{{ content_richtext }}</div>
 				{%- endif -%}
 				{%- liquid
 					if button_style == 'secondary'

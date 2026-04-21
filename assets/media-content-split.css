@@ -151,16 +151,6 @@ img.desktop-only,
     display: none;
   }
 
-  .mcs-container .mcs-card {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-  }
-
-  .mcs-container .mcs-card.media-right {
-    flex-direction: row-reverse;
-  }
-
   .mcs-section {
     max-width: 1128px;
     margin: 0 auto;
@@ -168,15 +158,6 @@ img.desktop-only,
 
   .mcs-section .mcs-container {
     padding: 30px;
-  }
-
-  .mcs-container .mcs-media {
-    width: calc(460/1028*100%);
-  }
-  
-  .mcs-container .mcs-content {
-    width: calc(528/1028*100%);
-    padding: 30px 30px 0;
   }
 
   .mcs-stat-row .mcs-badge {
@@ -221,7 +202,28 @@ img.desktop-only,
     align-items: flex-start;
   }
 
-  .mcs-cta-btn.btn:hover {
+  .mcs-container .mcs-cta-btn.btn:hover {
     background-color: var(--cr-orange);
+  }
+}
+
+@media (min-width: 992px) {
+  .mcs-container .mcs-card {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+  }
+
+  .mcs-container .mcs-card.media-right {
+    flex-direction: row-reverse;
+  }
+  
+  .mcs-container .mcs-media {
+    width: calc(460/1028*100%);
+  }
+  
+  .mcs-container .mcs-content {
+    width: calc(528/1028*100%);
+    padding: 30px 30px 0;
   }
 }
