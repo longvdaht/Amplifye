@@ -36,7 +36,6 @@ img.desktop-only,
   content: '';
   width: 10px;
   height: 10px;
-  background: var(--cr-orange);
   position: absolute;
   left: 0;
   top: 50%;
@@ -85,12 +84,11 @@ img.desktop-only,
 
 .mcs-stat-row .mcs-badge {
   width: 100%;
-  padding: 0 20px;
+  padding: 20px;
   border-radius: 40px;
-  background: var(--cr-orange);
   font: var(--t-h-2);
   color: var(--cr-white);
-  max-width: 71px;
+  width: auto;
   height: 60px;
   display: flex;
   align-items: center;
@@ -162,7 +160,6 @@ img.desktop-only,
   }
 
   .mcs-stat-row .mcs-badge {
-    max-width: 87px;
     height: 69px;
   }
 

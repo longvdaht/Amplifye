@@ -9,9 +9,13 @@
 {%- liquid
 	assign button_style = section.settings.button_style
 -%}
-
+{% style %}
+  .mcs-content .mcs-eyebrow:before {
+    background: {{ section.settings.dot_color }};
+  }
+{% endstyle %}
 <section class="mcs-section" id="mcs-{{ section.id }}">
-  <div class="mcs-container">
+  <div class="mcs-container" style="background-color: {{ section.settings.bg_color }}";>
     <div class="mcs-card media-{{ section.settings.media_position }}">
 
       {%- comment -%} ── MEDIA COLUMN ── {%- endcomment -%}
@@ -96,7 +100,7 @@
             {%- for block in section.blocks -%}
               {%- if block.type == 'stat' -%}
                 <div class="mcs-stat-row" {{ block.shopify_attributes }}>
-                  <span class="mcs-badge">{{ block.settings.badge_text }}</span>
+                  <span class="mcs-badge" style="background-color: {{ block.settings.bg_color }};">{{ block.settings.badge_text }}</span>
                   {%- if block.settings.description != blank -%}
                     <span class="mcs-stat-desc">{{ block.settings.description }}</span>
                   {%- endif -%}
@@ -158,6 +162,12 @@
       "default": "right"
     },
     {
+			"type": "color",
+			"id": "bg_color",
+			"label": "Background Color",
+			"default": "#FFFAF1"
+		},
+    {
       "type": "header",
       "content": "Media"
     },
@@ -196,6 +206,12 @@
       "label": "Eyebrow label",
       "default": "THE PROTEIN GAP"
     },
+    {
+			"type": "color",
+			"id": "dot_color",
+			"label": "Eyebrow dot label",
+			"default": "#C14B24"
+		},
     {
       "type": "richtext",
       "id": "heading",
@@ -283,6 +299,7 @@
     {
       "type": "stat",
       "name": "Stat Badge",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
@@ -295,6 +312,12 @@
           "id": "description",
           "label": "Description",
           "default": "increase in the stomach"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background Color",
+          "default": "#C14B24"
         }
       ]
     }
