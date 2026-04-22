@@ -1,0 +1,331 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "landing_hero_2_mGr8Gx": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "text_color": "#ffffff",
+        "heading": "Protein power for the life you love.",
+        "subheading": "",
+        "content": "Keep your strength and vitality as you age with the patented protein enzyme P24.",
+        "cta_label": "Buy P24",
+        "cta_url": "",
+        "button_style": "secondary",
+        "background_image": "shopify://shop_images/Amplifye-Marketing-Retainer.jpg",
+        "background_image_mobile": "shopify://shop_images/Amplifye-Marketing-Retainer_Mobile.jpg",
+        "product": "amplifye-p24",
+        "custom_style": true,
+        "content_alignment": "left",
+        "mobile_text_below": false,
+        "mobile_align": "bottom_center",
+        "code": "WELCOME15"
+      }
+    },
+    "landing_s_banner_2_aHnHcH": {
+      "type": "landing-s-banner-2",
+      "name": "Landing Banner - 2",
+      "settings": {
+        "text_1": "For <strong>15% off </strong>your first order, Use code: <strong>WELCOME15</strong>",
+        "text_2": "",
+        "cta_label": "Buy now",
+        "cta_url": "",
+        "product": "",
+        "code": "WELCOME15",
+        "color_scheme": "background-1",
+        "bkg_color": ""
+      }
+    },
+    "s_its_fullwidth_UbAhxe": {
+      "type": "s-its-fullwidth",
+      "name": "Image Text Fullwidth",
+      "settings": {
+        "content_alignment": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/Amplifye_Marketing_Retainer_Gemini_Desktop.jpg",
+        "image_mobile": "shopify://shop_images/Amplifye_Marketing_Retainer_Gemini_Mobile.jpg",
+        "heading": "Absorb more. Age your way.",
+        "paragraph": "<p>Protein absorption gets more difficult as you age. So, even if you’re eating right, you might be only absorbing a fraction of the nutrients you need.</p><p>P24 is here to support your body’s natural digestion process — so more amino acids are available where your body needs them most.</p>",
+        "note": "<p>SOURCE: <a href=\"https://link.springer.com/article/10.1007/s10522-025-10289-w?\" target=\"_blank\" title=\"https://link.springer.com/article/10.1007/s10522-025-10289-w?\">biogerontology, 2025</a></p>",
+        "cta_label": "Buy p24",
+        "cta_url": "",
+        "product": "amplifye-p24"
+      }
+    },
+    "landing_intro_solution_new_4JdGw3": {
+      "type": "landing-intro-solution-new",
+      "blocks": {
+        "subheading_YTJ7fq": {
+          "type": "subheading",
+          "settings": {
+            "text": "Nobel Prize-winning science"
+          }
+        },
+        "heading_DDgna9": {
+          "type": "heading",
+          "settings": {
+            "text": "P24 is the patented enzyme that unlocks more protein in the meals you’re already enjoying."
+          }
+        },
+        "paragraph_MNbLUK": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<ul><li>7 years of research</li><li>8 patents</li><li>50+ scientists</li></ul>"
+          }
+        },
+        "button_UCxGyp": {
+          "type": "button",
+          "settings": {
+            "cta_label": "Buy P24",
+            "cta_url": "",
+            "code": "WELCOME15"
+          }
+        },
+        "image_MqaReE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Amplifye_Bottle_Front_3_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_YTJ7fq",
+        "heading_DDgna9",
+        "paragraph_MNbLUK",
+        "button_UCxGyp",
+        "image_MqaReE"
+      ],
+      "name": "Landing Solution (2)",
+      "settings": {
+        "background": "#c14b24",
+        "product": "amplifye-p24"
+      }
+    },
+    "stats_banner_98GVBQ": {
+      "type": "stats-banner",
+      "blocks": {
+        "stat_r6yext": {
+          "type": "stat",
+          "settings": {
+            "value": "115%",
+            "label": "Increase in the stomach"
+          }
+        },
+        "stat_jV6TAi": {
+          "type": "stat",
+          "settings": {
+            "value": "15%",
+            "label": "Increase in the small intestine"
+          }
+        }
+      },
+      "block_order": [
+        "stat_r6yext",
+        "stat_jV6TAi"
+      ],
+      "name": "Stats Banner",
+      "settings": {
+        "background": "#000000",
+        "heading": "Proven to increase protein's bioavailability.",
+        "source_label": "<p>SOURCE: <a href=\"https://amplifyeme.com/\" target=\"_blank\" title=\"https://amplifyeme.com/\">FRONTIERS OF NUTRITION, 2024</a></p>"
+      }
+    },
+    "landing_hero_benefit_dH4hn3": {
+      "type": "landing-hero-benefit",
+      "blocks": {
+        "benefit_X7cjtn": {
+          "type": "benefit",
+          "settings": {
+            "title": "Maintain Strength",
+            "description": "Protein absorption is essential to staying strong and active on your terms."
+          }
+        },
+        "benefit_TKTUK7": {
+          "type": "benefit",
+          "settings": {
+            "title": "All-Day Energy",
+            "description": "Unlock more amino acids that fuel metabolism, regulate hormones, and keep energy flowing."
+          }
+        },
+        "benefit_ppHacX": {
+          "type": "benefit",
+          "settings": {
+            "title": "Digestive Comfort",
+            "description": "P24 helps your body break down protein more efficiently, leading to less gas and bloat."
+          }
+        },
+        "benefit_b9ctVx": {
+          "type": "benefit",
+          "settings": {
+            "title": "Restorative Sleep",
+            "description": "Key amino acids from protein help you get sleep that's actually restful."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_X7cjtn",
+        "benefit_TKTUK7",
+        "benefit_ppHacX",
+        "benefit_b9ctVx"
+      ],
+      "name": "Landing Hero Benefits",
+      "settings": {
+        "heading": "Protein benefits you can feel.",
+        "background_image": "shopify://shop_images/Amplifye-Marketing-Retainer_Gemini-3-Mens-Desk.png",
+        "background_image_mobile": "shopify://shop_images/Amplifye-Marketing-Retainer_Men.png",
+        "cta_label": "BUY P24",
+        "cta_url": "",
+        "product": "amplifye-p24",
+        "code": "WELCOME15",
+        "content_position": "left",
+        "content_max_width": 670,
+        "text_color": "#ffffff",
+        "divider_color": "#fffaf1"
+      }
+    },
+    "landing_testimonial_video": {
+      "type": "s-testimonial-video",
+      "blocks": {
+        "block_CDxCGK": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/Amplifye_2026_03_Paid_Assets_440584_Steven_L_Short_9x16_Final_7aaaa88f-8898-4a50-ad6a-790f4a43bde0.mp4",
+            "title": "",
+            "name": "Steven",
+            "is_autoplay": false
+          }
+        },
+        "block_E3haNa": {
+          "type": "block",
+          "settings": {
+            "title": "I'm in my mid-50s and have been living with gastroparesis for years, which means tiny meals, careful choices, and constantly worrying if I'm getting enough protein. Since I can‚ eat large portions without triggering symptoms, protein absorption has always been a challenge. I didn't expect much when I tried amplifyeP24, but taking it with my biggest meal has genuinely helped. My energy feels steadier and I don't get that heavy, slow-digesting feeling I used to get with protein-heavy foods.",
+            "name": "Deborah - 58",
+            "is_autoplay": false
+          }
+        },
+        "block_7y8TVr": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/Amplifye_2026_01_Paid_Assets_Lori_H_437548_9x16_Final.mp4",
+            "title": "",
+            "name": "Lori",
+            "is_autoplay": false
+          }
+        },
+        "block_JqGqYK": {
+          "type": "block",
+          "settings": {
+            "title": "I have been on a GLP-1 for a few months and you realize how difficult it is to consume anywhere near your DV of protein - this completely takes the pressure of because you feel like you are getting more out of what you can stomach in a day. Highly recommend",
+            "name": "Max - 35",
+            "is_autoplay": false
+          }
+        },
+        "block_V7YFPi": {
+          "type": "block",
+          "settings": {
+            "video": "shopify://files/videos/Amplifye_2026_01_Paid_Assets_440719_Courtney_D_9x16_Final (1) (1).mp4",
+            "title": "",
+            "name": "Courtney",
+            "is_autoplay": false
+          }
+        },
+        "block_K638i8": {
+          "type": "block",
+          "settings": {
+            "title": "I'm 52 and a Navy vet, so I don't get impressed easily. My wife has been using P24 for a while and finally talked me into trying it over Thanksgiving. I'm living with Type 2 Diabetes. Normally after big meals my blood sugar shoots way up, but this time it stayed in a range I honestly didn't expect - NORMAL. I kept taking it with meals over the next few days and saw the same steady pattern.",
+            "name": "Saul - 52",
+            "is_autoplay": false
+          }
+        },
+        "block_GCDqgA": {
+          "type": "block",
+          "settings": {
+            "title": "As a vegan with MS, maximizing bioavailability while minimizing metabolic expenditure is critical. P24 is a game-changer for nutrient assimilation.",
+            "name": "Katherine - 52",
+            "is_autoplay": false
+          }
+        },
+        "block_NGjjjR": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-09-25_at_9.20.24_AM.png",
+            "title": "If you’re someone who struggles with digestion, or just wants to support gut health more proactively, I highly recommend giving Amplifye a try.",
+            "name": "Jacky",
+            "is_autoplay": false
+          }
+        },
+        "block_gWehgV": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "title": "I'm loving P24; I see a big difference on my body.",
+            "name": "Larry S.",
+            "is_autoplay": false
+          }
+        }
+      },
+      "block_order": [
+        "block_CDxCGK",
+        "block_E3haNa",
+        "block_7y8TVr",
+        "block_JqGqYK",
+        "block_V7YFPi",
+        "block_K638i8",
+        "block_GCDqgA",
+        "block_NGjjjR",
+        "block_gWehgV"
+      ],
+      "settings": {
+        "layout": "vertical",
+        "heading": "The results speak for themselves",
+        "subheading": "",
+        "cta_label": "",
+        "cta_url": "#reviews",
+        "margin_top": 100,
+        "margin_bottom": 100,
+        "show_dots": true
+      }
+    },
+    "landing_hero_2_fUKexK": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "text_color": "#000000",
+        "heading": "Fuel every chapter with P24.",
+        "subheading": "",
+        "content": "Try P24 for 30 days, worry free.",
+        "cta_label": "buy p24",
+        "cta_url": "",
+        "button_style": "secondary",
+        "background_image": "shopify://shop_images/amplifye-meat-desktop.jpg",
+        "background_image_mobile": "shopify://shop_images/amplifye-meat-mobile.jpg",
+        "product": "amplifye-p24",
+        "custom_style": true,
+        "content_alignment": "right",
+        "heading_font_size": 36,
+        "mobile_text_below": true,
+        "mobile_align": "other",
+        "code": "WELCOME15"
+      }
+    }
+  },
+  "order": [
+    "landing_hero_2_mGr8Gx",
+    "landing_s_banner_2_aHnHcH",
+    "s_its_fullwidth_UbAhxe",
+    "landing_intro_solution_new_4JdGw3",
+    "stats_banner_98GVBQ",
+    "landing_hero_benefit_dH4hn3",
+    "landing_testimonial_video",
+    "landing_hero_2_fUKexK"
+  ]
+}
