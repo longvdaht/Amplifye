@@ -1,0 +1,544 @@
+{% schema %}
+  {
+    "name": "Protein Benefits LP",
+    "tag": "section",
+    "class": "m-y-section",
+    "presets": [
+      {
+        "name": "Protein Benefits LP",
+        "settings": {
+          "eyebrow": "BENEFITS YOU CAN FEEL",
+          "heading": "One enzyme. Five ways you win.",
+          "bottom_heading": "Get your protein on lock.",
+          "bottom_text": "Try P24 for 30 days, worry free.",
+          "bottom_cta_label": "GET P24",
+          "show_nav": true,
+          "show_dots": false
+        },
+        "blocks": [
+          {
+            "type": "benefit",
+            "settings": {
+              "title": "Smoother Digestion",
+              "description": "When protein breaks down the way it should, your gut does less work — and you feel more comfortable.",
+              "benefits_list": "Gut Lining Repair & Integrity\nReduces Undigested Protein\nInfluences the Gut Microbiome",
+              "amino_acids": "Glutamine | Supports gut lining repair and immune function\nThreonine | Maintains intestinal barrier integrity\nArginine | Promotes gut tissue healing",
+              "cta_label": "THE AMINO ACIDS AT WORK"
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "title": "Stronger Muscles",
+              "description": "More absorbed protein means your muscles can repair faster — so you stay strong and active.",
+              "benefits_list": "Stimulates Muscle Protein Synthesis\nReduces Muscle Breakdown\nReplenishes Amino Acid Stores",
+              "amino_acids": "Leucine | Triggers muscle protein synthesis\nIsoleucine | Supports muscle recovery\nValine | Prevents muscle breakdown",
+              "cta_label": "THE AMINO ACIDS AT WORK"
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "title": "All Day Energy",
+              "description": "Better protein absorption means your body has what it needs to keep your energy steady.",
+              "benefits_list": "Glycemic Response\nNeurotransmitter Support\nMuscle Preservation & Repair",
+              "amino_acids": "Tyrosine | Boosts dopamine and focus\nPhenylalanine | Supports mental alertness",
+              "cta_label": "THE AMINO ACIDS AT WORK"
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "title": "Deeper Sleep",
+              "description": "The amino acids in protein help your body wind down, stay asleep, and wake up feeling actually rested.",
+              "benefits_list": "Tryptophan Absorption\nBlood Sugar Stability\nMay Regulate Cortisol",
+              "amino_acids": "Tryptophan | Precursor to melatonin and serotonin\nGlycine | Improves sleep quality",
+              "cta_label": "THE AMINO ACIDS AT WORK"
+            }
+          },
+          {
+            "type": "benefit",
+            "settings": {
+              "title": "Sharper Clarity",
+              "description": "Protein feeds the neurotransmitters that keep you focused, calm, and thinking clearly through the day.",
+              "benefits_list": "Neurotransmitter Production\nBlood Sugar Stability\nBrain Cell Repair & Function",
+              "amino_acids": "Tyrosine | Supports dopamine production\nTryptophan | Aids serotonin synthesis\nGlutamate | Primary excitatory neurotransmitter",
+              "cta_label": "THE AMINO ACIDS AT WORK"
+            }
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "eyebrow",
+        "label": "Eyebrow",
+        "default": "BENEFITS YOU CAN FEEL"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "One enzyme. Five ways you win."
+      },
+      {
+        "type": "textarea",
+        "id": "disclaimer",
+        "label": "Disclaimer text"
+      },
+      {
+        "type": "header",
+        "content": "Bottom CTA section"
+      },
+      {
+        "type": "text",
+        "id": "bottom_heading",
+        "label": "Bottom heading",
+        "default": "Get your protein on lock."
+      },
+      {
+        "type": "text",
+        "id": "bottom_text",
+        "label": "Bottom supporting text",
+        "default": "Try P24 for 30 days, worry free."
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button style",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary hover white"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary hover black"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          }
+        ],
+        "default": "primary"
+      },
+      {
+        "type": "text",
+        "id": "bottom_cta_label",
+        "label": "Bottom CTA label",
+        "default": "GET P24"
+      },
+      {
+        "type": "url",
+        "id": "bottom_cta_url",
+        "label": "Bottom CTA URL"
+      },
+      {
+        "type": "header",
+        "content": "Slider (mobile only)"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_nav",
+        "label": "Show arrows",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_dots",
+        "label": "Show dots",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "label": "Margin top mobile",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom",
+        "label": "Margin bottom mobile",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "label": "Margin top desktop",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "label": "Margin bottom desktop",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "default": 60
+      }
+    ],
+    "max_blocks": 10,
+    "blocks": [
+      {
+        "type": "benefit",
+        "name": "Benefit Card",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Card Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "textarea",
+            "id": "benefits_list",
+            "label": "Benefits checklist",
+            "info": "One item per line. Each line renders with a checkmark icon."
+          },
+          {
+            "type": "textarea",
+            "id": "amino_acids",
+            "label": "Amino acids (expanded state)",
+            "info": "One per line. Format: Name | Description. Shown when CTA is expanded."
+          },
+          {
+            "type": "text",
+            "id": "cta_label",
+            "label": "CTA Label",
+            "default": "THE AMINO ACIDS AT WORK"
+          },
+          {
+            "type": "url",
+            "id": "cta_url",
+            "label": "CTA URL (fallback if no amino acids)"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+
+  {{ 'protein-benefit-lp.css' | asset_url | stylesheet_tag }}
+
+  {% style %}
+    #shopify-section-{{ section.id }}.m-y-section {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  
+    @media (min-width: 768px) {
+      #shopify-section-{{ section.id }}.m-y-section {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+      }
+    }
+  {% endstyle %}
+  
+  {% liquid
+    assign eyebrow          = section.settings.eyebrow
+    assign heading          = section.settings.heading
+    assign disclaimer       = section.settings.disclaimer
+    assign bottom_heading   = section.settings.bottom_heading
+    assign bottom_text      = section.settings.bottom_text
+    assign bottom_cta_label = section.settings.bottom_cta_label
+    assign bottom_cta_url   = section.settings.bottom_cta_url
+    assign show_nav         = section.settings.show_nav
+    assign show_dots        = section.settings.show_dots
+    assign button_style = section.settings.button_style
+  %}
+  
+  {% if section.blocks.size > 0 %}
+    <div class="ss-protein-benefits">
+  
+      {%- comment -%} HEADER {%- endcomment -%}
+      <div class="s-protein-benefits__header">
+        {%- if eyebrow != blank -%}
+          <p class="s-protein-benefits__eyebrow">{{ eyebrow }}</p>
+        {%- endif -%}
+        {%- if heading != blank -%}
+          <h2 class="s-protein-benefits__heading t-h-1">{{ heading }}</h2>
+        {%- endif -%}
+      </div>
+  
+      {%- comment -%} BUILD SLIDE HTML {%- endcomment -%}
+      {%- capture slider_html -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_image    = block.settings.image
+            assign card_title    = block.settings.title
+            assign card_desc     = block.settings.description
+            assign benefits_list = block.settings.benefits_list
+            assign cta_label     = block.settings.cta_label
+            assign cta_url       = block.settings.cta_url
+          -%}
+          <div class="c-slider__slide s-protein-benefits__slide" {{ block.shopify_attributes }}>
+            <article class="s-protein-benefits__card">
+  
+              {%- if card_image != blank -%}
+                <div class="s-protein-benefits__card-image">
+                  {{-
+                    card_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '280, 400, 600, 800',
+                      sizes: '(min-width: 768px) 280px, 100vw',
+                      alt: card_title
+                  -}}
+                </div>
+              {%- else -%}
+                <div class="s-protein-benefits__card-placeholder"></div>
+              {%- endif -%}
+  
+              <div class="s-protein-benefits__card-body">
+                {%- if card_title != blank -%}
+                  <h3 class="s-protein-benefits__card-title">{{ card_title }}</h3>
+                {%- endif -%}
+                {%- if card_desc != blank -%}
+                  <p class="s-protein-benefits__card-desc">{{ card_desc }}</p>
+                {%- endif -%}
+              </div>
+  
+              <div class="s-protein-benefits__card-aside">
+                {%- if benefits_list != blank -%}
+                  <ul class="s-protein-benefits__checklist">
+                    {%- assign items = benefits_list | newline_to_br | split: '<br />' -%}
+                    {%- for item in items -%}
+                      {%- assign trimmed = item | strip -%}
+                      {%- if trimmed != blank -%}
+                        <li class="s-protein-benefits__checklist-item">
+                          <span class="s-protein-benefits__check-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="12" fill="currentColor" opacity="0.9"/>
+                              <path d="M7 12.5L10.5 16L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                          <span class="s-protein-benefits__checklist-text">{{ trimmed }}</span>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+  
+                {%- if cta_label != blank -%}
+                  {%- assign amino_acids_raw = block.settings.amino_acids -%}
+                  {%- assign has_amino = false -%}
+                  {%- if amino_acids_raw != blank -%}
+                    {%- assign has_amino = true -%}
+                  {%- endif -%}
+  
+                  {%- if has_amino -%}
+                    <div
+                      class="s-protein-benefits__amino"
+                      data-amino-toggle
+                    >
+                      {%- comment -%} COLLAPSED STATE — label + (+) icon {%- endcomment -%}
+                      <button
+                        type="button"
+                        class="s-protein-benefits__card-cta js-amino-expand"
+                        aria-expanded="false"
+                        aria-controls="amino-panel-{{ block.id }}"
+                      >
+                        <span>{{ cta_label }}</span>
+                        <span class="s-protein-benefits__card-cta-icon s-protein-benefits__card-cta-icon--plus" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="12" fill="currentColor"/>
+                            <path d="M12 7V17M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                          </svg>
+                        </span>
+                      </button>
+  
+                      {%- comment -%} EXPANDED STATE — pills + (-) icon {%- endcomment -%}
+                      <div
+                        class="s-protein-benefits__amino-panel"
+                        id="amino-panel-{{ block.id }}"
+                        hidden
+                      >
+                        <div class="s-protein-benefits__amino-pills">
+                          {%- assign amino_lines = amino_acids_raw | newline_to_br | split: '<br />' -%}
+                          {%- for line in amino_lines -%}
+                            {%- assign line_trimmed = line | strip -%}
+                            {%- if line_trimmed != blank -%}
+                              {%- assign parts = line_trimmed | split: '|' -%}
+                              {%- assign amino_name = parts[0] | strip -%}
+                              {%- assign amino_desc = parts[1] | default: '' | strip -%}
+                              <span
+                                class="s-protein-benefits__amino-pill"
+                                {%- if amino_desc != blank %} data-tooltip="{{ amino_desc | escape }}"{% endif -%}
+                              >
+                                <span class="s-protein-benefits__amino-pill-name">{{ amino_name }}</span>
+                                {%- if amino_desc != blank -%}
+                                  <button
+                                    type="button"
+                                    class="s-protein-benefits__amino-pill-info"
+                                    aria-label="More about {{ amino_name }}"
+                                  >
+                                    <span aria-hidden="true">
+                                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0.216541 7.53564C0.0974435 7.53564 0 7.4382 0 7.3191V6.7994C0 6.6803 0.0974435 6.58286 0.216541 6.58286H1.62406C1.68902 6.58286 1.73233 6.53955 1.73233 6.47459V3.23729C1.73233 3.17233 1.68902 3.12902 1.62406 3.12902H0.324812C0.205714 3.12902 0.108271 3.03158 0.108271 2.91248V2.38196C0.108271 2.26286 0.205714 2.16541 0.324812 2.16541H2.50105C2.62015 2.16541 2.71759 2.26286 2.71759 2.38196V6.47459C2.71759 6.53955 2.7609 6.58286 2.82586 6.58286H4.16842C4.28752 6.58286 4.38496 6.6803 4.38496 6.7994V7.3191C4.38496 7.4382 4.28752 7.53564 4.16842 7.53564H0.216541ZM1.6782 1.06105V0.173233C1.6782 0.0866167 1.75399 0 1.85143 0H2.58767C2.68511 0 2.7609 0.0866167 2.7609 0.173233V1.06105C2.7609 1.1585 2.68511 1.23429 2.58767 1.23429H1.85143C1.75399 1.23429 1.6782 1.1585 1.6782 1.06105Z" fill="#FFFAF1"/>
+                                      </svg>
+                                    </span>
+                                  </button>
+                                {%- endif -%}
+                              </span>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </div>
+                        <button
+                          type="button"
+                          class="s-protein-benefits__amino-collapse js-amino-collapse"
+                          aria-label="Collapse"
+                        >
+                          <span class="s-protein-benefits__card-cta-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="12" fill="currentColor"/>
+                              <path d="M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  {%- else -%}
+                    {%- comment -%} No amino acids → fallback to simple link CTA {%- endcomment -%}
+                    <a
+                      class="s-protein-benefits__card-cta"
+                      href="{{ cta_url | default: '#' }}"
+                    >
+                      <span>{{ cta_label }}</span>
+                      <span class="s-protein-benefits__card-cta-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="12" fill="currentColor"/>
+                          <path d="M12 7V17M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </a>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+  
+            </article>
+          </div>
+        {%- endfor -%}
+      {%- endcapture -%}
+  
+      {%- comment -%} RENDER SLIDER — disabled on desktop via breakpoint {%- endcomment -%}
+      {%- render 'c-slider',
+        classes: 's-protein-benefits__blocks',
+        slider_html: slider_html,
+        slider_options: "{'loop': false, 'skipSnaps': true, 'align': 'start', 'watchDrag': true, 'breakpoints': {'(min-width: 768px)': {'active': false}}}",
+        is_full_width_on_mobile: true,
+        enable_nav: show_nav,
+        enable_dots: show_dots
+      -%}
+  
+      {%- comment -%} BOTTOM CTA SECTION {%- endcomment -%}
+      {%- if bottom_heading != blank or bottom_cta_label != blank -%}
+        <div class="s-protein-benefits__bottom">
+          {%- if bottom_heading != blank -%}
+            <h3 class="s-protein-benefits__bottom-heading t-h-2">{{ bottom_heading }}</h3>
+          {%- endif -%}
+          {%- if bottom_text != blank -%}
+            <p class="s-protein-benefits__bottom-text">{{ bottom_text }}</p>
+          {%- endif -%}
+          {%- if bottom_cta_label != blank -%}
+            {%- liquid
+              if button_style == 'secondary'
+                assign btn_class = ' cr-orange'
+              else
+                assign btn_class = ' hover-white'
+              endif
+            -%}
+            <a
+              class="s-protein-benefits__bottom-cta btn {{ btn_class }}"
+              href="{{ bottom_cta_url | default: '#' }}"
+            >
+              <span>{{ bottom_cta_label }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+  
+      {%- comment -%} DISCLAIMER {%- endcomment -%}
+      {%- if disclaimer != blank -%}
+        <div class="s-protein-benefits__disclaimer">
+          <span class="s-protein-benefits__disclaimer-label">Disclaimer</span>
+          <p class="s-protein-benefits__disclaimer-text">{{ disclaimer }}</p>
+        </div>
+      {%- endif -%}
+  
+    </div>
+  {% endif %}
+  
+  <script>
+  (function() {
+    var section = document.getElementById('shopify-section-{{ section.id }}');
+    if (!section) return;
+  
+    section.querySelectorAll('[data-amino-toggle]').forEach(function(wrapper) {
+      var expandBtn   = wrapper.querySelector('.js-amino-expand');
+      var collapseBtn = wrapper.querySelector('.js-amino-collapse');
+      var panel       = wrapper.querySelector('.s-protein-benefits__amino-panel');
+      if (!expandBtn || !collapseBtn || !panel) return;
+  
+      function open() {
+        wrapper.classList.add('is-open');
+        expandBtn.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+      function close() {
+        wrapper.classList.remove('is-open');
+        expandBtn.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      }
+  
+      expandBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        open();
+      });
+      collapseBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        close();
+      });
+  
+      // Tooltip on info icon (simple title attribute for now)
+      wrapper.querySelectorAll('.s-protein-benefits__amino-pill-info').forEach(function(btn) {
+        var pill = btn.closest('.s-protein-benefits__amino-pill');
+        var desc = pill ? pill.getAttribute('data-tooltip') : '';
+        if (desc) btn.setAttribute('title', desc);
+  
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Future: show modal / tooltip popover with desc
+        });
+      });
+    });
+  })();
+  </script>

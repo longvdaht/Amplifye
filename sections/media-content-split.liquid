@@ -13,6 +13,10 @@
   .mcs-content .mcs-eyebrow:before {
     background: {{ section.settings.dot_color }};
   }
+  .mcs-content,
+  .mcs-media {
+    color: {{ section.settings.text_color }};
+  }
 {% endstyle %}
 <section class="mcs-section" id="mcs-{{ section.id }}">
   <div class="mcs-container" style="background-color: {{ section.settings.bg_color }}";>
@@ -36,7 +40,7 @@
             loading="lazy"
             width="{{ section.settings.image.width }}"
             height="{{ section.settings.image.height }}"
-            class="image desktop-only"
+            class="image {% if section.settings.image_mobile != blank -%}desktop-only{% endif -%}"
           >
           {% if section.settings.image_mobile != blank -%}
             <img
@@ -166,6 +170,12 @@
 			"id": "bg_color",
 			"label": "Background Color",
 			"default": "#FFFAF1"
+		},
+    {
+			"type": "color",
+			"id": "text_color",
+			"label": "Text Content Color",
+			"default": "#000000"
 		},
     {
       "type": "header",
