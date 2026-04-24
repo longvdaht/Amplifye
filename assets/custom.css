@@ -58,8 +58,7 @@ body #gladlyChat_container {
     pointer-events: none;
 }
 
-.c-item-selling-plan__option__content__info,
-.c-item-selling-plan__option__content {
+.c-item-selling-plan__frequency {
     display: none;
 }
 
@@ -82,7 +81,7 @@ body #gladlyChat_container {
 .product-layout-stacked {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 5px;
 }
 
 @media (min-width: 768px) {
@@ -892,5 +891,178 @@ body #gladlyChat_container {
     position: relative;
 }
 /* ABRA END */
+/* New product design */
+.product-hero__gallery .c-slider__dots {
+    display: none;
+}
+.product-hero__gallery .c-slider__viewport {
+    padding-bottom: 0;
+}
+.custom.items-3-wrappers .app-embed-3 .h4.inline-richtext {
+    display: none;
+}
+.custom.items-3-wrappers .app-embed-3 {
+    grid-column: 1 / -1;
+    justify-content: center;
+}
+.product-hero__content {
+    padding: 30px 20px;
+    gap: 30px;
+}
+.product-hero__header [id*=okendo_star_rating] {
+    position: absolute;
+    right: 0;
+    top: 2px;
+}
+.product-hero__header .oke-sr .oke-is-clickable {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.product-hero__header .oke-sr .oke-is-clickable .oke-sr-stars {
+    margin-right: 0 !important;
+}
+.product-hero__header {
+    gap: 15px;
+    position: relative;
+}
+.c-item-selling-plan__option__header {
+    padding: 15px;
+    gap: 15px;
+}
+.c-item-selling-plan__option__content__info {
+    font: var(--t-l-2);
+    letter-spacing: .1em;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+.c-item-selling-plan__option input[type=radio] {
+    min-width: 15px;
+}
+.product-hero__form .c-product-form__selling-plan {
+    margin-bottom: 15px;
+}
+.product-hero__accordions .c-accordion__title {
+    font-size: 14px;
+    letter-spacing: .05em;
+}
+.product-hero__accordions .c-accordion__content-interior p {
+    font-size: 12px;
+    line-height: 1.45;
+}
+.product-benefits {
+    margin-block: 0 !important;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.product-benefits__item {
+    gap: 20px;
+}
+.product-benefits__item__icon {
+    width: 37.5px;
+}
+.product-benefits__item__title {
+    line-height: 1.25;
+}
+.product-benefits__notes .c-source {
+    padding-block: 6px;
+    border: none;
+    flex-direction: column;
+    gap: 10px;
+}
+.product-hero__accordions .c-accordion__toggle {
+    gap: 20px;
+}
+.product-hero__description {
+    font: var(--t-b-1);
+    font-weight: 400;
+}
+.product-hero__chat-note {
+    padding: 9px 15px;
+    gap: 35px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.product-hero__chat-note__title {
+    font: var(--t-l-3);
+    font-size: 12px;
+    text-align: left;
+}
+.product-hero__chat-note .btn-outline {
+    padding: 10px 20px;
+    height: auto;
+    font-size: 12px;
+}
+.product-hero__chat-note .btn-outline svg {
+    width: 18px;
+    height: 15px;
+    min-width: 18px;
 
+}
+.product-purchase-bar {
+    padding: 20px;
+}
+.product-purchase-bar__wrapper {
+    padding: 0;
+    gap: 20px;
+}
+.product-purchase-bar .c-item-selling-plan__option input[type=radio] {
+    position: relative;
+    top: -2px;
+}
+.product-purchase-bar__action {
+    gap: 20px;
+}
 
+@media (min-width: 1025px) {
+    .product-hero__header [id*=okendo_star_rating] {
+        order: -1;
+        position: relative;
+        top: 0;
+    }
+
+    .product-hero__header .oke-sr .oke-is-clickable {
+        flex-direction: row;
+    }
+
+    .product-hero__header {
+        gap: 20px;
+    }
+
+    .product-hero__content {
+        padding: 50px 0 0 0;
+        max-width: 503px;
+        margin: 0 auto;
+    }
+
+    .product-hero {
+        padding: 0 45px;
+    }
+
+    .c-item-selling-plan__option__content__info {
+        font-size: 12px;
+    }
+
+    .product-hero__accordions .c-accordion__content-interior p {
+        font-size: 14px;
+    }
+
+    .product-hero__accordions .c-accordion__title {
+        line-height: 1.25;
+        letter-spacing: .06em;
+    }
+
+    .product-hero__chat-note {
+        padding: 9px;
+        justify-content: center;
+    }
+
+    .product-hero__chat-note__title {
+        font-size: 14px;
+    }
+}
+/* New product design END */

@@ -18,21 +18,30 @@
   assign heading_3_empty = false
   assign heading_4_empty = false
   assign text_only_all_items = true
+  assign items_count = 0
 
   if block.settings.heading_1 == empty
     assign heading_1_empty = true
+  else
+    assign items_count = items_count | plus: 1
   endif
 
   if block.settings.heading_2 == empty
     assign heading_2_empty = true
+  else
+    assign items_count = items_count | plus: 1
   endif
 
   if block.settings.heading_3 == empty
     assign heading_3_empty = true
+  else
+    assign items_count = items_count | plus: 1
   endif
 
   if block.settings.heading_4 == empty
     assign heading_4_empty = true
+  else
+    assign items_count = items_count | plus: 1
   endif
 
   if heading_1_empty == false or block.settings.image_1 != null
@@ -46,11 +55,11 @@
   endif
 -%}
 <ul
-  class="icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
+  class="custom items-{{ items_count }}-wrappers icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
   {{ block.shopify_attributes }}
 >
   {%- unless heading_1_empty -%}
-    <li class="icon-with-text__item">
+    <li class="icon-with-text__item {% if block.settings.use_app_embeded_1 %}app-embed-1{% endif %}">
         <img
           src="{{ block.settings.image_1 | image_url }}"
           {% if block.settings.image_1.alt != blank %}
@@ -68,7 +77,7 @@
     </li>
   {%- endunless -%}
   {%- unless heading_2_empty -%}
-    <li class="icon-with-text__item">
+    <li class="icon-with-text__item {% if block.settings.use_app_embeded_2 %}app-embed-2{% endif %}">
         <img
           src="{{ block.settings.image_2 | image_url }}"
           {% if block.settings.image_2.alt != blank %}
@@ -86,7 +95,7 @@
     </li>
   {%- endunless -%}
   {%- unless heading_3_empty -%}
-    <li class="icon-with-text__item">
+    <li class="icon-with-text__item {% if block.settings.use_app_embeded_3 %}app-embed-3{% endif %}">
         <img
           src="{{ block.settings.image_3 | image_url }}"
           {% if block.settings.image_3.alt != blank %}
@@ -104,7 +113,7 @@
     </li>
   {%- endunless -%}
   {%- unless heading_4_empty -%}
-    <li class="icon-with-text__item">
+    <li class="icon-with-text__item {% if block.settings.use_app_embeded_4 %}app-embed-4{% endif %}">
         <img
           src="{{ block.settings.image_4 | image_url }}"
           {% if block.settings.image_4.alt != blank %}
@@ -122,3 +131,51 @@
     </li>
   {%- endunless -%}
 </ul>
+<script>
+  (function () {
+    var FLEX_SELECTOR = '.shopify-app-block[id*="flex_badge"]';
+
+    function moveFlexIntoSlot() {
+      var flexBlock = document.querySelector(FLEX_SELECTOR);
+      if (!flexBlock) return false;
+
+      // Find first icon-with-text item that opts in via app-embed-* class
+      var slot = document.querySelector(
+        '.icon-with-text__item.app-embed-1, '
+        + '.icon-with-text__item.app-embed-2, '
+        + '.icon-with-text__item.app-embed-3, '
+        + '.icon-with-text__item.app-embed-4'
+      );
+      if (!slot) return false;
+
+      // Already moved
+      if (slot.contains(flexBlock)) return true;
+
+      slot.appendChild(flexBlock);
+      slot.classList.add('has-app-embed');
+      return true;
+    }
+
+    function init() {
+      if (moveFlexIntoSlot()) return;
+
+      // Flex may load async — observe until it appears
+      var observer = new MutationObserver(function () {
+        if (moveFlexIntoSlot()) observer.disconnect();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function () { observer.disconnect(); }, 10000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    // Theme editor re-render support
+    document.addEventListener('shopify:section:load',    init);
+    document.addEventListener('shopify:section:reorder', init);
+    document.addEventListener('shopify:block:select',    init);
+  })();
+</script>
