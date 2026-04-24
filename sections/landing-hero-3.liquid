@@ -2,7 +2,7 @@
   {
     "name": "Landing Hero (3)",
     "tag": "section",
-    "class": "frontpage-hero f-v f-j-c js-frontpage-hero relative",
+    "class": "frontpage-hero f-v f-j-c js-frontpage-hero custom relative",
     "settings": [
       {
         "type": "color",
@@ -192,7 +192,9 @@
       {{ shopify_section_id }} .landing-hero__text {
           color: {{ section.settings.text_color  }};
       }
-  
+      .frontpage-hero.custom {
+        min-height: unset;
+      }
     {% if section.settings.mobile_text_below %}
       @media (max-width: 767px) {
         {{ shopify_section_id }}.frontpage-hero {

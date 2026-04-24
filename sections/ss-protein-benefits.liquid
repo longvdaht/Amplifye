@@ -316,133 +316,134 @@
               {%- else -%}
                 <div class="s-protein-benefits__card-placeholder"></div>
               {%- endif -%}
-  
-              <div class="s-protein-benefits__card-body">
-                {%- if card_title != blank -%}
-                  <h3 class="s-protein-benefits__card-title">{{ card_title }}</h3>
-                {%- endif -%}
-                {%- if card_desc != blank -%}
-                  <p class="s-protein-benefits__card-desc">{{ card_desc }}</p>
-                {%- endif -%}
-              </div>
-  
-              <div class="s-protein-benefits__card-aside">
-                {%- if benefits_list != blank -%}
-                  <ul class="s-protein-benefits__checklist">
-                    {%- assign items = benefits_list | newline_to_br | split: '<br />' -%}
-                    {%- for item in items -%}
-                      {%- assign trimmed = item | strip -%}
-                      {%- if trimmed != blank -%}
-                        <li class="s-protein-benefits__checklist-item">
-                          <span class="s-protein-benefits__check-icon" aria-hidden="true">
+              
+              <div class="card-content">
+                <div class="s-protein-benefits__card-body">
+                  {%- if card_title != blank -%}
+                    <h3 class="s-protein-benefits__card-title">{{ card_title }}</h3>
+                  {%- endif -%}
+                  {%- if card_desc != blank -%}
+                    <p class="s-protein-benefits__card-desc">{{ card_desc }}</p>
+                  {%- endif -%}
+                </div>
+    
+                <div class="s-protein-benefits__card-aside">
+                  {%- if benefits_list != blank -%}
+                    <ul class="s-protein-benefits__checklist">
+                      {%- assign items = benefits_list | newline_to_br | split: '<br />' -%}
+                      {%- for item in items -%}
+                        {%- assign trimmed = item | strip -%}
+                        {%- if trimmed != blank -%}
+                          <li class="s-protein-benefits__checklist-item">
+                            <span class="s-protein-benefits__check-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="12" fill="currentColor" opacity="0.9"/>
+                                <path d="M7 12.5L10.5 16L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                            <span class="s-protein-benefits__checklist-text">{{ trimmed }}</span>
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+    
+                  {%- if cta_label != blank -%}
+                    {%- assign amino_acids_raw = block.settings.amino_acids -%}
+                    {%- assign has_amino = false -%}
+                    {%- if amino_acids_raw != blank -%}
+                      {%- assign has_amino = true -%}
+                    {%- endif -%}
+    
+                    {%- if has_amino -%}
+                      <div
+                        class="s-protein-benefits__amino"
+                        data-amino-toggle
+                      >
+                        {%- comment -%} COLLAPSED STATE — label + (+) icon {%- endcomment -%}
+                        <button
+                          type="button"
+                          class="s-protein-benefits__card-cta js-amino-expand"
+                          aria-expanded="false"
+                          aria-controls="amino-panel-{{ block.id }}"
+                        >
+                          <span>{{ cta_label }}</span>
+                          <span class="s-protein-benefits__card-cta-icon s-protein-benefits__card-cta-icon--plus" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="12" cy="12" r="12" fill="currentColor" opacity="0.9"/>
-                              <path d="M7 12.5L10.5 16L17 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              <circle cx="12" cy="12" r="12" fill="currentColor"/>
+                              <path d="M12 7V17M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                           </span>
-                          <span class="s-protein-benefits__checklist-text">{{ trimmed }}</span>
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
-  
-                {%- if cta_label != blank -%}
-                  {%- assign amino_acids_raw = block.settings.amino_acids -%}
-                  {%- assign has_amino = false -%}
-                  {%- if amino_acids_raw != blank -%}
-                    {%- assign has_amino = true -%}
-                  {%- endif -%}
-  
-                  {%- if has_amino -%}
-                    <div
-                      class="s-protein-benefits__amino"
-                      data-amino-toggle
-                    >
-                      {%- comment -%} COLLAPSED STATE — label + (+) icon {%- endcomment -%}
-                      <button
-                        type="button"
-                        class="s-protein-benefits__card-cta js-amino-expand"
-                        aria-expanded="false"
-                        aria-controls="amino-panel-{{ block.id }}"
+                        </button>
+    
+                        {%- comment -%} EXPANDED STATE — pills + (-) icon {%- endcomment -%}
+                        <div
+                          class="s-protein-benefits__amino-panel"
+                          id="amino-panel-{{ block.id }}"
+                          hidden
+                        >
+                          <div class="s-protein-benefits__amino-pills">
+                            {%- assign amino_lines = amino_acids_raw | newline_to_br | split: '<br />' -%}
+                            {%- for line in amino_lines -%}
+                              {%- assign line_trimmed = line | strip -%}
+                              {%- if line_trimmed != blank -%}
+                                {%- assign parts = line_trimmed | split: '|' -%}
+                                {%- assign amino_name = parts[0] | strip -%}
+                                {%- assign amino_desc = parts[1] | default: '' | strip -%}
+                                <span
+                                  class="s-protein-benefits__amino-pill"
+                                  {%- if amino_desc != blank %} data-tooltip="{{ amino_desc | escape }}"{% endif -%}
+                                >
+                                  <span class="s-protein-benefits__amino-pill-name">{{ amino_name }}</span>
+                                  {%- if amino_desc != blank -%}
+                                    <button
+                                      type="button"
+                                      class="s-protein-benefits__amino-pill-info js-tooltip-trigger"
+                                      aria-label="More about {{ amino_name }}"
+                                      aria-expanded="false"
+                                    >
+                                      <span aria-hidden="true">i</span>
+                                    </button>
+                                    <span class="s-protein-benefits__tooltip" role="tooltip" hidden>
+                                      <span class="s-protein-benefits__tooltip-text">{{ amino_desc | escape }}</span>
+                                    </span>
+                                  {%- endif -%}
+                                </span>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </div>
+                          <button
+                            type="button"
+                            class="s-protein-benefits__amino-collapse js-amino-collapse"
+                            aria-label="Collapse"
+                          >
+                            <span class="s-protein-benefits__card-cta-icon" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="12" fill="currentColor"/>
+                                <path d="M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                              </svg>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    {%- else -%}
+                      {%- comment -%} No amino acids → fallback to simple link CTA {%- endcomment -%}
+                      <a
+                        class="s-protein-benefits__card-cta"
+                        href="{{ cta_url | default: '#' }}"
                       >
                         <span>{{ cta_label }}</span>
-                        <span class="s-protein-benefits__card-cta-icon s-protein-benefits__card-cta-icon--plus" aria-hidden="true">
+                        <span class="s-protein-benefits__card-cta-icon" aria-hidden="true">
                           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="12" cy="12" r="12" fill="currentColor"/>
                             <path d="M12 7V17M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
                           </svg>
                         </span>
-                      </button>
-  
-                      {%- comment -%} EXPANDED STATE — pills + (-) icon {%- endcomment -%}
-                      <div
-                        class="s-protein-benefits__amino-panel"
-                        id="amino-panel-{{ block.id }}"
-                        hidden
-                      >
-                        <div class="s-protein-benefits__amino-pills">
-                          {%- assign amino_lines = amino_acids_raw | newline_to_br | split: '<br />' -%}
-                          {%- for line in amino_lines -%}
-                            {%- assign line_trimmed = line | strip -%}
-                            {%- if line_trimmed != blank -%}
-                              {%- assign parts = line_trimmed | split: '|' -%}
-                              {%- assign amino_name = parts[0] | strip -%}
-                              {%- assign amino_desc = parts[1] | default: '' | strip -%}
-                              <span
-                                class="s-protein-benefits__amino-pill"
-                                {%- if amino_desc != blank %} data-tooltip="{{ amino_desc | escape }}"{% endif -%}
-                              >
-                                <span class="s-protein-benefits__amino-pill-name">{{ amino_name }}</span>
-                                {%- if amino_desc != blank -%}
-                                  <button
-                                    type="button"
-                                    class="s-protein-benefits__amino-pill-info"
-                                    aria-label="More about {{ amino_name }}"
-                                  >
-                                    <span aria-hidden="true">
-                                      <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0.216541 7.53564C0.0974435 7.53564 0 7.4382 0 7.3191V6.7994C0 6.6803 0.0974435 6.58286 0.216541 6.58286H1.62406C1.68902 6.58286 1.73233 6.53955 1.73233 6.47459V3.23729C1.73233 3.17233 1.68902 3.12902 1.62406 3.12902H0.324812C0.205714 3.12902 0.108271 3.03158 0.108271 2.91248V2.38196C0.108271 2.26286 0.205714 2.16541 0.324812 2.16541H2.50105C2.62015 2.16541 2.71759 2.26286 2.71759 2.38196V6.47459C2.71759 6.53955 2.7609 6.58286 2.82586 6.58286H4.16842C4.28752 6.58286 4.38496 6.6803 4.38496 6.7994V7.3191C4.38496 7.4382 4.28752 7.53564 4.16842 7.53564H0.216541ZM1.6782 1.06105V0.173233C1.6782 0.0866167 1.75399 0 1.85143 0H2.58767C2.68511 0 2.7609 0.0866167 2.7609 0.173233V1.06105C2.7609 1.1585 2.68511 1.23429 2.58767 1.23429H1.85143C1.75399 1.23429 1.6782 1.1585 1.6782 1.06105Z" fill="#FFFAF1"/>
-                                      </svg>
-                                    </span>
-                                  </button>
-                                {%- endif -%}
-                              </span>
-                            {%- endif -%}
-                          {%- endfor -%}
-                        </div>
-                        <button
-                          type="button"
-                          class="s-protein-benefits__amino-collapse js-amino-collapse"
-                          aria-label="Collapse"
-                        >
-                          <span class="s-protein-benefits__card-cta-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <circle cx="12" cy="12" r="12" fill="currentColor"/>
-                              <path d="M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  {%- else -%}
-                    {%- comment -%} No amino acids → fallback to simple link CTA {%- endcomment -%}
-                    <a
-                      class="s-protein-benefits__card-cta"
-                      href="{{ cta_url | default: '#' }}"
-                    >
-                      <span>{{ cta_label }}</span>
-                      <span class="s-protein-benefits__card-cta-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="12" fill="currentColor"/>
-                          <path d="M12 7V17M7 12H17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                      </span>
-                    </a>
+                      </a>
+                    {%- endif -%}
                   {%- endif -%}
-                {%- endif -%}
+                </div>
               </div>
-  
             </article>
           </div>
         {%- endfor -%}
@@ -501,6 +502,7 @@
     var section = document.getElementById('shopify-section-{{ section.id }}');
     if (!section) return;
   
+    // === Accordion toggle (amino acids expand/collapse) ===
     section.querySelectorAll('[data-amino-toggle]').forEach(function(wrapper) {
       var expandBtn   = wrapper.querySelector('.js-amino-expand');
       var collapseBtn = wrapper.querySelector('.js-amino-collapse');
@@ -516,6 +518,7 @@
         wrapper.classList.remove('is-open');
         expandBtn.setAttribute('aria-expanded', 'false');
         panel.hidden = true;
+        closeAllTooltips();
       }
   
       expandBtn.addEventListener('click', function(e) {
@@ -526,19 +529,54 @@
         e.preventDefault();
         close();
       });
+    });
   
-      // Tooltip on info icon (simple title attribute for now)
-      wrapper.querySelectorAll('.s-protein-benefits__amino-pill-info').forEach(function(btn) {
-        var pill = btn.closest('.s-protein-benefits__amino-pill');
-        var desc = pill ? pill.getAttribute('data-tooltip') : '';
-        if (desc) btn.setAttribute('title', desc);
-  
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          // Future: show modal / tooltip popover with desc
-        });
+    // === Click-based tooltip (works on mobile and desktop) ===
+    function closeAllTooltips() {
+      section.querySelectorAll('.js-tooltip-trigger[aria-expanded="true"]').forEach(function(trigger) {
+        trigger.setAttribute('aria-expanded', 'false');
+        var pill = trigger.closest('.s-protein-benefits__amino-pill');
+        if (pill) pill.classList.remove('tooltip-open');
+        var tooltip = pill && pill.querySelector('.s-protein-benefits__tooltip');
+        if (tooltip) tooltip.hidden = true;
       });
+    }
+  
+    section.querySelectorAll('.js-tooltip-trigger').forEach(function(trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+  
+        var pill = trigger.closest('.s-protein-benefits__amino-pill');
+        if (!pill) return;
+        var tooltip = pill.querySelector('.s-protein-benefits__tooltip');
+        if (!tooltip) return;
+  
+        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+  
+        // Close all other tooltips first
+        closeAllTooltips();
+  
+        // Then toggle this one
+        if (!isOpen) {
+          trigger.setAttribute('aria-expanded', 'true');
+          pill.classList.add('tooltip-open');
+          tooltip.hidden = false;
+        }
+      });
+    });
+  
+    // Click outside → close tooltip
+    document.addEventListener('click', function(e) {
+      if (!section.contains(e.target)) return;
+      if (e.target.closest('.js-tooltip-trigger')) return;
+      if (e.target.closest('.s-protein-benefits__tooltip')) return;
+      closeAllTooltips();
+    });
+  
+    // ESC key → close tooltip
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeAllTooltips();
     });
   })();
   </script>
