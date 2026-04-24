@@ -2,6 +2,8 @@
   opacity: 1;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .s-protein-benefits {
@@ -35,6 +37,10 @@
   border-style: dashed;
   border-radius: 20px;
   max-width: 290px;
+}
+
+.c-slider__slide.s-protein-benefits__slide .s-protein-benefits__card-image {
+  aspect-ratio: 29/38;
 }
 
 .s-protein-benefits__card-body {
