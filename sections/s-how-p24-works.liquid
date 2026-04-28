@@ -1,0 +1,206 @@
+{% comment %}
+  Section: How P24 Works
+  Layout:
+    - Desktop: image (left or right, controlled by setting) + content side by side
+    - Mobile: image (top) + content (bottom) stacked
+    - Video teaser lives inside the CTA box (bottom of content column)
+{% endcomment %}
+
+{{ 's-how-p24-works.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="s-how-p24-works{% if section.settings.image_position == 'right' %} s-how-p24-works--image-right{% endif %}"
+  id="s-how-p24-works-{{ section.id }}"
+>
+  <div class="s-how-p24-works__inner">
+
+    {%- comment -%} ── IMAGE COLUMN ── {%- endcomment -%}
+    {%- if section.settings.image != blank -%}
+      <div class="s-how-p24-works__media">
+        {{
+          section.settings.image
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            class: 's-how-p24-works__image',
+            widths: '400, 600, 900',
+            sizes: '(min-width: 990px) 50vw, 100vw',
+            alt: section.settings.image.alt | default: section.settings.heading
+        }}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} ── CONTENT COLUMN ── {%- endcomment -%}
+    <div class="s-how-p24-works__content">
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="s-how-p24-works__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- comment -%} Steps {%- endcomment -%}
+      {%- if section.blocks.size > 0 -%}
+        <ol class="s-how-p24-works__steps" role="list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'step' -%}
+              <li class="s-how-p24-works__step" {{ block.shopify_attributes }}>
+                <span class="s-how-p24-works__step-num" aria-hidden="true">{{ forloop.index }}</span>
+                <div class="s-how-p24-works__step-body">
+                  {%- if block.settings.step_title != blank -%}
+                    <p class="s-how-p24-works__step-title">{{ block.settings.step_title }}</p>
+                  {%- endif -%}
+                  {%- if block.settings.step_text != blank -%}
+                    <p class="s-how-p24-works__step-text">{{ block.settings.step_text }}</p>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ol>
+      {%- endif -%}
+
+      {%- comment -%} CTA / Video Teaser box {%- endcomment -%}
+      {%- if section.settings.cta_label != blank or section.settings.cta_video_url != blank or section.settings.cta_image != blank -%}
+        <div class="s-how-p24-works__cta-box">
+          <div class="s-how-p24-works__cta-box-inner">
+
+            {%- if section.settings.cta_label != blank -%}
+              <p class="s-how-p24-works__cta-label">{{ section.settings.cta_label }}</p>
+            {%- endif -%}
+
+            {%- if section.settings.video != blank -%}
+              {%- if section.settings.is_autoplay -%}
+                {%- render 'c-video',
+                    video_type: 'video',
+                    video: section.settings.video,
+                    controls: false,
+                    is_autoplay: true,
+                    has_play_btn: false,
+                    has_mute_btn: false
+                -%}
+              {%- else  -%}  
+                {%- render 'c-video',
+                    video_type: 'video',
+                    video: section.settings.video,
+                    controls: false,
+                    is_autoplay: false,
+                    has_play_btn: true,
+                    has_mute_btn: false
+                -%}
+              {%- endif  -%}  
+            {%- endif -%}
+
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>{%- comment -%} /.s-how-p24-works__content {%- endcomment -%}
+  </div>{%- comment -%} /.s-how-p24-works__inner {%- endcomment -%}
+</section>
+
+{% schema %}
+{
+  "name": "How P24 Works",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How P24 Works"
+    },
+    {
+      "type": "header",
+      "content": "CTA / Video Teaser"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Learn more about this scientific breakthrough."
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+		{
+			"type": "checkbox",
+			"id": "is_autoplay",
+			"label": "Autoplay video",
+			"default": false
+		}
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Title",
+          "default": "Step title"
+        },
+        {
+          "type": "textarea",
+          "id": "step_text",
+          "label": "Description",
+          "default": "Step description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How P24 Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Activate the Enzyme",
+            "step_text": "P24 \"turns on\" in the acidic environment of your stomach, so it can begin to efficiently break down protein."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Unlock Proteins",
+            "step_text": "With precision during gastric digestion, P24 slices protein chains into smaller pieces, making them usable for the body."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_title": "Increase Absorption",
+            "step_text": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
