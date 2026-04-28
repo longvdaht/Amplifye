@@ -906,6 +906,7 @@ body #gladlyChat_container {
     text-align: center;
     font-size: 12px;
     letter-spacing: .05em;
+    text-transform: none;
 }
 .s-brands__content .s-brands__heading:before {
     content: '';

@@ -106,7 +106,13 @@
     font-size: 16px;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 800px) and (max-width: 1244px) {
+  .s-protein-stats .s-protein-stats__card {
+    width: 25%;
+    min-width: 210px;
+  }
+}
+@media (min-width: 1245px) {
   .s-protein-stats .s-protein-stats__card {
     width: calc(245/1203*100%);
     margin-right: 20px;

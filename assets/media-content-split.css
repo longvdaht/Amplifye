@@ -208,6 +208,10 @@ img.desktop-only,
   .mcs-container .mcs-cta-btn.btn:hover {
     background-color: var(--cr-orange);
   }
+
+  .note-source p {
+    font: var(--t-b-4);
+  }
 }
 
 @media (min-width: 992px) {
