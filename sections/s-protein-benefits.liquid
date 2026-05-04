@@ -199,7 +199,7 @@
 %}
 
 {% if section.blocks.size > 0 %}
-  <div class="s-protein-benefits">
+  <div class="s-protein-benefits" id="section-{{ section.id }}">
 
     {%- comment -%} HEADER {%- endcomment -%}
     <div class="s-protein-benefits__header">
@@ -258,19 +258,50 @@
         </div>
       {%- endfor -%}
     {%- endcapture -%}
-
-    {%- comment -%} RENDER SLIDER — dùng c-slider snippet giống s-testimonial-video {%- endcomment -%}
-   {%- render 'c-slider',
-      classes: 's-protein-benefits__blocks',
-      slider_html: slider_html,
-      custom_slides_size: '--slide-size: 20%; --slide-gap: 40px;',
-      slider_options: "{'loop': true, 'skipSnaps': true, 'align': 'start'}",
-      is_full_width_on_mobile: true,
-      enable_nav: show_nav,
-      enable_dots: show_dots,
-      enable_wheel: true
-    -%}
-    
+    <div class="swiper s-protein-benefits__blocks c-slider s-protein-benefits__blocks">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_style = block.settings.card_style | default: 'light'
+            assign card_image = block.settings.image
+            assign card_title = block.settings.title
+            assign card_desc  = block.settings.description
+          -%}
+          <div class="swiper-slide c-slider__slide s-protein-benefits__slide" {{ block.shopify_attributes }}>
+            <div class="s-protein-benefits__card s-protein-benefits__card--{{ card_style }}">
+  
+              {%- if card_image != blank -%}
+                <div class="s-protein-benefits__card-image">
+                  {{-
+                    card_image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '280, 400, 600',
+                      alt: card_title
+                  -}}
+                </div>
+              {%- else -%}
+                <div class="s-protein-benefits__card-placeholder"></div>
+              {%- endif -%}
+  
+              <div class="s-protein-benefits__card-body">
+                {%- if card_title != blank -%}
+                  <h3 class="s-protein-benefits__card-title">{{ card_title }}</h3>
+                {%- endif -%}
+                {%- if card_desc != blank -%}
+                  <p class="s-protein-benefits__card-desc">{{ card_desc }}</p>
+                {%- endif -%}
+              </div>
+  
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="swiper-button swiper-button-prev"></div>
+      <div class="swiper-button swiper-button-next"></div>
+    </div>
+   
     {%- comment -%} DISCLAIMER {%- endcomment -%}
     {%- if disclaimer != blank -%}
       <div class="s-protein-benefits__disclaimer">
@@ -281,4 +312,15 @@
 
   </div>
 {% endif %}
-
+<script>
+  const swiper = new Swiper('#section-{{ section.id }} .s-protein-benefits__blocks', {
+  slidesPerView: 'auto',
+  spaceBetween: 40,
+  loop: false,
+  // Navigation
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  }
+});
+</script>

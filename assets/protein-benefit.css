@@ -4,6 +4,10 @@
   border-top-right-radius: 20px;
 }
 
+.s-protein-benefits .swiper-button {
+  display: none;
+}
+
 .s-protein-benefits {
   padding: 0 20px;
 }
