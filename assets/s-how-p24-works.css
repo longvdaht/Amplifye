@@ -8,6 +8,10 @@
   margin: 0 auto;
 }
 
+.video-wrapper {
+  width: 100%;
+}
+
 .s-how-p24-works__inner {
   padding: 30px;
   border-radius: 20px;
@@ -40,8 +44,8 @@
   font: var(--t-l-6);
   font-size: 18px;
   color: var(--cr-black);
-  width: 26px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   min-width: 26px;
   display: flex;
   align-items: center;
@@ -99,6 +103,10 @@
     gap: 60px;
   }
 
+  .video-wrapper {
+    max-width: 188px;
+  }
+
   .s-how-p24-works--image-right .s-how-p24-works__inner {
     flex-direction: row-reverse;
   }
@@ -137,6 +145,7 @@
   .s-how-p24-works .c-video {
     max-width: 188px;
     aspect-ratio: 188/108;
+    cursor: pointer;
   }
 
   .s-how-p24-works__cta-label {

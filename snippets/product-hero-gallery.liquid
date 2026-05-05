@@ -35,6 +35,42 @@
     {% endfor %}
 	<div class="product-hero__badge"></div>
   </div>
+  <script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const gallery = document.querySelector(".product-layout-stacked");
+		if (!gallery) return;
+
+		let isDesktop = window.innerWidth > 767;
+
+		gallery.addEventListener("click", (e) => {
+			if (!isDesktop) return;
+
+			const clickedSlide = e.target.closest(".c-slider__slide");
+			if (!clickedSlide) return;
+
+			const firstSlide = gallery.querySelector(".c-slider__slide");
+			if (!firstSlide || clickedSlide === firstSlide) return;
+
+			const mainImg = firstSlide.querySelector("img");
+			const clickedImg = clickedSlide.querySelector("img");
+
+			if (!mainImg || !clickedImg) return;
+
+			const tempSrc = mainImg.src;
+			const tempSrcset = mainImg.srcset;
+
+			mainImg.src = clickedImg.src;
+			mainImg.srcset = clickedImg.srcset;
+
+			clickedImg.src = tempSrc;
+			clickedImg.srcset = tempSrcset;
+		});
+
+		window.addEventListener("resize", () => {
+			isDesktop = window.innerWidth > 767;
+		});
+		});
+  </script>
 {%- endif -%}
 
 {%- capture slider_html -%}

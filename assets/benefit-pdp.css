@@ -44,7 +44,7 @@
 
 .content-wrapper {
   border: 1px solid var(--cr-cream);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .benefits__item {
@@ -65,14 +65,14 @@
 }
 
 .benefits__item-title {
-  color: var(--cr-white);
+  color: var(--cr-cream);
   margin: 0 0 10px;
   text-transform: capitalize;
 }
 
 .benefits__item-desc {
   font-size: 16px;
-  color: var(--cr-white);
+  color: var(--cr-cream);
 }
 @media (min-width: 768px) {
   .benefits__image-col--desktop,

@@ -36,7 +36,7 @@
       title: 'Benefits',
       classes: 'is-active',
       content: body_benefits,
-      isCloseSiblings: true
+      isCloseSiblings: false
     %}
   {% endif %}
   {% comment %} 	TODO: This should be reviewed {% endcomment %}
@@ -68,7 +68,7 @@
     {% render 'c-accordion',
       title: 'Ingredients',
       content: body_product_details,
-      isCloseSiblings: true
+      isCloseSiblings: false
     %}
   {%- endif -%}
   {% comment %} 	TODO: This should be reviewed {% endcomment %}
@@ -100,7 +100,7 @@
     {% render 'c-accordion',
       title: 'Suggested Use',
       content: body_suggested_use,
-      isCloseSiblings: true
+      isCloseSiblings: false
     %}
   {%- endif -%}
 
@@ -115,7 +115,7 @@
       {% render 'c-accordion',
         title: i.title,
         content: body,
-        isCloseSiblings: true
+        isCloseSiblings: false
       %}
     {%- endfor -%}
   {%- endif -%}

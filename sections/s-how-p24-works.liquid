@@ -68,27 +68,72 @@
             {%- endif -%}
 
             {%- if section.settings.video != blank -%}
-              {%- if section.settings.is_autoplay -%}
-                {%- render 'c-video',
-                    video_type: 'video',
-                    video: section.settings.video,
-                    controls: false,
-                    is_autoplay: true,
-                    has_play_btn: false,
-                    has_mute_btn: false
-                -%}
-              {%- else  -%}  
-                {%- render 'c-video',
-                    video_type: 'video',
-                    video: section.settings.video,
-                    controls: false,
-                    is_autoplay: false,
-                    has_play_btn: true,
-                    has_mute_btn: false
-                -%}
-              {%- endif  -%}  
+              <div class="video-wrapper" data-popup-trigger="how-it-work-video">
+                {%- if section.settings.is_autoplay -%}
+                  {%- render 'c-video',
+                      video_type: 'video',
+                      video: section.settings.video,
+                      controls: false,
+                      is_autoplay: true,
+                      has_play_btn: false,
+                      has_mute_btn: false
+                  -%}
+                {%- else  -%}  
+                  {%- render 'c-video',
+                      video_type: 'video',
+                      video: section.settings.video,
+                      controls: false,
+                      is_autoplay: false,
+                      has_play_btn: true,
+                      has_mute_btn: false
+                  -%}
+                {%- endif  -%}
+              </div> 
             {%- endif -%}
 
+            {% assign video = section.settings.video %}
+
+            <div
+              class="is-hidden"
+              data-popup-target="how-it-work-video"
+            >
+              <div class="how-it-work-video s-testimonial-video__popup">
+                <button
+                  type="button"
+                  class="s-testimonial-video__popup__close cr-cream"
+                  data-popup-close="how-it-work-video"
+                  aria-label="Close popup"
+                >
+                  <span class="icon-close"></span>
+                </button>
+                <button
+                  type="button"
+                  class="p-fill"
+                  data-popup-close="how-it-work-video"
+                  aria-label="Close popup"
+                ></button>
+
+                 {%- if section.settings.is_autoplay -%}
+                  {%- render 'c-video',
+                      video_type: 'video',
+                      video: video,
+                      controls: true,
+                      is_autoplay: true,
+                      has_play_btn: false,
+                      has_mute_btn: true
+                  -%}
+                {%- else  -%}  
+                  {%- render 'c-video',
+                      video_type: 'video',
+                      video: video,
+                      controls: true,
+                      is_autoplay: false,
+                      has_play_btn: true,
+                      has_mute_btn: true
+                  -%}
+                {%- endif  -%}  
+              </div>
+            </div>
           </div>
         </div>
       {%- endif -%}

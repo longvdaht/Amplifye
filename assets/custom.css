@@ -89,7 +89,8 @@ body #gladlyChat_container {
 }
 
 @media (min-width: 768px) {
-    .product-layout-stacked + .product-hero__gallery.js-product-hero-slider {
+    .product-layout-stacked + .product-hero__gallery.js-product-hero-slider,
+    .product-layout-stacked ~ .product-hero__gallery.js-product-hero-slider {
         display: none;
     }
 }
@@ -952,12 +953,6 @@ body #gladlyChat_container {
     }
 }
 /* New product design */
-.product-hero__gallery .c-slider__dots {
-    display: none;
-}
-.product-hero__gallery .c-slider__viewport {
-    padding-bottom: 0;
-}
 .custom.items-3-wrappers .app-embed-3 .h4.inline-richtext {
     display: none;
 }
@@ -990,12 +985,15 @@ body #gladlyChat_container {
     padding: 15px;
     gap: 15px;
 }
-.c-item-selling-plan__option__content__info {
+.c-item-selling-plan__option__content__info p {
     font: var(--t-l-2);
     letter-spacing: .1em;
     font-size: 10px;
     color: rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
+}
+.icon-with-text__item .shopify-app-block img {
+    width: auto;
 }
 .c-item-selling-plan__option input[type=radio] {
     min-width: 15px;
@@ -1010,6 +1008,14 @@ body #gladlyChat_container {
 .product-hero__accordions .c-accordion__content-interior p {
     font-size: 12px;
     line-height: 1.45;
+}
+.product-hero__accordions .c-accordion__content-interior p.c-source__label {
+    font-size: 10px;
+    line-height: 1.5;
+}
+.product-hero__accordions .c-source__content {
+    font: var(--t-l-5);
+    font-size: 10.5px;
 }
 .product-benefits {
     margin-block: 0 !important;
@@ -1089,12 +1095,17 @@ body #gladlyChat_container {
         flex-direction: row;
     }
 
+    .product-hero__accordions .c-accordion__content-interior p.c-source__label {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+
     .product-hero__header {
         gap: 20px;
     }
 
     .product-hero__content {
-        padding: 50px 0 0 0;
+        padding: 50px 0 0 30px;
         max-width: 503px;
         margin: 0 auto;
     }
@@ -1103,7 +1114,7 @@ body #gladlyChat_container {
         padding: 0 45px;
     }
 
-    .c-item-selling-plan__option__content__info {
+    .c-item-selling-plan__option__content__info p {
         font-size: 12px;
     }
 
@@ -1123,6 +1134,11 @@ body #gladlyChat_container {
 
     .product-hero__chat-note__title {
         font-size: 14px;
+    }
+}
+@media (min-width: 1200px) {
+    .product-hero__content {
+        padding-left: 0;
     }
 }
 /* New product design END */
