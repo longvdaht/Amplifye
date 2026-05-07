@@ -107,8 +107,26 @@
           width="{{ block.settings.image_3.width }}"
           loading="lazy"
         >
-      <span class="h4 inline-richtext t-l-3">
+      <span class="h4 inline-richtext t-l-3 {% if block.settings.use_app_embeded_3 %}fake-flex-trigger{% endif %}">
         {{- block.settings.heading_3 -}}
+        {% if block.settings.use_app_embeded_3 %}
+          <span class="flex-custom">
+            <img
+              src="{{ 'flex.png' | asset_url }}"
+              alt="Logo"
+              width="200"
+              height="80"
+              class="flex-logo"
+            >
+          </span>
+          <img
+            src="{{ 'info.png' | asset_url }}"
+            alt="Logo"
+            width="200"
+            height="80"
+            class="info"
+          >
+        {% endif %}
       </span>
     </li>
   {%- endunless -%}
@@ -139,32 +157,58 @@
       var flexBlock = document.querySelector(FLEX_SELECTOR);
       if (!flexBlock) return false;
 
-      // Find first icon-with-text item that opts in via app-embed-* class
       var slot = document.querySelector(
         '.icon-with-text__item.app-embed-1, '
         + '.icon-with-text__item.app-embed-2, '
         + '.icon-with-text__item.app-embed-3, '
         + '.icon-with-text__item.app-embed-4'
       );
+
       if (!slot) return false;
 
-      // Already moved
-      if (slot.contains(flexBlock)) return true;
+      if (!slot.contains(flexBlock)) {
+        slot.appendChild(flexBlock);
+        slot.classList.add('has-app-embed');
+      }
 
-      slot.appendChild(flexBlock);
-      slot.classList.add('has-app-embed');
+      // Hide original app image
+      const badgeImage = flexBlock.querySelector('img[onclick*="showModal"]');
+
+      if (badgeImage) {
+        badgeImage.style.display = 'none';
+      }
+
+      // Bind fake trigger once
+      const fakeTrigger = slot.querySelector('.fake-flex-trigger');
+
+      if (fakeTrigger && !fakeTrigger.dataset.flexBound) {
+        fakeTrigger.dataset.flexBound = 'true';
+
+        fakeTrigger.addEventListener('click', function() {
+          const dialog = flexBlock.querySelector('.flex-dialog');
+
+          dialog?.showModal();
+        });
+      }
+
       return true;
     }
 
     function init() {
       if (moveFlexIntoSlot()) return;
 
-      // Flex may load async — observe until it appears
       var observer = new MutationObserver(function () {
         if (moveFlexIntoSlot()) observer.disconnect();
       });
-      observer.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function () { observer.disconnect(); }, 10000);
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      setTimeout(function () {
+        observer.disconnect();
+      }, 10000);
     }
 
     if (document.readyState === 'loading') {
@@ -173,9 +217,8 @@
       init();
     }
 
-    // Theme editor re-render support
-    document.addEventListener('shopify:section:load',    init);
+    document.addEventListener('shopify:section:load', init);
     document.addEventListener('shopify:section:reorder', init);
-    document.addEventListener('shopify:block:select',    init);
+    document.addEventListener('shopify:block:select', init);
   })();
 </script>

@@ -953,13 +953,6 @@ body #gladlyChat_container {
     }
 }
 /* New product design */
-.custom.items-3-wrappers .app-embed-3 .h4.inline-richtext {
-    display: none;
-}
-.custom.items-3-wrappers .app-embed-3 {
-    grid-column: 1 / -1;
-    justify-content: center;
-}
 .product-hero__content {
     padding: 30px 20px;
     gap: 30px;
@@ -993,7 +986,7 @@ body #gladlyChat_container {
     text-transform: uppercase;
 }
 .icon-with-text__item .shopify-app-block img {
-    width: auto;
+    width: revert-layer;
 }
 .c-item-selling-plan__option input[type=radio] {
     min-width: 15px;
@@ -1021,8 +1014,9 @@ body #gladlyChat_container {
     margin-block: 0 !important;
     padding-top: 10px;
     padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+    gap: 10px;
+}
+.product-product-details {
     gap: 10px;
 }
 .product-benefits__item {
@@ -1089,6 +1083,14 @@ body #gladlyChat_container {
         order: -1;
         position: relative;
         top: 0;
+    }
+
+    .product-benefits {
+        gap: 20px;
+    }
+
+    .product-product-details {
+        gap: 20px;
     }
 
     .product-hero__header .oke-sr .oke-is-clickable {
