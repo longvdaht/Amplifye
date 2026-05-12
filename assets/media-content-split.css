@@ -63,7 +63,7 @@ img.desktop-only,
 }
 
 .mcs-stats-box {
-  border: 0.8px solid #000000;
+  border: 1px solid var(--cr-black);
   border-style: dashed;
   padding: 20px;
   border-radius: 20px;

@@ -211,13 +211,17 @@
 
 .ss-protein-benefits .s-protein-benefits__tooltip {
   position: absolute;
-  top: -36px;
+  top: -51px;
   left: 0;
-  width: max-content;
-  box-shadow: .66px .66px 6px #00000040 inset;
+  width: 100%;
+  box-shadow: none;
   padding: 10px;
   border-radius: 20px;
   display: none;
+  background-color: var(--cr-black);
+  color: var(--cr-white);
+  max-width: 200px;
+  min-width: 178px;
 }
 
 .ss-protein-benefits .s-protein-benefits__amino-pill-name {
@@ -320,6 +324,10 @@
   margin-right: auto;
 }
 
+.ss-protein-benefits .s-protein-benefits__amino-pill.tooltip-open .s-protein-benefits__tooltip {
+  display: block;
+}
+
 /* ===================== MOBILE SLIDER SETTINGS ===================== */
 @media (max-width: 767px) {
   .ss-protein-benefits .s-protein-benefits__card {
@@ -376,6 +384,11 @@
   .ss-protein-benefits .s-protein-benefits__blocks {
     margin: 0 auto;
     max-width: 1240px;
+  }
+
+  .ss-protein-benefits .s-protein-benefits__tooltip {
+    max-width: 300px;
+    min-width: 230px;
   }
 
   /* Embla is disabled at this breakpoint (active: false) -
@@ -441,9 +454,15 @@
   }
 
   .ss-protein-benefits .s-protein-benefits__card-cta {
-    padding: 10px 20px 10px 20px;
+    padding: 0 20px 0 20px;
     width: auto;
     letter-spacing: .1em;
+    height: 54px;
+  }
+
+  .ss-protein-benefits .s-protein-benefits__amino-panel {
+    height: 54px;
+    padding: 0 20px 0 10px;
   }
 
   .ss-protein-benefits .s-protein-benefits__checklist-item {
@@ -472,10 +491,6 @@
   .ss-protein-benefits .card-content {
     padding: 24px 0;
     gap: 24px;
-  }
-
-  .ss-protein-benefits .s-protein-benefits__amino-pill.tooltip-open .s-protein-benefits__tooltip {
-    display: block;
   }
 }
 
