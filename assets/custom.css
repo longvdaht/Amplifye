@@ -767,6 +767,9 @@ body #gladlyChat_container {
     .template-page-digestive-comfort .s-its .c-its {
         gap: 0;
     }
+    .s-testimonial-video.less-items .s-testimonial-video__blocks .c-slider__container {
+        justify-content: center;
+    }
     .template-page-digestive-comfort .c-its__content {
         padding-left: 40px;
         padding-right: 40px;
