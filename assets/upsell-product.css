@@ -1,47 +1,82 @@
 .upsell-products .c-item-card {
   display: flex;
   flex-wrap: wrap;
+  border: 1px solid #000000;
+  border-style: dashed;
+  border-radius: 20px;
+  padding: 20px;
+  gap: 30px;
 }
 
-.upsell-products .c-item-card .c-item-card__thumbnail,
+.upsell-products .c-item-card .c-item-card__thumbnail {
+  width: calc(188/308*100%);
+  margin: 0;
+  max-width: 188px;
+  height: fit-content;
+}
+
+.upsell-products .c-item-card__thumbnail:after {
+  padding-top: calc(108/188*100%);
+}
+
+.upsell-products .c-item-card .c-item-card__thumbnail img {
+  border-radius: 10px;
+}
+
 .upsell-products .c-item-card .c-item-card__content {
   margin-bottom: 0;
-  width: 50%;
+  width: 100%;
 }
 
-.upsell-products .c-item-card .c-item-card__content {
-  padding-left: 16px;
-  padding-top: 8px;
+.upsell-products .c-item-card .c-item-card__content .c-item-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .upsell-products .c-item-card__content__title,
 .upsell-products .product-hero__subtitle {
-  margin-bottom: 4px;
+  letter-spacing: .01em;
 }
 
 .quick-add__submit {
-  margin-top: 16px;
   width: 100%;
+  min-width: auto;
 }
 
 .upsell-products .quick-add {
-  margin-top: auto;
+  width: 100%;
 }
 
-@media (max-width: 767px) {
-  .upsell-products .c-item-card {
-    flex-direction: column;
-  }
+.product-purchase-bar .product-purchase-bar__gladly {
+  display: none;
+}
 
-  .upsell-products .c-item-card .c-item-card__thumbnail,
-  .upsell-products .c-item-card .c-item-card__content {
+.upsell-products .c-item-card .c-item-card__content.desktop-view {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .upsell-products .c-item-card .c-item-card__content.desktop-view {
+    display: block;
     width: 100%;
   }
 
-  .upsell-products .c-item-card .c-item-card__content {
-    padding-left: 0;
-    padding-top: 16px;
+  .upsell-products .c-item-card .c-item-card__content.mobile-view {
+    display: none;
   }
+  
+  .upsell-products .c-item-card .c-item-card__content {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 188px - 30px);
+    gap: 30px;
+  }
+
+  .upsell-products .c-item-card {
+    flex-direction: row;
+  }
+
+  .upsell-products .c-item-card .c-item-card__content .c-item-wrapper
 }

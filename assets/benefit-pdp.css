@@ -1,0 +1,147 @@
+.benefits img {
+  opacity: 1;
+}
+
+.benefits__bg-img--desktop {
+  display: none;
+}
+
+.benefits__image-col--desktop {
+  display: none;
+}
+
+.benefits__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.benefits__bg .benefits__bg-img {
+  height: 100%;
+}
+
+.benefits__bg img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.benefits {
+  position: relative;
+}
+
+.benefits__heading {
+  font: var(--t-h-1);
+  text-align: center;
+  margin: 0 0 50px;
+  color: var(--cr-white);
+}
+
+.benefits__inner {
+  padding: 40px 20px;
+  max-width: 1352px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  border: 1px solid var(--cr-cream);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.benefits__item {
+  padding: 15px;
+  border-bottom: 1px solid var(--cr-cream);
+}
+
+.benefits__item:last-child {
+  border-bottom: 0;
+}
+
+.benefits__item:first-child {
+  border-top: 1px solid var(--cr-cream);
+}
+
+.benefits__product-image--desktop {
+  display: none;
+}
+
+.benefits__item-title {
+  color: var(--cr-cream);
+  margin: 0 0 10px;
+  text-transform: capitalize;
+}
+
+.benefits__item-desc {
+  font-size: 16px;
+  color: var(--cr-cream);
+}
+@media (min-width: 768px) {
+  .benefits__image-col--desktop,
+  .benefits__bg-img--desktop,
+  .benefits__product-image--desktop {
+    display: block;
+  }
+
+  .benefits__image-col--mobile,
+  .benefits__bg-img--mobile,
+  .benefits__product-image--mobile {
+    display: none;
+  }
+
+  .benefits__inner {
+    padding: 60px 30px;
+  }
+
+  .benefits__heading {
+    letter-spacing: -.02em;
+  }
+
+  .benefits__grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .benefits__list-col {
+    width: calc(50% + 100px);
+    position: relative;
+  }
+
+  .benefits__list-col:after {
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: var(--cr-cream);
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .benefits__product-image {
+    width: calc(50% - 100px);
+  }
+
+  .benefits__item:first-child {
+    border-top: none;
+  }
+
+  .benefits__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .benefits__item-title {
+    margin: 0;
+    width: 100%;
+  }
+
+  .benefits__item-desc {
+    font-size: 18px;
+  }
+
+  .benefits__product-image.benefits__product-image--desktop {
+    display: flex;
+    align-items: center;
+  }
+}
