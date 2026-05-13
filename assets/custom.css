@@ -951,3 +951,8 @@ body #gladlyChat_container {
         margin: 0;
     }
 }
+@media (min-width: 1024px) {
+    .frontpage-hero__text.desktop-right {
+        margin-right: 60px;
+    }
+}
