@@ -3,6 +3,10 @@
   gap: 25px;
 }
 
+.section-custom__style .c-its__media::before {
+  padding-top: 75%;
+}
+
 .section-custom__style .c-its__content .c-its__heading {
   letter-spacing: 0;
 }
