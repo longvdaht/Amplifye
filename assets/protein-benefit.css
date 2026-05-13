@@ -1,0 +1,133 @@
+.s-protein-benefits__card-image img {
+  opacity: 1;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s-protein-benefits {
+  padding: 0 20px;
+}
+
+.s-protein-benefits__heading {
+  font: var(--t-h-1);
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+.s-protein-benefits__cta {
+  max-width: 235px;
+  margin: 0 auto;
+  min-width: 235px;
+  display: flex;
+}
+
+.s-protein-benefits__header {
+  margin-bottom: 40px;
+}
+
+.c-slider.s-protein-benefits__blocks {
+  margin-right: -20px;
+}
+
+.c-slider__slide.s-protein-benefits__slide {
+  width: calc(290/370*100%);
+  border: 1px solid var(--cr-black);
+  border-style: dashed;
+  border-radius: 20px;
+  max-width: 290px;
+}
+
+.c-slider__slide.s-protein-benefits__slide .s-protein-benefits__card-image {
+  aspect-ratio: 29/38;
+}
+
+.s-protein-benefits__card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.s-protein-benefits__card-title {
+  letter-spacing: .06em;
+  color: var(--cr-black);
+  text-transform: uppercase;
+}
+
+.s-protein-benefits__card-desc {
+  font: var(--t-b-2);
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--cr-black);
+  letter-spacing: 0;
+}
+
+.s-protein-benefits__disclaimer {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-label
+.s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-label {
+  font: var(--t-l-5);
+  color: var(--cr-black);
+}
+
+@media (max-width: 600px) {
+  .s-protein-benefits .c-slider__container.is-full-width-on-mobile .c-slider__slide {
+    flex: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .s-protein-benefits {
+    padding: 0 40px;
+  }
+
+  .c-slider__slide.s-protein-benefits__slide {
+    width: 100%;
+    max-width: 290px;
+    min-width: 290px;
+  }
+
+  .c-slider.s-protein-benefits__blocks {
+    margin-right: -40px;
+  }
+
+  .s-protein-benefits__header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  .s-protein-benefits__heading {
+    max-width: 80%;
+    font-size: 32px;
+    text-align: left;
+    margin: 0;
+    letter-spacing: -.02em;
+  }
+
+  .s-protein-benefits__cta {
+    margin: 0;
+  }
+
+  .s-protein-benefits__card-title {
+    font-size: 22px;
+  }
+
+  .s-protein-benefits__disclaimer {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .s-protein-benefits__heading {
+    max-width: calc(733/1360*100%);
+    font-size: 60px;
+  }
+}

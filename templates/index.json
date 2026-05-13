@@ -13,20 +13,261 @@
       "type": "landing-hero-2",
       "name": "Landing Hero (2)",
       "settings": {
-        "heading": "Fuel Your Muscles, Mind, and Metabolism with P24.",
+        "text_color": "#ffffff",
+        "heading": "Absorb More Protein From Your Meals.",
         "subheading": "",
-        "content": "amplifyeP24 is an enzyme that helps you digest and absorb all protein more efficiently, so you feel stronger, think clearer, and recover faster.",
-        "cta_label": "Buy P24",
+        "content": "The patented protein enzyme backed by Nobel Prize-winning science. Designed to unlock the nutrients your body needs.",
+        "cta_label": "Get P24",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/HP_HERO_-_DESKTOP.png",
-        "background_image_mobile": "shopify://shop_images/HP_HERO_-_MOBILE_3_e10d3eb2-73a2-43d2-811d-b4434e11acb3.png",
+        "background_image": "shopify://shop_images/Banner-back-desk.jpg",
+        "background_image_mobile": "shopify://shop_images/Banner-back-mobile.jpg",
         "product": "amplifye-p24",
         "custom_style": false,
         "content_alignment": "right",
-        "heading_font_size": 32,
-        "mobile_align": "top_center",
+        "heading_font_size": 36,
+        "mobile_text_below": false,
+        "mobile_align": "bottom_center",
         "code": ""
+      }
+    },
+    "s_brands_3axFpA": {
+      "type": "s-brands",
+      "blocks": {
+        "logo_7qFkGK": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/the-ny-times_1.png"
+          }
+        },
+        "logo_WMrqaD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/health_1.png"
+          }
+        },
+        "logo_pmnwLA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/vogue_1.png"
+          }
+        },
+        "logo_dhc98M": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/download_1.png"
+          }
+        },
+        "logo_XkfNt6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/yahoo-finance-transparent.png"
+          }
+        },
+        "logo_zW7raE": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/trendhunter.png"
+          }
+        },
+        "logo_ezMWNq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/althletech_news.png"
+          }
+        },
+        "logo_kryP94": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/AFN.png"
+          }
+        },
+        "logo_XfLCBr": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/fittinsider_black.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_7qFkGK",
+        "logo_WMrqaD",
+        "logo_pmnwLA",
+        "logo_dhc98M",
+        "logo_XkfNt6",
+        "logo_zW7raE",
+        "logo_ezMWNq",
+        "logo_kryP94",
+        "logo_XfLCBr"
+      ],
+      "name": "Brands",
+      "settings": {
+        "heading": "AmplifyeP24 can double protein absorption with one daily capsule.",
+        "show_quote": true,
+        "quote_open": "shopify://shop_images/quote-open.png",
+        "quote_close": "shopify://shop_images/quote-close.png",
+        "padding_top": 15,
+        "padding_right": 30,
+        "padding_bottom": 15,
+        "padding_left": 30,
+        "padding_top_mobile": 25,
+        "padding_right_mobile": 0,
+        "padding_bottom_mobile": 25,
+        "padding_left_mobile": 0
+      }
+    },
+    "media_content_split_FaB6Cd": {
+      "type": "media-content-split",
+      "blocks": {
+        "stat_PzRDj8": {
+          "type": "stat",
+          "settings": {
+            "badge_text": "115%",
+            "description": "increase in the stomach"
+          }
+        },
+        "stat_MKKtnR": {
+          "type": "stat",
+          "settings": {
+            "badge_text": "15%",
+            "description": "increase in the small intestine"
+          }
+        }
+      },
+      "block_order": [
+        "stat_PzRDj8",
+        "stat_MKKtnR"
+      ],
+      "name": "Media Content Split",
+      "settings": {
+        "media_position": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/Fish-weight.png",
+        "image_mobile": "shopify://shop_images/Fish-weight-mobile.png",
+        "eyebrow": "The protein gap",
+        "heading": "<p><em>Less than</em> <em>50%</em> of the protein we eat is actually absorbed.</p>",
+        "heading_larger": false,
+        "body_text": "",
+        "show_stats_box": true,
+        "stats_label": "P24 increases protein's bioavailability.",
+        "button_style": "primary",
+        "btn_label": "",
+        "btn_url": "",
+        "btn_subtext": "From $58.00 a month",
+        "source_text": "<p><em>Source: </em>Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone.</p>"
+      }
+    },
+    "media_content_split_pieWLA": {
+      "type": "media-content-split",
+      "name": "Media Content Split",
+      "settings": {
+        "media_position": "left",
+        "media_type": "image",
+        "image": "shopify://shop_images/medicine-desktop.png",
+        "image_mobile": "shopify://shop_images/medicine-desktop.png",
+        "eyebrow": "the precision enzyme",
+        "heading": "<p>Unlock more protein with P24</p>",
+        "heading_larger": true,
+        "body_text": "Take one P24 capsule with a protein-rich meal. It gets right to work—breaking down proteins with efficiency and releasing higher concentrations of amino acids.",
+        "show_stats_box": false,
+        "stats_label": "P24 increases protein's bioavailability.",
+        "button_style": "primary",
+        "btn_label": "Get P24",
+        "btn_url": "shopify://products/amplifye-p24",
+        "btn_subtext": "From $58.00 a month",
+        "source_text": ""
+      }
+    },
+    "s_protein_benefits_Dp4r43": {
+      "type": "s-protein-benefits",
+      "blocks": {
+        "benefit_6eKWjG": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/smoother_digestion.png",
+            "title": "smoother digestion",
+            "description": "Efficient protein absorption reduces digestive strain, supports microbial balance, and enhances gut lining integrity.",
+            "card_style": "light"
+          }
+        },
+        "benefit_V3AyxU": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/stronger_muscles.png",
+            "title": "stronger muscles",
+            "description": "Protein stimulates muscle synthesis, reduces muscle breakdown, and replenishes amino acid stores for faster repair and recovery.",
+            "card_style": "light"
+          }
+        },
+        "benefit_CWfVzr": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/all_day_Energy.png",
+            "title": "all day Energy",
+            "description": "Protein stabilizes blood sugar, fuels neurotransmitters for focus, preserves muscle mass, and enhances mitochondrial function.",
+            "card_style": "light"
+          }
+        },
+        "benefit_kTGdq7": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/Deeper_Sleep.png",
+            "title": "Deeper Sleep",
+            "description": "Protein supports restful sleep by providing tryptophan for melatonin, stabilizing blood sugar, and aiding muscle repair.",
+            "card_style": "light"
+          }
+        },
+        "benefit_mPe9jU": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/smoother_digestion.png",
+            "title": "smoother digestion",
+            "description": "Efficient protein absorption reduces digestive strain, supports microbial balance, and enhances gut lining integrity.",
+            "card_style": "light"
+          }
+        },
+        "benefit_MUq3ee": {
+          "type": "benefit",
+          "settings": {
+            "image": "shopify://shop_images/stronger_muscles.png",
+            "title": "stronger muscles",
+            "description": "Protein stimulates muscle synthesis, reduces muscle breakdown, and replenishes amino acid stores for faster repair and recovery.",
+            "card_style": "light"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_6eKWjG",
+        "benefit_V3AyxU",
+        "benefit_CWfVzr",
+        "benefit_kTGdq7",
+        "benefit_mPe9jU",
+        "benefit_MUq3ee"
+      ],
+      "name": "Protein Benefits",
+      "settings": {
+        "heading": "Absorbing more protein feels like...",
+        "cta_label": "LEARN MORE",
+        "cta_url": "",
+        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
+        "margin_top": 60,
+        "margin_bottom": 60,
+        "margin_top_desktop": 60,
+        "margin_bottom_desktop": 60
+      }
+    },
+    "s_its_j3rRP8": {
+      "type": "s-its",
+      "name": "Image Text Split",
+      "settings": {
+        "content_alignment": "right",
+        "media_type": "image",
+        "image": "shopify://shop_images/f31591a2fdc581df619bf0c58753399d504292b1_1.gif",
+        "heading": "From rates of consumption to rates of absorption.",
+        "paragraph": "<p>P24 jump-starts digestion and breaks down protein with precision. This allows your body to access and absorb more peptides and amino acids.</p>",
+        "note": "",
+        "cta_label": "The Science",
+        "cta_url": "shopify://pages/the-science"
       }
     },
     "s_reviews_dnaDbY": {
@@ -245,92 +486,11 @@
         "show_dots": false
       }
     },
-    "s_brands_3axFpA": {
-      "type": "s-brands",
-      "blocks": {
-        "logo_7qFkGK": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/the-ny-times_1.png"
-          }
-        },
-        "logo_WMrqaD": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/health_1.png"
-          }
-        },
-        "logo_pmnwLA": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/vogue_1.png"
-          }
-        },
-        "logo_dhc98M": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/download_1.png"
-          }
-        },
-        "logo_XkfNt6": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/yahoo-finance-transparent.png"
-          }
-        },
-        "logo_zW7raE": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/trendhunter.png"
-          }
-        },
-        "logo_ezMWNq": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/althletech_news.png"
-          }
-        },
-        "logo_kryP94": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/AFN.png"
-          }
-        },
-        "logo_XfLCBr": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/fittinsider_black.png"
-          }
-        }
-      },
-      "block_order": [
-        "logo_7qFkGK",
-        "logo_WMrqaD",
-        "logo_pmnwLA",
-        "logo_dhc98M",
-        "logo_XkfNt6",
-        "logo_zW7raE",
-        "logo_ezMWNq",
-        "logo_kryP94",
-        "logo_XfLCBr"
-      ],
-      "name": "Brands",
-      "settings": {
-        "heading": "",
-        "padding_top": 15,
-        "padding_right": 165,
-        "padding_bottom": 15,
-        "padding_left": 165,
-        "padding_top_mobile": 0,
-        "padding_right_mobile": 25,
-        "padding_bottom_mobile": 0,
-        "padding_left_mobile": 25
-      }
-    },
     "landing_hero_2_a9fG8g": {
       "type": "landing-hero-2",
       "name": "Landing Hero (2)",
       "settings": {
+        "text_color": "#ffffff",
         "heading": "Meet the Limited Edition Travel Case",
         "subheading": "",
         "content": "Because consistency is key and forgetfulness is human.",
@@ -343,6 +503,7 @@
         "custom_style": true,
         "content_alignment": "right",
         "heading_font_size": 32,
+        "mobile_text_below": false,
         "mobile_align": "bottom_center",
         "code": ""
       }
@@ -390,6 +551,7 @@
       "type": "landing-hero-2",
       "name": "Landing Hero (2)",
       "settings": {
+        "text_color": "#ffffff",
         "heading": "Meet P24: The Protein Amplifier",
         "subheading": "",
         "content": "P24 is a precision enzyme that boosts protein absorption at the source - so your muscles, metabolism, and recovery get more from every bite and every scoop. So you can feel the difference where it matters most: strength, energy, recovery, and overall vitality.",
@@ -402,6 +564,7 @@
         "custom_style": true,
         "content_alignment": "center",
         "heading_font_size": 32,
+        "mobile_text_below": false,
         "mobile_align": "bottom_center",
         "code": ""
       }
@@ -555,10 +718,10 @@
           "type": "shopify://apps/abra-promotions/blocks/banner/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
           "settings": {
             "name": "Default",
-            "banner_background_color": "#119D52",
-            "banner_border_color": "#119D52",
-            "banner_color": "#FFFFFF",
-            "banner_icon_color": "#FFFFFF",
+            "banner_background_color": "#119d52",
+            "banner_border_color": "#119d52",
+            "banner_color": "#ffffff",
+            "banner_icon_color": "#ffffff",
             "banner_border_radius": 0,
             "banner_font_size": 16,
             "banner_icon_size": 16,
@@ -576,9 +739,13 @@
   },
   "order": [
     "landing_hero_2_GhYqWU",
+    "s_brands_3axFpA",
+    "media_content_split_FaB6Cd",
+    "media_content_split_pieWLA",
+    "s_protein_benefits_Dp4r43",
+    "s_its_j3rRP8",
     "s_reviews_dnaDbY",
     "landing_testimonial_video",
-    "s_brands_3axFpA",
     "landing_hero_2_a9fG8g",
     "frontpage-benefits",
     "new_editorial_GqCrKp",
