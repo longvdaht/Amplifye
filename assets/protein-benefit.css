@@ -68,8 +68,8 @@
   margin-top: 20px;
 }
 
-.s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-label
-.s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-label {
+.s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-label,
+.s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-text {
   font: var(--t-l-5);
   color: var(--cr-black);
 }
@@ -122,7 +122,8 @@
     gap: 24px;
   }
 
-  .s-protein-benefits__disclaimer * {
+  .s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-label,
+  .s-protein-benefits__disclaimer .s-protein-benefits__disclaimer-text {
     font: var(--t-b-4);
   }
 }

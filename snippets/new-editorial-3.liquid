@@ -308,10 +308,10 @@
     }
 {% endstyle %}
 
-<div class="new-editorial new-editorial-2 new-editorial-3 c-editorial c-landing-editorial f-v bg-subtle {% if custom_style %}custom-style{% endif %}">
+<div id="{{ section.id }}" class="new-editorial new-editorial-2 new-editorial-3 c-editorial c-landing-editorial f-v {% if custom_style %}custom-style{% endif %}">
     {% if section.settings.background_color != blank %}
         {% style %}
-            #{{ section.id }} .new-editorial-2 {
+            #{{ section.id }}.new-editorial-2 {
                 background-color: {{ section.settings.background_color }}
             }
         {% endstyle %}
