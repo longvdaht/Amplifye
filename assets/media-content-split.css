@@ -115,6 +115,7 @@ img.desktop-only,
   display: flex;
   gap: 15px;
   font: var(--t-l-5);
+  font-size: 11px;
 }
 
 .note-source p em {
@@ -220,6 +221,11 @@ img.desktop-only,
   
   .mcs-container .mcs-media {
     width: calc(460/1028*100%);
+  }
+
+  .mcs-container .mcs-media img {
+    height: 100%;
+    object-fit: cover;
   }
   
   .mcs-container .mcs-content {
