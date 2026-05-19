@@ -545,6 +545,31 @@
       "disabled": true,
       "settings": {}
     },
+    "blocks_GKJidi": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1cb33e7_nNgpHV": {
+          "type": "ai_gen_block_1cb33e7",
+          "settings": {
+            "custom_liquid": "{%render 'frontrow-testimonials'%}",
+            "desktop_width_percent": 100,
+            "background_color": "#ffffff",
+            "padding_top": 40,
+            "padding_bottom": 0,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 20,
+            "padding_bottom_mobile": 20,
+            "padding_horizontal_mobile": 15
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1cb33e7_nNgpHV"
+      ],
+      "name": "Frontrow Testimonials",
+      "settings": {}
+    },
     "product-reviews": {
       "type": "product-reviews",
       "settings": {}
@@ -582,6 +607,7 @@
     "product-benefits-2",
     "landing_hero_2_j6t9cF",
     "product-stats",
+    "blocks_GKJidi",
     "product-reviews",
     "s_faq_fbD3iH",
     "product-purchase-bar"
