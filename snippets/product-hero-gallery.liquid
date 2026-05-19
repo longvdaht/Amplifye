@@ -12,6 +12,9 @@
         {% case media.media_type %}
           {% when 'image' %}
             <div class="object-fits product-image">
+				{% if forloop.first %}	
+				{% render 'frontrow-banner' %}
+			{% endif %}
 				{% render 'c-img-srcset', image: media, alt: product.title, is_non_lazy: true %}
             </div>
           {% when 'model' %}
@@ -34,7 +37,44 @@
       </div>
     {% endfor %}
 	<div class="product-hero__badge"></div>
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const gallery = document.querySelector(".product-layout-stacked");
+		if (!gallery) return;
+
+		let isDesktop = window.innerWidth > 767;
+
+		gallery.addEventListener("click", (e) => {
+			if (!isDesktop) return;
+
+			const clickedSlide = e.target.closest(".c-slider__slide");
+			if (!clickedSlide) return;
+
+			const firstSlide = gallery.querySelector(".c-slider__slide");
+			if (!firstSlide || clickedSlide === firstSlide) return;
+
+			const mainImg = firstSlide.querySelector("img");
+			const clickedImg = clickedSlide.querySelector("img");
+
+			if (!mainImg || !clickedImg) return;
+
+			const tempSrc = mainImg.src;
+			const tempSrcset = mainImg.srcset;
+
+			mainImg.src = clickedImg.src;
+			mainImg.srcset = clickedImg.srcset;
+
+			clickedImg.src = tempSrc;
+			clickedImg.srcset = tempSrcset;
+		});
+
+		window.addEventListener("resize", () => {
+			isDesktop = window.innerWidth > 767;
+		});
+		});
+  </script>
   </div>
+  
 {%- endif -%}
 
 {%- capture slider_html -%}
@@ -42,6 +82,9 @@
 		<div class="c-slider__slide">
 			{% case media.media_type %}
 				{% when 'image' %}
+					{% if forloop.first %}	
+				{% render 'frontrow-banner' %}
+			{% endif %}
 					<div class="object-fit">
 						{% render 'c-img-srcset', image: media, alt: product.title, is_non_lazy: true %}
 					</div>

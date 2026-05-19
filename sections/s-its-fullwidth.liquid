@@ -73,6 +73,12 @@
         "content": "Content"
       },
       {
+        "type": "checkbox",
+        "id": "use_custom_styles",
+        "label": "Use custom style",
+        "default": false
+      },
+      {
         "type": "text",
         "id": "heading",
         "label": "Heading"
@@ -101,6 +107,26 @@
         "type": "product",
         "id": "product",
         "label": "Product"
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button style",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary hover white"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary hover black"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          }
+        ],
+        "default": "primary"
       }
     ]
   }
@@ -124,7 +150,10 @@
       assign selected_media_type = 'video'
     endif
   -%}
-  
+  {%- if section.settings.use_custom_styles -%}
+    {{ 'image-text-custom.css' | asset_url | stylesheet_tag }}
+    <div class="section-custom__style">
+  {%- endif -%}
   {%- render 'c-its-fullwidth',
     heading: section.settings.heading,
     paragraph: section.settings.paragraph,
@@ -132,10 +161,14 @@
     cta_label: section.settings.cta_label,
     cta_url: section.settings.cta_url,
     product_url: section.settings.product,
+    button_style: section.settings.button_style,
     content_align: section.settings.content_alignment,
     selected_media_type: selected_media_type,
     image: image,
     image_mobile:image_mobile,
     video: video
   -%}
+  {%- if section.settings.use_custom_styles -%}
+    </div>
+  {%- endif -%}
   

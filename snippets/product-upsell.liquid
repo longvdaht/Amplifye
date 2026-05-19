@@ -7,7 +7,7 @@
 
     {% for product in upsell_products %}
       <div class="product-item">
-        {%- render 'card-product', item: product, class: class, quick_add: true -%}
+        {%- render 'card-product-upsell', item: product, class: class, quick_add: true -%}
       </div>
     {% endfor %}
   </div>

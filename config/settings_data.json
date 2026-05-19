@@ -85,9 +85,10 @@
       "g-footer": {
         "type": "g-footer",
         "settings": {
-          "header_title": "Unlock the power of protein with P24.",
-          "cta_label": "buy now",
-          "cta_url": "shopify://products/amplifye-p24",
+          "show_header_footer": false,
+          "header_title": "",
+          "cta_label": "",
+          "cta_url": "",
           "product": "",
           "email_capture_heading": "Access the latest nutritional news and scientific insights from amplifye.",
           "email_capture_success_message": "Success! Thank you for signing up.",
@@ -170,7 +171,6 @@
           "popup_placement": "bottom-center",
           "popup_dismiss": "manual",
           "popup_dismiss_delay": 5,
-          "announcement_bar_enabled": true,
           "announcement_bar_background_color": "#119d52",
           "announcement_bar_border_color": "#119d52",
           "announcement_bar_color": "#ffffff",
@@ -196,6 +196,20 @@
         "settings": {
           "background": "#c14b24",
           "text": "#fffaf1",
+          "text_hover": "#000000"
+        }
+      },
+      "scheme-b0a1f2c1-5ac5-444e-b3d1-077781ae197b": {
+        "settings": {
+          "background": "#fdf3e0",
+          "text": "#000000",
+          "text_hover": "#000000"
+        }
+      },
+      "scheme-41ea9edc-e075-4d0e-ab0c-c94bd360bc5b": {
+        "settings": {
+          "background": "#fffaf1",
+          "text": "#000000",
           "text_hover": "#000000"
         }
       }

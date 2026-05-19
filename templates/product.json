@@ -46,14 +46,23 @@
         "icon_with_text_rrEtjF": {
           "type": "icon-with-text",
           "settings": {
-            "image_1": "shopify://shop_images/shipping.png",
-            "heading_1": "Free standard US shipping",
-            "image_2": "shopify://shop_images/moneyback.png",
-            "heading_2": "Save $10 on every order",
-            "image_3": "shopify://shop_images/pause.png",
-            "heading_3": "Pause, skip or cancel anytime",
-            "image_4": "shopify://shop_images/try.png",
-            "heading_4": "Try for 30 days or your money back"
+            "image_1": "shopify://shop_images/try.png",
+            "heading_1": "Try for 30 days, risk free.",
+            "use_app_embeded_1": false,
+            "image_2": "shopify://shop_images/shipping.png",
+            "heading_2": "Free standard US shipping",
+            "use_app_embeded_2": false,
+            "image_3": "shopify://shop_images/moneyback.png",
+            "heading_3": "Pay using HSA/FSA with",
+            "use_app_embeded_3": true,
+            "heading_4": "",
+            "use_app_embeded_4": false
+          }
+        },
+        "custom_liquid_RerY7r": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'frontrow' %}"
           }
         },
         "accordions_LQjdqt": {
@@ -81,199 +90,186 @@
         "hero_form_6tUAYX",
         "flex_flex_badge_KrX9zn",
         "icon_with_text_rrEtjF",
+        "custom_liquid_RerY7r",
         "accordions_LQjdqt",
         "text_rcfkBt",
         "chat_note_KmgddD",
         "upsell_product_fmkqwD"
       ],
       "settings": {
-        "subscription_info": "<ul><li>Save $10 on every order</li><li>Free standard US shipping</li><li>Pause, skip or cancel anytime</li><li>Try for 30 days or your money back</li></ul>",
-        "one_time_info": "<ul><li>Free standard US shipping</li><li>Try for 30 days or your money back</li></ul>",
+        "subscription_info": "<p>Pause, skip or cancel anytime</p>",
+        "one_time_info": "",
         "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
         "gallery_layout": "stacked"
       }
     },
-    "s_testimonial_video_hF3AGh": {
-      "type": "s-testimonial-video",
-      "blocks": {
-        "block_pbwrhB": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "title": "Example",
-            "name": "",
-            "is_autoplay": false
-          }
-        },
-        "block_E3haNa": {
-          "type": "block",
-          "settings": {
-            "video": "shopify://files/videos/2e0e3ae8798b43a19eabed8c2d8abe5a (1) (2).mov",
-            "title": "I noticed positive changes in my gut health.",
-            "name": "Casey",
-            "is_autoplay": false
-          }
-        },
-        "block_K638i8": {
-          "type": "block",
-          "settings": {
-            "title": "I love it! Tummy flat! More energy! How do I buy more?!",
-            "name": "Maneet A.",
-            "is_autoplay": false
-          }
-        },
-        "block_JqGqYK": {
-          "type": "block",
-          "settings": {
-            "video": "shopify://files/videos/eadb854bb0b04900a3a92345cc552f8a (1).mov",
-            "title": "",
-            "name": "",
-            "is_autoplay": false
-          }
-        },
-        "block_GCDqgA": {
-          "type": "block",
-          "settings": {
-            "video": "shopify://files/videos/85c1530be4a54b6194965d878d0be795 (1) (1).mov",
-            "title": "I’ll never travel without it.",
-            "name": "Remy M.",
-            "is_autoplay": false
-          }
-        },
-        "block_CDxCGK": {
-          "type": "block",
-          "settings": {
-            "title": "I have been feeling AMAZING taking P24.",
-            "name": "Linday S.",
-            "is_autoplay": false
-          }
-        },
-        "block_7y8TVr": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "video": "shopify://files/videos/5d0377487f364062b8ed5f3c1f557693_b261d37f-f1ae-46a0-b315-9b3a4616931f.mov",
-            "title": "I can totally feel the difference.",
-            "name": "Rosie A.",
-            "is_autoplay": false
-          }
-        },
-        "block_NGjjjR": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "title": "I've definitely been sleeping better so far.",
-            "name": "Gabriela B.",
-            "is_autoplay": false
-          }
-        },
-        "block_V7YFPi": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "video": "shopify://files/videos/5a5d6494481f4844849ac7d9464bf828_8be48db9-7fd4-461d-af36-d5ac7afbcdaa.mov",
-            "title": "",
-            "name": "",
-            "is_autoplay": false
-          }
-        },
-        "block_gWehgV": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "title": "I'm loving P24; I see a big difference on my body.",
-            "name": "Larry S.",
-            "is_autoplay": false
-          }
-        }
-      },
-      "block_order": [
-        "block_pbwrhB",
-        "block_E3haNa",
-        "block_K638i8",
-        "block_JqGqYK",
-        "block_GCDqgA",
-        "block_CDxCGK",
-        "block_7y8TVr",
-        "block_NGjjjR",
-        "block_V7YFPi",
-        "block_gWehgV"
-      ],
-      "disabled": true,
-      "settings": {
-        "layout": "vertical",
-        "heading": "Don’t just take it from us.",
-        "subheading": "",
-        "cta_label": "See all reviews",
-        "cta_url": "#reviews",
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "show_dots": true
-      }
-    },
-    "s_brands_JXaBpE": {
+    "s_brands_3axFpA": {
       "type": "s-brands",
       "blocks": {
-        "logo_TYmc8i": {
+        "logo_7qFkGK": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/fittinsider_black.png"
+            "logo": "shopify://shop_images/the-ny-times_1.png"
           }
         },
-        "logo_PL4e3r": {
+        "logo_WMrqaD": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/AFN.png"
+            "logo": "shopify://shop_images/health_1.png"
           }
         },
-        "logo_YxwtBB": {
+        "logo_pmnwLA": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/yahoo-finance-transparent.png"
+            "logo": "shopify://shop_images/vogue_1.png"
           }
         },
-        "logo_7j4GmV": {
+        "logo_dhc98M": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/download_1.png"
           }
         },
-        "logo_7KVqCn": {
+        "logo_XkfNt6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/yahoo-finance-transparent.png"
+          }
+        },
+        "logo_zW7raE": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/trendhunter.png"
+          }
+        },
+        "logo_ezMWNq": {
           "type": "logo",
           "settings": {
             "logo": "shopify://shop_images/althletech_news.png"
           }
         },
-        "logo_6hkKbh": {
+        "logo_kryP94": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/trendhunter.png"
+            "logo": "shopify://shop_images/AFN.png"
+          }
+        },
+        "logo_XfLCBr": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/fittinsider_black.png"
           }
         }
       },
       "block_order": [
-        "logo_TYmc8i",
-        "logo_PL4e3r",
-        "logo_YxwtBB",
-        "logo_7j4GmV",
-        "logo_7KVqCn",
-        "logo_6hkKbh"
+        "logo_7qFkGK",
+        "logo_WMrqaD",
+        "logo_pmnwLA",
+        "logo_dhc98M",
+        "logo_XkfNt6",
+        "logo_zW7raE",
+        "logo_ezMWNq",
+        "logo_kryP94",
+        "logo_XfLCBr"
       ],
       "name": "Brands",
       "settings": {
-        "heading": "Featured In",
+        "heading": "",
+        "show_quote": true,
+        "quote_open": "shopify://shop_images/quote-open.png",
+        "quote_close": "shopify://shop_images/quote-close.png",
         "padding_top": 15,
-        "padding_right": 15,
+        "padding_right": 30,
         "padding_bottom": 15,
         "padding_left": 30,
-        "padding_top_mobile": 20,
+        "padding_top_mobile": 25,
         "padding_right_mobile": 0,
-        "padding_bottom_mobile": 20,
+        "padding_bottom_mobile": 25,
         "padding_left_mobile": 0
       }
     },
+    "s_how_p24_works_Ck3Hrn": {
+      "type": "s-how-p24-works",
+      "blocks": {
+        "step_bp7Kr4": {
+          "type": "step",
+          "settings": {
+            "step_title": "Activate the Enzyme",
+            "step_text": "P24 \"turns on\" in the acidic environment of your stomach, so it can begin to efficiently break down protein."
+          }
+        },
+        "step_qqi9Yn": {
+          "type": "step",
+          "settings": {
+            "step_title": "Unlock Proteins",
+            "step_text": "With precision during gastric digestion, P24 slices protein chains into smaller pieces, making them usable for the body."
+          }
+        },
+        "step_eidyNk": {
+          "type": "step",
+          "settings": {
+            "step_title": "Increase Absorption",
+            "step_text": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition."
+          }
+        }
+      },
+      "block_order": [
+        "step_bp7Kr4",
+        "step_qqi9Yn",
+        "step_eidyNk"
+      ],
+      "name": "How P24 Works",
+      "settings": {
+        "image": "shopify://shop_images/Frame_1533210083.png",
+        "image_position": "left",
+        "heading": "How P24 Works",
+        "cta_label": "Learn more about this scientific breakthrough.",
+        "video": "shopify://files/videos/f37e1bbfa4ef446fa76fcfd70509646c_1f9a921f-bb6f-4097-a4c8-c32450055acd.mp4",
+        "is_autoplay": false
+      }
+    },
+    "feature_cards_DW37g4": {
+      "type": "feature-cards",
+      "blocks": {
+        "card_tRinpf": {
+          "type": "card",
+          "settings": {
+            "title": "Absorption unlock",
+            "subtitle": "Get more nutrients from the meals you eat every day.",
+            "image_desktop": "shopify://shop_images/Absorption_unlock.png",
+            "description": "<p>Put down the protein soda. P24 helps your digestive system unlock nutrients from the foods you already love to eat.</p>"
+          }
+        },
+        "card_H8bdfw": {
+          "type": "card",
+          "settings": {
+            "title": "For body & mind",
+            "subtitle": "Access the amino acids you need to feel your best.",
+            "image_desktop": "shopify://shop_images/For_body_mind.png",
+            "description": "<p>P24 breaks down proteins with precision, increasing the concentration of key amino acids that are essential for health.</p>"
+          }
+        },
+        "card_qaF6j9": {
+          "type": "card",
+          "settings": {
+            "title": "Protein's plus one",
+            "subtitle": "Take one P24 capsule with any protein-rich meal.",
+            "image_desktop": "shopify://shop_images/Protein_s_plus_one.png",
+            "description": "<p>This protein enzyme multiplies the amount of bioavailable protein — whether it's from a steak, tofu, or a protein shake.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "card_tRinpf",
+        "card_H8bdfw",
+        "card_qaF6j9"
+      ],
+      "name": "Feature Cards",
+      "settings": {}
+    },
     "landing_editorial_jxrCUC": {
       "type": "landing-editorial",
+      "disabled": true,
       "name": "Landing - Editorial",
       "settings": {
         "background_image": "shopify://shop_images/PDP_Banner_Travel_Case_Desktop_1.png",
@@ -294,8 +290,82 @@
         "source": ""
       }
     },
+    "benefits_section_jqhymV": {
+      "type": "benefits-section",
+      "blocks": {
+        "benefit_item_LJ7jMr": {
+          "type": "benefit_item",
+          "settings": {
+            "title": "Deeper Sleep",
+            "description": "Key amino acids from protein help you get sleep that's actually restful."
+          }
+        },
+        "benefit_item_KEQQWP": {
+          "type": "benefit_item",
+          "settings": {
+            "title": "All Day Energy",
+            "description": "Better protein absorption means steadier energy from morning to night."
+          }
+        },
+        "benefit_item_ttjVPN": {
+          "type": "benefit_item",
+          "settings": {
+            "title": "Stronger Muscles",
+            "description": "More amino acids absorbed helps you build and maintain strength."
+          }
+        },
+        "benefit_item_zfqG36": {
+          "type": "benefit_item",
+          "settings": {
+            "title": "Smoother Digestion",
+            "description": "Better protein breakdown improves gut comfort and digestion."
+          }
+        },
+        "benefit_item_UhLw3z": {
+          "type": "benefit_item",
+          "settings": {
+            "title": "Sharper Clarity",
+            "description": "The amino acids in protein keep your focus sharp and your mind clear."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_item_LJ7jMr",
+        "benefit_item_KEQQWP",
+        "benefit_item_ttjVPN",
+        "benefit_item_zfqG36",
+        "benefit_item_UhLw3z"
+      ],
+      "name": "Benefits",
+      "settings": {
+        "heading": "Benefits you can feel.",
+        "background_image_desktop": "shopify://shop_images/benefit-bg.png",
+        "background_image_mobile": "shopify://shop_images/benefit-bg-mobile.png",
+        "product_image_desktop": "shopify://shop_images/benefit-medicine.png",
+        "product_image_mobile": "shopify://shop_images/benefit-medicine-mobile.png"
+      }
+    },
+    "s_protein_stats_7cYMii": {
+      "type": "s-protein-stats",
+      "name": "Protein Stats",
+      "settings": {
+        "heading": "P24 amplifyes all proteins.",
+        "subheading": "",
+        "proteins": [
+          "beef",
+          "chicken",
+          "tofu",
+          "atlantic-salmon",
+          "eggs",
+          "pork",
+          "whey-protein",
+          "brown-lentils"
+        ]
+      }
+    },
     "s_editorial_n6Bpjt": {
       "type": "s-editorial",
+      "disabled": true,
       "name": "Editorial",
       "settings": {
         "is_full_bleed": true,
@@ -317,6 +387,7 @@
     },
     "s_editorial_text_visual_FLmGw6": {
       "type": "s-editorial-text-visual",
+      "disabled": true,
       "name": "Editorial Text Visual",
       "settings": {
         "background_image": "shopify://shop_images/amplifye_capsule.jpg",
@@ -380,6 +451,7 @@
     },
     "s_data_Mqw3An": {
       "type": "s-data",
+      "disabled": true,
       "settings": {
         "heading": "How bioavailable is your protein?",
         "subheading": "Explore how p24 amplifyes all types of protein",
@@ -410,6 +482,7 @@
     },
     "product-benefits-2": {
       "type": "product-benefits-2",
+      "disabled": true,
       "settings": {
         "heading": "Better protein absorption means better health benefits.",
         "subheading": "p24’s research-backed impact",
@@ -431,6 +504,7 @@
         "heading": "Meet the Limited Edition Travel Case",
         "subheading": "",
         "content": "Because consistency is key and forgetfulness is human.",
+        "content_richtext": "",
         "cta_label": "Buy Travel Case",
         "cta_url": "shopify://products/the-absorption-towel",
         "button_style": "primary",
@@ -478,6 +552,35 @@
       "disabled": true,
       "settings": {}
     },
+    "17786027013977ae70": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1cb33e7_KVGdcM": {
+          "type": "ai_gen_block_1cb33e7",
+          "settings": {
+            "custom_liquid": "{%render 'frontrow-testimonials'%}",
+            "desktop_width_percent": 100,
+            "background_color": "#fffaf1",
+            "padding_top": 40,
+            "padding_bottom": 0,
+            "padding_horizontal": 20,
+            "padding_top_mobile": 20,
+            "padding_bottom_mobile": 20,
+            "padding_horizontal_mobile": 15
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1cb33e7_KVGdcM"
+      ],
+      "name": "Frontrow Testimonials",
+      "settings": {}
+    },
+    "product-reviews": {
+      "type": "product-reviews",
+      "settings": {}
+    },
     "s_faq_fbD3iH": {
       "type": "s-faq",
       "settings": {
@@ -490,10 +593,6 @@
         "cta_label": "Let’s Chat"
       }
     },
-    "product-reviews": {
-      "type": "product-reviews",
-      "settings": {}
-    },
     "product-purchase-bar": {
       "type": "product-purchase-bar",
       "settings": {}
@@ -501,9 +600,12 @@
   },
   "order": [
     "product-hero",
-    "s_testimonial_video_hF3AGh",
-    "s_brands_JXaBpE",
+    "s_brands_3axFpA",
+    "s_how_p24_works_Ck3Hrn",
+    "feature_cards_DW37g4",
     "landing_editorial_jxrCUC",
+    "benefits_section_jqhymV",
+    "s_protein_stats_7cYMii",
     "s_editorial_n6Bpjt",
     "s_editorial_text_visual_FLmGw6",
     "product-editorial",
@@ -512,8 +614,9 @@
     "product-benefits-2",
     "landing_hero_2_j6t9cF",
     "product-stats",
-    "s_faq_fbD3iH",
+    "17786027013977ae70",
     "product-reviews",
+    "s_faq_fbD3iH",
     "product-purchase-bar"
   ]
 }
