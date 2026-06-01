@@ -1,0 +1,121 @@
+.shopify-section.s-protein-stats {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.s-protein-stats .s-protein-stats__header {
+  gap: 24px;
+}
+
+.s-protein-stats__subheading {
+  font: var(--t-l-6);
+  line-height: 1.25;
+  letter-spacing: .02em;
+}
+
+.s-protein-stats .s-protein-stats__card {
+  width: calc(214/350*100%);
+  margin-right: 15px;
+  aspect-ratio: 214/321;
+}
+
+.s-protein-stats .s-protein-stats__card__image {
+  transform: none;
+}
+
+.s-protein-stats .s-protein-stats__card__content {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 18px 16px 26px 16px;
+  gap: 18px;
+}
+
+.s-protein-stats .s-protein-stats__card__name {
+  letter-spacing: .1em;
+  font-size: 18px;
+  color: var(--cr-cream);
+}
+
+.s-protein-stats .s-protein-stats__card__number {
+  font-size: 32px;
+  letter-spacing: 0;
+  color: var(--cr-cream);
+}
+
+.s-protein-stats .s-protein-stats__card__label {
+  opacity: 1;
+  font: var(--t-l-2);
+  letter-spacing: .1em;
+  color: var(--cr-cream);
+  max-width: 100%;
+}
+
+.s-protein-stats .c-slider__buttons {
+  position: relative;
+  inset: 0;
+  margin-top: 16px;
+  transform: none;
+}
+
+.s-protein-stats .s-protein-stats__heading {
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .shopify-section.s-protein-stats {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .s-protein-stats .c-slider__buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    bottom: auto;
+  }
+
+  .s-protein-stats .s-protein-stats__header {
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+
+  .s-protein-stats .s-protein-stats__subheading {
+    font: var(--t-h-4);
+    max-width: 100%;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .s-protein-stats .c-slider__viewport {
+    max-width: calc(1203/1300*100%);
+    margin: 0 auto;
+  }
+
+  .s-protein-stats .s-protein-stats__card__content {
+    padding: 20px 0 30px;
+    gap: 20px;
+  }
+
+  .s-protein-stats .s-protein-stats__card__number {
+    font-size: 60px;
+    letter-spacing: -.02em;
+  }
+
+  .s-protein-stats .s-protein-stats__card__label {
+    font-size: 16px;
+  }
+}
+@media (min-width: 800px) and (max-width: 1244px) {
+  .s-protein-stats .s-protein-stats__card {
+    width: 25%;
+    min-width: 210px;
+  }
+}
+@media (min-width: 1245px) {
+  .s-protein-stats .s-protein-stats__card {
+    width: calc(245/1203*100%);
+    margin-right: 20px;
+    aspect-ratio: 245/367;
+  }
+}

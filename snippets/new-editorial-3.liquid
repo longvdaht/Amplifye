@@ -40,6 +40,41 @@
         margin-top: 40px;
     }
 
+    {% if custom_style %}
+        #shopify-section-{{ section.id }} .custom-style .c-landing-editorial__content .c-header__heading {
+            margin-top: 30px;
+            font: var(--t-h-2);
+        }
+        .custom-style .c-landing-editorial__content .c-header__subheading {
+            letter-spacing: .1em;
+        }
+        .c-editorial__content {
+            gap: 40px;
+        }
+        .new-editorial-3.c-landing-editorial.custom-style .editorial-image {
+            max-width: 746px;
+        }
+        .new-editorial-3.c-landing-editorial.custom-style .editorial-image .c-video {
+            padding-top: calc(426/746*100%);
+            border-radius: 10px;
+        }
+        .s-landing-editorial-2 .custom-style .c-editorial__paragraph {
+            font: var(--t-b-2);
+            margin: 0;
+            max-width: 100%;
+        }
+        .s-landing-editorial-2 .custom-style .c-editorial__footer {
+            margin-top: 0;
+        }
+        .c-video__control {
+            bottom: auto;
+            right: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    {% endif %}
+
     #shopify-section-{{ section.id }} .c-landing-editorial__content .c-editorial__footer p {
         text-align: {{ alignment }};
     }
@@ -94,6 +129,38 @@
     }
 
     @media (max-width: 600px) {
+        {% if custom_style %}
+            .custom-style.new-editorial-2.c-landing-editorial {
+                padding: 60px 0 100px;
+            }
+            .custom-style.new-editorial-2.c-landing-editorial .c-editorial__content {
+                padding: 0 20px;
+            }
+            .custom-style.c-landing-editorial__content .c-header__subheading {
+                font: var(--t-l-5);
+                letter-spacing: .1em;
+            }
+            #shopify-section-{{ section.id }} .custom-style .c-landing-editorial__content .c-header__heading {
+                font: var(--t-h-2);
+                text-align: center;
+                margin-top: 20px;
+                letter-spacing: 0;
+            }
+            .c-editorial__content {
+                gap: 30px;
+            }
+            .custom-style.new-editorial-3.c-landing-editorial .editorial-image .c-video {
+                padding-top: calc(236/350*100%);
+            }
+            .s-landing-editorial-2 .custom-style .c-editorial__paragraph {
+                margin: 0;
+                line-height: 1.3;
+            }
+            .s-landing-editorial-2 .custom-style .c-editorial__footer {
+                margin-top: 10px;
+            }
+        {% endif %}
+        
         .s-landing-editorial-2 .c-landing-editorial {
             padding: 30px 32px 48px;
         }
@@ -241,10 +308,10 @@
     }
 {% endstyle %}
 
-<div class="new-editorial new-editorial-2 new-editorial-3 c-editorial c-landing-editorial f-v bg-subtle">
+<div id="{{ section.id }}" class="new-editorial new-editorial-2 new-editorial-3 c-editorial c-landing-editorial f-v {% if custom_style %}custom-style{% endif %}">
     {% if section.settings.background_color != blank %}
         {% style %}
-            #{{ section.id }} .new-editorial-2 {
+            #{{ section.id }}.new-editorial-2 {
                 background-color: {{ section.settings.background_color }}
             }
         {% endstyle %}
@@ -270,25 +337,36 @@
             </div>
         {%- endif -%}        
 
-        {%- if paragraph != blank -%}                
+        {%- unless show_paragraph_media -%}   
             {%- if paragraph != blank -%}
                 <p class="c-editorial__paragraph">
                     {{ paragraph | newline_to_br }}
                 </p>
             {%- endif -%}
-        {%- endif -%}
+        {%- endunless -%}
 
         {%- if image != blank -%}
             <span class="editorial-image">
                 {%- if video != blank -%}
-                    {%- render 'c-video',
-                        video_type: 'video',
-                        video: video,
-                        controls: false,
-                        is_autoplay: true,
-                        has_play_btn: false,
-                        has_mute_btn: false
-                    -%}
+                    {%- if is_autoplay -%}
+                        {%- render 'c-video',
+                            video_type: 'video',
+                            video: video,
+                            controls: false,
+                            is_autoplay: true,
+                            has_play_btn: false,
+                            has_mute_btn: false
+                        -%}
+                    {%- else  -%}  
+                        {%- render 'c-video',
+                            video_type: 'video',
+                            video: video,
+                            controls: false,
+                            is_autoplay: false,
+                            has_play_btn: true,
+                            has_mute_btn: false
+                        -%}
+                    {%- endif  -%}  
                 {%- else -%}
                     {%- render 'c-img-srcset',
                         image: image,
@@ -297,6 +375,14 @@
                     -%}
                 {%- endif -%}
 		    </span>
+        {%- endif -%}
+    
+        {%- if show_paragraph_media -%}                
+            {%- if paragraph != blank -%}
+                <p class="c-editorial__paragraph">
+                    {{ paragraph | newline_to_br }}
+                </p>
+            {%- endif -%}
         {%- endif -%}
 
         {% if section.blocks.size > 0 %}

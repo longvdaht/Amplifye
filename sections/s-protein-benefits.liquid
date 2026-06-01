@@ -1,0 +1,326 @@
+{% schema %}
+{
+  "name": "Protein Benefits",
+  "tag": "section",
+  "class": "m-y-section",
+  "presets": [
+    {
+      "name": "Protein Benefits",
+      "settings": {
+        "heading": "Absorbing more protein feels like...",
+        "cta_label": "LEARN MORE",
+        "cta_url": "",
+        "show_nav": true,
+        "show_dots": false,
+        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease."
+      },
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "SMOOTHER DIGESTION",
+            "description": "Efficient protein absorption reduces digestive strain, supports microbial balance, and enhances gut lining integrity."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "STRONGER MUSCLES",
+            "description": "Protein stimulates muscle synthesis, reduces muscle breakdown, and replenishes amino acid stores for faster repair and recovery."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "ALL DAY ENERGY",
+            "description": "Protein stabilizes blood sugar, fuels neurotransmitters for focus, preserves muscle mass, and enhances mitochondrial function."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "DEEPER SLEEP",
+            "description": "Protein supports restful sleep by providing tryptophan for melatonin, stabilizing blood sugar, and aiding muscle repair."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "SHARPER SKIN",
+            "description": "Protein provides amino acids for collagen production, stabilizes blood sugar, and supports cell repair for healthier skin."
+          }
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Absorbing more protein feels like..."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Label",
+      "default": "LEARN MORE"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer text"
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show dots",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+     {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "label": "Margin top desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "label": "Margin bottom desktop",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "select",
+          "id": "card_style",
+          "label": "Card Style",
+          "options": [
+            { "value": "light", "label": "Light (cream border)" },
+            { "value": "dark", "label": "Dark (solid)" }
+          ],
+          "default": "light"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{{ 'protein-benefit.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }}.m-y-section {
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+
+  @media (min-width: 768px) {
+    #shopify-section-{{ section.id }}.m-y-section {
+      margin-top: {{ section.settings.margin_top_desktop }}px;
+      margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+{% liquid
+  assign heading    = section.settings.heading
+  assign cta_label  = section.settings.cta_label
+  assign cta_url    = section.settings.cta_url
+  assign disclaimer = section.settings.disclaimer
+  assign show_nav   = section.settings.show_nav
+  assign show_dots  = section.settings.show_dots
+%}
+
+{% if section.blocks.size > 0 %}
+  <div class="s-protein-benefits" id="section-{{ section.id }}">
+
+    {%- comment -%} HEADER {%- endcomment -%}
+    <div class="s-protein-benefits__header">
+      {%- if heading != blank -%}
+        <h2 class="s-protein-benefits__heading --t-h-1">{{ heading }}</h2>
+      {%- endif -%}
+
+      {%- if cta_label != blank -%}
+        <a
+          class="s-protein-benefits__cta s-protein-benefits__cta--desktop btn hover-white"
+          href="{{ cta_url | default: '#' }}"
+        >
+          {{- cta_label -}}
+          <span class="s-protein-benefits__cta-icon" aria-hidden="true"></span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} BUILD SLIDE HTML {%- endcomment -%}
+    {%- capture slider_html -%}
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign card_style = block.settings.card_style | default: 'light'
+          assign card_image = block.settings.image
+          assign card_title = block.settings.title
+          assign card_desc  = block.settings.description
+        -%}
+        <div class="c-slider__slide s-protein-benefits__slide" {{ block.shopify_attributes }}>
+          <div class="s-protein-benefits__card s-protein-benefits__card--{{ card_style }}">
+
+            {%- if card_image != blank -%}
+              <div class="s-protein-benefits__card-image">
+                {{-
+                  card_image
+                  | image_url: width: 600
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '280, 400, 600',
+                    alt: card_title
+                -}}
+              </div>
+            {%- else -%}
+              <div class="s-protein-benefits__card-placeholder"></div>
+            {%- endif -%}
+
+            <div class="s-protein-benefits__card-body">
+              {%- if card_title != blank -%}
+                <h3 class="s-protein-benefits__card-title">{{ card_title }}</h3>
+              {%- endif -%}
+              {%- if card_desc != blank -%}
+                <p class="s-protein-benefits__card-desc">{{ card_desc }}</p>
+              {%- endif -%}
+            </div>
+
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endcapture -%}
+    <div class="swiper s-protein-benefits__blocks c-slider s-protein-benefits__blocks">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_style = block.settings.card_style | default: 'light'
+            assign card_image = block.settings.image
+            assign card_title = block.settings.title
+            assign card_desc  = block.settings.description
+          -%}
+          <div class="swiper-slide c-slider__slide s-protein-benefits__slide" {{ block.shopify_attributes }}>
+            <div class="s-protein-benefits__card s-protein-benefits__card--{{ card_style }}">
+  
+              {%- if card_image != blank -%}
+                <div class="s-protein-benefits__card-image">
+                  {{-
+                    card_image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '280, 400, 600',
+                      alt: card_title
+                  -}}
+                </div>
+              {%- else -%}
+                <div class="s-protein-benefits__card-placeholder"></div>
+              {%- endif -%}
+  
+              <div class="s-protein-benefits__card-body">
+                {%- if card_title != blank -%}
+                  <h3 class="s-protein-benefits__card-title">{{ card_title }}</h3>
+                {%- endif -%}
+                {%- if card_desc != blank -%}
+                  <p class="s-protein-benefits__card-desc">{{ card_desc }}</p>
+                {%- endif -%}
+              </div>
+  
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="swiper-button swiper-button-prev"></div>
+      <div class="swiper-button swiper-button-next"></div>
+    </div>
+   
+    {%- comment -%} DISCLAIMER {%- endcomment -%}
+    {%- if disclaimer != blank -%}
+      <div class="s-protein-benefits__disclaimer">
+        <span class="s-protein-benefits__disclaimer-label">Disclaimer</span>
+        <p class="s-protein-benefits__disclaimer-text">{{ disclaimer }}</p>
+      </div>
+    {%- endif -%}
+
+  </div>
+{% endif %}
+<script>
+  const swiper = new Swiper('#section-{{ section.id }} .s-protein-benefits__blocks', {
+  slidesPerView: 'auto',
+  spaceBetween: 40,
+  loop: false,
+  // Navigation
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  }
+});
+</script>
