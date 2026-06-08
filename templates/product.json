@@ -40,7 +40,11 @@
             "lomn": "yes",
             "style": "light",
             "alignment": "center",
-            "width": 250
+            "width": 250,
+            "use_custom_font_size": false,
+            "font_size": 16,
+            "use_custom_letter_spacing": false,
+            "letter_spacing": 0
           }
         },
         "icon_with_text_rrEtjF": {
@@ -352,7 +356,8 @@
           "eggs",
           "pork",
           "whey-protein",
-          "brown-lentils"
+          "brown-lentils",
+          "greek-yogurt"
         ]
       }
     },
