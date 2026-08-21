@@ -557,6 +557,7 @@
       "blocks": {
         "ai_gen_block_1cb33e7_nNgpHV": {
           "type": "ai_gen_block_1cb33e7",
+          "disabled": true,
           "settings": {
             "custom_liquid": "",
             "desktop_width_percent": 100,
