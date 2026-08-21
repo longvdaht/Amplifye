@@ -36,8 +36,10 @@
         },
         "flex_flex_badge_KrX9zn": {
           "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
+          "disabled": true,
           "settings": {
             "lomn": "yes",
+            "show_subscription_tab": false,
             "style": "light",
             "alignment": "center",
             "width": 250,
