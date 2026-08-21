@@ -83,7 +83,7 @@
 			{% case media.media_type %}
 				{% when 'image' %}
 					{% if forloop.first %}	
-				{% render 'frontrow-banner' %}
+				
 			{% endif %}
 					<div class="object-fit">
 						{% render 'c-img-srcset', image: media, alt: product.title, is_non_lazy: true %}
