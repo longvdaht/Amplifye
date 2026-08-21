@@ -558,7 +558,7 @@
         "ai_gen_block_1cb33e7_nNgpHV": {
           "type": "ai_gen_block_1cb33e7",
           "settings": {
-            "custom_liquid": "{%render 'frontrow-testimonials'%}",
+            "custom_liquid": "",
             "desktop_width_percent": 100,
             "background_color": "#ffffff",
             "padding_top": 40,
@@ -574,7 +574,7 @@
       "block_order": [
         "ai_gen_block_1cb33e7_nNgpHV"
       ],
-      "name": "Frontrow Testimonials",
+      "name": "",
       "settings": {}
     },
     "product-reviews": {

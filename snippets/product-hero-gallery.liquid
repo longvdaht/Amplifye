@@ -13,7 +13,7 @@
           {% when 'image' %}
             <div class="object-fits product-image">
 				{% if forloop.first %}	
-				{% render 'frontrow-banner' %}
+				
 			{% endif %}
 				{% render 'c-img-srcset', image: media, alt: product.title, is_non_lazy: true %}
             </div>
