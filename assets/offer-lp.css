@@ -1,0 +1,681 @@
+/* Offer landing page
+   Built on the theme's existing tokens. No new colours, no new type scale. */
+
+.offer-lp {
+	--offer-rule: 1px solid rgba(0, 0, 0, 0.12);
+	display: block;
+	padding-bottom: 88px; /* clears the sticky bar on mobile */
+	overflow-x: hidden;
+}
+
+@media screen and (min-width: 601px) {
+	.offer-lp {
+		padding-bottom: 0;
+	}
+}
+
+/* CTA: the shared product-form snippet hides its label unless the wrapper
+   carries .simple-product-form. Belt and braces, force it visible. */
+
+.offer-lp__oos {
+	margin-top: 12px;
+	color: var(--cr-orange);
+}
+
+.offer-lp__cta .btn {
+	min-width: min(340px, 100%);
+	justify-content: space-between;
+}
+
+.offer-lp__cta.is-centered .btn {
+	margin-inline: auto;
+}
+
+.offer-lp__kicker {
+	color: var(--cr-orange);
+	margin-bottom: 18px;
+}
+
+.offer-lp__kicker.is-light {
+	color: var(--cr-cream);
+	opacity: 0.75;
+}
+
+/* ---------- HERO ---------- */
+
+.offer-lp__hero {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0;
+	align-items: stretch;
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__hero {
+		grid-template-columns: 1fr 1fr;
+		min-height: 78vh;
+	}
+}
+
+.offer-lp__hero-copy {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 48px var(--s-contain) 40px;
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__hero-copy {
+		padding: 80px 56px 80px var(--padding-lg);
+	}
+
+	.offer-lp__hero-copy > * {
+		max-width: 540px;
+	}
+}
+
+.offer-lp__heading {
+	max-width: 14ch;
+	margin-bottom: 36px;
+}
+
+.offer-lp__hero-media {
+	position: relative;
+	aspect-ratio: 4 / 5;
+	background-color: var(--cr-cream-dark);
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+	.offer-lp__hero-media {
+		aspect-ratio: 16 / 9;
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__hero-media {
+		aspect-ratio: auto;
+		min-height: 100%;
+		position: sticky;
+		top: 0;
+		align-self: stretch;
+		max-height: 100vh;
+	}
+}
+
+.offer-lp__hero-media img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* The ledger: the signature device. The offer stated as arithmetic,
+   in the same visual grammar the brand uses for the protein math. */
+
+.offer-lp__ledger {
+	margin-bottom: 36px;
+	border-top: var(--offer-rule);
+}
+
+.offer-lp__ledger-row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 13px 0;
+	border-bottom: var(--offer-rule);
+}
+
+.offer-lp__ledger-label {
+	color: var(--cr-black);
+	opacity: 0.6;
+}
+
+.offer-lp__ledger-value.is-off {
+	color: var(--cr-orange);
+}
+
+.offer-lp__ledger-row.is-total {
+	border-bottom: 2px solid var(--cr-black);
+	padding-bottom: 16px;
+}
+
+.offer-lp__reassurance {
+	margin-top: 14px;
+	opacity: 0.65;
+}
+
+/* App block slot (Flex HSA/FSA badge). Collapses when nothing is added.
+   The badge ships at a fixed size and can overrun a narrow column,
+   so it is constrained and allowed to wrap here. */
+.offer-lp__apps:not(:empty) {
+	margin-top: 18px;
+}
+
+.offer-lp__apps {
+	max-width: 100%;
+}
+
+.offer-lp__apps .flex-badge-wrapper {
+	justify-content: flex-start;
+	max-width: 100%;
+}
+
+.offer-lp__apps .flex-badge {
+	flex-wrap: wrap;
+	max-width: 100%;
+}
+
+
+/* ---------- FOCUSED NAVIGATION ----------
+   Brief: remove/minimise normal Shopify navigation.
+   Scoped to the offer templates via the body class the theme already emits,
+   so nothing else on the store is affected. The prefix match also covers
+   any future offer-* template without another CSS change.
+   Kept deliberately: logo, cart, BUY P24, announcement bar (trust),
+   and the whole legal bar (privacy, terms, FDA disclaimer). */
+
+body[class*="template-page-offer-"] .g-header__nav,
+body[class*="template-page-offer-"] .g-header__account,
+body[class*="template-page-offer-"] .g-mobile-menu__trigger,
+body[class*="template-page-offer-"] .g-mobile-menu,
+body[class*="template-page-offer-"] .g-footer__nav,
+body[class*="template-page-offer-"] .g-footer__social {
+	display: none;
+}
+
+/* ---------- PRESS ---------- */
+
+.offer-lp__press {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 18px;
+	padding-block: 34px;
+	border-bottom: var(--offer-rule);
+}
+
+.offer-lp__press-label {
+	opacity: 0.5;
+}
+
+.offer-lp__press-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 28px 52px;
+}
+
+.offer-lp__press-item img {
+	height: calc(22px * var(--logo-scale, 100) / 100);
+	width: auto;
+	opacity: 0.55;
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__press-item img {
+		height: calc(26px * var(--logo-scale, 100) / 100);
+	}
+}
+
+/* ---------- VALUE STACK ---------- */
+
+.offer-lp__stack {
+	padding-block: var(--s-section-half);
+}
+
+.offer-lp__stack-list {
+	display: grid;
+	grid-template-columns: 1fr;
+	border-top: var(--offer-rule);
+}
+
+@media screen and (min-width: 601px) {
+	.offer-lp__stack-list {
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 40px;
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__stack-list {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+.offer-lp__stack-item {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	padding: 18px 0;
+	border-bottom: var(--offer-rule);
+}
+
+.offer-lp__stack-label {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	color: var(--cr-orange);
+}
+
+/* The square marker echoes the accent square inside .btn */
+.offer-lp__stack-label::before {
+	content: "";
+	flex: 0 0 auto;
+	width: 9px;
+	height: 9px;
+	background-color: var(--cr-orange);
+}
+
+/* When an icon is set it stands in for the marker */
+.offer-lp__stack-item.has-icon .offer-lp__stack-label::before {
+	display: none;
+}
+
+.offer-lp__stack-icon {
+	width: 34px;
+	height: 34px;
+	margin-bottom: 4px;
+}
+
+.offer-lp__stack-value {
+	opacity: 0.8;
+}
+
+/* ---------- THE MATH ---------- */
+
+.offer-lp__math {
+	background-color: var(--cr-orange);
+	color: var(--cr-cream);
+	padding-block: var(--s-section);
+	overflow: hidden;
+}
+
+.offer-lp__math-inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 44px;
+	align-items: center;
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__math-inner {
+		grid-template-columns: 1fr 0.95fr;
+		gap: 56px;
+	}
+}
+
+.offer-lp__math-heading {
+	margin-bottom: 34px;
+	max-width: 18ch;
+}
+
+.offer-lp__claim {
+	display: inline-block;
+	padding: 15px 22px;
+	border: 1px solid var(--cr-cream);
+	border-radius: var(--border-radius);
+	margin-bottom: 13px;
+}
+
+.offer-lp__footnote {
+	opacity: 0.78;
+	max-width: 52ch;
+}
+
+.offer-lp__math-media {
+	display: flex;
+	justify-content: center;
+}
+
+.offer-lp__math-media img {
+	width: 100%;
+	max-width: 460px;
+	height: auto;
+	object-fit: contain;
+}
+
+@media screen and (min-width: 1025px) {
+	.offer-lp__math-media img {
+		max-width: 520px;
+	}
+}
+
+/* ---------- REASONS ---------- */
+
+.offer-lp__reasons {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 34px;
+	padding-block: var(--s-section);
+}
+
+@media screen and (min-width: 601px) {
+	.offer-lp__reasons {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 26px;
+	}
+}
+
+.offer-lp__reason-media {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	margin-bottom: 20px;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+	background-color: var(--cr-cream-dark);
+}
+
+.offer-lp__reason-media img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.offer-lp__reason-heading {
+	padding-top: 16px;
+	border-top: 2px solid var(--cr-orange);
+	margin-bottom: 11px;
+}
+
+.offer-lp__reason-body {
+	opacity: 0.78;
+}
+
+/* ---------- SOCIAL PROOF ---------- */
+
+.offer-lp__proof {
+	padding-bottom: var(--s-section);
+}
+
+.offer-lp__proof-heading {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.offer-lp__rating {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: 12px;
+	margin-bottom: 36px;
+}
+
+.offer-lp__rating-score {
+	color: var(--cr-orange);
+}
+
+.offer-lp__rating-note {
+	opacity: 0.6;
+}
+
+/* Okendo widgets land here. They bring their own layout, so this
+   only constrains width and adds rhythm. */
+.offer-lp__proof-apps > * + * {
+	margin-top: 28px;
+}
+
+.offer-lp__proof-apps {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.offer-lp__proof-apps + .offer-lp__quotes {
+	margin-top: 28px;
+}
+
+.offer-lp__quotes {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 20px;
+}
+
+@media screen and (min-width: 601px) {
+	.offer-lp__quotes {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.offer-lp__quote {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 18px;
+	padding: 26px;
+	background-color: var(--cr-cream-dark);
+	border-radius: var(--border-radius);
+}
+
+.offer-lp__quote-by {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.offer-lp__quote-name {
+	color: var(--cr-orange);
+}
+
+.offer-lp__quote-meta {
+	opacity: 0.6;
+}
+
+/* ---------- OFFER REMINDER (midway) ---------- */
+
+.offer-lp__reminder {
+	background-color: var(--cr-cream-dark);
+	border-block: 1px solid rgba(0, 0, 0, 0.12);
+	padding-block: var(--s-section-half);
+}
+
+.offer-lp__reminder-inner {
+	max-width: 680px;
+	margin-inline: auto;
+	padding-inline: var(--s-contain);
+	text-align: center;
+}
+
+.offer-lp__reminder-heading {
+	margin-bottom: 12px;
+}
+
+.offer-lp__reminder-price {
+	margin-bottom: 26px;
+	color: var(--cr-orange);
+}
+
+.offer-lp__reminder-price s {
+	color: var(--cr-black);
+	opacity: 0.45;
+}
+
+.offer-lp__reminder-note {
+	margin-top: 14px;
+	opacity: 0.65;
+}
+
+/* ---------- FAQ ---------- */
+
+.offer-lp__faq {
+	max-width: 860px;
+	margin-inline: auto;
+	padding-inline: var(--s-contain);
+	padding-bottom: var(--s-section);
+}
+
+.offer-lp__faq-item {
+	border-bottom: var(--offer-rule);
+}
+
+.offer-lp__faq-item:first-child {
+	border-top: var(--offer-rule);
+}
+
+.offer-lp__faq-q {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 19px 0;
+	cursor: pointer;
+	list-style: none;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.offer-lp__faq-q::-webkit-details-marker {
+	display: none;
+}
+
+.offer-lp__faq-q::after {
+	content: "";
+	flex: 0 0 auto;
+	width: 11px;
+	height: 11px;
+	background-color: var(--cr-orange);
+	transition: transform var(--t-1);
+}
+
+.offer-lp__faq-item[open] .offer-lp__faq-q::after {
+	transform: scale(0.5);
+}
+
+.offer-lp__faq-a {
+	padding-bottom: 22px;
+	opacity: 0.78;
+	max-width: 66ch;
+}
+
+/* ---------- CLOSE ---------- */
+
+.offer-lp__close {
+	position: relative;
+	background-color: var(--cr-orange-dark);
+	color: var(--cr-cream);
+	padding-block: var(--s-section);
+	overflow: hidden;
+	isolation: isolate;
+}
+
+.offer-lp__close-bg {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+}
+
+.offer-lp__close-bg img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0.28;
+}
+
+.offer-lp__close-inner {
+	max-width: 780px;
+	margin-inline: auto;
+	padding-inline: var(--s-contain);
+	text-align: center;
+}
+
+.offer-lp__close-heading {
+	margin-bottom: 12px;
+}
+
+.offer-lp__close-footnote {
+	opacity: 0.8;
+	margin-bottom: 30px;
+}
+
+.offer-lp__close-offer {
+	margin-bottom: 30px;
+}
+
+.offer-lp__close-offer s {
+	opacity: 0.6;
+}
+
+/* Close section sits on deep ember, so the button inverts: cream base,
+   black on hover. Same swap convention as the header CTA. */
+.offer-lp__close .btn {
+	--btn-bg-color: var(--cr-cream);
+	--btn-color: var(--cr-black);
+	--btn-accent: var(--cr-black);
+}
+
+.offer-lp__close .btn:not([disabled]):hover {
+	--btn-color: var(--cr-cream);
+}
+
+.offer-lp__guarantee {
+	margin-top: 16px;
+	opacity: 0.82;
+}
+
+/* ---------- STICKY ---------- */
+
+.offer-lp__sticky {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: var(--z-sticky);
+	background-color: var(--cr-cream);
+	border-top: 1px solid var(--cr-black);
+	padding: 9px var(--s-contain);
+	padding-bottom: calc(9px + env(safe-area-inset-bottom, 0px));
+}
+
+@media screen and (min-width: 601px) {
+	.offer-lp__sticky {
+		display: none;
+	}
+}
+
+.offer-lp__sticky-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 13px;
+}
+
+.offer-lp__sticky-price {
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 auto;
+	line-height: 1.2;
+}
+
+.offer-lp__sticky-was {
+	text-decoration: line-through;
+	opacity: 0.5;
+}
+
+.offer-lp__sticky-cta {
+	flex: 1 1 auto;
+}
+
+.offer-lp__sticky-cta .btn {
+	--height: 46px;
+	min-width: 100%;
+	width: 100%;
+	justify-content: center;
+	font-size: 16px;
+	padding: 0 16px;
+}
+
+.offer-lp__sticky-cta .btn::after {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.offer-lp *,
+	.offer-lp *::before,
+	.offer-lp *::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
