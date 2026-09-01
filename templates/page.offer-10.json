@@ -1,0 +1,263 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "offer": {
+      "type": "offer-landing",
+      "blocks": {
+        "faq_QRTT96": {
+          "type": "faq",
+          "settings": {
+            "question": "What is P24?",
+            "answer": "A protein enzyme. Take it with the meal or shake that carries your protein."
+          }
+        },
+        "faq_RWNnrq": {
+          "type": "faq",
+          "settings": {
+            "question": "Who is it for?",
+            "answer": "Anyone already eating protein deliberately: lifters, athletes, people tracking macros."
+          }
+        },
+        "faq_p8nB9G": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does a jar last?",
+            "answer": "30 capsules per jar."
+          }
+        },
+        "faq_8H8cnU": {
+          "type": "faq",
+          "settings": {
+            "question": "What does shipping cost?",
+            "answer": "Free US shipping on every US order."
+          }
+        },
+        "flex_flex_badge_iQQmN8": {
+          "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
+          "settings": {
+            "lomn": "no",
+            "show_subscription_tab": false,
+            "style": "light",
+            "alignment": "left",
+            "width": 315,
+            "use_custom_font_size": false,
+            "font_size": 16,
+            "use_custom_letter_spacing": false,
+            "letter_spacing": 0
+          }
+        },
+        "okendo_star_rating_VNDT6K": {
+          "type": "shopify://apps/okendo/blocks/star-rating/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "amplifye-p24"
+          }
+        },
+        "okendo_reviews_carousel_JqbQap": {
+          "type": "shopify://apps/okendo/blocks/reviews-carousel/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "show_heading": false,
+            "heading": "",
+            "badge_link": "",
+            "product": "amplifye-p24"
+          }
+        },
+        "p1": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/vogue_1.png",
+            "logo_alt": "Vogue",
+            "logo_scale": 100
+          }
+        },
+        "p2": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/the-ny-times_1.png",
+            "logo_alt": "The New York Times",
+            "logo_scale": 100
+          }
+        },
+        "p3": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/health_1.png",
+            "logo_alt": "Health",
+            "logo_scale": 100
+          }
+        },
+        "p4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/download_1.png",
+            "logo_alt": "WWD",
+            "logo_scale": 100
+          }
+        },
+        "p5": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/yahoo-finance-transparent.png",
+            "logo_alt": "Yahoo Finance",
+            "logo_scale": 160
+          }
+        },
+        "p6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/trendhunter.png",
+            "logo_alt": "TrendHunter",
+            "logo_scale": 100
+          }
+        },
+        "v1": {
+          "type": "value_item",
+          "settings": {
+            "label": "Shipping",
+            "value": "Free on every US order"
+          }
+        },
+        "v2": {
+          "type": "value_item",
+          "settings": {
+            "label": "Try it",
+            "value": "30 days, or your money back"
+          }
+        },
+        "v3": {
+          "type": "value_item",
+          "settings": {
+            "label": "JAR",
+            "value": "30 capsules"
+          }
+        },
+        "v4": {
+          "type": "value_item",
+          "settings": {
+            "label": "Commitment",
+            "value": "One-time order, no subscription"
+          }
+        },
+        "r1": {
+          "type": "reason",
+          "settings": {
+            "heading": "It works where digestion starts",
+            "body": "P24 is an acid-active enzyme that works in your stomach's acid, where protein digestion starts.",
+            "image_asset": "offer-r1.jpg",
+            "image_alt": "A jar of amplifye P24 resting in amber liquid"
+          }
+        },
+        "r2": {
+          "type": "reason",
+          "settings": {
+            "heading": "It breaks protein down further",
+            "body": "Protein hydrolysis is the process of breaking protein into smaller peptides and amino acids.",
+            "image_asset": "offer-r2.jpg",
+            "image_alt": "Protein powder being poured into a shaker bottle"
+          }
+        },
+        "r3": {
+          "type": "reason",
+          "settings": {
+            "heading": "Nothing else about your routine changes",
+            "body": "Same meals, same shakes, same training. P24 goes to work on the protein you were already going to eat.",
+            "image_asset": "offer-r3.jpg",
+            "image_alt": "A person mid-swing with a kettlebell in a gym"
+          }
+        },
+        "f1": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I use the discount?",
+            "answer": "It applies at checkout when you order from this page. You don't need to type a code."
+          }
+        },
+        "f2": {
+          "type": "faq",
+          "settings": {
+            "question": "When do I take it?",
+            "answer": "With the meal or shake that carries your protein."
+          }
+        },
+        "f3": {
+          "type": "faq",
+          "settings": {
+            "question": "What if it isn't for me?",
+            "answer": "You have 30 days. If you don't want to keep it, we'll refund you."
+          }
+        },
+        "f4": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this a subscription?",
+            "answer": "No. This is a one-time order. You can start a subscription later if you'd rather not reorder manually."
+          }
+        }
+      },
+      "block_order": [
+        "faq_QRTT96",
+        "faq_RWNnrq",
+        "faq_p8nB9G",
+        "faq_8H8cnU",
+        "flex_flex_badge_iQQmN8",
+        "okendo_star_rating_VNDT6K",
+        "okendo_reviews_carousel_JqbQap",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "r1",
+        "r2",
+        "r3",
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "product": "",
+        "discount_code": "EFFICIENCY10",
+        "offer_type": "fixed",
+        "offer_amount": 10,
+        "offer_kicker": "NEW CUSTOMER OFFER",
+        "heading": "Get $10 Off Your First amplifye Order",
+        "cta_label": "CLAIM $10 OFF",
+        "reassurance": "Discount applied at checkout. Free US shipping.",
+        "hero_image_asset": "offer-hero.jpg",
+        "hero_image_alt": "A sprinter mid-stride, captured with motion blur",
+        "math_kicker": "THE MATH",
+        "math_heading": "Everyone's selling MORE. We make MORE count.",
+        "claim": "PROTEIN EFFICIENCY - digests up to 5x more protein*",
+        "claim_footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "packshot_asset": "offer-packshot.png",
+        "packshot_alt": "A jar of amplifye P24 protein enzyme",
+        "show_reminder": true,
+        "reminder_heading": "New customers save [offer] today.",
+        "reminder_note": "Applied automatically at checkout.",
+        "proof_heading": "What people say after 30 days",
+        "proof_rating": "",
+        "proof_rating_note": "",
+        "closing_heading": "Same protein. More efficient digestion.*",
+        "closing_footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "closing_image_asset": "offer-close.jpg",
+        "guarantee": "Try it for 30 days. If it isn't for you, we'll refund you."
+      }
+    }
+  },
+  "order": [
+    "offer"
+  ]
+}
