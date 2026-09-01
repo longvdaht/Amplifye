@@ -1,0 +1,676 @@
+{% schema %}
+{
+	"name": "Offer Landing",
+	"tag": "section",
+	"class": "offer-lp",
+	"presets": [
+		{
+			"name": "Offer Landing"
+		}
+	],
+	"settings": [
+		{
+			"type": "header",
+			"content": "Offer"
+		},
+		{
+			"type": "product",
+			"id": "product",
+			"label": "Product"
+		},
+		{
+			"type": "text",
+			"id": "discount_code",
+			"label": "Discount code",
+			"info": "Applied at checkout. Must exist and be active in Discounts.",
+			"default": "EFFICIENCY10"
+		},
+		{
+			"type": "radio",
+			"id": "offer_type",
+			"label": "Offer type",
+			"options": [
+				{ "value": "fixed", "label": "Amount off" },
+				{ "value": "percent", "label": "Percent off" }
+			],
+			"default": "fixed"
+		},
+		{
+			"type": "number",
+			"id": "offer_amount",
+			"label": "Offer amount",
+			"info": "Dollars for amount off, whole number for percent. 10 = $10 or 15%.",
+			"default": 10
+		},
+		{
+			"type": "text",
+			"id": "offer_kicker",
+			"label": "Kicker",
+			"default": "NEW CUSTOMER OFFER"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "GET $10 OFF YOUR FIRST AMPLIFYE ORDER"
+		},
+		{
+			"type": "text",
+			"id": "cta_label",
+			"label": "CTA label",
+			"default": "CLAIM $10 OFF"
+		},
+		{
+			"type": "text",
+			"id": "reassurance",
+			"label": "Reassurance line",
+			"default": "Discount applied at checkout. Free US shipping."
+		},
+		{
+			"type": "header",
+			"content": "Hero image"
+		},
+		{
+			"type": "image_picker",
+			"id": "hero_image",
+			"label": "Hero image"
+		},
+		{
+			"type": "text",
+			"id": "hero_image_asset",
+			"label": "Hero image asset filename",
+			"info": "Used when no image is picked above. File must be in Assets.",
+			"default": "offer-hero.jpg"
+		},
+		{
+			"type": "text",
+			"id": "hero_image_alt",
+			"label": "Hero image alt text",
+			"default": "An athlete mid-effort, captured in motion"
+		},
+		{
+			"type": "header",
+			"content": "The Math"
+		},
+		{
+			"type": "text",
+			"id": "math_kicker",
+			"label": "Kicker",
+			"default": "THE MATH"
+		},
+		{
+			"type": "text",
+			"id": "math_heading",
+			"label": "Heading",
+			"default": "Everyone's selling MORE. We make MORE count."
+		},
+		{
+			"type": "text",
+			"id": "claim",
+			"label": "Claim",
+			"info": "Approved wording. Do not edit without legal review.",
+			"default": "PROTEIN EFFICIENCY - digests up to 5x more protein*"
+		},
+		{
+			"type": "text",
+			"id": "claim_footnote",
+			"label": "Claim footnote",
+			"info": "Must stay on the same panel as the claim.",
+			"default": "*In lab stomach digestion testing, vs. without P24."
+		},
+		{
+			"type": "image_picker",
+			"id": "packshot",
+			"label": "Packshot"
+		},
+		{
+			"type": "text",
+			"id": "packshot_asset",
+			"label": "Packshot asset filename",
+			"default": "offer-packshot.png"
+		},
+		{
+			"type": "text",
+			"id": "packshot_alt",
+			"label": "Packshot alt text",
+			"default": "A jar of amplifyeP24 protein enzyme"
+		},
+		{
+			"type": "header",
+			"content": "Offer reminder (midway)"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_reminder",
+			"label": "Show midway offer reminder",
+			"default": true
+		},
+		{
+			"type": "text",
+			"id": "reminder_heading",
+			"label": "Heading",
+			"info": "Use [offer] for the discount amount.",
+			"default": "New customers save [offer] today."
+		},
+		{
+			"type": "text",
+			"id": "reminder_note",
+			"label": "Note",
+			"default": "Applied automatically at checkout."
+		},
+		{
+			"type": "header",
+			"content": "Social proof"
+		},
+		{
+			"type": "text",
+			"id": "proof_heading",
+			"label": "Heading",
+			"default": "What people say after 30 days"
+		},
+		{
+			"type": "text",
+			"id": "proof_rating",
+			"label": "Rating",
+			"info": "Leave blank until confirmed in Okendo."
+		},
+		{
+			"type": "text",
+			"id": "proof_rating_note",
+			"label": "Rating note",
+			"info": "For example: based on 36 reviews."
+		},
+		{
+			"type": "header",
+			"content": "Closing"
+		},
+		{
+			"type": "text",
+			"id": "closing_heading",
+			"label": "Heading",
+			"default": "Same protein. More efficient digestion.*"
+		},
+		{
+			"type": "text",
+			"id": "closing_footnote",
+			"label": "Closing footnote",
+			"default": "*In lab stomach digestion testing, vs. without P24."
+		},
+		{
+			"type": "image_picker",
+			"id": "closing_image",
+			"label": "Closing background image"
+		},
+		{
+			"type": "text",
+			"id": "closing_image_asset",
+			"label": "Closing image asset filename",
+			"default": "offer-close.jpg"
+		},
+		{
+			"type": "text",
+			"id": "guarantee",
+			"label": "Guarantee",
+			"default": "Try it for 30 days. If it isn't for you, we'll refund you."
+		}
+	],
+	"blocks": [
+		{
+			"type": "value_item",
+			"name": "Value item",
+			"settings": [
+				{ "type": "text", "id": "label", "label": "Label" },
+				{ "type": "text", "id": "value", "label": "Value" },
+				{
+					"type": "image_picker",
+					"id": "icon",
+					"label": "Icon",
+					"info": "Optional. Falls back to the square marker."
+				}
+			]
+		},
+		{
+			"type": "@app"
+		},
+		{
+			"type": "logo",
+			"name": "Press logo",
+			"settings": [
+				{ "type": "image_picker", "id": "logo", "label": "Logo" },
+				{ "type": "text", "id": "logo_alt", "label": "Alt text" },
+				{
+					"type": "range",
+					"id": "logo_scale",
+					"label": "Logo size",
+					"info": "Nudge individual logos that sit visually small or large.",
+					"min": 60,
+					"max": 160,
+					"step": 5,
+					"unit": "%",
+					"default": 100
+				}
+			]
+		},
+		{
+			"type": "reason",
+			"name": "Reason",
+			"settings": [
+				{ "type": "text", "id": "heading", "label": "Heading" },
+				{ "type": "textarea", "id": "body", "label": "Body" },
+				{ "type": "image_picker", "id": "image", "label": "Image" },
+				{ "type": "text", "id": "image_asset", "label": "Image asset filename" },
+				{ "type": "text", "id": "image_alt", "label": "Image alt text" }
+			]
+		},
+		{
+			"type": "quote",
+			"name": "Review",
+			"settings": [
+				{ "type": "textarea", "id": "quote", "label": "Review" },
+				{ "type": "text", "id": "attribution", "label": "Name" },
+				{
+					"type": "text",
+					"id": "meta",
+					"label": "Meta",
+					"info": "For example: Verified buyer."
+				}
+			]
+		},
+		{
+			"type": "faq",
+			"name": "FAQ",
+			"settings": [
+				{ "type": "text", "id": "question", "label": "Question" },
+				{ "type": "textarea", "id": "answer", "label": "Answer" }
+			]
+		}
+	]
+}
+{% endschema %}
+
+{{ 'offer-lp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+	assign s = section.settings
+
+	if s.product != blank
+		assign product = s.product
+	else
+		assign product = all_products['amplifye-p24']
+	endif
+
+	assign base_price = product.price
+
+	if s.offer_type == 'percent'
+		assign discount_value = base_price | times: s.offer_amount | divided_by: 100
+		assign offer_badge = s.offer_amount | append: '% OFF'
+		assign offer_badge_plain = s.offer_amount | append: '%'
+	else
+		assign discount_value = s.offer_amount | times: 100
+		assign offer_badge = s.offer_amount | prepend: '$' | append: ' OFF'
+		assign offer_badge_plain = s.offer_amount | prepend: '$'
+	endif
+
+	assign offer_price = base_price | minus: discount_value
+
+	assign value_blocks = section.blocks | where: 'type', 'value_item'
+	assign logo_blocks = section.blocks | where: 'type', 'logo'
+	assign reason_blocks = section.blocks | where: 'type', 'reason'
+	assign quote_blocks = section.blocks | where: 'type', 'quote'
+
+	assign app_total = 0
+	for block in section.blocks
+		if block.type == '@app'
+			assign app_total = app_total | plus: 1
+		endif
+	endfor
+	assign faq_blocks = section.blocks | where: 'type', 'faq'
+-%}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{%- capture buy_form -%}
+	{%- if current_variant.available -%}
+		<div class="product-hero__form simple-product-form">
+			{%- render 'simple-product-form',
+				product: product,
+				item: product,
+				code: s.discount_code,
+				cta_label: s.cta_label,
+				button_class: 'cr-orange'
+			-%}
+		</div>
+	{%- else -%}
+		<button type="button" class="btn cr-orange" disabled>
+			<span>Out of stock</span>
+		</button>
+	{%- endif -%}
+{%- endcapture -%}
+
+{% comment %} ---------- HERO ---------- {% endcomment %}
+
+<div class="offer-lp__hero">
+	<div class="offer-lp__hero-copy">
+		{%- if s.offer_kicker != blank -%}
+			<p class="offer-lp__kicker t-l-4">{{ s.offer_kicker }}</p>
+		{%- endif -%}
+
+		{%- if s.heading != blank -%}
+			<h1 class="offer-lp__heading t-h-1">{{ s.heading }}</h1>
+		{%- endif -%}
+
+		{% comment %} The ledger: the offer stated as arithmetic {% endcomment %}
+		<div class="offer-lp__ledger">
+			<div class="offer-lp__ledger-row">
+				<span class="offer-lp__ledger-label t-l-4">P24, one jar</span>
+				<span class="offer-lp__ledger-value t-l-2">{{ base_price | money }}</span>
+			</div>
+			<div class="offer-lp__ledger-row">
+				<span class="offer-lp__ledger-label t-l-4">Your first order</span>
+				<span class="offer-lp__ledger-value t-l-2 is-off">&minus;{{ discount_value | money }}</span>
+			</div>
+			<div class="offer-lp__ledger-row is-total">
+				<span class="offer-lp__ledger-label t-l-4">You pay</span>
+				<span class="offer-lp__ledger-total t-h-2">{{ offer_price | money }}</span>
+			</div>
+		</div>
+
+		<div class="offer-lp__cta">{{ buy_form }}</div>
+
+		{%- unless current_variant.available -%}
+			<p class="offer-lp__oos t-l-4">This product is currently unavailable to order.</p>
+		{%- endunless -%}
+
+		{%- if s.reassurance != blank -%}
+			<p class="offer-lp__reassurance t-b-4">{{ s.reassurance }}</p>
+		{%- endif -%}
+
+		{% comment %}
+			App blocks. The first one renders here in the hero, next to the price
+			(intended for the Flex HSA/FSA badge). Any further app blocks render
+			in the social proof section lower down. Reorder in the theme editor
+			to change which one sits in the hero.
+		{% endcomment %}
+		<div class="offer-lp__apps">
+			{%- assign app_n = 0 -%}
+			{%- for block in section.blocks -%}
+				{%- case block.type -%}
+					{%- when '@app' -%}
+						{%- assign app_n = app_n | plus: 1 -%}
+						{%- if app_n == 1 -%}
+							{% render block %}
+						{%- endif -%}
+				{%- endcase -%}
+			{%- endfor -%}
+		</div>
+	</div>
+
+	<div class="offer-lp__hero-media">
+		{%- if s.hero_image != blank -%}
+			{%- render 'c-img-srcset', image: s.hero_image, alt: s.hero_image_alt -%}
+		{%- elsif s.hero_image_asset != blank -%}
+			<img
+				src="{{ s.hero_image_asset | asset_url }}"
+				alt="{{ s.hero_image_alt | escape }}"
+				width="1200"
+				height="1400"
+				fetchpriority="high"
+			>
+		{%- endif -%}
+	</div>
+</div>
+
+{% comment %} ---------- PRESS ---------- {% endcomment %}
+
+{%- if logo_blocks.size > 0 -%}
+	<div class="offer-lp__press p-x-md">
+		<p class="offer-lp__press-label t-l-4">Featured in</p>
+		<ul class="offer-lp__press-list">
+			{%- for block in logo_blocks -%}
+				{%- if block.settings.logo != blank -%}
+					<li
+						class="offer-lp__press-item"
+						style="--logo-scale: {{ block.settings.logo_scale | default: 100 }}"
+						{{ block.shopify_attributes }}
+					>
+						{%- render 'c-img-srcset', image: block.settings.logo, alt: block.settings.logo_alt -%}
+					</li>
+				{%- endif -%}
+			{%- endfor -%}
+		</ul>
+	</div>
+{%- endif -%}
+
+{% comment %} ---------- VALUE STACK ---------- {% endcomment %}
+
+{%- if value_blocks.size > 0 -%}
+	<div class="offer-lp__stack p-x-md">
+		<ul class="offer-lp__stack-list">
+			{%- for block in value_blocks -%}
+				<li
+					class="offer-lp__stack-item{% if block.settings.icon != blank %} has-icon{% endif %}"
+					{{ block.shopify_attributes }}
+				>
+					{%- if block.settings.icon != blank -%}
+						<img
+							class="offer-lp__stack-icon"
+							src="{{ block.settings.icon | image_url: width: 112 }}"
+							alt=""
+							width="56"
+							height="56"
+							loading="lazy"
+						>
+					{%- endif -%}
+					<span class="offer-lp__stack-label t-l-4">{{ block.settings.label }}</span>
+					<span class="offer-lp__stack-value t-b-3">{{ block.settings.value }}</span>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</div>
+{%- endif -%}
+
+{% comment %} ---------- THE MATH ---------- {% endcomment %}
+
+<div class="offer-lp__math">
+	<div class="offer-lp__math-inner p-x-md">
+		<div class="offer-lp__math-copy">
+			{%- if s.math_kicker != blank -%}
+				<p class="offer-lp__kicker is-light t-l-4">{{ s.math_kicker }}</p>
+			{%- endif -%}
+
+			{%- if s.math_heading != blank -%}
+				<h2 class="offer-lp__math-heading t-h-2">{{ s.math_heading }}</h2>
+			{%- endif -%}
+
+			{%- if s.claim != blank -%}
+				<p class="offer-lp__claim t-l-1">{{ s.claim }}</p>
+			{%- endif -%}
+
+			{%- if s.claim_footnote != blank -%}
+				<p class="offer-lp__footnote t-b-4">{{ s.claim_footnote }}</p>
+			{%- endif -%}
+		</div>
+
+		{%- if s.packshot != blank or s.packshot_asset != blank -%}
+		<div class="offer-lp__math-media">
+			{%- if s.packshot != blank -%}
+				{%- render 'c-img-srcset', image: s.packshot, alt: s.packshot_alt -%}
+			{%- elsif s.packshot_asset != blank -%}
+				<img
+					src="{{ s.packshot_asset | asset_url }}"
+					alt="{{ s.packshot_alt | escape }}"
+					width="900"
+					height="600"
+					loading="lazy"
+					class="lazyloaded"
+				>
+			{%- endif -%}
+		</div>
+		{%- endif -%}
+	</div>
+</div>
+
+{% comment %} ---------- REASONS ---------- {% endcomment %}
+
+{%- if reason_blocks.size > 0 -%}
+	<div class="offer-lp__reasons p-x-md">
+		{%- for block in reason_blocks -%}
+			<div class="offer-lp__reason" {{ block.shopify_attributes }}>
+				{%- if block.settings.image != blank -%}
+					<div class="offer-lp__reason-media">
+						{%- render 'c-img-srcset', image: block.settings.image, alt: block.settings.image_alt -%}
+					</div>
+				{%- elsif block.settings.image_asset != blank -%}
+					<div class="offer-lp__reason-media">
+						<img
+							src="{{ block.settings.image_asset | asset_url }}"
+							alt="{{ block.settings.image_alt | escape }}"
+							width="600"
+							height="420"
+							loading="lazy"
+							class="lazyloaded"
+						>
+					</div>
+				{%- endif -%}
+
+				<h3 class="offer-lp__reason-heading t-h-4">{{ block.settings.heading }}</h3>
+				<p class="offer-lp__reason-body t-b-3">{{ block.settings.body }}</p>
+			</div>
+		{%- endfor -%}
+	</div>
+{%- endif -%}
+
+{% comment %} ---------- SOCIAL PROOF ---------- {% endcomment %}
+
+{%- if quote_blocks.size > 0 or s.proof_rating != blank or app_total > 1 -%}
+	<div class="offer-lp__proof p-x-md">
+		{%- if s.proof_heading != blank -%}
+			<h2 class="offer-lp__proof-heading t-h-3">{{ s.proof_heading }}</h2>
+		{%- endif -%}
+
+		{%- if s.proof_rating != blank -%}
+			<div class="offer-lp__rating">
+				<span class="offer-lp__rating-score t-h-2">{{ s.proof_rating }}</span>
+				{%- if s.proof_rating_note != blank -%}
+					<span class="offer-lp__rating-note t-l-4">{{ s.proof_rating_note }}</span>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		{%- if app_total > 1 -%}
+			<div class="offer-lp__proof-apps">
+				{%- assign app_n = 0 -%}
+				{%- for block in section.blocks -%}
+					{%- case block.type -%}
+						{%- when '@app' -%}
+							{%- assign app_n = app_n | plus: 1 -%}
+							{%- if app_n > 1 -%}
+								{% render block %}
+							{%- endif -%}
+					{%- endcase -%}
+				{%- endfor -%}
+			</div>
+		{%- endif -%}
+
+		{%- if quote_blocks.size > 0 -%}
+			<ul class="offer-lp__quotes">
+				{%- for block in quote_blocks -%}
+					<li class="offer-lp__quote" {{ block.shopify_attributes }}>
+						<blockquote class="offer-lp__quote-text t-b-3">{{ block.settings.quote }}</blockquote>
+						<div class="offer-lp__quote-by">
+							{%- if block.settings.attribution != blank -%}
+								<span class="offer-lp__quote-name t-l-4">{{ block.settings.attribution }}</span>
+							{%- endif -%}
+							{%- if block.settings.meta != blank -%}
+								<span class="offer-lp__quote-meta t-b-4">{{ block.settings.meta }}</span>
+							{%- endif -%}
+						</div>
+					</li>
+				{%- endfor -%}
+			</ul>
+		{%- endif -%}
+	</div>
+{%- endif -%}
+
+{% comment %} ---------- OFFER REMINDER (midway) ---------- {% endcomment %}
+
+{%- if s.show_reminder -%}
+	<div class="offer-lp__reminder">
+		<div class="offer-lp__reminder-inner">
+			{%- liquid
+				assign token = '[offer]'
+				assign reminder_heading = s.reminder_heading | replace: token, offer_badge_plain
+			-%}
+			{%- if reminder_heading != blank -%}
+				<h2 class="offer-lp__reminder-heading t-h-3">{{ reminder_heading }}</h2>
+			{%- endif -%}
+
+			<p class="offer-lp__reminder-price t-l-1">
+				<s>{{ base_price | money }}</s> {{ offer_price | money }}
+			</p>
+
+			<div class="offer-lp__cta is-centered">{{ buy_form }}</div>
+
+			{%- if s.reminder_note != blank -%}
+				<p class="offer-lp__reminder-note t-b-4">{{ s.reminder_note }}</p>
+			{%- endif -%}
+		</div>
+	</div>
+{%- endif -%}
+
+{% comment %} ---------- FAQ ---------- {% endcomment %}
+
+{%- if faq_blocks.size > 0 -%}
+	<div class="offer-lp__faq">
+		{%- for block in faq_blocks -%}
+			<details class="offer-lp__faq-item" {{ block.shopify_attributes }}>
+				<summary class="offer-lp__faq-q t-l-3">{{ block.settings.question }}</summary>
+				<div class="offer-lp__faq-a t-b-3">{{ block.settings.answer }}</div>
+			</details>
+		{%- endfor -%}
+	</div>
+{%- endif -%}
+
+{% comment %} ---------- CLOSE ---------- {% endcomment %}
+
+<div class="offer-lp__close">
+	<div class="offer-lp__close-bg">
+		{%- if s.closing_image != blank -%}
+			{%- render 'c-img-srcset', image: s.closing_image, alt: '' -%}
+		{%- elsif s.closing_image_asset != blank -%}
+			<img src="{{ s.closing_image_asset | asset_url }}" alt="" loading="lazy" class="lazyloaded" width="1800" height="900">
+		{%- endif -%}
+	</div>
+
+	<div class="offer-lp__close-inner">
+		{%- if s.closing_heading != blank -%}
+			<h2 class="offer-lp__close-heading t-h-2">{{ s.closing_heading }}</h2>
+		{%- endif -%}
+
+		{%- if s.closing_footnote != blank -%}
+			<p class="offer-lp__close-footnote t-b-4">{{ s.closing_footnote }}</p>
+		{%- endif -%}
+
+		<p class="offer-lp__close-offer t-l-1">
+			{{ offer_badge }} &middot; <s>{{ base_price | money }}</s> {{ offer_price | money }}
+		</p>
+
+		<div class="offer-lp__cta is-centered">{{ buy_form }}</div>
+
+		{%- if s.guarantee != blank -%}
+			<p class="offer-lp__guarantee t-b-4">{{ s.guarantee }}</p>
+		{%- endif -%}
+	</div>
+</div>
+
+{% comment %} ---------- STICKY ---------- {% endcomment %}
+
+<div class="offer-lp__sticky">
+	<div class="offer-lp__sticky-inner">
+		<div class="offer-lp__sticky-price">
+			<span class="offer-lp__sticky-was t-b-4">{{ base_price | money }}</span>
+			<span class="offer-lp__sticky-now t-l-2">{{ offer_price | money }}</span>
+		</div>
+		<div class="offer-lp__cta offer-lp__sticky-cta">{{ buy_form }}</div>
+	</div>
+</div>
