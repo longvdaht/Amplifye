@@ -384,7 +384,8 @@
 
 	assign sub_first = sub_price | minus: sub_discount
 	assign sub_saving = base_price | minus: sub_first
-	assign sub_terms = s.sub_terms | replace: '[price]', sub_price | money
+	assign sub_price_money = sub_price | money
+	assign sub_terms = s.sub_terms | replace: '[price]', sub_price_money
 -%}
 
 {%- capture buy_form -%}
@@ -727,7 +728,7 @@
 			{%- endif -%}
 
 			<p class="offer-lp__reminder-price t-l-1">
-				<s>{{ base_price | money }}</s> {{ offer_price | money }}
+				<s>{{ base_price | money }}</s> <span data-offer-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
 			</p>
 
 			<div class="offer-lp__cta is-centered">{{ buy_form }}</div>
@@ -773,7 +774,7 @@
 		{%- endif -%}
 
 		<p class="offer-lp__close-offer t-l-1">
-			{{ offer_badge }} &middot; <s>{{ base_price | money }}</s> {{ offer_price | money }}
+			{{ offer_badge }} &middot; <s>{{ base_price | money }}</s> <span data-offer-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
 		</p>
 
 		<div class="offer-lp__cta is-centered">{{ buy_form }}</div>
@@ -848,7 +849,11 @@
 		opacity: 0.7;
 	}
 
-	#shopify-section-{{ section.id }} .offer-lp__sticky .offer-lp__plans {
+	/* The closing banner and the sticky bar sit on a photo, where a set of
+	   option boxes reads badly. Both keep the button, which carries whichever
+	   option is chosen above. */
+	#shopify-section-{{ section.id }} .offer-lp__sticky .offer-lp__plans,
+	#shopify-section-{{ section.id }} .offer-lp__close .offer-lp__plans {
 		display: none;
 	}
 </style>
@@ -894,12 +899,14 @@
 					var offLab = root.querySelector('[data-ledger-off-label]');
 					var termsEl = root.querySelector('[data-ledger-terms]');
 					var sticky = root.querySelector('[data-sticky-now]');
+					var nows = root.querySelectorAll('[data-offer-now]');
 
 					if (total) total.textContent = pay;
 					if (offEl) offEl.textContent = off;
 					if (offLab) offLab.textContent = offLabel;
 					if (termsEl) termsEl.textContent = terms;
 					if (sticky) sticky.textContent = pay;
+					nows.forEach(function (el) { el.textContent = pay; });
 				}
 			});
 		}
