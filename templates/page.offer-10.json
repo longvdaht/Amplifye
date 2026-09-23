@@ -142,7 +142,7 @@
           "type": "value_item",
           "settings": {
             "label": "Commitment",
-            "value": "One-time order, no subscription"
+            "value": "Subscribe or buy once"
           }
         },
         "r1": {
@@ -197,7 +197,7 @@
           "type": "faq",
           "settings": {
             "question": "Is this a subscription?",
-            "answer": "No. This is a one-time order. You can start a subscription later if you'd rather not reorder manually."
+            "answer": "Your choice. Subscribe and the discount applies to your first order, then it renews every 30 days at the usual subscription price, and you can skip or cancel anytime. Or buy once, with nothing recurring."
           }
         }
       },
