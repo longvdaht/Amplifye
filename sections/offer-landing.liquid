@@ -56,6 +56,31 @@
 		},
 		{
 			"type": "text",
+			"id": "sub_label",
+			"label": "Subscription option label",
+			"default": "Subscribe & Save"
+		},
+		{
+			"type": "text",
+			"id": "sub_terms",
+			"label": "Subscription terms",
+			"info": "[price] is replaced with the ongoing subscription price.",
+			"default": "Recurring order. Then [price] every 30 days, and the discount applies to your first order only. Skip or cancel anytime."
+		},
+		{
+			"type": "text",
+			"id": "onetime_label",
+			"label": "One-time option label",
+			"default": "One-time purchase"
+		},
+		{
+			"type": "text",
+			"id": "onetime_terms",
+			"label": "One-time terms",
+			"default": "A single order. No subscription, nothing recurring."
+		},
+		{
+			"type": "text",
 			"id": "cta_label",
 			"label": "CTA label",
 			"default": "CLAIM $10 OFF"
@@ -329,17 +354,107 @@
 
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 
+{%- liquid
+	comment
+		The subscription price comes from the variant's own selling plan allocation,
+		so there is no arithmetic guessing what the plan charges. The discount code
+		is applied by the theme's checkout redirect and lands on whichever price the
+		line carries, which is why the subscription figure is the plan price less the
+		offer, not the jar price less the offer.
+	endcomment
+
+	assign plan_id = ''
+	assign sub_price = 0
+	for alloc in current_variant.selling_plan_allocations
+		assign plan_id = alloc.selling_plan.id
+		assign sub_price = alloc.price
+		break
+	endfor
+
+	assign has_sub = false
+	if plan_id != blank and sub_price > 0
+		assign has_sub = true
+	endif
+
+	if s.offer_type == 'percent'
+		assign sub_discount = sub_price | times: s.offer_amount | divided_by: 100
+	else
+		assign sub_discount = s.offer_amount | times: 100
+	endif
+
+	assign sub_first = sub_price | minus: sub_discount
+	assign sub_saving = base_price | minus: sub_first
+	assign sub_terms = s.sub_terms | replace: '[price]', sub_price | money
+-%}
+
 {%- capture buy_form -%}
 	{%- if current_variant.available -%}
-		<div class="product-hero__form simple-product-form">
-			{%- render 'simple-product-form',
-				product: product,
-				item: product,
-				code: s.discount_code,
-				cta_label: s.cta_label,
-				button_class: 'cr-orange'
-			-%}
-		</div>
+		<form
+			class="c-product-form offer-lp__form"
+			action="{{ routes.cart_add_url }}"
+			method="post"
+			enctype="multipart/form-data"
+			data-available="true"
+			data-offer-form
+		>
+			{%- if has_sub -%}
+				{% comment %}
+					Subscription first, one-time second, in the order and the wording.
+					Labels wrap their inputs, so the form can be rendered several times
+					on the page without duplicate ids, and each form is its own radio group.
+				{% endcomment %}
+				<div class="offer-lp__plans" role="radiogroup" aria-label="Purchase options">
+					<label class="offer-lp__plan is-selected">
+						<input
+							type="radio"
+							name="offer-plan"
+							value="{{ plan_id }}"
+							checked
+							data-pay="{{ sub_first | money }}"
+							data-off="{{ sub_saving | money }}"
+							data-off-label="Subscription and first-order discount"
+							data-terms="{{ sub_terms | escape }}"
+						>
+						<span class="offer-lp__plan-body">
+							<span class="offer-lp__plan-head">
+								<span class="offer-lp__plan-name t-b-2">{{ s.sub_label }}</span>
+								<span class="offer-lp__plan-price t-b-2">{{ sub_first | money }}</span>
+							</span>
+							<span class="offer-lp__plan-terms t-b-4">{{ sub_terms }}</span>
+						</span>
+					</label>
+
+					<label class="offer-lp__plan">
+						<input
+							type="radio"
+							name="offer-plan"
+							value=""
+							data-pay="{{ offer_price | money }}"
+							data-off="{{ discount_value | money }}"
+							data-off-label="Your first order"
+							data-terms="{{ s.onetime_terms | escape }}"
+						>
+						<span class="offer-lp__plan-body">
+							<span class="offer-lp__plan-head">
+								<span class="offer-lp__plan-name t-b-2">{{ s.onetime_label }}</span>
+								<span class="offer-lp__plan-price t-b-2">{{ offer_price | money }}</span>
+							</span>
+							<span class="offer-lp__plan-terms t-b-4">{{ s.onetime_terms }}</span>
+						</span>
+					</label>
+				</div>
+			{%- endif -%}
+
+			<input type="hidden" name="id" value="{{ current_variant.id }}">
+			{%- if has_sub -%}
+				<input type="hidden" name="selling_plan" value="{{ plan_id }}" data-offer-plan>
+			{%- endif -%}
+			<input type="hidden" name="code" value="{{ s.discount_code }}">
+
+			<button class="c-product-form__cta btn js-form-submit cr-orange" type="submit">
+				<span class="form-state-available">{{ s.cta_label }}</span>
+			</button>
+		</form>
 	{%- else -%}
 		<button type="button" class="btn cr-orange" disabled>
 			<span>Out of stock</span>
@@ -366,14 +481,20 @@
 				<span class="offer-lp__ledger-value t-l-2">{{ base_price | money }}</span>
 			</div>
 			<div class="offer-lp__ledger-row">
-				<span class="offer-lp__ledger-label t-l-4">Your first order</span>
-				<span class="offer-lp__ledger-value t-l-2 is-off">&minus;{{ discount_value | money }}</span>
+				<span class="offer-lp__ledger-label t-l-4" data-ledger-off-label>
+					{%- if has_sub -%}Subscription and first-order discount{%- else -%}Your first order{%- endif -%}
+				</span>
+				<span class="offer-lp__ledger-value t-l-2 is-off">&minus;<span data-ledger-off>{% if has_sub %}{{ sub_saving | money }}{% else %}{{ discount_value | money }}{% endif %}</span></span>
 			</div>
 			<div class="offer-lp__ledger-row is-total">
-				<span class="offer-lp__ledger-label t-l-4">You pay</span>
-				<span class="offer-lp__ledger-total t-h-2">{{ offer_price | money }}</span>
+				<span class="offer-lp__ledger-label t-l-4">You pay today</span>
+				<span class="offer-lp__ledger-total t-h-2" data-ledger-total>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
 			</div>
 		</div>
+
+		{%- if has_sub -%}
+			<p class="offer-lp__ledger-terms t-b-4" data-ledger-terms>{{ sub_terms }}</p>
+		{%- endif -%}
 
 		<div class="offer-lp__cta">{{ buy_form }}</div>
 
@@ -663,13 +784,145 @@
 	</div>
 </div>
 
+{% comment %} ---------- PURCHASE OPTIONS: STYLE AND BEHAVIOUR ---------- {% endcomment %}
+
+<style>
+	#shopify-section-{{ section.id }} .offer-lp__plans {
+		display: grid;
+		gap: 0.5rem;
+		margin: 0 0 1rem;
+		text-align: left;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan {
+		display: grid;
+		grid-template-columns: 1.1rem 1fr;
+		gap: 0.75rem;
+		align-items: start;
+		padding: 0.85rem 1rem;
+		border: 1px solid rgba(0, 0, 0, 0.18);
+		cursor: pointer;
+		transition: border-color 0.2s ease, background-color 0.2s ease;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan.is-selected {
+		border-color: var(--cr-orange);
+		background-color: rgba(193, 75, 36, 0.06);
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan input {
+		appearance: none;
+		-webkit-appearance: none;
+		width: 15px;
+		height: 15px;
+		margin: 0.25rem 0 0;
+		border: 1px solid var(--cr-black);
+		border-radius: 0;
+		background: transparent;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan input:hover,
+	#shopify-section-{{ section.id }} .offer-lp__plan input:checked {
+		background-color: var(--cr-orange);
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan-body {
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan-head {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan-terms {
+		opacity: 0.7;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__ledger-terms {
+		margin: 0.6rem 0 0;
+		opacity: 0.7;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__sticky .offer-lp__plans {
+		display: none;
+	}
+</style>
+
+<script>
+	(function () {
+		var root = document.getElementById('shopify-section-{{ section.id }}');
+		if (!root) return;
+
+		var forms = Array.prototype.slice.call(root.querySelectorAll('[data-offer-form]'));
+		if (!forms.length) return;
+
+		/* The form is rendered several times on the page. Choosing an option in one
+		   sets the same option in the others, so the sticky bar and the page agree. */
+		function apply(value, source) {
+			forms.forEach(function (form) {
+				var radios = Array.prototype.slice.call(form.querySelectorAll('input[name="offer-plan"]'));
+				var chosen = null;
+
+				radios.forEach(function (radio) {
+					var on = radio.value === value;
+					radio.checked = on;
+					radio.closest('.offer-lp__plan').classList.toggle('is-selected', on);
+					if (on) chosen = radio;
+				});
+
+				var planInput = form.querySelector('[data-offer-plan]');
+				if (planInput) {
+					planInput.value = value;
+					planInput.disabled = !value;   /* a disabled input isn't submitted */
+				}
+
+				if (!chosen) return;
+
+				if (form === source || source === null) {
+					var pay = chosen.getAttribute('data-pay');
+					var off = chosen.getAttribute('data-off');
+					var offLabel = chosen.getAttribute('data-off-label');
+					var terms = chosen.getAttribute('data-terms');
+
+					var total = root.querySelector('[data-ledger-total]');
+					var offEl = root.querySelector('[data-ledger-off]');
+					var offLab = root.querySelector('[data-ledger-off-label]');
+					var termsEl = root.querySelector('[data-ledger-terms]');
+					var sticky = root.querySelector('[data-sticky-now]');
+
+					if (total) total.textContent = pay;
+					if (offEl) offEl.textContent = off;
+					if (offLab) offLab.textContent = offLabel;
+					if (termsEl) termsEl.textContent = terms;
+					if (sticky) sticky.textContent = pay;
+				}
+			});
+		}
+
+		forms.forEach(function (form) {
+			form.addEventListener('change', function (e) {
+				if (e.target.name !== 'offer-plan') return;
+				apply(e.target.value, form);
+			});
+		});
+
+		var first = root.querySelector('input[name="offer-plan"]:checked');
+		if (first) apply(first.value, null);
+	})();
+</script>
+
 {% comment %} ---------- STICKY ---------- {% endcomment %}
 
 <div class="offer-lp__sticky">
 	<div class="offer-lp__sticky-inner">
 		<div class="offer-lp__sticky-price">
 			<span class="offer-lp__sticky-was t-b-4">{{ base_price | money }}</span>
-			<span class="offer-lp__sticky-now t-l-2">{{ offer_price | money }}</span>
+			<span class="offer-lp__sticky-now t-l-2" data-sticky-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
 		</div>
 		<div class="offer-lp__cta offer-lp__sticky-cta">{{ buy_form }}</div>
 	</div>
