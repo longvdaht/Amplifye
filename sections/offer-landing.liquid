@@ -421,7 +421,7 @@
 								<span class="offer-lp__plan-name t-b-2">{{ s.sub_label }}</span>
 								<span class="offer-lp__plan-price t-b-2">{{ sub_first | money }}</span>
 							</span>
-							<span class="offer-lp__plan-terms t-b-2">{{ sub_terms }}</span>
+							<span class="offer-lp__plan-terms t-b-3">{{ sub_terms }}</span>
 						</span>
 					</label>
 
@@ -440,7 +440,7 @@
 								<span class="offer-lp__plan-name t-b-2">{{ s.onetime_label }}</span>
 								<span class="offer-lp__plan-price t-b-2">{{ offer_price | money }}</span>
 							</span>
-							<span class="offer-lp__plan-terms t-b-2">{{ s.onetime_terms }}</span>
+							<span class="offer-lp__plan-terms t-b-3">{{ s.onetime_terms }}</span>
 						</span>
 					</label>
 				</div>
@@ -837,8 +837,12 @@
 		gap: 1rem;
 	}
 
+	/* One step under the option name, so the choice reads first and the terms
+	   sit beneath it rather than competing with the price. */
 	#shopify-section-{{ section.id }} .offer-lp__plan-terms {
-		opacity: 0.7;
+		opacity: 0.65;
+		line-height: 1.4;
+		max-width: 46ch;
 	}
 
 	/* The closing banner and the sticky bar sit on a photo, where a set of
