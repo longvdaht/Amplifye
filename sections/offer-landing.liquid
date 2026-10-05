@@ -881,6 +881,25 @@
 		margin-right: 0.35rem;
 	}
 
+	/* Options and button read as one block: the same width, with the button
+	   filling it. Scoped to the hero and the midway reminder, so the sticky bar
+	   and the closing banner keep their own button sizes. */
+	#shopify-section-{{ section.id }} .offer-lp__hero .offer-lp__form,
+	#shopify-section-{{ section.id }} .offer-lp__reminder .offer-lp__form {
+		width: 100%;
+		max-width: 36rem;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__reminder .offer-lp__form {
+		margin-inline: auto;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__hero .offer-lp__form .c-product-form__cta,
+	#shopify-section-{{ section.id }} .offer-lp__reminder .offer-lp__form .c-product-form__cta {
+		width: 100%;
+		max-width: none;
+	}
+
 	/* The closing banner and the sticky bar sit on a photo, where a set of
 	   option boxes reads badly. Both keep the button, which carries whichever
 	   option is chosen above. */
