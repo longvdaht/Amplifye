@@ -14,11 +14,11 @@
       "name": "Landing Hero (2)",
       "settings": {
         "text_color": "#ffffff",
-        "heading": "Absorb More Protein From Your Meals.",
+        "heading": "Digest up to 5X More Protein",
         "subheading": "",
-        "content": "The patented protein enzyme backed by Nobel Prize-winning science. Designed to unlock the nutrients your body needs.",
+        "content": "The patented protein enzyme designed to unlock the protein efficiency and nutrients your body needs.",
         "content_richtext": "",
-        "cta_label": "Get P24",
+        "cta_label": "Unlock More Protein",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "primary",
         "background_image": "shopify://shop_images/Absorb_More_Protein.png",
@@ -117,13 +117,56 @@
         "padding_left_mobile": 0
       }
     },
+    "s_protein_stats_7cYMii": {
+      "type": "s-protein-stats",
+      "name": "Protein Stats",
+      "settings": {
+        "heading": "More from every protein on your plate.",
+        "subheading": "Amplifye all protein sources: animal-based, plant-based, and powders.",
+        "proteins": [
+          "beef",
+          "chicken",
+          "tofu",
+          "atlantic-salmon",
+          "eggs",
+          "pork",
+          "whey-protein",
+          "brown-lentils",
+          "greek-yogurt"
+        ]
+      }
+    },
+    "media_content_split_pieWLA": {
+      "type": "media-content-split",
+      "name": "Media Content Split",
+      "settings": {
+        "media_position": "left",
+        "bg_color": "#fffaf1",
+        "text_color": "#000000",
+        "media_type": "image",
+        "image": "shopify://shop_images/medicine-desktop.png",
+        "image_mobile": "shopify://shop_images/medicine-desktop.png",
+        "eyebrow": "the precision enzyme",
+        "dot_color": "#c14b24",
+        "heading": "<p>Unlock more protein with P24</p>",
+        "heading_larger": true,
+        "body_text": "Take one P24 capsule with a protein-rich meal. It gets right to work—breaking down proteins with efficiency and releasing higher concentrations of amino acids.",
+        "show_stats_box": false,
+        "stats_label": "P24 increases protein's bioavailability.",
+        "button_style": "primary",
+        "btn_label": "Get P24",
+        "btn_url": "shopify://products/amplifye-p24",
+        "btn_subtext": "From $58.00 a month",
+        "source_text": ""
+      }
+    },
     "media_content_split_FaB6Cd": {
       "type": "media-content-split",
       "blocks": {
         "stat_PzRDj8": {
           "type": "stat",
           "settings": {
-            "badge_text": "2x",
+            "badge_text": "5x",
             "description": "P24 multiplies the amount of bioaccessible protein in food, so you get more from your meals.",
             "bg_color": "#c14b24"
           }
@@ -152,30 +195,6 @@
         "btn_url": "",
         "btn_subtext": "From $58.00 a month",
         "source_text": "<p><em>Source: </em>Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone.</p>"
-      }
-    },
-    "media_content_split_pieWLA": {
-      "type": "media-content-split",
-      "name": "Media Content Split",
-      "settings": {
-        "media_position": "left",
-        "bg_color": "#fffaf1",
-        "text_color": "#000000",
-        "media_type": "image",
-        "image": "shopify://shop_images/medicine-desktop.png",
-        "image_mobile": "shopify://shop_images/medicine-desktop.png",
-        "eyebrow": "the precision enzyme",
-        "dot_color": "#c14b24",
-        "heading": "<p>Unlock more protein with P24</p>",
-        "heading_larger": true,
-        "body_text": "Take one P24 capsule with a protein-rich meal. It gets right to work—breaking down proteins with efficiency and releasing higher concentrations of amino acids.",
-        "show_stats_box": false,
-        "stats_label": "P24 increases protein's bioavailability.",
-        "button_style": "primary",
-        "btn_label": "Get P24",
-        "btn_url": "shopify://products/amplifye-p24",
-        "btn_subtext": "From $58.00 a month",
-        "source_text": ""
       }
     },
     "landing_testimonial_video": {
@@ -285,6 +304,31 @@
         "show_dots": false
       }
     },
+    "new_editorial_3_TzTc83": {
+      "type": "new-editorial-3",
+      "name": "New - Editorial (3)",
+      "settings": {
+        "background_color": "#fffaf1",
+        "custom_style": true,
+        "color": "",
+        "content_max_width": 1000,
+        "alignment": "center",
+        "vertical_align_c": false,
+        "subheading": "A scientific breakthrough",
+        "heading": "Next-gen nutrition backed by Nobel Prize-winning science.",
+        "is_smaller_heading": false,
+        "paragraph": "PhD researchers at UCDavis identified this naturally occurring enzyme and quickly realized its potential to transform how we consume protein. P24 enhances what your body already knows how to do best: digest food, absorb protein, and unlock nutrients.",
+        "show_paragraph_media": true,
+        "image": "shopify://shop_images/Deeper_Sleep.png",
+        "video": "shopify://files/videos/584d1c2437d0449684c061c4893998d7 (1).mp4",
+        "is_autoplay": false,
+        "activate_orange_btn": false,
+        "cta_label": "The science",
+        "use_btn_outline": false,
+        "cta_url": "shopify://pages/the-science",
+        "source": ""
+      }
+    },
     "s_protein_benefits_Dp4r43": {
       "type": "s-protein-benefits",
       "blocks": {
@@ -369,7 +413,7 @@
       "name": "Protein Benefits",
       "settings": {
         "heading": "Absorbing more protein feels like...",
-        "cta_label": "LEARN MORE",
+        "cta_label": "TRY P24 TODAY",
         "cta_url": "shopify://pages/the-science",
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
         "show_nav": false,
@@ -380,23 +424,27 @@
         "margin_bottom_desktop": 60
       }
     },
-    "s_protein_stats_7cYMii": {
-      "type": "s-protein-stats",
-      "name": "Protein Stats",
+    "landing_hero_3_Ye3LFq": {
+      "type": "landing-hero-3",
+      "name": "Landing Hero (3)",
       "settings": {
-        "heading": "More from every protein on your plate.",
-        "subheading": "Amplifye all protein sources: animal-based, plant-based, and powders.",
-        "proteins": [
-          "beef",
-          "chicken",
-          "tofu",
-          "atlantic-salmon",
-          "eggs",
-          "pork",
-          "whey-protein",
-          "brown-lentils",
-          "greek-yogurt"
-        ]
+        "text_color": "#000000",
+        "heading": "Digest More",
+        "subheading": "",
+        "content": "",
+        "content_richtext": "",
+        "cta_label": "Get 5X More Protein",
+        "cta_url": "shopify://products/amplifye-p24",
+        "button_style": "secondary",
+        "background_image": "shopify://shop_images/amplifye-0193.png",
+        "background_image_mobile": "shopify://shop_images/amplifye-0193-mobile.png",
+        "product": "amplifye-p24",
+        "custom_style": true,
+        "content_alignment": "right",
+        "heading_font_size": 36,
+        "mobile_text_below": true,
+        "mobile_align": "other",
+        "code": "MBG15"
       }
     },
     "s_banner_X7rRhM": {
@@ -428,31 +476,6 @@
         "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease."
       }
     },
-    "new_editorial_3_TzTc83": {
-      "type": "new-editorial-3",
-      "name": "New - Editorial (3)",
-      "settings": {
-        "background_color": "#fffaf1",
-        "custom_style": true,
-        "color": "",
-        "content_max_width": 1000,
-        "alignment": "center",
-        "vertical_align_c": false,
-        "subheading": "A scientific breakthrough",
-        "heading": "Next-gen nutrition backed by Nobel Prize-winning science.",
-        "is_smaller_heading": false,
-        "paragraph": "PhD researchers at UCDavis identified this naturally occurring enzyme and quickly realized its potential to transform how we consume protein. P24 enhances what your body already knows how to do best: digest food, absorb protein, and unlock nutrients.",
-        "show_paragraph_media": true,
-        "image": "shopify://shop_images/Deeper_Sleep.png",
-        "video": "shopify://files/videos/584d1c2437d0449684c061c4893998d7 (1).mp4",
-        "is_autoplay": false,
-        "activate_orange_btn": false,
-        "cta_label": "The science",
-        "use_btn_outline": false,
-        "cta_url": "shopify://pages/the-science",
-        "source": ""
-      }
-    },
     "landing_hero_2_We6AHf": {
       "type": "landing-hero-2",
       "disabled": true,
@@ -476,43 +499,20 @@
         "mobile_align": "other",
         "code": ""
       }
-    },
-    "landing_hero_3_Ye3LFq": {
-      "type": "landing-hero-3",
-      "name": "Landing Hero (3)",
-      "settings": {
-        "text_color": "#000000",
-        "heading": "Make your protein work for you.",
-        "subheading": "",
-        "content": "",
-        "content_richtext": "<p>From $58.00 a month.<br/>Try P24 for 30 days, worry free.</p>",
-        "cta_label": "GET p24",
-        "cta_url": "shopify://products/amplifye-p24",
-        "button_style": "secondary",
-        "background_image": "shopify://shop_images/amplifye-0193.png",
-        "background_image_mobile": "shopify://shop_images/amplifye-0193-mobile.png",
-        "product": "amplifye-p24",
-        "custom_style": true,
-        "content_alignment": "right",
-        "heading_font_size": 36,
-        "mobile_text_below": true,
-        "mobile_align": "other",
-        "code": "MBG15"
-      }
     }
   },
   "order": [
     "landing_hero_2_GhYqWU",
     "s_brands_3axFpA",
-    "media_content_split_FaB6Cd",
-    "media_content_split_pieWLA",
-    "landing_testimonial_video",
-    "s_protein_benefits_Dp4r43",
     "s_protein_stats_7cYMii",
+    "media_content_split_pieWLA",
+    "media_content_split_FaB6Cd",
+    "s_protein_benefits_Dp4r43",
+    "landing_hero_3_Ye3LFq",
+    "landing_testimonial_video",
+    "new_editorial_3_TzTc83",
     "s_banner_X7rRhM",
     "frontpage-benefits",
-    "new_editorial_3_TzTc83",
-    "landing_hero_2_We6AHf",
-    "landing_hero_3_Ye3LFq"
+    "landing_hero_2_We6AHf"
   ]
 }
