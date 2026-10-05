@@ -401,8 +401,11 @@
 			{%- if has_sub -%}
 				{% comment %}
 					Subscription first, one-time second, in the order and the wording.
-					Labels wrap their inputs, so the form can be rendered several times
-					on the page without duplicate ids, and each form is its own radio group.
+					Each option carries its own breakdown (jar price struck through, the
+					price paid today, and the saving), so the page needs no separate
+					ledger above it. Labels wrap their inputs, so the form can be rendered
+					several times on the page without duplicate ids, and each form is its
+					own radio group.
 				{% endcomment %}
 				<div class="offer-lp__plans" role="radiogroup" aria-label="Purchase options">
 					<label class="offer-lp__plan is-selected">
@@ -419,8 +422,12 @@
 						<span class="offer-lp__plan-body">
 							<span class="offer-lp__plan-head">
 								<span class="offer-lp__plan-name t-b-2">{{ s.sub_label }}</span>
-								<span class="offer-lp__plan-price t-b-2">{{ sub_first | money }}</span>
+								<span class="offer-lp__plan-prices">
+									<s class="offer-lp__plan-was">{{ base_price | money }}</s>
+									<span class="offer-lp__plan-price t-b-2">{{ sub_first | money }}</span>
+								</span>
 							</span>
+							<span class="offer-lp__plan-save">Save {{ sub_saving | money }}</span>
 							<span class="offer-lp__plan-terms">{{ sub_terms }}</span>
 						</span>
 					</label>
@@ -438,8 +445,12 @@
 						<span class="offer-lp__plan-body">
 							<span class="offer-lp__plan-head">
 								<span class="offer-lp__plan-name t-b-2">{{ s.onetime_label }}</span>
-								<span class="offer-lp__plan-price t-b-2">{{ offer_price | money }}</span>
+								<span class="offer-lp__plan-prices">
+									<s class="offer-lp__plan-was">{{ base_price | money }}</s>
+									<span class="offer-lp__plan-price t-b-2">{{ offer_price | money }}</span>
+								</span>
 							</span>
+							<span class="offer-lp__plan-save">Save {{ discount_value | money }}</span>
 							<span class="offer-lp__plan-terms">{{ s.onetime_terms }}</span>
 						</span>
 					</label>
@@ -475,24 +486,15 @@
 			<h1 class="offer-lp__heading t-h-1">{{ s.heading }}</h1>
 		{%- endif -%}
 
-		{% comment %} The ledger: the offer stated as arithmetic {% endcomment %}
-		<div class="offer-lp__ledger">
-			<div class="offer-lp__ledger-row">
-				<span class="offer-lp__ledger-label t-l-4">P24, one jar</span>
-				<span class="offer-lp__ledger-value t-l-2">{{ base_price | money }}</span>
-			</div>
-			<div class="offer-lp__ledger-row">
-				<span class="offer-lp__ledger-label t-l-4" data-ledger-off-label>
-					{%- if has_sub -%}Subscription and first-order discount{%- else -%}Your first order{%- endif -%}
-				</span>
-				<span class="offer-lp__ledger-value t-l-2 is-off">&minus;<span data-ledger-off>{% if has_sub %}{{ sub_saving | money }}{% else %}{{ discount_value | money }}{% endif %}</span></span>
-			</div>
-			<div class="offer-lp__ledger-row is-total">
-				<span class="offer-lp__ledger-label t-l-4">You pay today</span>
-				<span class="offer-lp__ledger-total t-h-2" data-ledger-total>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
-			</div>
-		</div>
-
+		{% comment %}
+			The price breakdown lives inside each purchase option now. Only when there
+			is no subscription option (so no option boxes) is the price shown here.
+		{% endcomment %}
+		{%- unless has_sub -%}
+			<p class="offer-lp__hero-price t-l-1">
+				<s>{{ base_price | money }}</s> <span data-offer-now>{{ offer_price | money }}</span>
+			</p>
+		{%- endunless -%}
 
 		<div class="offer-lp__cta">{{ buy_form }}</div>
 
@@ -724,9 +726,12 @@
 				<h2 class="offer-lp__reminder-heading t-h-3">{{ reminder_heading }}</h2>
 			{%- endif -%}
 
-			<p class="offer-lp__reminder-price t-l-1">
-				<s>{{ base_price | money }}</s> <span data-offer-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
-			</p>
+			{% comment %} With option boxes, each option already shows its price. {% endcomment %}
+			{%- unless has_sub -%}
+				<p class="offer-lp__reminder-price t-l-1">
+					<s>{{ base_price | money }}</s> <span data-offer-now>{{ offer_price | money }}</span>
+				</p>
+			{%- endunless -%}
 
 			<div class="offer-lp__cta is-centered">{{ buy_form }}</div>
 
@@ -788,7 +793,7 @@
 	#shopify-section-{{ section.id }} .offer-lp__plans {
 		display: grid;
 		gap: 0.5rem;
-		margin: 0 0 1rem;
+		margin: 1.25rem 0 1rem;
 		text-align: left;
 	}
 
@@ -834,7 +839,29 @@
 	#shopify-section-{{ section.id }} .offer-lp__plan-head {
 		display: flex;
 		justify-content: space-between;
+		align-items: baseline;
 		gap: 1rem;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan-prices {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		white-space: nowrap;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__plan-was {
+		font-size: 0.9375rem;
+		opacity: 0.5;
+	}
+
+	/* The saving, in the brand orange, so the deal reads at a glance. */
+	#shopify-section-{{ section.id }} .offer-lp__plan-save {
+		font-size: 0.875rem;
+		font-weight: 600;
+		letter-spacing: 0;
+		text-transform: none;
+		color: var(--cr-orange);
 	}
 
 	/* Sized here rather than with a theme class: t-b-3 is a label style in this
@@ -846,6 +873,12 @@
 		text-transform: none;
 		opacity: 0.65;
 		max-width: 46ch;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__hero-price s,
+	#shopify-section-{{ section.id }} .offer-lp__reminder-price s {
+		opacity: 0.5;
+		margin-right: 0.35rem;
 	}
 
 	/* The closing banner and the sticky bar sit on a photo, where a set of
@@ -889,18 +922,9 @@
 
 				if (form === source || source === null) {
 					var pay = chosen.getAttribute('data-pay');
-					var off = chosen.getAttribute('data-off');
-					var offLabel = chosen.getAttribute('data-off-label');
-
-					var total = root.querySelector('[data-ledger-total]');
-					var offEl = root.querySelector('[data-ledger-off]');
-					var offLab = root.querySelector('[data-ledger-off-label]');
 					var sticky = root.querySelector('[data-sticky-now]');
 					var nows = root.querySelectorAll('[data-offer-now]');
 
-					if (total) total.textContent = pay;
-					if (offEl) offEl.textContent = off;
-					if (offLab) offLab.textContent = offLabel;
 					if (sticky) sticky.textContent = pay;
 					nows.forEach(function (el) { el.textContent = pay; });
 				}
