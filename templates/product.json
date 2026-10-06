@@ -227,6 +227,25 @@
         "is_autoplay": false
       }
     },
+    "s_protein_stats_7cYMii": {
+      "type": "s-protein-stats",
+      "name": "Protein Stats",
+      "settings": {
+        "heading": "P24 amplifyes all proteins.",
+        "subheading": "",
+        "proteins": [
+          "beef",
+          "chicken",
+          "tofu",
+          "atlantic-salmon",
+          "eggs",
+          "pork",
+          "whey-protein",
+          "brown-lentils",
+          "greek-yogurt"
+        ]
+      }
+    },
     "feature_cards_DW37g4": {
       "type": "feature-cards",
       "blocks": {
@@ -342,25 +361,6 @@
         "background_image_mobile": "shopify://shop_images/benefit-bg-mobile.png",
         "product_image_desktop": "shopify://shop_images/benefit-medicine.png",
         "product_image_mobile": "shopify://shop_images/benefit-medicine-mobile.png"
-      }
-    },
-    "s_protein_stats_7cYMii": {
-      "type": "s-protein-stats",
-      "name": "Protein Stats",
-      "settings": {
-        "heading": "P24 amplifyes all proteins.",
-        "subheading": "",
-        "proteins": [
-          "beef",
-          "chicken",
-          "tofu",
-          "atlantic-salmon",
-          "eggs",
-          "pork",
-          "whey-protein",
-          "brown-lentils",
-          "greek-yogurt"
-        ]
       }
     },
     "s_editorial_n6Bpjt": {
@@ -601,12 +601,12 @@
   },
   "order": [
     "product-hero",
-    "s_brands_3axFpA",
+    "s_protein_stats_7cYMii",
     "s_how_p24_works_Ck3Hrn",
+    "s_brands_3axFpA",
     "feature_cards_DW37g4",
     "landing_editorial_jxrCUC",
     "benefits_section_jqhymV",
-    "s_protein_stats_7cYMii",
     "s_editorial_n6Bpjt",
     "s_editorial_text_visual_FLmGw6",
     "product-editorial",
