@@ -185,6 +185,33 @@ body[class*="template-page-offer-"] .g-footer__social {
 	display: none;
 }
 
+/* Footer signup on laptop widths. With the footer menu and social icons
+   hidden above, the wordmark moves up beside the email signup, and the
+   theme's flex: 1 on the signup lets it get squeezed until the field and
+   the Subscribe button run together. From 1025px up: keep one line, hold
+   the signup at 280px minimum, and let the wordmark shrink instead.
+   Below 1025px the theme stacks them, unchanged. */
+
+@media screen and (min-width: 1025px) {
+	body[class*="template-page-offer-"] .g-footer__content {
+		flex-wrap: nowrap;
+	}
+
+	body[class*="template-page-offer-"] .g-footer__email-capture {
+		min-width: 280px;
+	}
+
+	body[class*="template-page-offer-"] .g-footer__logo {
+		flex-shrink: 1;
+		min-width: 0;
+	}
+
+	body[class*="template-page-offer-"] .g-footer__logo svg {
+		width: 100%;
+		height: auto;
+	}
+}
+
 /* ---------- PRESS ---------- */
 
 .offer-lp__press {
