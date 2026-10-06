@@ -75,10 +75,7 @@
 				<div class="discovery-origin__media bg-subtle">
 					{%- if image != null -%}
 						<span class="object-fit">
-							{%- render 'c-img-srcset',
-								image: image,
-								alt: image.alt | default: label
-							-%}
+							{%- render 'c-img-srcset', image: image, alt: image.alt, default: label -%}
 						</span>
 					{%- endif %}
 				</div>
@@ -137,3 +134,14 @@
 		</div>
 	</div>
 {%- endif -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'c-img-srcset',\n\t\t\t\t\t\t\t\timage: image,\n\t\t\t\t\t\t\t\talt:
+    image.alt | default: label\n\t\t\t\t\t\t\t-%}"
+  to: "{%- render 'c-img-srcset', image: image, alt: image.alt, default: label -%}"
+  position: 1587..1662
+{% endcomment %}
