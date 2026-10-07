@@ -14,7 +14,7 @@
       "name": "Landing Hero (2)",
       "settings": {
         "text_color": "#ffffff",
-        "heading": "Digest up to 5X More Protein",
+        "heading": "Absorb More Protein From Your Meals",
         "subheading": "",
         "content": "The patented digestive enzyme designed to unlock more protein and nutrients your body needs.",
         "content_richtext": "",
@@ -103,7 +103,7 @@
       ],
       "name": "Brands",
       "settings": {
-        "heading": "AmplifyeP24 helps to increase your protein digestion up to 5X with one daily capsule.",
+        "heading": "AmplifyeP24 can double protein absorption with one daily capsule.",
         "show_quote": true,
         "quote_open": "shopify://shop_images/quote-open.png",
         "quote_close": "shopify://shop_images/quote-close.png",
@@ -166,7 +166,7 @@
         "stat_PzRDj8": {
           "type": "stat",
           "settings": {
-            "badge_text": "5x",
+            "badge_text": "2X",
             "description": "P24 multiplies the amount of bioaccessible protein in food, so you get more from your meals.",
             "bg_color": "#c14b24"
           }
@@ -298,10 +298,10 @@
       "settings": {
         "text_color": "#000000",
         "heading": "Digest More",
-        "subheading": "",
-        "content": "",
+        "subheading": "From $58.00",
+        "content": "Try P24 for 30 days, worry free.",
         "content_richtext": "",
-        "cta_label": "Get 5X More Protein",
+        "cta_label": "Get P24",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "secondary",
         "background_image": "shopify://shop_images/amplifye-0193.png",
