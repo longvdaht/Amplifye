@@ -228,6 +228,22 @@
 		},
 		{
 			"type": "header",
+			"content": "FAQ"
+		},
+		{
+			"type": "text",
+			"id": "faq_kicker",
+			"label": "Small heading",
+			"default": "FAQ"
+		},
+		{
+			"type": "text",
+			"id": "faq_heading",
+			"label": "Heading",
+			"info": "Same heading as the product page FAQ. Leave blank to hide it. The questions are the FAQ blocks."
+		},
+		{
+			"type": "header",
 			"content": "Closing"
 		},
 		{
@@ -549,12 +565,17 @@
 										style="--logo-scale: {{ block.settings.logo_scale | default: 100 }}"
 										{% if is_first %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}
 									>
+										{% comment %}
+											lazyloaded: the theme keeps lazy images hidden until they
+											carry this class, as on the other images in this section.
+										{% endcomment %}
 										<img
 											src="{{ logo | image_url: height: 160 }}"
 											alt="{% if is_first %}{{ block.settings.logo_alt | escape }}{% endif %}"
 											width="{{ logo_w }}"
 											height="160"
 											loading="lazy"
+											class="lazyloaded"
 										>
 									</li>
 								{%- endif -%}
@@ -831,12 +852,24 @@
 
 {% comment %}
 	---------- FAQ ----------
-	Same formatting as the product page FAQ: sentence case, in Basis (t-b-2).
-	Sizes and the plus icon are set in offer-lp.css.
+	Same formatting as the product page FAQ (Jenny): the same heading snippet,
+	questions and answers in sentence case in Basis (t-b-2), at the product
+	page's sizes, with black dividers and the orange plus. Sizes are set in
+	offer-lp.css.
 {% endcomment %}
 
 {%- if faq_blocks.size > 0 -%}
-	<div class="offer-lp__faq">
+	<div class="offer-lp__faq{% if s.faq_heading != blank %} has-header{% endif %}">
+		{%- if s.faq_heading != blank -%}
+			{%- render 'c-header',
+				class: 'offer-lp__faq-header',
+				subheading: s.faq_kicker,
+				heading: s.faq_heading,
+				is_smaller_heading: true,
+				max_width: 1200
+			-%}
+		{%- endif -%}
+
 		{%- for block in faq_blocks -%}
 			<details class="offer-lp__faq-item" {{ block.shopify_attributes }}>
 				<summary class="offer-lp__faq-q t-b-2">{{ block.settings.question }}</summary>
@@ -976,11 +1009,16 @@
 
 	/* Options and button read as one block: the same width, with the button
 	   filling it. Scoped to the hero and the midway reminder, so the sticky bar
-	   and the closing banner keep their own button sizes. */
+	   and the closing banner keep their own button sizes. In the hero they fill
+	   the copy block (its width is set in offer-lp.css). */
 	#shopify-section-{{ section.id }} .offer-lp__hero .offer-lp__form,
 	#shopify-section-{{ section.id }} .offer-lp__reminder .offer-lp__form {
 		width: 100%;
 		max-width: 36rem;
+	}
+
+	#shopify-section-{{ section.id }} .offer-lp__hero .offer-lp__form {
+		max-width: none;
 	}
 
 	#shopify-section-{{ section.id }} .offer-lp__reminder .offer-lp__form {
