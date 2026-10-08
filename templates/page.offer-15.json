@@ -16,7 +16,7 @@
           "type": "faq",
           "settings": {
             "question": "What is P24?",
-            "answer": "A protein enzyme. Take it with the meal or shake that carries your protein."
+            "answer": "amplifyeP24 is a precision enzyme that breaks down protein chains into smaller peptides and amino acids. It works in your stomach's acid, where protein digestion starts—breaking down up to 5x more protein than digestion alone.*\n*In lab stomach digestion testing, vs. without P24."
           }
         },
         "faq_4DtebT": {
@@ -30,14 +30,14 @@
           "type": "faq",
           "settings": {
             "question": "How long does a jar last?",
-            "answer": "30 capsules per jar."
+            "answer": "Each jar contains 30 capsules. Depending on how many protein meals you take it with — one to three times daily — a jar lasts between 10 and 30 days."
           }
         },
         "faq_A7gdNy": {
           "type": "faq",
           "settings": {
             "question": "What does shipping cost?",
-            "answer": "Free US shipping on every US order."
+            "answer": "Free standard shipping on every US order."
           }
         },
         "flex_flex_badge_fRF96A": {
@@ -149,7 +149,7 @@
           "type": "reason",
           "settings": {
             "heading": "It works where digestion starts",
-            "body": "P24 is an acid-active enzyme that works in your stomach's acid, where protein digestion starts.",
+            "body": "P24 is an acid-activated enzyme that works in your stomach's acid, where protein digestion starts.",
             "image_asset": "offer-r1.jpg",
             "image_alt": "A jar of amplifye P24 resting in amber liquid"
           }
@@ -158,7 +158,8 @@
           "type": "reason",
           "settings": {
             "heading": "It breaks protein down further",
-            "body": "Protein hydrolysis is the process of breaking protein into smaller peptides and amino acids.",
+            "body": "P24 digests up to 5x more protein.*",
+            "footnote": "*In lab stomach digestion testing, vs. without P24.",
             "image_asset": "offer-r2.jpg",
             "image_alt": "Protein powder being poured into a shaker bottle"
           }
@@ -183,21 +184,14 @@
           "type": "faq",
           "settings": {
             "question": "When do I take it?",
-            "answer": "With the meal or shake that carries your protein."
+            "answer": "Take one capsule with any protein-rich meal, up to 3 times per day."
           }
         },
         "f3": {
           "type": "faq",
           "settings": {
             "question": "What if it isn't for me?",
-            "answer": "You have 30 days. If you don't want to keep it, we'll refund you."
-          }
-        },
-        "f4": {
-          "type": "faq",
-          "settings": {
-            "question": "Is this a subscription?",
-            "answer": "Your choice. Subscribe and the discount applies to your first order, then it renews every 30 days at the usual subscription price, and you can skip or cancel anytime. Or buy once, with nothing recurring."
+            "answer": "We offer a 30-day money-back guarantee. If P24 isn't for you, reach out within 30 days of purchase for a full refund."
           }
         }
       },
@@ -224,8 +218,7 @@
         "r3",
         "f1",
         "f2",
-        "f3",
-        "f4"
+        "f3"
       ],
       "settings": {
         "product": "",
@@ -234,6 +227,8 @@
         "offer_amount": 15,
         "offer_kicker": "NEW CUSTOMER OFFER",
         "heading": "Get 15% Off Your First amplifye Order",
+        "sub_terms": "[today] today, then [price] every 30 days. Skip or cancel any time.",
+        "onetime_terms": "One order. No commitment.",
         "cta_label": "CLAIM 15% OFF",
         "reassurance": "Discount applied at checkout. Free US shipping.",
         "hero_image_asset": "offer-hero.jpg",
@@ -247,13 +242,16 @@
         "show_reminder": true,
         "reminder_heading": "New customers save [offer] today.",
         "reminder_note": "Applied automatically at checkout.",
+        "press_heading": "Featured In",
+        "press_position": "after_proof",
         "proof_heading": "What people say after 30 days",
         "proof_rating": "",
         "proof_rating_note": "",
         "closing_heading": "Same protein. More efficient digestion.*",
         "closing_footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "show_close_offer": false,
         "closing_image_asset": "offer-close.jpg",
-        "guarantee": "Try it for 30 days. If it isn't for you, we'll refund you."
+        "guarantee": ""
       }
     }
   },
