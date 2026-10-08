@@ -64,8 +64,8 @@
 			"type": "text",
 			"id": "sub_terms",
 			"label": "Subscription terms",
-			"info": "[price] is replaced with the ongoing subscription price.",
-			"default": "Recurring order. Then [price] every 30 days, and the discount applies to your first order only. Skip or cancel anytime."
+			"info": "[today] is replaced with the first-order price, [price] with the ongoing subscription price.",
+			"default": "[today] today, then [price] every 30 days. Skip or cancel any time."
 		},
 		{
 			"type": "text",
@@ -77,7 +77,7 @@
 			"type": "text",
 			"id": "onetime_terms",
 			"label": "One-time terms",
-			"default": "A single order. No subscription, nothing recurring."
+			"default": "One order. No commitment."
 		},
 		{
 			"type": "text",
@@ -222,6 +222,13 @@
 			"default": "*In lab stomach digestion testing, vs. without P24."
 		},
 		{
+			"type": "checkbox",
+			"id": "show_close_offer",
+			"label": "Show offer and price line",
+			"info": "The line under the footnote, e.g. $10 OFF and the prices.",
+			"default": false
+		},
+		{
 			"type": "image_picker",
 			"id": "closing_image",
 			"label": "Closing background image"
@@ -236,6 +243,7 @@
 			"type": "text",
 			"id": "guarantee",
 			"label": "Guarantee",
+			"info": "The small line under the button. Leave blank to hide it.",
 			"default": "Try it for 30 days. If it isn't for you, we'll refund you."
 		}
 	],
@@ -282,6 +290,12 @@
 			"settings": [
 				{ "type": "text", "id": "heading", "label": "Heading" },
 				{ "type": "textarea", "id": "body", "label": "Body" },
+				{
+					"type": "text",
+					"id": "footnote",
+					"label": "Footnote",
+					"info": "Optional. When the body carries a claim, its qualifier goes here so it stays on the same card."
+				},
 				{ "type": "image_picker", "id": "image", "label": "Image" },
 				{ "type": "text", "id": "image_asset", "label": "Image asset filename" },
 				{ "type": "text", "id": "image_alt", "label": "Image alt text" }
@@ -306,7 +320,7 @@
 			"name": "FAQ",
 			"settings": [
 				{ "type": "text", "id": "question", "label": "Question" },
-				{ "type": "textarea", "id": "answer", "label": "Answer" }
+				{ "type": "textarea", "id": "answer", "label": "Answer", "info": "A line break shows as a new line, e.g. for a claim's footnote." }
 			]
 		}
 	]
@@ -359,8 +373,9 @@
 		The subscription price comes from the variant's own selling plan allocation,
 		so there is no arithmetic guessing what the plan charges. The discount code
 		is applied by the theme's checkout redirect and lands on whichever price the
-		line carries, which is why the subscription figure is the plan price less the
-		offer, not the jar price less the offer.
+		line carries, so the subscription offer is the plan price less the discount.
+		The subscription option is struck through from the plan price, not the jar
+		price, and its saving is the discount itself.
 	endcomment
 
 	assign plan_id = ''
@@ -383,9 +398,14 @@
 	endif
 
 	assign sub_first = sub_price | minus: sub_discount
-	assign sub_saving = base_price | minus: sub_first
-	assign sub_price_money = sub_price | money
-	assign sub_terms = s.sub_terms | replace: '[price]', sub_price_money
+
+	comment
+		Terms read like copy, so whole-dollar prices drop the cents ($48, $58)
+		and others keep them ($49.30).
+	endcomment
+	assign sub_today_short = sub_first | money_without_trailing_zeros
+	assign sub_price_short = sub_price | money_without_trailing_zeros
+	assign sub_terms = s.sub_terms | replace: '[today]', sub_today_short | replace: '[price]', sub_price_short
 -%}
 
 {%- capture buy_form -%}
@@ -401,11 +421,11 @@
 			{%- if has_sub -%}
 				{% comment %}
 					Subscription first, one-time second, in the order and the wording.
-					Each option carries its own breakdown (jar price struck through, the
-					price paid today, and the saving), so the page needs no separate
-					ledger above it. Labels wrap their inputs, so the form can be rendered
-					several times on the page without duplicate ids, and each form is its
-					own radio group.
+					Each option carries its own breakdown (the price it is discounted
+					from struck through, the price paid today, and the saving), so the
+					page needs no separate ledger above it. Labels wrap their inputs, so
+					the form can be rendered several times on the page without duplicate
+					ids, and each form is its own radio group.
 				{% endcomment %}
 				<div class="offer-lp__plans" role="radiogroup" aria-label="Purchase options">
 					<label class="offer-lp__plan is-selected">
@@ -415,19 +435,18 @@
 							value="{{ plan_id }}"
 							checked
 							data-pay="{{ sub_first | money }}"
-							data-off="{{ sub_saving | money }}"
-							data-off-label="Subscription and first-order discount"
+							data-was="{{ sub_price | money }}"
 							data-terms="{{ sub_terms | escape }}"
 						>
 						<span class="offer-lp__plan-body">
 							<span class="offer-lp__plan-head">
 								<span class="offer-lp__plan-name t-b-2">{{ s.sub_label }}</span>
 								<span class="offer-lp__plan-prices">
-									<s class="offer-lp__plan-was">{{ base_price | money }}</s>
+									<s class="offer-lp__plan-was">{{ sub_price | money }}</s>
 									<span class="offer-lp__plan-price t-b-2">{{ sub_first | money }}</span>
 								</span>
 							</span>
-							<span class="offer-lp__plan-save">Save {{ sub_saving | money }}</span>
+							<span class="offer-lp__plan-save">Save {{ sub_discount | money_without_trailing_zeros }}</span>
 							<span class="offer-lp__plan-terms">{{ sub_terms }}</span>
 						</span>
 					</label>
@@ -438,8 +457,7 @@
 							name="offer-plan"
 							value=""
 							data-pay="{{ offer_price | money }}"
-							data-off="{{ discount_value | money }}"
-							data-off-label="Your first order"
+							data-was="{{ base_price | money }}"
 							data-terms="{{ s.onetime_terms | escape }}"
 						>
 						<span class="offer-lp__plan-body">
@@ -450,7 +468,7 @@
 									<span class="offer-lp__plan-price t-b-2">{{ offer_price | money }}</span>
 								</span>
 							</span>
-							<span class="offer-lp__plan-save">Save {{ discount_value | money }}</span>
+							<span class="offer-lp__plan-save">Save {{ discount_value | money_without_trailing_zeros }}</span>
 							<span class="offer-lp__plan-terms">{{ s.onetime_terms }}</span>
 						</span>
 					</label>
@@ -656,6 +674,9 @@
 
 				<h3 class="offer-lp__reason-heading t-h-4">{{ block.settings.heading }}</h3>
 				<p class="offer-lp__reason-body t-b-3">{{ block.settings.body }}</p>
+				{%- if block.settings.footnote != blank -%}
+					<p class="offer-lp__reason-footnote t-b-4">{{ block.settings.footnote }}</p>
+				{%- endif -%}
 			</div>
 		{%- endfor -%}
 	</div>
@@ -742,14 +763,18 @@
 	</div>
 {%- endif -%}
 
-{% comment %} ---------- FAQ ---------- {% endcomment %}
+{% comment %}
+	---------- FAQ ----------
+	Same formatting as the product page FAQ: sentence case, in Basis (t-b-2).
+	Sizes and the plus icon are set in offer-lp.css.
+{% endcomment %}
 
 {%- if faq_blocks.size > 0 -%}
 	<div class="offer-lp__faq">
 		{%- for block in faq_blocks -%}
 			<details class="offer-lp__faq-item" {{ block.shopify_attributes }}>
-				<summary class="offer-lp__faq-q t-l-3">{{ block.settings.question }}</summary>
-				<div class="offer-lp__faq-a t-b-3">{{ block.settings.answer }}</div>
+				<summary class="offer-lp__faq-q t-b-2">{{ block.settings.question }}</summary>
+				<div class="offer-lp__faq-a t-b-2">{{ block.settings.answer | newline_to_br }}</div>
 			</details>
 		{%- endfor -%}
 	</div>
@@ -775,9 +800,11 @@
 			<p class="offer-lp__close-footnote t-b-4">{{ s.closing_footnote }}</p>
 		{%- endif -%}
 
-		<p class="offer-lp__close-offer t-l-1">
-			{{ offer_badge }} &middot; <s>{{ base_price | money }}</s> <span data-offer-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
-		</p>
+		{%- if s.show_close_offer -%}
+			<p class="offer-lp__close-offer t-l-1">
+				{{ offer_badge }} &middot; <s data-offer-was>{% if has_sub %}{{ sub_price | money }}{% else %}{{ base_price | money }}{% endif %}</s> <span data-offer-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
+			</p>
+		{%- endif -%}
 
 		<div class="offer-lp__cta is-centered">{{ buy_form }}</div>
 
@@ -914,21 +941,26 @@
 		var root = document.getElementById('shopify-section-{{ section.id }}');
 		if (!root) return;
 
-		var forms = Array.prototype.slice.call(root.querySelectorAll('[data-offer-form]'));
-		if (!forms.length) return;
+		/* The form is rendered several times on the page: hero, midway, close and
+		   the mobile sticky bar. The sticky bar comes after this script in the page,
+		   so the forms are looked up each time rather than once, and changes are
+		   heard on the section itself. Choosing an option in one form sets the same
+		   option in all of them, so the sticky bar always adds what was chosen. */
+		function allForms() {
+			return Array.prototype.slice.call(root.querySelectorAll('[data-offer-form]'));
+		}
 
-		/* The form is rendered several times on the page. Choosing an option in one
-		   sets the same option in the others, so the sticky bar and the page agree. */
-		function apply(value, source) {
-			forms.forEach(function (form) {
+		function apply(value) {
+			var chosen = null;
+
+			allForms().forEach(function (form) {
 				var radios = Array.prototype.slice.call(form.querySelectorAll('input[name="offer-plan"]'));
-				var chosen = null;
 
 				radios.forEach(function (radio) {
 					var on = radio.value === value;
 					radio.checked = on;
 					radio.closest('.offer-lp__plan').classList.toggle('is-selected', on);
-					if (on) chosen = radio;
+					if (on && !chosen) chosen = radio;
 				});
 
 				var planInput = form.querySelector('[data-offer-plan]');
@@ -936,29 +968,36 @@
 					planInput.value = value;
 					planInput.disabled = !value;   /* a disabled input isn't submitted */
 				}
-
-				if (!chosen) return;
-
-				if (form === source || source === null) {
-					var pay = chosen.getAttribute('data-pay');
-					var sticky = root.querySelector('[data-sticky-now]');
-					var nows = root.querySelectorAll('[data-offer-now]');
-
-					if (sticky) sticky.textContent = pay;
-					nows.forEach(function (el) { el.textContent = pay; });
-				}
 			});
+
+			if (!chosen) return;
+
+			var pay = chosen.getAttribute('data-pay');
+			var was = chosen.getAttribute('data-was');
+			var stickyNow = root.querySelector('[data-sticky-now]');
+			var stickyWas = root.querySelector('[data-sticky-was]');
+
+			if (stickyNow && pay) stickyNow.textContent = pay;
+			if (stickyWas && was) stickyWas.textContent = was;
+			root.querySelectorAll('[data-offer-now]').forEach(function (el) { if (pay) el.textContent = pay; });
+			root.querySelectorAll('[data-offer-was]').forEach(function (el) { if (was) el.textContent = was; });
 		}
 
-		forms.forEach(function (form) {
-			form.addEventListener('change', function (e) {
-				if (e.target.name !== 'offer-plan') return;
-				apply(e.target.value, form);
-			});
+		root.addEventListener('change', function (e) {
+			if (!e.target || e.target.name !== 'offer-plan') return;
+			apply(e.target.value);
 		});
 
-		var first = root.querySelector('input[name="offer-plan"]:checked');
-		if (first) apply(first.value, null);
+		function init() {
+			var first = root.querySelector('input[name="offer-plan"]:checked');
+			if (first) apply(first.value);
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
 	})();
 </script>
 
@@ -967,7 +1006,7 @@
 <div class="offer-lp__sticky">
 	<div class="offer-lp__sticky-inner">
 		<div class="offer-lp__sticky-price">
-			<span class="offer-lp__sticky-was t-b-4">{{ base_price | money }}</span>
+			<span class="offer-lp__sticky-was t-b-4" data-sticky-was>{% if has_sub %}{{ sub_price | money }}{% else %}{{ base_price | money }}{% endif %}</span>
 			<span class="offer-lp__sticky-now t-l-2" data-sticky-now>{% if has_sub %}{{ sub_first | money }}{% else %}{{ offer_price | money }}{% endif %}</span>
 		</div>
 		<div class="offer-lp__cta offer-lp__sticky-cta">{{ buy_form }}</div>
