@@ -64,13 +64,18 @@
 	padding: 48px var(--s-contain) 40px;
 }
 
+/* Desktop: the copy is a 600px block centered in its half of the hero, so
+   the spare space sits evenly either side instead of collecting between the
+   options and the photo. Padding percentages are of the column's width. */
 @media screen and (min-width: 1025px) {
 	.offer-lp__hero-copy {
-		padding: 80px 56px 80px var(--padding-lg);
+		--hero-copy-w: 600px;
+		padding-block: 80px;
+		padding-inline: max(var(--padding-lg, 24px), calc((100% - var(--hero-copy-w)) / 2));
 	}
 
 	.offer-lp__hero-copy > * {
-		max-width: 540px;
+		max-width: var(--hero-copy-w);
 	}
 }
 
@@ -288,6 +293,8 @@ body[class*="template-page-offer-"] a[data-focus-off] {
 	display: block;
 	width: auto;
 	height: calc(32px * var(--logo-scale, 100) / 100);
+	opacity: 1;
+	visibility: visible;
 }
 
 @media screen and (min-width: 750px) {
@@ -612,35 +619,41 @@ body[class*="template-page-offer-"] a[data-focus-off] {
 }
 
 /* ---------- FAQ ----------
-   Same formatting as the product page FAQ: questions and answers in
-   sentence case, in Basis (t-b-2 in the markup), with the orange plus
-   that turns into a minus when a question is open. */
+   Matches the product page FAQ (Jenny), measured from it: the same heading,
+   questions at 26px and answers at 16px on a 1.4 line, in sentence case in
+   Basis (t-b-2 in the markup), 1px black dividers, a wide column, and the
+   orange plus that turns into a minus when a question is open. */
 
 .offer-lp__faq {
-	max-width: 860px;
+	max-width: calc(74rem + 2 * var(--s-contain));
 	margin-inline: auto;
 	padding-inline: var(--s-contain);
+	padding-top: var(--s-section-half);
 	padding-bottom: var(--s-section);
 }
 
-.offer-lp__faq-item {
-	border-bottom: var(--offer-rule);
+.offer-lp__faq.has-header {
+	padding-top: var(--s-section);
 }
 
-.offer-lp__faq-item:first-child {
-	border-top: var(--offer-rule);
+.offer-lp__faq-item {
+	border-bottom: 1px solid var(--cr-black);
+}
+
+.offer-lp__faq-item:first-of-type {
+	border-top: 1px solid var(--cr-black);
 }
 
 .offer-lp__faq-q {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 20px;
-	padding: 19px 0;
+	gap: 24px;
+	padding: 1.125rem 0;
 	cursor: pointer;
 	list-style: none;
-	font-size: 1rem;
-	line-height: 1.4;
+	font-size: 1.25rem;
+	line-height: 1.25;
 	letter-spacing: 0;
 	text-transform: none;
 }
@@ -652,29 +665,44 @@ body[class*="template-page-offer-"] a[data-focus-off] {
 .offer-lp__faq-q::after {
 	content: "";
 	flex: 0 0 auto;
-	width: 12px;
-	height: 12px;
+	width: 1rem;
+	height: 1rem;
 	background-image:
 		linear-gradient(var(--cr-orange), var(--cr-orange)),
 		linear-gradient(var(--cr-orange), var(--cr-orange));
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 100% 1.5px, 1.5px 100%;
+	background-size: 100% 2px, 2px 100%;
 	transition: background-size var(--t-1);
 }
 
 .offer-lp__faq-item[open] .offer-lp__faq-q::after {
-	background-size: 100% 1.5px, 1.5px 0;
+	background-size: 100% 2px, 2px 0;
 }
 
 .offer-lp__faq-a {
-	padding-bottom: 22px;
-	font-size: 0.875rem;
-	line-height: 1.55;
+	max-width: 52rem;
+	padding-bottom: 1.5rem;
+	font-size: 1rem;
+	line-height: 1.4;
 	letter-spacing: 0;
 	text-transform: none;
-	opacity: 0.78;
-	max-width: 66ch;
+}
+
+@media screen and (min-width: 750px) {
+	.offer-lp__faq-q {
+		padding: 1.5rem 0;
+		font-size: 1.625rem;
+	}
+
+	.offer-lp__faq-q::after {
+		width: 1.625rem;
+		height: 1.625rem;
+	}
+
+	.offer-lp__faq-a {
+		padding-bottom: 2rem;
+	}
 }
 
 /* ---------- CLOSE ---------- */
