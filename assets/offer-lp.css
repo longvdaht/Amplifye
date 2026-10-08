@@ -169,12 +169,14 @@
 
 
 /* ---------- FOCUSED NAVIGATION ----------
-   Brief: remove/minimise normal Shopify navigation.
+   Brief: remove/minimise normal Shopify navigation. Rose: no route from
+   these pages to the rest of the store, where the jar sells at full price.
    Scoped to the offer templates via the body class the theme already emits,
    so nothing else on the store is affected. The prefix match also covers
    any future offer-* template without another CSS change.
-   Kept deliberately: logo, cart, BUY P24, announcement bar (trust),
-   and the whole legal bar (privacy, terms, FDA disclaimer). */
+   Hidden: the menus, account link, mobile menu, social icons and BUY P24.
+   Kept: the logo (no longer a link, see the script in offer-landing.liquid),
+   the cart, the announcement bar (trust) and the legal bar. */
 
 body[class*="template-page-offer-"] .g-header__nav,
 body[class*="template-page-offer-"] .g-header__account,
@@ -183,6 +185,14 @@ body[class*="template-page-offer-"] .g-mobile-menu,
 body[class*="template-page-offer-"] .g-footer__nav,
 body[class*="template-page-offer-"] .g-footer__social {
 	display: none;
+}
+
+body[class*="template-page-offer-"] .g-header__cta {
+	display: none !important;
+}
+
+body[class*="template-page-offer-"] a[data-focus-off] {
+	cursor: default;
 }
 
 /* Footer signup on laptop widths. With the footer menu and social icons
@@ -212,38 +222,108 @@ body[class*="template-page-offer-"] .g-footer__social {
 	}
 }
 
-/* ---------- PRESS ---------- */
+/* ---------- PRESS (Featured In) ----------
+   Same look as the sachet page: a centered heading, the logos at full
+   strength and close together, in a slow ticker that pauses on hover.
+   With reduced motion the ticker stops and one set of logos wraps, centered. */
 
 .offer-lp__press {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 18px;
-	padding-block: 34px;
+	gap: 26px;
+}
+
+/* Under the hero */
+.offer-lp__press.is-top {
+	padding-block: 40px;
 	border-bottom: var(--offer-rule);
 }
 
-.offer-lp__press-label {
-	opacity: 0.5;
+/* After the reviews, which already end with section spacing */
+.offer-lp__press.is-low {
+	padding-bottom: var(--s-section-half);
+}
+
+.offer-lp__press-heading {
+	margin: 0;
+	padding-inline: var(--s-contain);
+	text-align: center;
+}
+
+.offer-lp__press-viewport {
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
 .offer-lp__press-list {
 	display: flex;
-	flex-wrap: wrap;
+	flex: 0 0 auto;
 	align-items: center;
-	justify-content: center;
-	gap: 28px 52px;
+	gap: 44px;
+	margin: 0;
+	padding: 0 44px 0 0;
+	list-style: none;
+	animation: offer-lp-press 80s linear infinite;
+}
+
+.offer-lp__press-viewport:hover .offer-lp__press-list {
+	animation-play-state: paused;
+}
+
+@keyframes offer-lp-press {
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+.offer-lp__press-item {
+	flex: 0 0 auto;
 }
 
 .offer-lp__press-item img {
-	height: calc(22px * var(--logo-scale, 100) / 100);
+	display: block;
 	width: auto;
-	opacity: 0.55;
+	height: calc(32px * var(--logo-scale, 100) / 100);
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 750px) {
+	.offer-lp__press {
+		gap: 30px;
+	}
+
+	.offer-lp__press-list {
+		gap: 64px;
+		padding-right: 64px;
+	}
+
 	.offer-lp__press-item img {
-		height: calc(26px * var(--logo-scale, 100) / 100);
+		height: calc(44px * var(--logo-scale, 100) / 100);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.offer-lp__press-viewport {
+		justify-content: center;
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+
+	.offer-lp__press-list {
+		flex: 0 1 auto;
+		flex-wrap: wrap;
+		justify-content: center;
+		row-gap: 24px;
+		padding: 0 var(--s-contain);
+		animation: none;
+	}
+
+	.offer-lp__press-list[aria-hidden="true"],
+	.offer-lp__press-item[aria-hidden="true"] {
+		display: none;
 	}
 }
 
