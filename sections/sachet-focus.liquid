@@ -1,11 +1,16 @@
 {% comment %}
 	Sachet funnel: the header, footer and links for the sachet page and its
-	two sachet-only pages (Benefits and The Science). It goes first on each
-	of the three templates and shows nothing of its own.
+	two sachet-only The Science pages, one for each price layout. It goes
+	first on each of those templates and shows nothing of its own.
 
-	Header (Jenny, 7 Oct): "P24 ENZYME" is gone, "BENEFITS" and "THE SCIENCE"
-	sit in the center and open the sachet versions of those pages. The logo
-	opens the sachet page. BUY P24 (the jar) is hidden. Cart and account stay.
+	Header (Jenny, 7 and 8 Oct): "P24 ENZYME" and "BENEFITS" are gone.
+	"THE SCIENCE" sits alone in the center and opens the sachet Science page
+	for the visitor's price layout: A or B. The logo opens the sachet page.
+	BUY P24 (the jar) is hidden. Cart and account stay.
+
+	The two Science pages are identical (same template). Each one sends its
+	links back to the sachet page with its own layout: links on Science A
+	open the sachet page as A, links on Science B open it as B.
 
 	Footer: as on the sachet page so far, no menu or social links (Rose: no
 	route to the rest of the store, where the jar sells at other prices).
@@ -13,17 +18,20 @@
 	the header. Legal links stay and open in a new tab.
 
 	Every link on these pages:
-	  - the three funnel pages, cart, checkout, account, anchors on the page
-	    and outside sites: unchanged
+	  - the sachet page, the Science pages, cart, checkout, account, anchors
+	    on the page and outside sites: unchanged (on a Science page, links to
+	    the sachet page get that page's layout)
 	  - the home page and the jar's product page: the sachet page
-	  - the jar's Benefits and The Science pages: the sachet versions
+	  - the jar's The Science page: the sachet Science page (A or B)
+	  - the jar's Benefits page: switched off, its menu item hidden (a
+	    setting brings it back as the sachet Benefits page)
 	  - legal pages (privacy, terms, disclaimer...): open in a new tab
 	  - a discount link that lands on a product: the sachet page, no code
 	  - anything else in the store (collections, blogs, other pages and
 	    products, search): switched off; in a menu, the item is hidden
 	Links that apps or the cart drawer add later get the same treatment.
 
-	While checking with ?view=..., the sachet links on the two pages keep
+	While checking with ?view=..., the sachet links on the Science pages keep
 	that ?view, so the whole funnel can be clicked through before the
 	template is assigned to the product.
 {% endcomment %}
@@ -33,6 +41,7 @@
 	assign sachet_url = s.sachet_url | default: '/products/sachets'
 	assign benefits_url = s.benefits_url | default: '/pages/sachets-benefits'
 	assign science_url = s.science_url | default: '/pages/sachets-science'
+	assign science_b_url = s.science_b_url | default: '/pages/sachets-science-b'
 	assign jar_url = s.jar_url | default: '/products/amplifye-p24'
 -%}
 
@@ -47,10 +56,15 @@
 		display: none !important;
 	}
 
-	/* "P24 ENZYME" (the jar's product page) is taken out of the menus here,
-	   before the page shows; the script below covers older browsers. */
+	/* "P24 ENZYME" (the jar's product page) and "BENEFITS" are taken out of
+	   the menus here, before the page shows; the script below covers older
+	   browsers. */
 	.g-header__nav li:has(a[href*="/products/"]),
 	.g-mobile-menu li:has(a[href*="/products/"]),
+	{%- unless s.show_benefits %}
+	.g-header__nav li:has(a[href*="/pages/benefits"]),
+	.g-mobile-menu li:has(a[href*="/pages/benefits"]),
+	{%- endunless %}
 	[data-funnel-hidden] {
 		display: none !important;
 	}
@@ -110,10 +124,12 @@
 
 		var cfg = {
 			sachet: {{ sachet_url | json }},
+			scienceA: {{ science_url | json }},
+			scienceB: {{ science_b_url | json }},
 			benefits: {{ benefits_url | json }},
-			science: {{ science_url | json }},
+			showBenefits: {% if s.show_benefits %}true{% else %}false{% endif %},
 			jar: {{ jar_url | json }},
-			footerMenu: {{ s.show_footer_menu | json }},
+			footerMenu: {% if s.show_footer_menu %}true{% else %}false{% endif %},
 			hosts: [{{ request.host | json }}, {{ shop.domain | json }}, {{ shop.permanent_domain | json }}]
 		};
 
@@ -121,6 +137,7 @@
 		var LEGAL = /privacy|terms|disclaimer|polic|refund|legal|accessib|cookie|shipping-policy/i;
 		var LOCALE = /^\/[a-z]{2}(?:-[a-z]{2})?(?=\/(?:products|collections|pages|blogs|search|policies|discount|cart|account)(?:\/|$))/i;
 		var MENUS = '.g-header__nav, .g-mobile-menu' + (cfg.footerMenu ? ', .g-footer__nav' : '');
+		var LAYOUT_KEY = 'amp_price_layout';
 
 		function host(h) {
 			return String(h || '').toLowerCase().replace(/^www\./, '');
@@ -145,16 +162,51 @@
 
 		var SACHET = pathOf(cfg.sachet);
 		var BENEFITS = pathOf(cfg.benefits);
-		var SCIENCE = pathOf(cfg.science);
+		var SCIENCE_A = pathOf(cfg.scienceA);
+		var SCIENCE_B = pathOf(cfg.scienceB);
 		var SACHET_HANDLE = handleOf(SACHET);
 		var JAR_HANDLE = handleOf(pathOf(cfg.jar));
+		var HERE = cleanPath(location.pathname);
+
+		/* On a Science page, the page itself says which layout it belongs to. */
+		var PAGE_LAYOUT = HERE === SCIENCE_B ? 'B' : (HERE === SCIENCE_A ? 'A' : null);
+
+		/* The visitor's price layout, as the sachet page chose it: on the
+		   sachet page from its own script, elsewhere from ?layout= or what the
+		   browser kept. A until the sachet page has chosen. */
+		function storedLayout() {
+			try {
+				var forced = (new URLSearchParams(location.search).get('layout') || '').toUpperCase();
+				if (forced === 'A' || forced === 'B') return forced;
+			} catch (e) {}
+			try {
+				var saved = localStorage.getItem(LAYOUT_KEY);
+				if (saved === 'A' || saved === 'B') return saved;
+			} catch (e) {}
+			try {
+				var m = document.cookie.match(/(?:^|;\s*)amp_price_layout=(A|B)/);
+				if (m) return m[1];
+			} catch (e) {}
+			return null;
+		}
+
+		function currentLayout() {
+			if (PAGE_LAYOUT) return PAGE_LAYOUT;
+			var w = window.amplifyePriceLayout;
+			if (w === 'A' || w === 'B') return w;
+			return storedLayout() || 'A';
+		}
+
+		function scienceHref(hash) {
+			return (currentLayout() === 'B' ? cfg.scienceB : cfg.scienceA) + (hash || '');
+		}
 
 		/* QA: keep ?view=... on links back to the sachet page, for the
 		   browser session, once the sachet page has been opened with it. */
 		var VIEW_KEY = 'amp_funnel_view';
 		try {
 			var params = new URLSearchParams(location.search);
-			if (cleanPath(location.pathname) === SACHET && params.get('view')) {
+			if (HERE === SACHET && params.get('view')) {
 				sessionStorage.setItem(VIEW_KEY, params.get('view'));
 			}
 		} catch (e) {}
@@ -163,23 +215,39 @@
 			try { return sessionStorage.getItem(VIEW_KEY); } catch (e) { return null; }
 		}
 
+		/* A new link to the sachet page: QA ?view if any, and on a Science
+		   page that page's layout. */
 		function sachetHref(hash) {
+			var q = [];
 			var view = qaView();
-			return cfg.sachet + (view ? '?view=' + encodeURIComponent(view) : '') + (hash || '');
+			if (view) q.push('view=' + encodeURIComponent(view));
+			if (PAGE_LAYOUT) q.push('layout=' + PAGE_LAYOUT.toLowerCase());
+			return cfg.sachet + (q.length ? '?' + q.join('&') : '') + (hash || '');
 		}
 
-		/* A link that already goes to the sachet page: add the QA ?view if
-		   there is one and the link has none. */
-		function withView(url) {
+		/* A link that already goes to the sachet page: add what it lacks. */
+		function toSachet(url) {
+			var changed = false;
 			var view = qaView();
-			if (!view || url.searchParams.has('view')) return null;
-			url.searchParams.set('view', view);
-			return { to: url.pathname + url.search + url.hash };
+			if (view && !url.searchParams.has('view')) {
+				url.searchParams.set('view', view);
+				changed = true;
+			}
+			if (PAGE_LAYOUT && !url.searchParams.has('layout')) {
+				url.searchParams.set('layout', PAGE_LAYOUT.toLowerCase());
+				changed = true;
+			}
+			return changed ? { to: url.pathname + url.search + url.hash } : null;
 		}
 
 		/* What happens to one link: null (leave it), {to: url}, {newtab: true}
-		   or {off: true}. 'jar' marks links to the jar's product page. */
+		   or {off: true}. 'jar' and 'benefits' mark links whose menu item is
+		   hidden; 'science' marks links that follow the visitor's layout. */
 		function decide(a) {
+			if (a.hasAttribute('data-funnel-science')) {
+				return { to: scienceHref(a.getAttribute('data-funnel-hash') || ''), science: true };
+			}
+
 			var href = a.getAttribute('href');
 			if (href == null) return null;
 			href = href.trim();
@@ -193,17 +261,20 @@
 			var path = cleanPath(url.pathname);
 			var hash = url.hash || '';
 
-			if (path === SACHET) return withView(url);
-			if (path === BENEFITS || path === SCIENCE) return null;
+			if (path === SACHET) return toSachet(url);
+			if (path === SCIENCE_A || path === SCIENCE_B) return null;
 			if (path === '/') return { to: sachetHref(hash) };
-			if (path === '/pages/benefits') return { to: cfg.benefits + hash };
-			if (path === '/pages/the-science') return { to: cfg.science + hash };
+			if (path === '/pages/the-science') return { to: scienceHref(hash), science: true, hash: hash };
+			if (path === '/pages/benefits' || (BENEFITS && path === BENEFITS)) {
+				if (cfg.showBenefits) return path === BENEFITS ? null : { to: cfg.benefits + hash };
+				return { off: true, benefits: true };
+			}
 			if (!STORE_PAGE.test(path)) return null;
 			if (LEGAL.test(path)) return { newtab: true };
 
 			var handle = handleOf(path);
 			if (handle) {
-				if (handle === SACHET_HANDLE) return withView(url);
+				if (handle === SACHET_HANDLE) return toSachet(url);
 				if (handle === JAR_HANDLE) return { to: sachetHref(hash), jar: true };
 				return { off: true };
 			}
@@ -243,12 +314,16 @@
 			}
 
 			if (d.to) {
-				a.setAttribute('href', d.to);
+				if (d.science && !a.hasAttribute('data-funnel-science')) {
+					a.setAttribute('data-funnel-science', '');
+					a.setAttribute('data-funnel-hash', d.hash || '');
+				}
+				if (a.getAttribute('href') !== d.to) a.setAttribute('href', d.to);
 			} else if (d.newtab) {
 				a.setAttribute('target', '_blank');
-				var rel = (a.getAttribute('rel') || '').split(/\s+/);
+				var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
 				if (rel.indexOf('noopener') === -1) rel.push('noopener');
-				a.setAttribute('rel', rel.join(' ').trim());
+				a.setAttribute('rel', rel.join(' '));
 			} else if (d.off) {
 				switchOff(a);
 			}
@@ -258,7 +333,7 @@
 		function sweep(rootNode) {
 			var scope = rootNode && rootNode.querySelectorAll ? rootNode : document;
 			if (scope.tagName === 'A') apply(scope);
-			scope.querySelectorAll('a[href]').forEach(apply);
+			scope.querySelectorAll('a[href], a[data-funnel-science]').forEach(apply);
 		}
 
 		/* Clicks on links that changed or appeared since the last sweep. */
@@ -280,9 +355,9 @@
 		document.addEventListener('click', guard, true);
 		document.addEventListener('auxclick', guard, true);
 
-		/* "BENEFITS" and "THE SCIENCE" centered on the page, not just in the
-		   space between the logo and the cart. Measured from the links that
-		   show, so it holds whatever the menu's markup is. */
+		/* "THE SCIENCE" centered on the page, not just in the space between the
+		   logo and the cart. Measured from the links that show, so it holds
+		   whatever the menu's markup is. */
 		var nav = null;
 
 		function centerNav() {
@@ -325,8 +400,9 @@
 			});
 		}
 
-		/* Run now (the header is already on the page), again when the page and
-		   its fonts finish loading, and whenever the header changes size. */
+		/* Run now (the header is already on the page), again once the whole
+		   page is in (the sachet page has chosen its layout by then), when it
+		   and its fonts finish loading, and whenever the header changes size. */
 		sweep(document);
 		centerNav();
 
@@ -374,11 +450,13 @@
 	"settings": [
 		{
 			"type": "paragraph",
-			"content": "Keeps visitors inside the sachet funnel: the sachet page and its own Benefits and The Science pages. Put this section first on each of those three templates. It shows nothing itself."
+			"content": "Keeps visitors inside the sachet funnel: the sachet page and its two The Science pages (one for price layout A, one for B). Put this section first on each of those templates. It shows nothing itself."
 		},
 		{ "type": "text", "id": "sachet_url", "label": "Sachet page", "default": "/products/sachets" },
+		{ "type": "text", "id": "science_url", "label": "The Science page for layout A", "default": "/pages/sachets-science" },
+		{ "type": "text", "id": "science_b_url", "label": "The Science page for layout B", "default": "/pages/sachets-science-b" },
+		{ "type": "checkbox", "id": "show_benefits", "label": "Show BENEFITS in the menu", "info": "Off (Jenny, 8 Oct). When on, it opens the page below.", "default": false },
 		{ "type": "text", "id": "benefits_url", "label": "Sachet Benefits page", "default": "/pages/sachets-benefits" },
-		{ "type": "text", "id": "science_url", "label": "Sachet The Science page", "default": "/pages/sachets-science" },
 		{ "type": "text", "id": "jar_url", "label": "Jar product page", "info": "Links to it go to the sachet page; the menu item for it is hidden.", "default": "/products/amplifye-p24" },
 		{ "type": "checkbox", "id": "show_account", "label": "Show the account icon", "default": true },
 		{ "type": "checkbox", "id": "show_footer_menu", "label": "Show the footer menu", "info": "Off as on the sachet page so far. When on, store links in it are hidden the same way as in the header.", "default": false },
