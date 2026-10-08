@@ -242,6 +242,8 @@
         "show_reminder": true,
         "reminder_heading": "New customers save [offer] today.",
         "reminder_note": "Applied automatically at checkout.",
+        "press_heading": "Featured In",
+        "press_position": "after_proof",
         "proof_heading": "What people say after 30 days",
         "proof_rating": "",
         "proof_rating_note": "",
