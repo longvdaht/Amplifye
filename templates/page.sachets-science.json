@@ -9,6 +9,18 @@
  */
 {
   "sections": {
+    "sachet-focus": {
+      "type": "sachet-focus",
+      "settings": {
+        "sachet_url": "/products/sachets",
+        "benefits_url": "/pages/sachets-benefits",
+        "science_url": "/pages/sachets-science",
+        "jar_url": "/products/amplifye-p24",
+        "show_account": true,
+        "show_footer_menu": false,
+        "show_footer_social": false
+      }
+    },
     "science-hero": {
       "type": "science-hero",
       "settings": {
@@ -117,7 +129,7 @@
         "heading": "Grams Consumed ≠ Grams Absorbed",
         "paragraph": "More doesn’t always mean more. Your individual metabolism, gut health, and the type of protein you’re eating all influence how much protein and amino acids you absorb. Research indicates we’re not absorbing all the protein we consume.",
         "cta_label": "The product",
-        "cta_url": "shopify://products/amplifye-p24"
+        "cta_url": "shopify://products/sachets"
       }
     },
     "science-info": {
@@ -128,7 +140,7 @@
         "heading": "P24 is a groundbreaking enzyme that amplifyes the <strong>bioaccessibility</strong> of every protein.",
         "paragraph": "It enhances digestion by precisely breaking down proteins to release more amino acids — all without having to consume more food.",
         "cta_label": "Buy P24",
-        "cta_url": "shopify://products/amplifye-p24"
+        "cta_url": "shopify://products/sachets"
       }
     },
     "science-mechanism": {
@@ -184,8 +196,8 @@
           "mental-clarity"
         ],
         "paragraph": "Clinical research shows P24 improves protein absorption and amino acid bioaccessibility across 20 proteins — animal-based, plant-based, and powders.",
-        "cta_label": "Read the study",
-        "cta_url": "shopify://blogs/research/study-of-amino-acid-absorption-across-protein-sources-with-p24-enzyme"
+        "cta_label": "",
+        "cta_url": ""
       }
     },
     "s_editorial_rQaq89": {
@@ -199,7 +211,7 @@
         "paragraph": "Access your protein’s full potential. \nTry P24 for 30 days, worry free.",
         "activate_orange_btn": true,
         "cta_label": "Get P24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify://products/sachets",
         "source": ""
       }
     },
@@ -266,10 +278,12 @@
         "cta_label": "All Articles",
         "cta_url": "shopify://blogs/research",
         "blog": "research"
-      }
+      },
+      "disabled": true
     }
   },
   "order": [
+    "sachet-focus",
     "science-hero",
     "science-features",
     "science-intro",
