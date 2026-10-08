@@ -413,6 +413,12 @@ body[class*="template-page-offer-"] .g-footer__social {
 	opacity: 0.78;
 }
 
+/* A claim's qualifier, kept on the same card as the claim. */
+.offer-lp__reason-footnote {
+	margin-top: 10px;
+	opacity: 0.6;
+}
+
 /* ---------- SOCIAL PROOF ---------- */
 
 .offer-lp__proof {
@@ -525,7 +531,10 @@ body[class*="template-page-offer-"] .g-footer__social {
 	opacity: 0.65;
 }
 
-/* ---------- FAQ ---------- */
+/* ---------- FAQ ----------
+   Same formatting as the product page FAQ: questions and answers in
+   sentence case, in Basis (t-b-2 in the markup), with the orange plus
+   that turns into a minus when a question is open. */
 
 .offer-lp__faq {
 	max-width: 860px;
@@ -550,8 +559,10 @@ body[class*="template-page-offer-"] .g-footer__social {
 	padding: 19px 0;
 	cursor: pointer;
 	list-style: none;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
+	font-size: 1rem;
+	line-height: 1.4;
+	letter-spacing: 0;
+	text-transform: none;
 }
 
 .offer-lp__faq-q::-webkit-details-marker {
@@ -561,18 +572,27 @@ body[class*="template-page-offer-"] .g-footer__social {
 .offer-lp__faq-q::after {
 	content: "";
 	flex: 0 0 auto;
-	width: 11px;
-	height: 11px;
-	background-color: var(--cr-orange);
-	transition: transform var(--t-1);
+	width: 12px;
+	height: 12px;
+	background-image:
+		linear-gradient(var(--cr-orange), var(--cr-orange)),
+		linear-gradient(var(--cr-orange), var(--cr-orange));
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 1.5px, 1.5px 100%;
+	transition: background-size var(--t-1);
 }
 
 .offer-lp__faq-item[open] .offer-lp__faq-q::after {
-	transform: scale(0.5);
+	background-size: 100% 1.5px, 1.5px 0;
 }
 
 .offer-lp__faq-a {
 	padding-bottom: 22px;
+	font-size: 0.875rem;
+	line-height: 1.55;
+	letter-spacing: 0;
+	text-transform: none;
 	opacity: 0.78;
 	max-width: 66ch;
 }
