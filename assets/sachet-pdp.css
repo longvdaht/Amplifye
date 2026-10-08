@@ -1,0 +1,776 @@
+/* ==========================================================================
+   Sachet PDP
+
+   Ordered top to bottom the way the page renders: hero, gallery, buy box,
+   spec bar, day strip, How P24 Works image, math, close.
+
+   Two notes for anyone picking this up:
+
+   1. .p-x-md is avoided on purpose. It builds its 1200px column out of side
+      padding, so stacking a max-width on top of it collapses the content
+      width at large viewports.
+
+   2. Class names for the theme's own markup were read from its files, not
+      assumed. The gallery is product-hero-gallery.liquid. How P24 Works, the
+      feature cards and the protein band are the live product page's own
+      sections. Only the How P24 Works image frame is set here (section 7),
+      so the sachet render sits in the same shape as the jar image. This file
+      loads on the sachet page only, so the live product page is unaffected.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Hero layout
+   ========================================================================== */
+
+/* Grid rather than the theme's flex row, so the claim can sit above the
+   gallery on mobile and beside it on desktop. */
+.sachet-hero {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"head"
+		"gallery"
+		"buy";
+	align-items: start;
+	gap: 1.5rem;
+	scroll-margin-top: 5rem;
+}
+
+.sachet-hero__head {
+	grid-area: head;
+	padding-inline: 1.25rem;
+	padding-block-start: 1.75rem;
+}
+
+.sachet-hero__gallery {
+	grid-area: gallery;
+	min-width: 0;
+}
+
+.sachet-hero__buy {
+	grid-area: buy;
+	padding-inline: 1.25rem;
+	padding-block-end: 2.5rem;
+	min-width: 0;
+}
+
+@media (min-width: 900px) {
+	.sachet-hero {
+		grid-template-columns: 1fr 1fr;
+		/* max-content stops the head row stretching to half the gallery
+		   height and leaving a gap above the buy box. */
+		grid-template-rows: max-content 1fr;
+		grid-template-areas:
+			"gallery head"
+			"gallery buy";
+		gap: 0 3rem;
+	}
+
+	.sachet-hero__head {
+		padding-block: 2.5rem 1.75rem;
+		padding-inline: 0 3rem;
+	}
+
+	.sachet-hero__buy {
+		padding-block: 0 3rem;
+		padding-inline: 0 3rem;
+	}
+}
+
+/* ==========================================================================
+   2. Hero copy
+   ========================================================================== */
+
+.sachet-hero__eyebrow {
+	margin: 0 0 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--cr-orange);
+}
+
+.sachet-hero__claim {
+	margin: 0;
+	line-height: 1.03;
+	text-wrap: balance;
+}
+
+/* The measure only matters once there is room beside the gallery. On a phone
+   the headline gets the full column instead of wrapping to four lines. */
+@media screen and (min-width: 750px) {
+	.sachet-hero__claim {
+		max-width: 16ch;
+	}
+}
+
+.sachet-hero__subclaim {
+	margin: 1.1rem 0 0;
+	max-width: 22ch;
+	line-height: 1.2;
+	text-wrap: balance;
+}
+
+/* Sized by the theme's t-b-2 class, the same as the option labels. */
+.sachet-hero__footnote {
+	margin: 0.5rem 0 0;
+	max-width: 44ch;
+	line-height: 1.45;
+	text-transform: none;
+	opacity: 0.6;
+}
+
+/* ==========================================================================
+   3. Gallery framing
+   ========================================================================== */
+
+/* The renders are 2:3. At natural ratio they push the buy box off the fold,
+   so each slide is framed square and cropped. */
+.sachet-hero__gallery .c-slider__slide,
+.sachet-hero__gallery .object-fit,
+.sachet-hero__gallery .object-fits {
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+}
+
+.sachet-hero__gallery .c-slider__slide img,
+.sachet-hero__gallery .product-image,
+.sachet-hero__gallery img,
+.sachet-hero__gallery video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* ==========================================================================
+   4. Buy box
+   ========================================================================== */
+
+.sachet-buy__app {
+	margin-bottom: 1.25rem;
+}
+
+.sachet-buy__options {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* A question, set as one: sentence case, one step above the option labels. */
+.sachet-buy__legend {
+	padding: 0;
+	margin-bottom: 0.35rem;
+}
+
+.sachet-buy__note {
+	margin: 0 0 1rem;
+	max-width: 44ch;
+	opacity: 0.6;
+}
+
+.sachet-buy__option + .sachet-buy__option {
+	margin-top: 0.55rem;
+}
+
+.sachet-buy__option-label {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.8rem;
+	padding: 1rem 1.1rem;
+	border: 1px solid rgba(0, 0, 0, 0.14);
+	cursor: pointer;
+	transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.sachet-buy__option.is-selected .sachet-buy__option-label {
+	border-color: var(--cr-orange);
+	background-color: rgba(193, 75, 36, 0.05);
+}
+
+/* The real input, restyled to match the purchase options on the live product
+   page (c-item-selling-plan): a 15px square with a black edge that fills
+   orange on hover and when chosen.
+
+   Selectors use the same shape as the product page's own rule
+   (.c-item-selling-plan__option input[type=radio]). The theme's base radio
+   style targets input[type=radio], which outranks a class on its own. */
+.sachet-buy__option input[type="radio"] {
+	appearance: none;
+	-webkit-appearance: none;
+	flex: 0 0 auto;
+	width: 15px;
+	height: 15px;
+	margin: 0.25rem 0 0;
+	border: 1px solid var(--cr-black);
+	border-radius: 0;
+	box-shadow: none;
+	background-color: transparent;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.sachet-buy__option input[type="radio"]:hover,
+.sachet-buy__option input[type="radio"]:checked {
+	background-color: var(--cr-orange);
+	border-color: var(--cr-black);
+	box-shadow: none;
+}
+
+.sachet-buy__option input[type="radio"]:focus-visible {
+	outline: 2px solid var(--cr-orange);
+	outline-offset: 2px;
+}
+
+.sachet-buy__option-body {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.sachet-buy__option-answer {
+	display: block;
+}
+
+.sachet-buy__option-meta {
+	display: block;
+	margin-top: 0.25rem;
+	opacity: 0.6;
+	text-transform: none;
+	letter-spacing: 0.01em;
+}
+
+/* Per the brief, per-capsule price leads and the bundle total sits under it. */
+.sachet-buy__option-cost {
+	flex: 0 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	text-align: right;
+}
+
+.sachet-buy__percap {
+	display: block;
+	line-height: 1;
+	white-space: nowrap;
+	transition: color 0.18s ease;
+}
+
+.sachet-buy__option.is-selected .sachet-buy__percap {
+	color: var(--cr-orange);
+}
+
+.sachet-buy__percap-unit {
+	display: block;
+	margin-top: 0.2rem;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	opacity: 0.5;
+	white-space: nowrap;
+}
+
+.sachet-buy__total {
+	display: block;
+	margin-top: 0.5rem;
+	opacity: 0.55;
+	text-transform: none;
+	letter-spacing: 0.01em;
+	white-space: nowrap;
+}
+
+.sachet-buy__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-top: 1.1rem;
+	padding: 1.05rem 1.5rem;
+	border: 0;
+	cursor: pointer;
+}
+
+.sachet-buy__summary {
+	margin: 0.7rem 0 0;
+	text-align: center;
+	opacity: 0.6;
+	text-transform: none;
+	letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   5. Spec bar
+   ========================================================================== */
+
+.sachet-specs {
+	padding-block: 1.75rem;
+	border-block: 1px solid rgba(0, 0, 0, 0.12);
+	background-color: var(--cr-cream);
+}
+
+.sachet-specs__contain {
+	width: 100%;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: 1.25rem;
+	box-sizing: border-box;
+}
+
+.sachet-specs__list {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.25rem 1.5rem;
+	margin: 0;
+	padding: 0;
+}
+
+.sachet-specs__label {
+	position: relative;
+	margin: 0 0 0.35rem;
+	padding-inline-start: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	opacity: 0.5;
+}
+
+.sachet-specs__label::before {
+	content: "";
+	position: absolute;
+	inset-inline-start: 0;
+	inset-block-start: 0.42em;
+	width: 0.38rem;
+	height: 0.38rem;
+	background-color: var(--cr-orange);
+}
+
+.sachet-specs__value {
+	margin: 0;
+	padding-inline-start: 0.85rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+@media (min-width: 720px) {
+	.sachet-specs__list {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+/* ==========================================================================
+   6. Day strip
+   ========================================================================== */
+
+.sachet-day {
+	--day-fg: var(--cr-black);
+	--day-accent: var(--cr-orange);
+	--day-ground: var(--cr-cream-dark);
+	--day-rule: rgba(0, 0, 0, 0.18);
+
+	padding-block: 3.5rem;
+	background-color: var(--day-ground);
+	color: var(--day-fg);
+}
+
+.sachet-day--dark {
+	--day-fg: var(--cr-cream);
+	--day-ground: var(--cr-black);
+	--day-rule: rgba(255, 250, 241, 0.22);
+}
+
+.sachet-day--orange {
+	--day-fg: var(--cr-cream);
+	--day-accent: var(--cr-cream);
+	--day-ground: var(--cr-orange);
+	--day-rule: rgba(255, 250, 241, 0.3);
+}
+
+.sachet-day__contain {
+	width: 100%;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: 1.25rem;
+	box-sizing: border-box;
+}
+
+.sachet-day__heading {
+	margin: 0;
+	max-width: 22ch;
+	text-wrap: balance;
+}
+
+.sachet-day__body {
+	margin: 0.75rem 0 0;
+	max-width: 48ch;
+	opacity: 0.7;
+}
+
+.sachet-day__track {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 2.5rem 0 0;
+	padding: 0;
+	position: relative;
+}
+
+.sachet-day__track::before {
+	content: "";
+	position: absolute;
+	inset-inline: 16%;
+	inset-block-start: 0.42rem;
+	height: 1px;
+	background-color: var(--day-rule);
+}
+
+.sachet-day__point {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	text-align: center;
+}
+
+.sachet-day__dot {
+	width: 0.85rem;
+	height: 0.85rem;
+	border-radius: 50%;
+	border: 1px solid var(--day-rule);
+	background-color: var(--day-ground);
+	transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+}
+
+.sachet-day__point.is-on .sachet-day__dot {
+	background-color: var(--day-accent);
+	border-color: var(--day-accent);
+	transform: scale(1.3);
+}
+
+.sachet-day__label {
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	opacity: 0.35;
+	transition: opacity 0.22s ease;
+}
+
+.sachet-day__point.is-on .sachet-day__label {
+	opacity: 1;
+}
+
+.sachet-day__note {
+	margin: 1.5rem 0 0;
+	text-align: center;
+	opacity: 0.7;
+}
+
+/* The three dots were stranded at the far edges on wide screens. */
+@media (min-width: 900px) {
+	.sachet-day__heading,
+	.sachet-day__body {
+		margin-inline: auto;
+		max-width: 46ch;
+		text-align: center;
+	}
+
+	.sachet-day__track {
+		max-width: 46rem;
+		margin-inline: auto;
+	}
+
+	.sachet-day__track::before {
+		inset-inline: 17%;
+	}
+}
+
+/* ==========================================================================
+   7. How P24 Works image
+   ========================================================================== */
+
+/* The section shows its image at the file's own shape. The jar image is
+   roughly 580 x 673, the sachet render is 2:3, which ran well past the copy.
+   Framed to the jar's shape with the same 8px corners; the render crops a
+   little top and bottom and the whole sachet stays in view. */
+.s-how-p24-works .s-how-p24-works__media {
+	aspect-ratio: 580 / 673;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.s-how-p24-works .s-how-p24-works__image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 35%;
+}
+
+/* ==========================================================================
+   8. The math
+   ========================================================================== */
+
+.sachet-math {
+	padding-block: 4.5rem;
+	background-color: var(--cr-black);
+	color: var(--cr-cream);
+}
+
+.sachet-math__contain {
+	width: 100%;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding-inline: 1.25rem;
+	box-sizing: border-box;
+}
+
+.sachet-math__kicker {
+	margin: 0 0 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--cr-orange);
+}
+
+.sachet-math__heading {
+	margin: 0;
+	max-width: 20ch;
+	text-wrap: balance;
+}
+
+.sachet-math__body {
+	margin: 1rem 0 0;
+	max-width: 46ch;
+	opacity: 0.7;
+}
+
+.sachet-math__chart {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: end;
+	gap: 0.6rem;
+	margin: 3rem 0 0;
+	padding: 0;
+}
+
+.sachet-math__col {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	opacity: 0.42;
+	transition: opacity 0.24s ease;
+}
+
+.sachet-math__col.is-active {
+	opacity: 1;
+}
+
+.sachet-math__price {
+	margin: 0;
+	line-height: 1;
+	color: var(--cr-cream);
+	transition: color 0.24s ease;
+}
+
+.sachet-math__col.is-active .sachet-math__price {
+	color: var(--cr-orange);
+}
+
+.sachet-math__unit {
+	margin: 0.35rem 0 0;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	opacity: 0.5;
+}
+
+.sachet-math__bar-track {
+	height: 7rem;
+	margin-top: 1.4rem;
+	display: flex;
+	align-items: flex-end;
+}
+
+/* Bars draw up from zero when the chart first scrolls into view. Height comes
+   from the per-capsule price, worked out in Liquid, so the drop is real. */
+.sachet-math__bar {
+	width: 100%;
+	height: 0;
+	background-color: rgba(255, 250, 241, 0.14);
+	transition: height 0.7s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.24s ease;
+}
+
+.sachet-math__chart.is-drawn .sachet-math__bar {
+	height: var(--h, 100%);
+}
+
+.sachet-math__col:nth-child(2) .sachet-math__bar { transition-delay: 0.08s; }
+.sachet-math__col:nth-child(3) .sachet-math__bar { transition-delay: 0.16s; }
+
+.sachet-math__col.is-active .sachet-math__bar {
+	background-color: var(--cr-orange);
+}
+
+.sachet-math__freq {
+	margin: 1rem 0 0;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+.sachet-math__detail {
+	margin: 0.3rem 0 0;
+	opacity: 0.5;
+	text-transform: none;
+	letter-spacing: 0.01em;
+}
+
+.sachet-math__footnote {
+	margin: 2.5rem 0 0;
+	text-align: center;
+	opacity: 0.4;
+	text-transform: none;
+	letter-spacing: 0.01em;
+}
+
+@media (min-width: 900px) {
+	.sachet-math__chart {
+		gap: 1rem;
+		margin-top: 3.5rem;
+	}
+
+	.sachet-math__bar-track {
+		height: 11rem;
+	}
+}
+
+/* ==========================================================================
+   9. Close
+   ========================================================================== */
+
+.sachet-close {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 30rem;
+	background-color: var(--cr-black);
+	overflow: hidden;
+	isolation: isolate;
+}
+
+.sachet-close__bg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	z-index: -1;
+}
+
+/* Keeps the copy legible over the flame render without flattening it. */
+.sachet-close::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0.78) 0%,
+		rgba(0, 0, 0, 0.55) 45%,
+		rgba(0, 0, 0, 0.15) 100%
+	);
+	z-index: -1;
+}
+
+.sachet-close__inner {
+	width: 100%;
+	max-width: 1200px;
+	margin-inline: auto;
+	padding: 5rem 1.25rem;
+	box-sizing: border-box;
+	color: var(--cr-cream);
+}
+
+.sachet-close__eyebrow {
+	margin: 0 0 1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--cr-orange);
+}
+
+.sachet-close__heading {
+	margin: 0;
+	max-width: 15ch;
+	line-height: 1.04;
+	text-wrap: balance;
+}
+
+.sachet-close__footnote {
+	margin: 1rem 0 0;
+	max-width: 44ch;
+	font-size: 0.72rem;
+	line-height: 1.45;
+	letter-spacing: 0.01em;
+	text-transform: none;
+	opacity: 0.6;
+}
+
+/* .btn is black on black here, so it inverts. */
+.sachet-close__cta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+	padding: 1.05rem 2.5rem;
+	border: 0;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.sachet-close__cta.btn {
+	--btn-color: var(--cr-black);
+	--btn-bg-color: var(--cr-cream);
+	background-color: var(--cr-cream);
+	color: var(--cr-black);
+	transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.sachet-close__cta.btn:hover,
+.sachet-close__cta.btn:focus-visible {
+	background-color: var(--cr-orange);
+	color: var(--cr-cream);
+}
+
+.sachet-close__reassurance {
+	margin: 0.85rem 0 0;
+	opacity: 0.6;
+	text-transform: none;
+	letter-spacing: 0.01em;
+}
+
+@media (min-width: 900px) {
+	.sachet-close {
+		min-height: 36rem;
+	}
+
+	.sachet-close__inner {
+		padding-block: 6rem;
+	}
+}
+
+/* ==========================================================================
+   10. Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.sachet-buy__option-label,
+	.sachet-buy__radio,
+	.sachet-buy__percap,
+	.sachet-day__dot,
+	.sachet-day__label,
+	.sachet-math__col,
+	.sachet-math__price,
+	.sachet-math__bar,
+	.sachet-close__cta {
+		transition-duration: 0.01ms !important;
+		transition-delay: 0s !important;
+	}
+
+	.sachet-math__bar {
+		height: var(--h, 100%);
+	}
+}
