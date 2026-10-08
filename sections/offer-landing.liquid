@@ -185,6 +185,27 @@
 		},
 		{
 			"type": "header",
+			"content": "Featured In"
+		},
+		{
+			"type": "text",
+			"id": "press_heading",
+			"label": "Heading",
+			"default": "Featured In"
+		},
+		{
+			"type": "select",
+			"id": "press_position",
+			"label": "Position",
+			"info": "The logos are the Press logo blocks. They scroll in a slow ticker.",
+			"options": [
+				{ "value": "after_hero", "label": "Under the hero" },
+				{ "value": "after_proof", "label": "After the reviews" }
+			],
+			"default": "after_proof"
+		},
+		{
+			"type": "header",
 			"content": "Social proof"
 		},
 		{
@@ -492,6 +513,60 @@
 	{%- endif -%}
 {%- endcapture -%}
 
+{% comment %}
+	---------- PRESS (Featured In) ----------
+	Same treatment as the sachet page's Featured In: a centered heading, the
+	logos at full strength, and a slow ticker. Two identical lists slide left by
+	their own width and loop without a seam, and each list holds the logos
+	twice so it is wider than the widest screen. Only the first set is read out
+	by screen readers. It renders under the hero or after the reviews (the
+	Position setting); Rose asked for media after the education and the proof.
+{% endcomment %}
+
+{%- capture press_html -%}
+	{%- if logo_blocks.size > 0 -%}
+		<div class="offer-lp__press{% if s.press_position == 'after_hero' %} is-top{% else %} is-low{% endif %}">
+			{%- if s.press_heading != blank -%}
+				<h2 class="offer-lp__press-heading t-h-3">{{ s.press_heading }}</h2>
+			{%- endif -%}
+
+			<div class="offer-lp__press-viewport">
+				{%- for lane in (1..2) -%}
+					<ul class="offer-lp__press-list"{% if lane > 1 %} aria-hidden="true"{% endif %}>
+						{%- for pass in (1..2) -%}
+							{%- for block in logo_blocks -%}
+								{%- if block.settings.logo != blank -%}
+									{%- liquid
+										assign logo = block.settings.logo
+										assign logo_w = logo.aspect_ratio | times: 160 | round
+										assign is_first = false
+										if lane == 1 and pass == 1
+											assign is_first = true
+										endif
+									-%}
+									<li
+										class="offer-lp__press-item"
+										style="--logo-scale: {{ block.settings.logo_scale | default: 100 }}"
+										{% if is_first %}{{ block.shopify_attributes }}{% else %}aria-hidden="true"{% endif %}
+									>
+										<img
+											src="{{ logo | image_url: height: 160 }}"
+											alt="{% if is_first %}{{ block.settings.logo_alt | escape }}{% endif %}"
+											width="{{ logo_w }}"
+											height="160"
+											loading="lazy"
+										>
+									</li>
+								{%- endif -%}
+							{%- endfor -%}
+						{%- endfor -%}
+					</ul>
+				{%- endfor -%}
+			</div>
+		</div>
+	{%- endif -%}
+{%- endcapture -%}
+
 {% comment %} ---------- HERO ---------- {% endcomment %}
 
 <div class="offer-lp__hero">
@@ -559,25 +634,10 @@
 	</div>
 </div>
 
-{% comment %} ---------- PRESS ---------- {% endcomment %}
+{% comment %} ---------- PRESS, when set under the hero ---------- {% endcomment %}
 
-{%- if logo_blocks.size > 0 -%}
-	<div class="offer-lp__press p-x-md">
-		<p class="offer-lp__press-label t-l-4">Featured in</p>
-		<ul class="offer-lp__press-list">
-			{%- for block in logo_blocks -%}
-				{%- if block.settings.logo != blank -%}
-					<li
-						class="offer-lp__press-item"
-						style="--logo-scale: {{ block.settings.logo_scale | default: 100 }}"
-						{{ block.shopify_attributes }}
-					>
-						{%- render 'c-img-srcset', image: block.settings.logo, alt: block.settings.logo_alt -%}
-					</li>
-				{%- endif -%}
-			{%- endfor -%}
-		</ul>
-	</div>
+{%- if s.press_position == 'after_hero' -%}
+	{{ press_html }}
 {%- endif -%}
 
 {% comment %} ---------- VALUE STACK ---------- {% endcomment %}
@@ -732,6 +792,12 @@
 			</ul>
 		{%- endif -%}
 	</div>
+{%- endif -%}
+
+{% comment %} ---------- PRESS, after the reviews (default) ---------- {% endcomment %}
+
+{%- if s.press_position != 'after_hero' -%}
+	{{ press_html }}
 {%- endif -%}
 
 {% comment %} ---------- OFFER REMINDER (midway) ---------- {% endcomment %}
@@ -997,6 +1063,85 @@
 			document.addEventListener('DOMContentLoaded', init);
 		} else {
 			init();
+		}
+	})();
+</script>
+
+<script>
+	/* Focused page (Rose): no route from this page to the rest of the store,
+	   where the jar sells at full price.
+	   - Links to the home page (the header and footer logos) stop being links.
+	   - Any other link to a store page is blocked, including links that apps
+	     (the reviews widget) or the cart drawer add after the page loads.
+	   - Legal links (privacy, terms, FDA disclaimer) stay and open in a new tab,
+	     so this page stays where it is.
+	   Cart, checkout, links within this page and outside sites are untouched.
+	   Same script as the sachet page. */
+	(function () {
+		if (window.__amplifyeFocusLinks) return;
+		window.__amplifyeFocusLinks = true;
+
+		var here = location.pathname.replace(/\/+$/, '') || '/';
+		var storePage = /^\/(products|collections|pages|blogs|search|account|policies)(\/|$)/;
+		var legal = /privacy|terms|disclaimer|polic|refund|legal|accessib|cookie/i;
+
+		function classify(a) {
+			if (a.hasAttribute('data-focus-off')) return 'off';
+
+			var href = a.getAttribute('href');
+			if (!href || href.charAt(0) === '#') return 'keep';
+
+			var url;
+			try { url = new URL(href, location.href); } catch (e) { return 'keep'; }
+			if (url.origin !== location.origin) return 'keep';
+
+			var path = url.pathname.replace(/\/+$/, '') || '/';
+			if (path === here) return 'keep';
+			if (path === '/') return 'off';
+			if (!storePage.test(path)) return 'keep';
+			if (legal.test(path)) return 'newtab';
+			return 'off';
+		}
+
+		function switchOff(a) {
+			a.removeAttribute('href');
+			a.setAttribute('data-focus-off', '');
+		}
+
+		function newTab(a) {
+			a.setAttribute('target', '_blank');
+			a.setAttribute('rel', 'noopener');
+		}
+
+		function sweep() {
+			document.querySelectorAll('a[href]').forEach(function (a) {
+				var kind = classify(a);
+				if (kind === 'off') switchOff(a);
+				else if (kind === 'newtab') newTab(a);
+			});
+		}
+
+		function guard(e) {
+			var a = e.target && e.target.closest ? e.target.closest('a') : null;
+			if (!a) return;
+
+			var kind = classify(a);
+			if (kind === 'off') {
+				e.preventDefault();
+				e.stopPropagation();
+				switchOff(a);
+			} else if (kind === 'newtab') {
+				newTab(a);
+			}
+		}
+
+		document.addEventListener('click', guard, true);
+		document.addEventListener('auxclick', guard, true);
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', sweep);
+		} else {
+			sweep();
 		}
 	})();
 </script>
