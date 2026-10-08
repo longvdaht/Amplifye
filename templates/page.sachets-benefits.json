@@ -9,6 +9,18 @@
  */
 {
   "sections": {
+    "sachet-focus": {
+      "type": "sachet-focus",
+      "settings": {
+        "sachet_url": "/products/sachets",
+        "benefits_url": "/pages/sachets-benefits",
+        "science_url": "/pages/sachets-science",
+        "jar_url": "/products/amplifye-p24",
+        "show_account": true,
+        "show_footer_menu": false,
+        "show_footer_social": false
+      }
+    },
     "s_its_fullwidth_afiGjK": {
       "type": "s-its-fullwidth",
       "name": "Image Text Fullwidth",
@@ -22,8 +34,8 @@
         "paragraph": "<p>Half the protein we consume isn’t fully absorbed. P24 is the patented enzyme that multiplies protein absorption — so every bite you eat actually goes to work. </p>",
         "note": "",
         "cta_label": "get P24",
-        "cta_url": "",
-        "product": "amplifye-p24",
+        "cta_url": "shopify://products/sachets",
+        "product": "sachets",
         "button_style": "secondary"
       }
     },
@@ -143,7 +155,7 @@
         "bottom_text": "Try P24 for 30 days, worry free.",
         "button_style": "primary",
         "bottom_cta_label": "GET P24",
-        "bottom_cta_url": "shopify://products/amplifye-p24",
+        "bottom_cta_url": "shopify://products/sachets",
         "show_nav": false,
         "show_dots": false,
         "margin_top": 60,
@@ -313,21 +325,22 @@
         "content": "",
         "content_richtext": "<p>Try P24 for 30 days, worry free.</p>",
         "cta_label": "GET p24",
-        "cta_url": "shopify://products/amplifye-p24",
+        "cta_url": "shopify://products/sachets",
         "button_style": "secondary",
         "background_image": "shopify://shop_images/amplifye-0193.png",
         "background_image_mobile": "shopify://shop_images/amplifye-0193-mobile.png",
-        "product": "amplifye-p24",
+        "product": "sachets",
         "custom_style": true,
         "content_alignment": "right",
         "heading_font_size": 36,
         "mobile_text_below": true,
         "mobile_align": "other",
-        "code": "MBG15"
+        "code": ""
       }
     }
   },
   "order": [
+    "sachet-focus",
     "s_its_fullwidth_afiGjK",
     "media_content_split_QWV3Qi",
     "ss_protein_benefits_aByezJ",
