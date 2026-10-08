@@ -1,0 +1,1036 @@
+{% comment %}
+	Sachet hero: A/B price-layout version (Jenny's brief, 7 Oct).
+
+	Above the fold mirrors the jar product page. The title block (title,
+	subtitle, star rating, description) is the jar's own, read from the
+	product in "Title block from". The description's "2X" shows as
+	"up to 5X", as in Jenny's mockup. Under the options come the jar's own
+	blocks: the three badges, the accordions, "Jump to All FAQs" and the chat
+	note. Markup and classes match sections/product-hero.liquid so they look
+	identical.
+
+	One row per purchase option, in block order; the first is selected on
+	load. Each row reads "Subscribe | Protein 3x per day" (or "One-time |
+	..."), then the capsule count. Subscription rows show a struck-through
+	regular price: the one-time price per sachet times the sachets in the
+	bundle ($59.99 x 3 = $179.97). The one-time row has none.
+
+	Price layout test:
+	  A  per-capsule price leads ("$1 PER CAPSULE"), "$90 ($179.97) total"
+	     under it.
+	  B  total leads ("$90 ($179.97)"), "$1 PER CAPSULE" under it. The
+	     capsule line adds "in 3 sachets" (B mockup; a setting turns it off).
+	The "Price layout" setting splits visitors 50/50 (default) or shows one
+	version to everyone. A visitor keeps their version on later visits.
+	?layout=a or ?layout=b forces a version for checking, and keeps it.
+	The version is chosen by a small script before the options are drawn, so
+	the page never flickers between the two. It is saved on the cart as the
+	attribute "Price layout", so every order shows A or B under Additional
+	details, and sent to Clarity and the data layer when they are present.
+
+	Under Add to cart, the Total line shows the selected option's price and
+	terms. Prices come from the variant and its Recharge plan, so the page
+	shows what the cart will charge. A sold-out variant turns the button
+	into a disabled "Sold out". Selecting an option sends 'sachet:bundle';
+	'sachet:pick' is still honoured.
+
+	The main gallery image follows the selected option's variant image.
+{% endcomment %}
+
+{{ 'sachet-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+	assign s = section.settings
+	assign options = section.blocks | where: 'type', 'bundle'
+	assign fallback_variant = product.selected_or_first_available_variant.id | append: ''
+
+	if s.title_product != blank
+		assign source = s.title_product
+	else
+		assign source = product
+	endif
+
+	assign layout_mode = s.layout_mode | default: 'split'
+
+	comment
+		Regular price per sachet, for the strikethrough: the one-time option's
+		variant price divided by its sachets. The setting overrides it.
+	endcomment
+	assign unit_regular = 0
+	if s.regular_price != blank
+		assign unit_regular = s.regular_price | times: 100 | round
+	else
+		for b in options
+			if b.settings.purchase == 'onetime' and b.settings.sachets > 0
+				assign ovid = b.settings.variant_id | strip
+				if ovid == blank
+					assign ovid = fallback_variant
+				endif
+				for v in product.variants
+					assign v_id = v.id | append: ''
+					if v_id == ovid
+						assign unit_regular = v.price | divided_by: b.settings.sachets
+						break
+					endif
+				endfor
+				break
+			endif
+		endfor
+	endif
+
+	comment
+		The jar's description with "2X" as "up to 5X" (Jenny's mockup). Works
+		whether the jar says "unlocks 2X" or "unlocks up to 2X".
+	endcomment
+	if s.description != blank
+		assign description_html = s.description
+	else
+		assign description_html = source.description
+		if description_html contains 'up to 2X' or description_html contains 'up to 2x'
+			assign description_html = description_html | replace: 'up to 2X', 'up to 5X' | replace: 'up to 2x', 'up to 5x'
+		else
+			assign description_html = description_html | replace: ' 2X ', ' up to 5X ' | replace: ' 2x ', ' up to 5x '
+		endif
+	endif
+
+	assign chat_note = product.metafields.custom.chat_note | default: source.metafields.custom.chat_note
+	assign cta_label = s.cta_label | default: 'Add to cart'
+-%}
+
+<script>
+	/* Choose the price layout before the options are drawn. */
+	(function () {
+		var root = document.getElementById('shopify-section-{{ section.id }}');
+		if (!root) return;
+
+		var KEY = 'amp_price_layout';
+		var mode = {{ layout_mode | json }};
+		var layout = 'A';
+
+		function readCookie() {
+			var m = document.cookie.match(/(?:^|;\s*)amp_price_layout=(A|B)/);
+			return m ? m[1] : null;
+		}
+
+		function keep(value) {
+			try { localStorage.setItem(KEY, value); } catch (e) {}
+			try { document.cookie = KEY + '=' + value + '; path=/; max-age=7776000; samesite=lax'; } catch (e) {}
+		}
+
+		try {
+			var forced = (new URLSearchParams(location.search).get('layout') || '').toUpperCase();
+			if (forced === 'A' || forced === 'B') {
+				layout = forced;
+				keep(layout);
+			} else if (mode === 'a') {
+				layout = 'A';
+			} else if (mode === 'b') {
+				layout = 'B';
+			} else {
+				var saved = null;
+				try { saved = localStorage.getItem(KEY); } catch (e) {}
+				if (saved !== 'A' && saved !== 'B') saved = readCookie();
+				if (saved !== 'A' && saved !== 'B') saved = Math.random() < 0.5 ? 'A' : 'B';
+				layout = saved;
+				keep(layout);
+			}
+		} catch (e) {}
+
+		root.classList.toggle('is-layout-b', layout === 'B');
+		root.setAttribute('data-price-layout', layout);
+		window.amplifyePriceLayout = layout;
+	})();
+</script>
+
+<style>
+	/* Option rows: more breathing room. */
+	.sachet-hero .sachet-buy__option-label {
+		padding-top: 1.125rem;
+		padding-bottom: 1.125rem;
+	}
+
+	/* Recommended tag on an option (3x): a small solid Burnt Orange tab sitting
+	   on the box's top edge, so it reads as part of the box. */
+	.sachet-hero .sachet-buy__option.has-badge {
+		position: relative;
+		overflow: visible;
+		margin-top: 1.25rem;
+	}
+
+	.sachet-hero .sachet-buy__option.has-badge .sachet-buy__option-label {
+		padding-top: 1.5rem;
+	}
+
+	.sachet-hero .sachet-buy__badge {
+		position: absolute;
+		top: 0;
+		left: 1rem;
+		z-index: 1;
+		transform: translateY(-50%);
+		display: inline-flex;
+		align-items: center;
+		padding: 0.3125rem 0.5rem;
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		line-height: 1;
+		background-color: var(--cr-orange, #c14b24);
+		color: var(--cr-cream, #fffaf1);
+		white-space: nowrap;
+		pointer-events: none;
+	}
+
+	/* Label: "Subscribe | Protein 3x per day", then "90 capsules". On a phone
+	   the purchase type sits on its own line instead of the bar. */
+	.sachet-hero .sachet-buy__option-type {
+		font-weight: 600;
+	}
+
+	.sachet-hero .sachet-buy__option-sep {
+		margin: 0 0.3em;
+		font-weight: 400;
+	}
+
+	.sachet-hero .sachet-buy__option .sachet-buy__option-meta {
+		display: block;
+		margin-top: 0.25rem;
+		font-family: inherit;
+		font-size: 0.9375rem;
+		font-weight: 400;
+		line-height: 1.3;
+		letter-spacing: 0;
+		text-transform: none;
+		color: inherit;
+		opacity: 1;
+	}
+
+	@media (max-width: 749px) {
+		.sachet-hero .sachet-buy__option-type {
+			display: block;
+		}
+
+		.sachet-hero .sachet-buy__option-sep {
+			display: none;
+		}
+	}
+
+	/* Prices, right-aligned. The lead line is one size and Burnt Orange:
+	   "$1 PER CAPSULE" (A) or "$90 ($179.97)" with the regular price struck
+	   through in grey (B). The line under it is small and black. */
+	.sachet-hero .sachet-buy__option-cost {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		text-align: right;
+		max-width: 56%;
+	}
+
+	.sachet-hero .sachet-buy__lead {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		align-items: baseline;
+		column-gap: 0.3em;
+		row-gap: 0;
+		margin: 0;
+		color: var(--cr-orange, #c14b24);
+		line-height: 1.15;
+	}
+
+	.sachet-hero .sachet-buy__lead-price,
+	.sachet-hero .sachet-buy__lead-unit,
+	.sachet-hero .sachet-buy__lead-compare {
+		white-space: nowrap;
+	}
+
+	.sachet-hero .sachet-buy__lead-unit {
+		text-transform: uppercase;
+	}
+
+	.sachet-hero .sachet-buy__lead-compare {
+		color: rgba(0, 0, 0, 0.45);
+		text-decoration: line-through;
+	}
+
+	.sachet-hero .sachet-buy__sub {
+		display: block;
+		margin-top: 0.375rem;
+		font-size: 0.9375rem;
+		font-weight: 400;
+		line-height: 1.3;
+		letter-spacing: 0;
+		text-transform: none;
+		color: var(--cr-black, #000);
+		opacity: 1;
+	}
+
+	.sachet-hero .sachet-buy__sub--unit {
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		white-space: nowrap;
+	}
+
+	/* Phone: the price column gives the label a little more room, and the
+	   lead line wraps between the price and "PER CAPSULE" (A) or before the
+	   struck-through price (B), never inside them. */
+	@media (max-width: 749px) {
+		.sachet-hero .sachet-buy__option-cost {
+			max-width: 50%;
+		}
+
+		.sachet-hero .sachet-buy__lead {
+			font-size: 1.25rem;
+		}
+
+		.sachet-hero .sachet-buy__sub {
+			font-size: 0.875rem;
+		}
+	}
+
+	.sachet-hero .sachet-buy__compare {
+		color: inherit;
+		text-decoration: line-through;
+	}
+
+	/* A or B. A shows by default; B is switched on by the script above. */
+	.sachet-hero .sachet-only-b {
+		display: none !important;
+	}
+
+	.sachet-hero.is-layout-b .sachet-only-a {
+		display: none !important;
+	}
+
+	.sachet-hero.is-layout-b .sachet-buy__lead.sachet-only-b {
+		display: flex !important;
+	}
+
+	.sachet-hero.is-layout-b .sachet-buy__sub.sachet-only-b {
+		display: block !important;
+	}
+
+	.sachet-hero.is-layout-b .sachet-buy__in-sachets.sachet-only-b {
+		display: inline !important;
+	}
+
+	/* Text for screen readers only ("Regular price"). */
+	.sachet-hero .screen-reader-only {
+		position: absolute !important;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	/* The total under Add to cart, clear and with room around it. */
+	.sachet-hero .sachet-buy__summary {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: center;
+		gap: 0.25rem 0.625rem;
+		margin: 0;
+		padding: 1.125rem 0 1.75rem;
+		text-align: center;
+		text-transform: none;
+		letter-spacing: 0;
+		color: var(--cr-black, #000);
+		opacity: 1;
+	}
+
+	.sachet-hero .sachet-buy__summary-label {
+		opacity: 0.6;
+	}
+
+	.sachet-hero .sachet-buy__summary-price {
+		font-size: 1.375rem;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.sachet-hero .sachet-buy__summary-terms {
+		font-size: 1rem;
+		line-height: 1.2;
+	}
+
+	.sachet-hero .sachet-buy__cta[disabled] {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+</style>
+
+<div class="sachet-hero__head">
+	<div class="product-hero__header f-v">
+		{%- assign past_options = false -%}
+		{%- for block in section.blocks -%}
+			{%- if block.type == 'bundle' -%}
+				{%- assign past_options = true -%}
+			{%- endif -%}
+			{%- unless past_options -%}
+				{%- case block.type -%}
+					{%- when '@app' -%}
+						{% render block %}
+					{%- when 'title' -%}
+						<h1 class="t-h-2 product-hero__header" {{ block.shopify_attributes }}>{{ s.title_text | default: source.title }}</h1>
+					{%- when 'sub-title' -%}
+						{%- if source.metafields.custom.subtitle != blank -%}
+							<h2 class="product-hero__subtitle t-l-5 product-hero__header" {{ block.shopify_attributes }}>
+								{{- source.metafields.custom.subtitle -}}
+							</h2>
+						{%- endif -%}
+					{%- when 'description' -%}
+						{%- if description_html != blank -%}
+							<div class="product-hero__description wysiwyg" {{ block.shopify_attributes }}>
+								{% render '_include_p_tag', content: description_html %}
+							</div>
+						{%- endif -%}
+				{%- endcase -%}
+			{%- endunless -%}
+		{%- endfor -%}
+	</div>
+</div>
+
+<div class="sachet-hero__gallery">
+	{%- render 'product-hero-gallery', product: product -%}
+</div>
+
+<div class="sachet-hero__buy">
+
+	<form
+		class="sachet-buy__form"
+		action="{{ routes.cart_add_url }}"
+		method="post"
+		enctype="multipart/form-data"
+		data-sachet-form
+	>
+		<fieldset class="sachet-buy__options">
+			<legend class="sachet-buy__legend t-b-1">{{ s.question }}</legend>
+
+			{%- if s.question_note != blank -%}
+				<p class="sachet-buy__note t-b-2">{{ s.question_note }}</p>
+			{%- endif -%}
+
+			{%- for b in options -%}
+				{%- liquid
+					assign bs = b.settings
+
+					assign is_sub = false
+					if bs.purchase == 'subscription'
+						assign is_sub = true
+					endif
+
+					assign cents = bs.price | times: 100 | round
+					assign plan_id = ''
+					assign is_available = true
+
+					assign vid = bs.variant_id | strip
+					if vid == blank
+						assign vid = fallback_variant
+					endif
+
+					assign img_src = ''
+					assign img_srcset = ''
+					for v in product.variants
+						assign v_id = v.id | append: ''
+						if v_id == vid
+							assign is_available = v.available
+
+							comment
+								One-time rows charge the variant price. Subscription rows take the
+								plan on this variant whose price matches the block, or the first
+								plan if none match, and show that plan's real price.
+							endcomment
+							if is_sub
+								for alloc in v.selling_plan_allocations
+									if alloc.price == cents
+										assign plan_id = alloc.selling_plan.id | append: ''
+										break
+									endif
+								endfor
+								if plan_id == blank and v.selling_plan_allocations.size > 0
+									assign plan_id = v.selling_plan_allocations[0].selling_plan.id | append: ''
+									assign cents = v.selling_plan_allocations[0].price
+								endif
+							else
+								assign cents = v.price
+							endif
+
+							if v.featured_media != blank
+								assign m = v.featured_media.preview_image
+								assign img_600 = m | image_url: width: 600
+								assign img_1000 = m | image_url: width: 1000
+								assign img_1600 = m | image_url: width: 1600
+								assign img_src = img_1000
+								assign img_srcset = img_600 | append: ' 600w, ' | append: img_1000 | append: ' 1000w, ' | append: img_1600 | append: ' 1600w'
+							endif
+							break
+						endif
+					endfor
+
+					assign per_cap = cents | times: 1.0 | divided_by: bs.capsules | round
+
+					assign compare = 0
+					if is_sub and unit_regular > 0
+						assign compare = unit_regular | times: bs.sachets
+					endif
+					assign show_compare = false
+					if compare > cents
+						assign show_compare = true
+					endif
+
+					if is_sub
+						assign purchase_word = s.sub_word | default: 'Subscribe'
+						assign summary_terms = 'every 30 days'
+					else
+						assign purchase_word = s.onetime_word | default: 'One-time'
+						assign summary_terms = 'today'
+					endif
+					assign summary_price = cents | money
+
+					comment
+						The first option is the one selected on load, so the hidden inputs,
+						the button and the Total line start from its values.
+					endcomment
+					if forloop.first
+						assign first_vid = vid
+						assign first_plan = plan_id
+						assign first_price = summary_price
+						assign first_terms = summary_terms
+						assign first_available = is_available
+					endif
+				-%}
+
+				<div class="sachet-buy__option{% if forloop.first %} is-selected{% endif %}{% if bs.badge != blank %} has-badge{% endif %}" data-sachet-option {{ b.shopify_attributes }}>
+					{%- if bs.badge != blank -%}
+						<span class="sachet-buy__badge t-l-5" aria-hidden="true">{{ bs.badge }}</span>
+					{%- endif -%}
+					<label class="sachet-buy__option-label" for="sachet-option-{{ forloop.index }}">
+						<input
+							class="sachet-buy__radio"
+							type="radio"
+							name="sachet-option"
+							id="sachet-option-{{ forloop.index }}"
+							value="{{ vid }}"
+							data-sachets="{{ bs.sachets }}"
+							data-purchase="{% if is_sub %}subscription{% else %}onetime{% endif %}"
+							data-selling-plan="{{ plan_id }}"
+							data-available="{{ is_available }}"
+							data-summary-price="{{ summary_price | escape }}"
+							data-summary-terms="{{ summary_terms }}"
+							{% if img_src != blank %}data-image-src="{{ img_src | escape }}" data-image-srcset="{{ img_srcset | escape }}"{% endif %}
+							{% if forloop.first %}checked{% endif %}
+						>
+
+						<span class="sachet-buy__option-body">
+							<span class="sachet-buy__option-answer t-b-2">
+								<span class="sachet-buy__option-type">{{ purchase_word }}</span>
+								<span class="sachet-buy__option-sep" aria-hidden="true">|</span>
+								{{ bs.answer -}}
+								{%- if bs.badge != blank -%}<span class="screen-reader-only">, {{ bs.badge }}</span>{%- endif -%}
+							</span>
+							<span class="sachet-buy__option-meta">
+								{{- bs.capsules }} capsules
+								{%- if s.b_show_sachets and bs.sachets > 0 -%}
+									<span class="sachet-buy__in-sachets sachet-only-b"> in {{ bs.sachets }} sachet{% if bs.sachets != 1 %}s{% endif %}</span>
+								{%- endif -%}
+							</span>
+						</span>
+
+						<span class="sachet-buy__option-cost">
+							{%- comment -%} A: per capsule leads, the total under it. {%- endcomment -%}
+							<span class="sachet-buy__lead sachet-only-a t-h-3">
+								<span class="sachet-buy__lead-price">{{ per_cap | money_without_trailing_zeros }}</span>
+								<span class="sachet-buy__lead-unit">per capsule</span>
+							</span>
+							<span class="sachet-buy__sub sachet-only-a">
+								{{- cents | money_without_trailing_zeros }}
+								{% if show_compare -%}
+									<s class="sachet-buy__compare"><span class="screen-reader-only">Regular price </span>({{ compare | money_without_trailing_zeros }})</s>
+								{%- endif %} total
+							</span>
+
+							{%- comment -%} B: the total leads, per capsule under it. {%- endcomment -%}
+							<span class="sachet-buy__lead sachet-only-b t-h-3">
+								<span class="sachet-buy__lead-price">{{ cents | money_without_trailing_zeros }}</span>
+								{%- if show_compare %} <s class="sachet-buy__lead-compare"><span class="screen-reader-only">Regular price </span>({{ compare | money_without_trailing_zeros }})</s>
+								{%- endif -%}
+							</span>
+							<span class="sachet-buy__sub sachet-buy__sub--unit sachet-only-b">
+								{{- per_cap | money_without_trailing_zeros }} per capsule
+							</span>
+						</span>
+					</label>
+				</div>
+			{%- endfor -%}
+		</fieldset>
+
+		<input type="hidden" name="id" value="{{ first_vid | default: fallback_variant }}" data-sachet-variant>
+		<input type="hidden" name="selling_plan" value="{{ first_plan }}" data-sachet-plan{% if first_plan == blank %} disabled{% endif %}>
+
+		<button
+			class="sachet-buy__cta btn js-form-submit"
+			type="submit"
+			data-label="{{ cta_label | escape }}"
+			data-soldout-label="Sold out"
+			{% if first_available == false %}disabled{% endif %}
+		>
+			{%- if first_available == false -%}Sold out{%- else -%}{{ cta_label }}{%- endif -%}
+		</button>
+
+		<p class="sachet-buy__summary" data-sachet-summary aria-live="polite">
+			<span class="sachet-buy__summary-label t-l-5">Total</span>
+			<span class="sachet-buy__summary-price" data-sachet-summary-price>{{ first_price }}</span>
+			<span class="sachet-buy__summary-terms" data-sachet-summary-terms>{{ first_terms }}</span>
+		</p>
+	</form>
+
+	{%- comment -%} The jar page's blocks under the form, in block order. {%- endcomment -%}
+	{%- assign past_options = false -%}
+	{%- for block in section.blocks -%}
+		{%- if block.type == 'bundle' -%}
+			{%- assign past_options = true -%}
+		{%- endif -%}
+		{%- if past_options -%}
+			{%- case block.type -%}
+				{%- when '@app' -%}
+					<div class="sachet-buy__app" {{ block.shopify_attributes }}>{% render block %}</div>
+
+				{%- when 'icon-with-text' -%}
+					{% render 'icon-with-text', block: block %}
+
+				{%- when 'accordions' -%}
+					{% render 'product-hero-accordions', block: block %}
+
+				{%- when 'text' -%}
+					<a
+						href="#faq-section"
+						class="product-hero__faq-button btn-underline is-reverse"
+						{{ block.shopify_attributes }}
+						>Jump to All FAQs</a
+					>
+
+				{%- when 'chat-note' -%}
+					{%- if chat_note != blank -%}
+						<div class="product-hero__chat-note f-h f-a-c f-j-c bg-cream-dark" {{ block.shopify_attributes }}>
+							<p class="product-hero__chat-note__title t-h-4">
+								{{ chat_note }}
+							</p>
+							<button type="button" class="btn-outline js-gladly-trigger">
+								<span class="btn-outline__label">Let’s Chat</span>
+								{% render 'svg-icons', icon: 'dialog' -%}
+							</button>
+						</div>
+					{%- endif -%}
+			{%- endcase -%}
+		{%- endif -%}
+	{%- endfor -%}
+</div>
+
+<script>
+	(function () {
+		var root = document.getElementById('shopify-section-{{ section.id }}') || document;
+		var form = root.querySelector('[data-sachet-form]');
+		if (!form) return;
+
+		var variantInput = form.querySelector('[data-sachet-variant]');
+		var planInput = form.querySelector('[data-sachet-plan]');
+		var button = form.querySelector('.sachet-buy__cta');
+		var summaryPrice = form.querySelector('[data-sachet-summary-price]');
+		var summaryTerms = form.querySelector('[data-sachet-summary-terms]');
+		var radios = Array.prototype.slice.call(form.querySelectorAll('.sachet-buy__radio'));
+		var gallery = root.querySelector('.sachet-hero__gallery');
+
+		/* ---- Record the price layout ------------------------------------------
+		   On the cart (so every order shows A or B under Additional details),
+		   in Clarity and in the data layer. The cart is updated once per
+		   browser session. */
+
+		var layout = window.amplifyePriceLayout || 'A';
+
+		try {
+			var sentKey = 'amp_price_layout_sent';
+			var sent = null;
+			try { sent = sessionStorage.getItem(sentKey); } catch (e) {}
+			if (sent !== layout) {
+				var cartRoot = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+				fetch(cartRoot + 'cart/update.js', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+					body: JSON.stringify({ attributes: { 'Price layout': layout } })
+				}).then(function (res) {
+					if (res.ok) {
+						try { sessionStorage.setItem(sentKey, layout); } catch (e) {}
+					}
+				}).catch(function () {});
+			}
+		} catch (e) {}
+
+		try {
+			if (typeof window.clarity === 'function') window.clarity('set', 'price_layout', layout);
+		} catch (e) {}
+
+		try {
+			(window.dataLayer = window.dataLayer || []).push({ event: 'price_layout', price_layout: layout });
+		} catch (e) {}
+
+		/* ---- Main image ---------------------------------------------------
+		   The main image is every img in the gallery showing the same file as
+		   the first one, so a separate mobile copy of it swaps as well. They are
+		   collected once on load and only those are ever changed. */
+
+		function firstRealUrl(img) {
+			var attrs = ['data-src', 'src', 'data-srcset', 'srcset'];
+			for (var i = 0; i < attrs.length; i++) {
+				var val = img.getAttribute(attrs[i]);
+				if (val && val.indexOf('data:') !== 0) return val;
+			}
+			return '';
+		}
+
+		function fileKey(url) {
+			if (!url) return '';
+			var first = String(url).trim().split(/[\s,]+/)[0];
+			var name = first.split('?')[0].split('/').pop() || '';
+			return name.replace(/_(\d+x\d*|x\d+)(?=\.[a-z0-9]+$)/i, '').toLowerCase();
+		}
+
+		var mainImgs = [];
+		var original = null;
+		var currentKey = '';
+
+		if (gallery) {
+			var firstImg = gallery.querySelector('img');
+			if (firstImg) {
+				currentKey = fileKey(firstRealUrl(firstImg));
+				gallery.querySelectorAll('img').forEach(function (img) {
+					if (img === firstImg || (currentKey && fileKey(firstRealUrl(img)) === currentKey)) {
+						mainImgs.push(img);
+					}
+				});
+				original = {
+					src: firstImg.getAttribute('data-src') || firstImg.getAttribute('src') || '',
+					srcset: firstImg.getAttribute('data-srcset') || firstImg.getAttribute('srcset') || ''
+				};
+			}
+		}
+
+		function setMain(src, srcset) {
+			if (!src || !mainImgs.length) return;
+			var key = fileKey(src);
+			if (key && key === currentKey) return;
+			currentKey = key;
+
+			mainImgs.forEach(function (img) {
+				if (img.hasAttribute('data-src')) img.setAttribute('data-src', src);
+				if (img.hasAttribute('data-srcset')) img.setAttribute('data-srcset', srcset);
+				if (srcset) {
+					img.setAttribute('srcset', srcset);
+				} else {
+					img.removeAttribute('srcset');
+				}
+				img.setAttribute('src', src);
+
+				var parent = img.parentElement;
+				if (parent && parent.tagName === 'PICTURE' && srcset) {
+					parent.querySelectorAll('source').forEach(function (source) {
+						source.setAttribute('srcset', srcset);
+					});
+				}
+			});
+		}
+
+		/* ---- Selection ---------------------------------------------------- */
+
+		function sync(radio) {
+			if (!radio) return;
+
+			if (variantInput) variantInput.value = radio.value;
+
+			/* A disabled input isn't submitted, so one-time rows send no plan. */
+			if (planInput) {
+				var plan = radio.getAttribute('data-selling-plan') || '';
+				planInput.value = plan;
+				planInput.disabled = !plan;
+			}
+
+			/* A sold-out variant can't be added: say so on the button. */
+			if (button) {
+				var soldOut = radio.getAttribute('data-available') === 'false';
+				button.disabled = soldOut;
+				button.textContent = soldOut
+					? (button.getAttribute('data-soldout-label') || 'Sold out')
+					: (button.getAttribute('data-label') || 'Add to cart');
+			}
+
+			/* The Total line under Add to cart. */
+			if (summaryPrice) summaryPrice.textContent = radio.getAttribute('data-summary-price') || '';
+			if (summaryTerms) summaryTerms.textContent = radio.getAttribute('data-summary-terms') || '';
+
+			form.querySelectorAll('[data-sachet-option]').forEach(function (opt) {
+				opt.classList.toggle('is-selected', opt.contains(radio));
+			});
+
+			var src = radio.getAttribute('data-image-src');
+			if (src) {
+				setMain(src, radio.getAttribute('data-image-srcset') || '');
+			} else if (original) {
+				setMain(original.src, original.srcset);
+			}
+
+			document.dispatchEvent(new CustomEvent('sachet:bundle', {
+				detail: {
+					sachets: parseInt(radio.getAttribute('data-sachets'), 10) || 1,
+					purchase: radio.getAttribute('data-purchase') || 'onetime'
+				}
+			}));
+		}
+
+		radios.forEach(function (r) {
+			r.addEventListener('change', function () {
+				if (r.checked) sync(r);
+			});
+		});
+
+		/* A column clicked in another section (THE MATH). Keeps the current
+		   option if it already has that many sachets, otherwise takes one with
+		   that many, preferring one-time where both exist. */
+		document.addEventListener('sachet:pick', function (e) {
+			var n = String((e.detail && e.detail.sachets) || '');
+			if (!n) return;
+
+			var current = radios.filter(function (r) { return r.checked; })[0];
+			if (current && current.getAttribute('data-sachets') === n) return;
+
+			var matches = radios.filter(function (r) { return r.getAttribute('data-sachets') === n; });
+			if (!matches.length) return;
+
+			var target = matches.filter(function (r) { return r.getAttribute('data-purchase') === 'onetime'; })[0] || matches[0];
+
+			target.checked = true;
+			sync(target);
+		});
+
+		/* Announce the starting selection once every section on the page has
+		   attached its listener. */
+		function init() {
+			sync(radios.filter(function (r) { return r.checked; })[0] || radios[0]);
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
+	})();
+</script>
+
+{% schema %}
+{
+	"name": "Sachet hero",
+	"tag": "section",
+	"class": "product-hero sachet-hero",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Title block"
+		},
+		{
+			"type": "product",
+			"id": "title_product",
+			"label": "Title block from",
+			"info": "The title, subtitle and description come from this product (the jar), so they match its page. \"2X\" in the description shows as \"up to 5X\"."
+		},
+		{
+			"type": "text",
+			"id": "title_text",
+			"label": "Title override",
+			"info": "Leave blank to use the product's title."
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "Description override",
+			"info": "Leave blank to use the product's description."
+		},
+		{
+			"type": "header",
+			"content": "Purchase options"
+		},
+		{ "type": "text", "id": "question", "label": "Question", "default": "How often do you eat protein?" },
+		{ "type": "textarea", "id": "question_note", "label": "Note", "default": "A shake, a bar, a meal, a snack. Anything with protein in it counts." },
+		{ "type": "text", "id": "sub_word", "label": "Subscription word", "default": "Subscribe" },
+		{ "type": "text", "id": "onetime_word", "label": "One-time word", "default": "One-time" },
+		{
+			"type": "text",
+			"id": "regular_price",
+			"label": "Regular price per sachet",
+			"info": "For the struck-through price on subscriptions, times the sachets in the bundle. Leave blank to use the one-time option's price."
+		},
+		{ "type": "text", "id": "cta_label", "label": "CTA label", "default": "Add to cart" },
+		{
+			"type": "select",
+			"id": "layout_mode",
+			"label": "Price layout",
+			"info": "A leads with the price per capsule, B with the total. Split shows each visitor one at random, 50/50, and keeps it. Add ?layout=a or ?layout=b to the link to check one.",
+			"options": [
+				{ "value": "split", "label": "Split 50/50 (A/B test)" },
+				{ "value": "a", "label": "Always A: price per capsule first" },
+				{ "value": "b", "label": "Always B: total first" }
+			],
+			"default": "split"
+		},
+		{
+			"type": "checkbox",
+			"id": "b_show_sachets",
+			"label": "B: add \"in 3 sachets\" to the capsule line",
+			"info": "As in the B mockup. A never shows it.",
+			"default": true
+		},
+		{
+			"type": "header",
+			"content": "Below the options"
+		},
+		{ "type": "textarea", "id": "notes", "label": "Benefits disclaimer", "info": "Same field the jar page uses. Shows with the Benefits panel." },
+		{
+			"type": "select",
+			"id": "gallery_layout",
+			"label": "Gallery layout",
+			"options": [
+				{ "value": "thumbnail_slider", "label": "Thumbnail slider" },
+				{ "value": "stacked", "label": "Stacked" }
+			],
+			"default": "stacked"
+		}
+	],
+	"blocks": [
+		{ "type": "@app" },
+		{ "type": "title", "name": "Product title", "limit": 1 },
+		{ "type": "sub-title", "name": "Product Subtitle", "limit": 1 },
+		{ "type": "description", "name": "Product description", "limit": 1 },
+		{
+			"type": "bundle",
+			"name": "Purchase option",
+			"settings": [
+				{ "type": "text", "id": "answer", "label": "Label", "default": "Protein 1x per day" },
+				{ "type": "text", "id": "badge", "label": "Badge", "info": "Optional short tag on this option, e.g. Recommended." },
+				{
+					"type": "select",
+					"id": "purchase",
+					"label": "Purchase type",
+					"options": [
+						{ "value": "onetime", "label": "One-time purchase" },
+						{ "value": "subscription", "label": "Subscription" }
+					],
+					"default": "onetime"
+				},
+				{ "type": "number", "id": "sachets", "label": "Sachets", "default": 1 },
+				{ "type": "number", "id": "capsules", "label": "Capsules", "default": 30 },
+				{ "type": "text", "id": "price", "label": "Price", "info": "Numbers only, e.g. 59.99. For subscriptions, picks the plan at this price. The page shows the real variant or plan price once it exists.", "default": "59.99" },
+				{ "type": "text", "id": "variant_id", "label": "Variant ID", "info": "The number after /variants/ in the product's admin URL." }
+			]
+		},
+		{
+			"type": "icon-with-text",
+			"name": "t:sections.main-product.blocks.icon_with_text.name",
+			"settings": [
+				{
+					"type": "header",
+					"content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_1.label",
+					"info": "t:sections.main-product.blocks.icon_with_text.settings.pairing_1.info"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_1",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.image_1.label"
+				},
+				{
+					"type": "inline_richtext",
+					"id": "heading_1",
+					"default": "t:sections.main-product.blocks.icon_with_text.settings.heading_1.default",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.heading_1.label",
+					"info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+				},
+				{
+					"type": "checkbox",
+					"id": "use_app_embeded_1",
+					"label": "Use as App placement 1",
+					"default": false
+				},
+				{
+					"type": "header",
+					"content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_2.label"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_2",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.image_2.label"
+				},
+				{
+					"type": "inline_richtext",
+					"id": "heading_2",
+					"default": "t:sections.main-product.blocks.icon_with_text.settings.heading_2.default",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.heading_2.label",
+					"info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+				},
+				{
+					"type": "checkbox",
+					"id": "use_app_embeded_2",
+					"label": "Use as App placement 2",
+					"default": false
+				},
+				{
+					"type": "header",
+					"content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_3.label"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_3",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.image_3.label"
+				},
+				{
+					"type": "inline_richtext",
+					"id": "heading_3",
+					"default": "t:sections.main-product.blocks.icon_with_text.settings.heading_4.default",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.heading_4.label",
+					"info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+				},
+				{
+					"type": "checkbox",
+					"id": "use_app_embeded_3",
+					"label": "Use as App placement 3",
+					"default": false
+				},
+				{
+					"type": "header",
+					"content": "t:sections.main-product.blocks.icon_with_text.settings.pairing_4.label"
+				},
+				{
+					"type": "image_picker",
+					"id": "image_4",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.image_4.label"
+				},
+				{
+					"type": "inline_richtext",
+					"id": "heading_4",
+					"default": "t:sections.main-product.blocks.icon_with_text.settings.heading_4.default",
+					"label": "t:sections.main-product.blocks.icon_with_text.settings.heading_4.label",
+					"info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+				},
+				{
+					"type": "checkbox",
+					"id": "use_app_embeded_4",
+					"label": "Use as App placement 4",
+					"default": false
+				}
+			]
+		},
+		{ "type": "accordions", "name": "Accordions" },
+		{ "type": "text", "name": "Jump to All FAQs" },
+		{ "type": "chat-note", "name": "Chat note" }
+	],
+	"presets": [{ "name": "Sachet hero" }]
+}
+{% endschema %}
