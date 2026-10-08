@@ -213,7 +213,8 @@
         "cta_label": "Get P24",
         "cta_url": "shopify://products/sachets",
         "source": ""
-      }
+      },
+      "disabled": true
     },
     "s_advisory_pzAb6X": {
       "type": "s-advisory",
