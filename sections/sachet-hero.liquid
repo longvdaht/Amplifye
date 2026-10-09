@@ -360,6 +360,27 @@
 		cursor: not-allowed;
 		opacity: 0.5;
 	}
+
+	/* Under the form, the jar page's spacing (Jenny, 8 Oct): the badges, the
+	   accordions, "Jump to All FAQs" and the chat note sit apart by the same
+	   gap the jar's product hero uses between its blocks (--hero-space-lg:
+	   40px on desktop, 20px from 1024px down). The space above the badges
+	   and the order of the blocks stay as they were (the theme reorders the
+	   jar's blocks on tablets and phones; that is switched off here). */
+	.sachet-hero .sachet-hero__buy {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.sachet-hero .sachet-hero__buy > * {
+		order: 0;
+	}
+
+	.sachet-hero .sachet-hero__buy .product-hero__accordions,
+	.sachet-hero .sachet-hero__buy > .product-hero__faq-button,
+	.sachet-hero .sachet-hero__buy > .product-hero__chat-note {
+		margin-top: var(--hero-space-lg, 40px);
+	}
 </style>
 
 <div class="sachet-hero__head">
