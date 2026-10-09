@@ -300,13 +300,20 @@
 			>
 				{% assign total_subscription_saving = 0 %}
 
+				{% comment %}
+					A plan with no discount has no compare-at price. Without the check,
+					it counted as a negative saving and hid the Subscription discount
+					line for the whole cart (seen with the 2- and 3-sachet plans).
+				{% endcomment %}
 				{% for item in cart.items %}
 					{% if item.selling_plan_allocation %}
 						{% assign price = item.selling_plan_allocation.price %}
-						{% assign compare_at = item.selling_plan_allocation.compare_at_price %}
-						{% assign save = compare_at | minus: price %}
-						{% assign line_save = save | times: item.quantity %}
-						{% assign total_subscription_saving = total_subscription_saving | plus: line_save %}
+						{% assign compare_at = item.selling_plan_allocation.compare_at_price | default: price %}
+						{% if compare_at > price %}
+							{% assign save = compare_at | minus: price %}
+							{% assign line_save = save | times: item.quantity %}
+							{% assign total_subscription_saving = total_subscription_saving | plus: line_save %}
+						{% endif %}
 					{% endif %}
 				{% endfor %}
 
