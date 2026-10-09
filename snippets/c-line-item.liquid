@@ -32,8 +32,33 @@
 		</div>
 
 		{% if item_product.has_only_default_variant == false -%}
+			{%- comment -%}
+				Changing the size here re-adds the item with the same subscription
+				plan. When that plan isn't offered on every size (the sachets: each
+				size has its own plan), the change fails and the item drops out of
+				the cart. For those items the size shows as text instead.
+			{%- endcomment -%}
+			{%- liquid
+				assign can_change_variant = is_variant_selectable
+				if can_change_variant and item.selling_plan_allocation
+					assign plan_id = item.selling_plan_allocation.selling_plan.id
+					for v in item_product.variants
+						assign plan_on_variant = false
+						for alloc in v.selling_plan_allocations
+							if alloc.selling_plan.id == plan_id
+								assign plan_on_variant = true
+								break
+							endif
+						endfor
+						unless plan_on_variant
+							assign can_change_variant = false
+							break
+						endunless
+					endfor
+				endif
+			-%}
 			<div class="c-line-item__variant t-l-2">
-				{%- if is_variant_selectable -%}
+				{%- if can_change_variant -%}
 					{%- render 'c-item-variants',
 						item: item_variant,
 						is_hide_label: true,
@@ -59,6 +84,11 @@
 		{%- endif -%}
 
 		{%- if item.selling_plan_allocation -%}
+			{%- comment -%}
+				Jenny, 8 Oct: a monthly plan reads "Delivered every 30 days", on
+				every subscription (the jar too), as on the product pages. Other
+				intervals keep their own unit: "Delivered every 2 months".
+			{%- endcomment -%}
 			{%- assign value = item.selling_plan_allocation.selling_plan.options[1].value
 				| replace: 'Day(s)', 'Days'
 				| replace: 'Week(s)', 'Weeks'
@@ -66,13 +96,14 @@
 				| replace: '1 Days', '1 Day'
 				| replace: '1 Weeks', '1 Week'
 				| replace: '1-month', '1 Month'
-				| replace: '2-month', '2 Months' -%}
+				| replace: '2-month', '2 Months'
+				| downcase
+				| strip -%}
+			{%- if value == '1 month' or value == '1 months' or value == '1 month(s)' or value == 'month' or value == 'monthly' -%}
+				{%- assign value = '30 days' -%}
+			{%- endif -%}
 			<div class="c-line-item__selling-plan t-b-4">
-				{{- value
-					| prepend: 'Deliver Every '
-					| downcase
-					| capitalize
-				-}}
+				{{- value | prepend: 'Delivered every ' -}}
 			</div>
 		{%- endif -%}
 
