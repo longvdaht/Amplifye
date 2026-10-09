@@ -13,8 +13,10 @@
       "type": "sachet-focus",
       "settings": {
         "sachet_url": "/products/sachets",
-        "benefits_url": "/pages/sachets-benefits",
         "science_url": "/pages/sachets-science",
+        "science_b_url": "/pages/sachets-science-b",
+        "show_benefits": false,
+        "benefits_url": "/pages/sachets-benefits",
         "jar_url": "/products/amplifye-p24",
         "show_account": true,
         "show_footer_menu": false,
@@ -160,68 +162,9 @@
         "regular_price": "",
         "cta_label": "Add to cart",
         "layout_mode": "split",
-        "b_show_sachets": true,
+        "b_show_sachets": false,
         "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
         "gallery_layout": "stacked"
-      }
-    },
-    "s_protein_stats_7cYMii": {
-      "type": "s-protein-stats",
-      "name": "Protein Stats",
-      "settings": {
-        "heading": "P24 amplifyes all proteins.",
-        "subheading": "",
-        "proteins": [
-          "beef",
-          "chicken",
-          "tofu",
-          "atlantic-salmon",
-          "eggs",
-          "pork",
-          "whey-protein",
-          "brown-lentils",
-          "greek-yogurt"
-        ]
-      }
-    },
-    "s_how_p24_works_Ck3Hrn": {
-      "type": "s-how-p24-works",
-      "blocks": {
-        "step_bp7Kr4": {
-          "type": "step",
-          "settings": {
-            "step_title": "Activate the Enzyme",
-            "step_text": "P24 \"turns on\" in the acidic environment of your stomach, so it can begin to efficiently break down protein."
-          }
-        },
-        "step_qqi9Yn": {
-          "type": "step",
-          "settings": {
-            "step_title": "Unlock Proteins",
-            "step_text": "With precision during gastric digestion, P24 slices protein chains into smaller pieces, making them usable for the body."
-          }
-        },
-        "step_eidyNk": {
-          "type": "step",
-          "settings": {
-            "step_title": "Increase Absorption",
-            "step_text": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition."
-          }
-        }
-      },
-      "block_order": [
-        "step_bp7Kr4",
-        "step_qqi9Yn",
-        "step_eidyNk"
-      ],
-      "name": "How P24 Works",
-      "settings": {
-        "image": "shopify://shop_images/amplifye-sachet-2-square.jpg",
-        "image_position": "left",
-        "heading": "How P24 Works",
-        "cta_label": "Learn more about this scientific breakthrough.",
-        "video": "shopify://files/videos/f37e1bbfa4ef446fa76fcfd70509646c_1f9a921f-bb6f-4097-a4c8-c32450055acd.mp4",
-        "is_autoplay": false
       }
     },
     "s_brands_3axFpA": {
@@ -307,6 +250,46 @@
         "padding_right_mobile": 0,
         "padding_bottom_mobile": 25,
         "padding_left_mobile": 0
+      }
+    },
+    "s_how_p24_works_Ck3Hrn": {
+      "type": "s-how-p24-works",
+      "blocks": {
+        "step_bp7Kr4": {
+          "type": "step",
+          "settings": {
+            "step_title": "Activate the Enzyme",
+            "step_text": "P24 \"turns on\" in the acidic environment of your stomach, so it can begin to efficiently break down protein."
+          }
+        },
+        "step_qqi9Yn": {
+          "type": "step",
+          "settings": {
+            "step_title": "Unlock Proteins",
+            "step_text": "With precision during gastric digestion, P24 slices protein chains into smaller pieces, making them usable for the body."
+          }
+        },
+        "step_eidyNk": {
+          "type": "step",
+          "settings": {
+            "step_title": "Increase Absorption",
+            "step_text": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition."
+          }
+        }
+      },
+      "block_order": [
+        "step_bp7Kr4",
+        "step_qqi9Yn",
+        "step_eidyNk"
+      ],
+      "name": "How P24 Works",
+      "settings": {
+        "image": "shopify://shop_images/amplifye-sachet-2-square.jpg",
+        "image_position": "left",
+        "heading": "How P24 Works",
+        "cta_label": "Learn more about this scientific breakthrough.",
+        "video": "shopify://files/videos/f37e1bbfa4ef446fa76fcfd70509646c_1f9a921f-bb6f-4097-a4c8-c32450055acd.mp4",
+        "is_autoplay": false
       }
     },
     "feature_cards_DW37g4": {
@@ -401,6 +384,25 @@
         "background_image_mobile": "shopify://shop_images/benefit-bg-mobile.png",
         "product_image_desktop": "shopify://shop_images/benefit-medicine.png",
         "product_image_mobile": "shopify://shop_images/benefit-medicine-mobile.png"
+      }
+    },
+    "s_protein_stats_7cYMii": {
+      "type": "s-protein-stats",
+      "name": "Protein Stats",
+      "settings": {
+        "heading": "P24 amplifyes all proteins.",
+        "subheading": "",
+        "proteins": [
+          "beef",
+          "chicken",
+          "tofu",
+          "atlantic-salmon",
+          "eggs",
+          "pork",
+          "whey-protein",
+          "brown-lentils",
+          "greek-yogurt"
+        ]
       }
     },
     "product-reviews": {
