@@ -484,13 +484,16 @@ const cCart = {
 					.forEach((el) => el.setAttribute("data-item-count", itemCount));
 
 				// update cart discount subscription
+				// A plan with no discount has no compare-at price, so it saves
+				// nothing. Counting it as a negative saving hid the line for the
+				// whole cart (seen with the 2- and 3-sachet plans).
 				let totalSubscriptionDiscount = 0;
 
 				data.items.forEach(item => {
 					if (item.selling_plan_allocation) {
 						const price = item.selling_plan_allocation.price || 0;
-						const compareAt = item.selling_plan_allocation.compare_at_price || 0;
-						const save = (compareAt - price) * item.quantity;
+						const compareAt = item.selling_plan_allocation.compare_at_price || price;
+						const save = Math.max(0, compareAt - price) * item.quantity;
 						totalSubscriptionDiscount += save;
 					}
 				});
@@ -503,6 +506,7 @@ const cCart = {
 
 					document.querySelectorAll(".js-cart-discount-subscription").forEach((el) => {
 						el.innerText = `$${totalSubscriptionDiscountPriceFormatted}`;
+						el.closest(".c-cart__summary__discount")?.classList.remove("hidden");
 					});
 
 					const subtotalSubscription = (totalSubscriptionDiscount + data.original_total_price) / 100;
