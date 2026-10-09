@@ -7,6 +7,10 @@
 	"THE SCIENCE" sits alone in the center and opens the sachet Science page
 	for the visitor's price layout: A or B. The logo opens the sachet page.
 	BUY P24 (the jar) is hidden. Cart and account stay.
+	On tablets and phones (below 1025px) the theme moves its menu into the
+	menu panel; here THE SCIENCE stays in the top bar too (Jenny, 8 Oct):
+	centered where there's room, otherwise between the logo and the cart
+	count, its type stepped down if it has to be to fit.
 
 	The two Science pages are identical (same template). Each one sends its
 	links back to the sachet page with its own layout: links on Science A
@@ -89,6 +93,32 @@
 
 	a[data-funnel-off] {
 		cursor: default;
+	}
+
+	/* Tablets and phones (Jenny, 8 Oct): below 1025px the theme hides the
+	   menu in the top bar and keeps it in the menu panel, so THE SCIENCE
+	   disappeared from the bar. Here it stays in the bar; the script below
+	   centers it and fits it between the logo and the cart count. The
+	   actions box is empty at these widths on these pages (the theme hides
+	   Cart and the account icon below 1025px, and BUY P24 is hidden), so it
+	   is taken out rather than leave an empty gap. */
+	@media screen and (max-width: 1024px) {
+		.g-header__bar > .g-header__nav {
+			display: block !important;
+			min-width: 0;
+		}
+
+		.g-header__bar > :not(.g-header__nav) {
+			flex-shrink: 0;
+		}
+
+		.g-header__bar > .g-header__actions {
+			display: none !important;
+		}
+
+		html.is-mobile-menu-active .g-header__bar > .g-header__nav {
+			visibility: hidden;
+		}
 	}
 
 	{%- unless s.show_footer_menu %}
@@ -356,34 +386,88 @@
 		document.addEventListener('auxclick', guard, true);
 
 		/* "THE SCIENCE" centered on the page, not just in the space between the
-		   logo and the cart. Measured from the links that show, so it holds
-		   whatever the menu's markup is. */
+		   logo and the cart, but never closer to either of them than the bar's
+		   own gap. Where it doesn't fit between them (small phones), its type
+		   steps down until it does (10px at the least, then it may wrap).
+		   Measured from the links that show, so it holds whatever the menu's
+		   markup is. */
 		var nav = null;
+
+		function linkSpan(links) {
+			var span = { left: Infinity, right: -Infinity, first: null };
+			links.forEach(function (a) {
+				var r = a.getBoundingClientRect();
+				if (!r.width || !r.height) return;
+				if (!span.first) span.first = a;
+				if (r.left < span.left) span.left = r.left;
+				if (r.right > span.right) span.right = r.right;
+			});
+			return span.first ? span : null;
+		}
 
 		function centerNav() {
 			nav = nav || document.querySelector('.g-header__nav');
 			if (!nav) return;
 
+			var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
 			nav.style.left = '';
+			links.forEach(function (a) {
+				if (!a.hasAttribute('data-funnel-fit')) return;
+				a.removeAttribute('data-funnel-fit');
+				a.style.fontSize = '';
+				a.style.whiteSpace = '';
+			});
+
 			var cs = window.getComputedStyle(nav);
 			if (cs.display === 'none' || cs.visibility === 'hidden') return;
 			if (cs.position !== 'static' && cs.position !== 'relative') return;
 
-			var bar = nav.closest('.g-header') || document.documentElement;
-			var minLeft = Infinity;
-			var maxRight = -Infinity;
+			var span = linkSpan(links);
+			if (!span) return;
 
-			nav.querySelectorAll('a').forEach(function (a) {
-				var r = a.getBoundingClientRect();
-				if (!r.width || !r.height) return;
-				if (r.left < minLeft) minLeft = r.left;
-				if (r.right > maxRight) maxRight = r.right;
-			});
+			/* The room between what sits before the menu (the logo) and what
+			   sits after it (cart, account, the cart count, the menu button). */
+			var bar = nav.parentElement;
+			var bs = window.getComputedStyle(bar);
+			var gap = parseFloat(bs.columnGap) || 0;
+			var bb = bar.getBoundingClientRect();
+			var minLeft = bb.left + (parseFloat(bs.paddingLeft) || 0);
+			var maxRight = bb.right - (parseFloat(bs.paddingRight) || 0);
+			var el, r;
+			for (el = nav.previousElementSibling; el; el = el.previousElementSibling) {
+				r = el.getBoundingClientRect();
+				if (r.width && r.height) minLeft = Math.max(minLeft, r.right + gap);
+			}
+			for (el = nav.nextElementSibling; el; el = el.nextElementSibling) {
+				r = el.getBoundingClientRect();
+				if (r.width && r.height) maxRight -= r.width + gap;
+			}
+			var room = maxRight - minLeft;
 
-			if (!isFinite(minLeft) || !isFinite(maxRight)) return;
+			for (var tries = 0; span.right - span.left > room && tries < 10; tries++) {
+				var size = parseFloat(window.getComputedStyle(span.first).fontSize) || 16;
+				if (size <= 10) {
+					links.forEach(function (a) {
+						a.setAttribute('data-funnel-fit', '');
+						a.style.whiteSpace = 'normal';
+					});
+					span = linkSpan(links) || span;
+					break;
+				}
+				var next = Math.floor(size * room / (span.right - span.left) * 2) / 2;
+				next = Math.max(10, Math.min(next, size - 0.5));
+				links.forEach(function (a) {
+					a.setAttribute('data-funnel-fit', '');
+					a.style.fontSize = next + 'px';
+				});
+				span = linkSpan(links) || span;
+			}
 
-			var b = bar.getBoundingClientRect();
-			var shift = Math.round((b.left + b.width / 2) - (minLeft + maxRight) / 2);
+			var page = (nav.closest('.g-header') || document.documentElement).getBoundingClientRect();
+			var shift = (page.left + page.width / 2) - (span.left + span.right) / 2;
+			shift = Math.min(shift, maxRight - span.right);
+			shift = Math.max(shift, minLeft - span.left);
+			shift = Math.round(shift);
 			if (Math.abs(shift) < 2) return;
 
 			if (cs.position === 'static') nav.style.position = 'relative';
