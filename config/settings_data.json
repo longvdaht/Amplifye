@@ -76,7 +76,7 @@
           "is_enable_discount_code": false,
           "discount_success_message": "Discount applied!",
           "discount_error_message": "No luck! Try another code?",
-          "is_enable_upsell": true,
+          "is_enable_upsell": false,
           "upsell_navigation_type": "arrow",
           "is_enable_free_shipping": false,
           "free_shipping_text": "away from free shipping",
