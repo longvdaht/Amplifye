@@ -36,6 +36,22 @@
 			"default": "Featured In"
 		},
 		{
+			"type": "checkbox",
+			"id": "show_quote",
+			"label": "Show quote at heading",
+			"default": false
+		},
+		{
+			"type": "image_picker",
+			"id": "quote_open",
+			"label": "Quote open icon"
+		},
+		{
+			"type": "image_picker",
+			"id": "quote_close",
+			"label": "Quote close icon"
+		},
+		{
 			"type": "header",
 			"content": "Padding"
 		},
@@ -154,14 +170,27 @@
 			padding: {{ padding_top_mobile }}px {{ padding_right_mobile }}px {{ padding_bottom_mobile }}px {{ padding_left_mobile }}px
 		}
 	}
+{% endstyle %}
+{%- if section.settings.show_quote -%}
+	{% style %}
+		#shopify-section-{{ section.id }} .s-brands__content .s-brands__heading:before {
+			background-image: url('{{ section.settings.quote_open | image_url: width: 24 }}');
+		}
+		#shopify-section-{{ section.id }} .s-brands__content .s-brands__heading:after {
+			background-image: url('{{ section.settings.quote_close | image_url: width: 24 }}');
+		}
 	{% endstyle %}
+{%- endif -%}
+
 {%- liquid
 	assign heading = section.settings.heading
 -%}
 {%- if section.blocks.size > 0 -%}
 	<div class="s-brands__content f-h f-a-c">
 		{%- if heading != blank -%}
-			<h2 class="s-brands__heading t-l-5">{{ heading }}</h2>
+			<div class="heading">
+				<h2 class="s-brands__heading t-l-2">{{ heading }}</h2>
+			</div>
 		{%- endif -%}
 
 		<div class="s-brands__marquee">
@@ -202,7 +231,7 @@
 
 			{%- render 'c-slider',
 				slider_html: slider_html,
-				custom_slides_size: '--slide-size: 20%; --slide-gap: 50px;',
+				custom_slides_size: '--slide-size: 30%; --slide-gap: 50px;',
 				slider_options: "{'loop': true, 'watchDrag': false}",
 				enable_autoscroll: true,
 				enable_wheel: true,

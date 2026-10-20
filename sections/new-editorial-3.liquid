@@ -24,6 +24,12 @@
 			"content": "Content"
 		},
 		{
+			"type": "checkbox",
+			"id": "custom_style",
+			"label": "Use custom style",
+			"default": false
+		},
+		{
 			"type": "color",
 			"id": "color",
 			"label": "Content Colour"
@@ -66,6 +72,12 @@
 			"id": "paragraph",
 			"label": "Paragraph"
 		},
+		{
+			"type": "checkbox",
+			"id": "show_paragraph_media",
+			"label": "Show paragraph after media",
+			"default": false
+		},
         {
             "type": "image_picker",
             "id": "image",
@@ -76,6 +88,12 @@
             "id": "video",
             "label": "video"
         },
+		{
+			"type": "checkbox",
+			"id": "is_autoplay",
+			"label": "Autoplay video",
+			"default": true
+		},
 		{
 			"type": "checkbox",
 			"id": "activate_orange_btn",
@@ -126,14 +144,17 @@
 {%- render 'new-editorial-3',
 	subheading: section.settings.subheading,
 	color: section.settings.color,
+	custom_style: section.settings.custom_style,
 	content_max_width: section.settings.content_max_width,
 	alignment: section.settings.alignment,
 	vertical_align_c: section.settings.vertical_align_c,
 	heading: section.settings.heading,
 	is_smaller_heading: section.settings.is_smaller_heading,
 	paragraph: section.settings.paragraph,
+	show_paragraph_media: section.settings.show_paragraph_media,
     image: section.settings.image,
     video: section.settings.video,
+	is_autoplay: section.settings.is_autoplay,
 	cta_label: section.settings.cta_label,
 	cta_url: section.settings.cta_url,
 	use_btn_outline: section.settings.use_btn_outline,

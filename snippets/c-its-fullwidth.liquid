@@ -49,9 +49,16 @@
 		{%- if note != blank -%}
 			<div class="c-its__note --t-h-4">{{ note }}</div>
 		{%- endif -%}
+		{%- liquid
+			if button_style == 'secondary'
+				assign btn_class = ' cr-orange'
+			else
+				assign btn_class = ' hover-white'
+			endif
+		-%}
 		{%- if product_url != blank and cta_label != blank -%}
 			<div class="product-hero__form simple-product-form">
-				{% render 'simple-product-form', product: product_url, item: product_url, is_update_variant_url: true, cta_label: cta_label, button_class: ' cr-orange', code: code  %}
+				{% render 'simple-product-form', product: product_url, item: product_url, is_update_variant_url: true, cta_label: cta_label, button_class: btn_class, code: code  %}
 			</div>
 		{%- else -%}
 			{%- if cta_label != blank and cta_url != blank -%}
