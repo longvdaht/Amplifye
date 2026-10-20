@@ -1,0 +1,154 @@
+.s-how-p24-works img {
+  opacity: 1;
+}
+
+.s-how-p24-works {
+  padding: 40px 20px;
+  max-width: 1332px;
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  width: 100%;
+}
+
+.s-how-p24-works__inner {
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0.66px 0.66px 6px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.s-how-p24-works__content {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.s-how-p24-works__heading {
+  font: var(--t-h-2);
+}
+
+.s-how-p24-works__step {
+  display: flex;
+  gap: 15px;
+}
+
+.s-how-p24-works__step-num {
+  padding: 0;
+  border-radius: 50px;
+  background-color: var(--cr-blue);
+  font: var(--t-l-6);
+  font-size: 18px;
+  color: var(--cr-black);
+  width: 30px;
+  height: 30px;
+  min-width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cr-black);
+}
+
+.s-how-p24-works__step-title {
+  font: var(--t-l-6);
+  margin: 0 0 10px;
+}
+
+.s-how-p24-works__step-text {
+  font: var(--t-b-1);
+  font-weight: 400;
+}
+
+.s-how-p24-works__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.s-how-p24-works__cta-box-inner {
+  border: 1px solid var(--cr-black);
+  border-style: dashed;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 20px;
+}
+
+.s-how-p24-works__cta-label {
+  font: var(--t-b-1);
+  font-weight: 400;
+}
+
+.s-how-p24-works .c-video {
+  aspect-ratio: var(--aspect-ratio);
+  border-radius: 10px;
+}
+
+.s-how-p24-works .c-video__control {
+  bottom: auto;
+  right: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: 992px) {
+  .s-how-p24-works__inner {
+    flex-direction: row;
+    gap: 60px;
+  }
+
+  .video-wrapper {
+    max-width: 188px;
+  }
+
+  .s-how-p24-works--image-right .s-how-p24-works__inner {
+    flex-direction: row-reverse;
+  }
+
+  .s-how-p24-works {
+    padding: 80px 30px;
+    max-width: 1352px;
+  }
+
+  .s-how-p24-works__media {
+    width: calc(50% - 36px);
+  }
+
+  .s-how-p24-works__content {
+    width: calc(50% + 36px - 60px);
+    max-width: 513px;
+  }
+  
+  .s-how-p24-works__step-num {
+    font: var(--t-l-2);
+  }
+
+  .s-how-p24-works__step-title {
+    font: var(--t-h-4);
+  }
+
+  .s-how-p24-works__step-text {
+    font: var(--t-b-2);
+  }
+
+  .s-how-p24-works__cta-box-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .s-how-p24-works .c-video {
+    max-width: 188px;
+    aspect-ratio: 188/108;
+    cursor: pointer;
+  }
+
+  .s-how-p24-works__cta-label {
+    font: var(--t-b-2);
+  }
+}

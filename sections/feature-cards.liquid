@@ -1,0 +1,145 @@
+{{ 'feature-card.css' | asset_url | stylesheet_tag }}
+
+<section class="feature-cards" id="feature-cards-{{ section.id }}">
+  <div class="feature-cards__container">
+    {% for block in section.blocks %}
+      {% if block.type == 'card' %}
+        <div class="feature-cards__card" {{ block.shopify_attributes }}>
+          <div class="feature-cards__card-inner">
+
+            <div class="feature-cards__text-top">
+              {% if block.settings.title != blank %}
+                <h3 class="feature-cards__title">{{ block.settings.title }}</h3>
+              {% endif %}
+              {% if block.settings.subtitle != blank %}
+                <p class="feature-cards__subtitle">{{ block.settings.subtitle }}</p>
+              {% endif %}
+            </div>
+
+            {% if block.settings.image_desktop != blank or block.settings.image_mobile != blank %}
+              <div class="feature-cards__image-wrapper">
+                {% comment %} Desktop image {% endcomment %}
+                {% if block.settings.image_desktop != blank %}
+                  <div class="feature-cards__image feature-cards__image--desktop">
+                    {{ block.settings.image_desktop | image_url: width: 800 | image_tag:
+                      loading: 'lazy',
+                      widths: '400, 600, 800',
+                      sizes: '(max-width: 749px) 100vw, 33vw',
+                      alt: block.settings.image_desktop.alt | escape
+                    }}
+                  </div>
+                {% endif %}
+
+                {% comment %} Mobile image {% endcomment %}
+                {% if block.settings.image_mobile != blank %}
+                  <div class="feature-cards__image feature-cards__image--mobile">
+                    {{ block.settings.image_mobile | image_url: width: 600 | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 400, 600',
+                      sizes: '100vw',
+                      alt: block.settings.image_mobile.alt | escape
+                    }}
+                  </div>
+                {% elsif block.settings.image_desktop != blank %}
+                  <div class="feature-cards__image feature-cards__image--mobile">
+                    {{ block.settings.image_desktop | image_url: width: 600 | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 400, 600',
+                      sizes: '100vw',
+                      alt: block.settings.image_desktop.alt | escape
+                    }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if block.settings.description != blank %}
+              <div class="feature-cards__description">
+                {{ block.settings.description }}
+              </div>
+            {% endif %}
+
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature Cards",
+  "tag": "section",
+  "class": "section-feature-cards",
+  "max_blocks": 6,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Absorption unlock"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Get more nutrients from the meals you eat every day."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Image (Desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Image (Mobile)",
+          "info": "Nếu để trống sẽ dùng image desktop làm fallback"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Put down the protein soda. P24 helps your digestive system unlock nutrients from the foods you already love to eat.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature Cards",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "Absorption unlock",
+            "subtitle": "Get more nutrients from the meals you eat every day.",
+            "description": "<p>Put down the protein soda. P24 helps your digestive system unlock nutrients from the foods you already love to eat.</p>"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "For body & mind",
+            "subtitle": "Access the amino acids you need to feel your best.",
+            "description": "<p>P24 breaks down proteins with precision, increasing the concentration of key amino acids that are essential for health.</p>"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "Protein's plus one",
+            "subtitle": "Take one P24 capsule with any protein-rich meal.",
+            "description": "<p>This protein enzyme multiplies the amount of bioavailable protein — whether it's from a steak, tofu, or a protein shake.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

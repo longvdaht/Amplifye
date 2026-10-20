@@ -9,6 +9,12 @@
 			"content": "Footer Header"
 		},
 		{
+			"type": "checkbox",
+			"id": "show_header_footer",
+			"label": "Show header of footer",
+			"default": false
+		},
+		{
 			"type": "text",
 			"id": "header_title",
 			"label": "Header Title",
@@ -104,21 +110,23 @@
     endif
 -%}
 
-<div class="g-footer__header p-x-max">
-	{% if template.suffix == 'landing' %}
-    	{%- render 'landing-c-banner',
-    		heading: header_title,
-    		cta_label: cta_label,
-            product: product
-    	-%}
-    {% else %}
-    	{%- render 'c-banner',
-    		heading: header_title,
-    		cta_label: cta_label,
-    		cta_url: cta_url,
-    	-%}
-    {% endif %}
-</div>
+{% if section.settings.show_header_footer %}
+	<div class="g-footer__header p-x-max">
+		{% if template.suffix == 'landing' %}
+			{%- render 'landing-c-banner',
+				heading: header_title,
+				cta_label: cta_label,
+				product: product
+			-%}
+		{% else %}
+			{%- render 'c-banner',
+				heading: header_title,
+				cta_label: cta_label,
+				cta_url: cta_url,
+			-%}
+		{% endif %}
+	</div>
+{% endif %}
 
 <div class="g-footer__content p-x-max f-h f-w">
 	<div class="g-footer__email-capture wysiwyg">
