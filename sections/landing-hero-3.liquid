@@ -1,0 +1,603 @@
+{% schema %}
+  {
+    "name": "Landing Hero (3)",
+    "tag": "section",
+    "class": "frontpage-hero f-v f-j-c js-frontpage-hero relative",
+    "settings": [
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+        },
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "content",
+        "label": "Content"
+      },
+      {
+        "type": "richtext",
+        "id": "content_richtext",
+        "label": "Content richtext type"
+      },
+      {
+        "type": "text",
+        "id": "cta_label",
+        "label": "CTA Label"
+      },
+      {
+        "type": "url",
+        "id": "cta_url",
+        "label": "CTA URL"
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Button style",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary hover white"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary hover black"
+          },
+          {
+            "value": "outline",
+            "label": "Outline"
+          }
+        ],
+        "default": "primary"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_mobile",
+        "label": "Background Image (mobile)"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type": "checkbox",
+        "id":"custom_style",
+        "label": "Use custom style",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Content Alignment"
+      },
+      {
+        "type": "radio",
+        "id": "content_alignment",
+        "label": "Content Alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Mobile"
+      },
+      {
+        "type": "number",
+        "id": "heading_font_size",
+        "label": "Heading's font size"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_text_below",
+        "label": "Mobile: text below image (not overlay)",
+        "default": false
+        },
+      {
+        "type": "select",
+        "id": "mobile_align",
+        "label": "Mobile Align",
+        "options": [
+          {
+            "label": "Top Left",
+            "value": "top_left"
+          },
+          {
+            "label": "Top Center",
+            "value": "top_center"
+          },
+          {
+            "label": "Top Right",
+            "value": "top_right"
+          },
+          {
+            "label": "Center Left",
+            "value": "center_left"
+          },
+          {
+            "label": "Center Center",
+            "value": "center_center"
+          },
+          {
+            "label": "Center Right",
+            "value": "center_right"
+          },
+          {
+            "label": "Bottom Left",
+            "value": "bottom_left"
+          },
+          {
+            "label": "Bottom Center",
+            "value": "bottom_center"
+          },
+          {
+            "label": "Bottom Right",
+            "value": "bottom_right"
+          },
+          {
+            "label": "Other",
+            "value": "other"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Sale"
+      },
+      {
+        "type": "text",
+        "id": "code",
+        "label": "Code",
+        "default": "MBG15"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Landing Hero (3)"
+      }
+    ]
+  }
+  {% endschema %}
+
+  {% assign shopify_section_id = '#shopify-section-' | append: section.id %}
+  
+  {% style %}
+      {{ shopify_section_id }} .landing-hero__text {
+          color: {{ section.settings.text_color  }};
+      }
+  
+    {% if section.settings.mobile_text_below %}
+      @media (max-width: 767px) {
+        {{ shopify_section_id }}.frontpage-hero {
+          padding: 0;
+        }
+  
+        {{ shopify_section_id }} .frontpage-hero__text.landing-hero__text {
+          background: #EEE5D6;
+        }
+  
+        {{ shopify_section_id }} .frontpage-hero__container {
+          flex-direction: column;
+          min-height: auto;
+        }
+  
+        {{ shopify_section_id }} .frontpage-hero__image.p-fill {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 1 / 1.2;
+        }
+  
+        {{ shopify_section_id }} .frontpage-hero__image .object-fit {
+          position: absolute;
+          inset: 0;
+          transform: none;
+        }
+  
+        {{ shopify_section_id }} .frontpage-hero__image .object-fit img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+  
+        {{ shopify_section_id }} .landing-hero__text {
+          position: relative;
+          color: {{ section.settings.text_color_mobile }};
+          background: {{ section.settings.bg_color_mobile }};
+          padding: 32px 22px 40px;
+          align-content: flex-start;
+          height: auto;
+        }
+  
+        {{ shopify_section_id }} .landing-hero__text-heading,
+        {{ shopify_section_id }} .landing-hero__text-content {
+          text-align: center;
+        }
+      }
+    {% endif %}
+    
+      .product-hero__form.simple-product-form .c-product-form__cta {
+        width: auto;
+      }
+  
+    .wysiwyg-large .frontpage-hero__heading.t-h-1 {
+      margin-bottom: 40px;
+    }
+  
+    .wysiwyg-large .frontpage-hero__top-subheading {
+      margin-bottom: 40px;
+      font-family: "GT Pressura Mono";
+      font-weight: 400;
+      font-size: 30px;
+      letter-spacing: -0.01px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  
+      {{ shopify_section_id }} .frontpage-hero__subheading {
+          font-family: GT Pressura Mono;
+          font-weight: 400;
+          font-size: 30px;
+          line-height: 1.15;
+          letter-spacing: -1px;
+          text-align: center;
+          text-transform: uppercase;
+      }
+  
+      {{ shopify_section_id }} .landing-hero__text-heading {
+          margin-bottom: 0;
+      }
+  
+      {{ shopify_section_id }} .landing-hero__text-content {
+          margin-top: 40px;
+      }
+  
+    {% if section.settings.content_alignment == 'center' %}
+      {{ shopify_section_id }}.frontpage-hero {
+        align-items: center;
+      }
+    {% elsif section.settings.content_alignment == 'right' %}
+      {{ shopify_section_id }}.frontpage-hero {
+        align-items: flex-end;
+      }
+    {% endif %}
+  
+    {% if section.settings.custom_style %}
+      {{ shopify_section_id }}.frontpage-hero .frontpage-hero__image img {
+        object-position: center top;
+      }
+    {% endif %}
+  
+      @media (min-width: 601px) {
+      /* {{ shopify_section_id }} .object-fit>*:not(picture) {
+        width: 100% !important;
+        height: auto !important;
+        left: 0;
+        transform: translateY(-56%);
+      } */
+  
+      /* .template-page-digestive-comfort {{ shopify_section_id }} .object-fit>*:not(picture) {
+        height: 100% !important;
+        transform: translateY(-50%);
+      } */
+    }
+  
+    {{ shopify_section_id }} .object-fit .mobile-image {
+      display: none;
+    }
+  
+    {{ shopify_section_id }} .frontpage-intro__cta.outline {
+      --btn-bg-color: transparent;
+    }
+  
+      @media (max-width: 767px) {
+      {{ shopify_section_id }} {
+        padding: 35px 22px;
+        display: block;
+      }
+  
+      {{ shopify_section_id }} .frontpage-hero__container {
+        display: flex;
+        min-height: calc(var(--s-vp-height) - var(--s-header) - var(--s-announcement) - 70px);
+      }
+  
+      {{ shopify_section_id }} .object-fit .desktop-image {
+        display: none;
+      }
+  
+      {{ shopify_section_id }} .object-fit .mobile-image {
+        display: block;
+      }
+  
+      .frontpage-hero__container[class*="mobile-align-top_"] {
+        align-items: flex-start;
+      }
+  
+      .frontpage-hero__container[class*="mobile-align-center_"] {
+        align-items: center;
+      }
+  
+      .frontpage-hero__container[class*="mobile-align-bottom_"] {
+        align-items: flex-end;
+      }
+  
+      .frontpage-hero__container.mobile-align-other {
+        align-items: stretch;
+      }
+  
+      .frontpage-hero__container[class$="_left"] .landing-hero__text {
+        text-align: left;
+      }
+  
+      .frontpage-hero__container[class$="_center"] .landing-hero__text {
+        text-align: center;
+      }
+  
+      .frontpage-hero__container[class$="_right"] .landing-hero__text {
+        text-align: right;
+      }
+  
+          {{ shopify_section_id }}.mobile-align-other .landing-hero__text {
+              height: calc(var(--s-vp-height) - var(--s-header) - var(--s-announcement) - 70px);
+      }
+  
+          {{ shopify_section_id }} .landing-hero__text {
+              display: flex;
+              flex-wrap: wrap;
+              align-content: space-between;
+          }
+  
+      {{ shopify_section_id }} .mobile-align-center_center .landing-hero__text {
+        align-content: center;
+      }
+  
+          {{ shopify_section_id }} .landing-hero__text > * {
+              width: 100%;
+          }
+  
+      {{ shopify_section_id }} .frontpage-hero__heading {
+        font-family: GT Pressura Mono;
+        font-size: var(--mb-font-size);
+        line-height: 1.15;
+        letter-spacing: 0;
+        margin-bottom: 15px;
+      }
+  
+          {{ shopify_section_id }} .frontpage-hero__subheading {
+              font-size: 22px;
+          }
+  
+          {{ shopify_section_id }} .product-hero__form.simple-product-form .c-product-form__cta {
+              margin-top: 27px;
+        min-width: 200px;
+          }
+  
+      {{ shopify_section_id }} .landing-hero__text-content {
+        margin-top: 0;
+      }
+  
+      {{ shopify_section_id }} .frontpage-intro__cta {
+        min-width: 270px;
+        --btn-bg-color: var(--cr-orange);
+          --btn-accent: var(--cr-black);
+      }
+      }
+  
+    @media (max-width: 480px) {
+          {{ shopify_section_id }} .frontpage-hero__container.mobile-align-bottom_center {
+              margin-top: 100px;
+          }
+      }
+      @media (min-width: 768px) {
+      .relative .p-fill {
+        position: relative;
+      }
+
+      .relative .object-fit {
+        position: relative;
+        inset: 0;
+        transform: none;
+      }
+
+      .relative .object-fit>*:not(picture) {
+        position: relative;
+        inset: 0;
+        transform: none;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .relative .frontpage-hero__text {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .relative .frontpage-hero__text .content-wrapper {
+        max-width: 650px;
+      }
+
+      .relative .frontpage-hero__text.desktop-right {
+        justify-content: flex-end;
+      }
+
+      .relative .frontpage-hero__text.desktop-center {
+        justify-content: center;
+      }
+
+      .relative .frontpage-hero__text.desktop-left {
+        justify-content: flex-start;
+      }
+
+      .relative .frontpage-hero__container {
+        width: 100%;
+      }
+    }
+  {% endstyle %}
+  
+  {%- liquid
+    assign heading = section.settings.heading
+    assign subheading = section.settings.subheading
+    assign content = section.settings.content
+    assign content_richtext = section.settings.content_richtext
+      assign cta_label = section.settings.cta_label
+    assign button_style = section.settings.button_style
+    assign cta_url = section.settings.cta_url
+    assign background_image = section.settings.background_image
+    assign background_image_mobile = section.settings.background_image_mobile
+    assign code = section.settings.code
+  
+      if section.settings.product != blank
+        assign product = section.settings.product
+      else
+        assign product = all_products['amplifye-p24']
+      endif
+  -%}
+  <div class="frontpage-hero__container mobile-align-{{ section.settings.mobile_align }} {% if section.settings.custom_style %}custom-styles{% endif %}">
+    {%- if background_image != null -%}
+      <div class="frontpage-hero__image p-fill">
+        <span class="object-fit">
+          {% comment %} {%- render 'c-img-srcset',
+            image: background_image,
+            responsive_image: background_image_mobile,
+            alt: background_image.alt
+          -%} {% endcomment %}
+          <img
+            src="{{ background_image | img_url: 'master' }}"
+            srcset="
+              {{ background_image | img_url: '375x' }} 375w,
+              {{ background_image | img_url: '600x' }} 600w,
+              {{ background_image | img_url: '900x' }} 900w,
+              {{ background_image | img_url: '1200x' }} 1200w,
+              {{ background_image | img_url: '1350x' }} 1350w,
+              {{ background_image | img_url: '1600x' }} 1600w,
+              {{ background_image | img_url: '1920x' }} 1920w,
+            "
+            sizes="(max-width: 1351px) 675px, 100vw"
+            alt="{{ background_image.alt | default: 'Banner image alt' }}"
+            loading="eager"
+            fetchpriority="high"
+            class="desktop-image"
+            width="{{ background_image.width }}"
+            height="{{ background_image.height }}"
+          />
+          <img
+            src="{{ background_image_mobile | img_url: '750' }}"
+            srcset="
+              {{ background_image_mobile | img_url: '375x' }} 375w,
+              {{ background_image_mobile | img_url: '600x' }} 600w,
+              {{ background_image_mobile | img_url: '900x' }} 900w,
+              {{ background_image_mobile | img_url: '1200x' }} 1200w,
+              {{ background_image_mobile | img_url: '1600x' }} 1600w
+            "
+            sizes="(max-width: 768px) 100vw, 100vw"
+            alt="{{ background_image_mobile.alt | default: 'Banner image alt' }}"
+            loading="eager"
+            fetchpriority="high"
+            class="mobile-image"
+            width="{{ background_image_mobile.width }}"
+            height="{{ background_image_mobile.height }}"
+          />
+        </span>
+      </div>
+    {%- endif %}
+  
+    <div class="frontpage-hero__text landing-hero__text wysiwyg-large desktop-{{ section.settings.content_alignment }}">
+      <div class="content-wrapper">
+        {%- if heading != blank or subheading != blank -%}
+          <div class="landing-hero__text-heading">
+            {%- if heading != blank -%}
+              {% assign heading_font_size = section.settings.heading_font_size | default : 40 %}
+            <h1 class="frontpage-hero__heading t-h-1" style="--mb-font-size: {{ heading_font_size }}px;">
+                {{ heading | newline_to_br }}
+              </h1>
+            {%- endif -%}
+            {%- if subheading != blank -%}
+              <p class="frontpage-hero__subheading">
+                {{ subheading }}
+              </p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+    
+        {% comment %}
+        {%- if cta_label != blank and cta_url != blank -%}
+          <a
+            class="btn cr-orange hover-white"
+            href="{{- cta_url -}}"
+          >
+            <span>
+              {{- cta_label -}}
+            </span>
+          </a>
+        {%- endif -%}
+        {% endcomment %}
+        {%- if cta_label != blank or content != blank -%}
+          <div class="landing-hero__text-content">
+            {%- if content != blank -%}
+              <p class="frontpage-hero__content t-b-1">
+                {{ content }}
+              </p>
+            {%- elsif content_richtext != blank -%}
+              <div class="frontpage-hero__content t-b-1">{{ content_richtext }}</div>
+            {%- endif -%}
+            {%- liquid
+              if button_style == 'secondary'
+                assign btn_class = ' cr-orange'
+              else
+                assign btn_class = ' hover-white'
+              endif
+            -%}
+            {%- if cta_label != blank -%}
+              {%- if cta_url != blank  -%}
+                <a
+                  class="frontpage-intro__cta btn hover-white {{ button_style }}"
+                  href="{{- cta_url -}}"
+                >
+                  <span>
+                    {{- cta_label -}}
+                  </span>
+                </a>
+              {%- else -%}
+                <div class="product-hero__form simple-product-form">
+                  {% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, button_class: btn_class, code: code %}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  

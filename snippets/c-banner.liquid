@@ -14,12 +14,20 @@
 	assign hover_color = color_scheme.settings.hover_color
 -%}
 
+{% style %}
+	.s-banner .heading {
+		color: var(--text-color);
+	}
+	.s-banner .btn-outline {
+		color: var(--text-color);
+	}
+{% endstyle %}
 <div
 	class="c-banner f-h f-a-c f-w cr-cream"
 	style="--bg-color: {{ bg_color | default: '#c14b24' }}; --text-color: {{ text_color | default: '#fffaf1' }}; --hover-color: {{ hover_color | default: '#000000' }}"
 >
 	{%- if heading != blank -%}
-		<h1 class="t-h-3">{{ heading }}</h1>
+		<h1 class="heading t-h-3">{{ heading }}</h1>
 	{%- endif -%}
 
 	{%- if activate_chatbot and cta_label != blank -%}
