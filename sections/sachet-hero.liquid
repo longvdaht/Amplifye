@@ -26,7 +26,9 @@
 	The version is chosen by a small script before the options are drawn, so
 	the page never flickers between the two. It is saved on the cart as the
 	attribute "Price layout", so every order shows A or B under Additional
-	details, and sent to Clarity and the data layer when they are present.
+	details. It is also sent to Google Analytics 4 (user property
+	"price_layout" and event "price_layout_view"), to Clarity and Triple Whale
+	when they are on the page, and to the data layer.
 
 	Under Add to cart, the Total line shows the selected option's price and
 	terms. Prices come from the variant and its Recharge plan, so the page
@@ -666,10 +668,11 @@
 
 		/* ---- Record the price layout ------------------------------------------
 		   On the cart (so every order shows A or B under Additional details),
-		   in Clarity and in the data layer. The cart is updated once per
-		   browser session. */
+		   in Google Analytics 4, Clarity, Triple Whale and the data layer. The
+		   cart is updated once per browser session. */
 
 		var layout = window.amplifyePriceLayout || 'A';
+		var inEditor = {{ request.design_mode | json }};
 
 		try {
 			var sentKey = 'amp_price_layout_sent';
@@ -690,12 +693,57 @@
 		} catch (e) {}
 
 		try {
-			if (typeof window.clarity === 'function') window.clarity('set', 'price_layout', layout);
-		} catch (e) {}
-
-		try {
 			(window.dataLayer = window.dataLayer || []).push({ event: 'price_layout', price_layout: layout });
 		} catch (e) {}
+
+		/* Google Analytics 4. GA4 on this store runs through the Google & YouTube
+		   app, which only sends Shopify's standard events, so the page sends the
+		   version itself: the user property "price_layout" (A or B), which lets
+		   GA4 split visits and orders by version, and the event
+		   "price_layout_view". This tag has its own data layer (ampDataLayer) and
+		   sends no page views, so the app's tracking stays as it is. Nothing is
+		   sent from the theme editor. */
+		try {
+			if (!inEditor) {
+				var gaId = 'G-87KT8589Q2';
+				window.ampDataLayer = window.ampDataLayer || [];
+				var ampGtag = function () { window.ampDataLayer.push(arguments); };
+				if (!window.ampGtagLoaded) {
+					window.ampGtagLoaded = true;
+					var gaScript = document.createElement('script');
+					gaScript.async = true;
+					gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId + '&l=ampDataLayer';
+					document.head.appendChild(gaScript);
+					ampGtag('js', new Date());
+				}
+				ampGtag('set', 'user_properties', { price_layout: layout });
+				ampGtag('config', gaId, { send_page_view: false });
+				ampGtag('event', 'price_layout_view', { price_layout: layout });
+			}
+		} catch (e) {}
+
+		/* Clarity and Triple Whale: tagged straight away if their script is
+		   already on the page, otherwise once the page has finished loading. */
+		function whenAvailable(name, send) {
+			function attempt() {
+				if (typeof window[name] !== 'function') return false;
+				try { send(window[name]); } catch (e) {}
+				return true;
+			}
+			if (!attempt() && document.readyState !== 'complete') {
+				window.addEventListener('load', attempt, { once: true });
+			}
+		}
+
+		whenAvailable('clarity', function (clarity) {
+			clarity('set', 'price_layout', layout);
+		});
+
+		if (!inEditor) {
+			whenAvailable('TriplePixel', function (triplePixel) {
+				triplePixel('custom', 'abTestSegmentAssignment', { testId: 'sachets-price-layout', variantId: layout });
+			});
+		}
 
 		/* ---- Main image ---------------------------------------------------
 		   The main image is every img in the gallery showing the same file as
