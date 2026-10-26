@@ -93,7 +93,7 @@
           }
         },
         "flex_flex_badge_KrX9zn": {
-          "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
+          "type": "shopify://apps/flex-extensions/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
           "disabled": true,
           "settings": {
             "lomn": "yes",
@@ -161,7 +161,7 @@
         "onetime_word": "One-time",
         "regular_price": "",
         "cta_label": "Add to cart",
-        "layout_mode": "split",
+        "layout_mode": "a",
         "b_show_sachets": false,
         "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
         "gallery_layout": "stacked"
