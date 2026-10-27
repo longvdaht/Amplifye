@@ -5,7 +5,9 @@
 
 	Header (Jenny, 7 and 8 Oct): "P24 ENZYME" and "BENEFITS" are gone.
 	"THE SCIENCE" sits alone in the center and opens the sachet Science page
-	for the visitor's price layout: A or B. The logo opens the sachets home
+	for the visitor's price layout: A or B. With the price test over, the
+	"THE SCIENCE opens" setting keeps everyone on Science A (Ten32, 27 Oct:
+	visitors who saw B during the test were still sent to Science B). The logo opens the sachets home
 	page (Ten32, 27 Oct: the sachets have their own home page now).
 	BUY P24 (the jar) is hidden. On the sachets home page a setting shows it,
 	on phones too as on the jar's home page, and it opens the sachet page.
@@ -52,6 +54,7 @@
 	assign science_b_url = s.science_b_url | default: '/pages/sachets-science-b'
 	assign jar_url = s.jar_url | default: '/products/amplifye-p24'
 	assign home_url = s.home_url | default: sachet_url
+	assign price_layout = s.price_layout | default: 'a'
 -%}
 
 <style>
@@ -171,6 +174,7 @@
 			showBenefits: {% if s.show_benefits %}true{% else %}false{% endif %},
 			jar: {{ jar_url | json }},
 			home: {{ home_url | json }},
+			layoutMode: {{ price_layout | json }},
 			footerMenu: {% if s.show_footer_menu %}true{% else %}false{% endif %},
 			hosts: [{{ request.host | json }}, {{ shop.domain | json }}, {{ shop.permanent_domain | json }}]
 		};
@@ -211,8 +215,12 @@
 		var JAR_HANDLE = handleOf(pathOf(cfg.jar));
 		var HERE = cleanPath(location.pathname);
 
-		/* On a Science page, the page itself says which layout it belongs to. */
-		var PAGE_LAYOUT = HERE === SCIENCE_B ? 'B' : (HERE === SCIENCE_A ? 'A' : null);
+		/* One layout for everyone (the "THE SCIENCE opens" setting): that
+		   layout's pages, whatever the browser kept from the price test. */
+		var FIXED_LAYOUT = cfg.layoutMode === 'b' ? 'B' : (cfg.layoutMode === 'follow' ? null : 'A');
+
+		/* While the test runs, a Science page says which layout it belongs to. */
+		var PAGE_LAYOUT = FIXED_LAYOUT ? null : (HERE === SCIENCE_B ? 'B' : (HERE === SCIENCE_A ? 'A' : null));
 
 		/* The visitor's price layout, as the sachet page chose it: on the
 		   sachet page from its own script, elsewhere from ?layout= or what the
@@ -234,6 +242,7 @@
 		}
 
 		function currentLayout() {
+			if (FIXED_LAYOUT) return FIXED_LAYOUT;
 			if (PAGE_LAYOUT) return PAGE_LAYOUT;
 			var w = window.amplifyePriceLayout;
 			if (w === 'A' || w === 'B') return w;
@@ -557,6 +566,18 @@
 		{ "type": "text", "id": "home_url", "label": "Sachets home page", "info": "The logo and other links to the store's home page open this page. Empty: they open the sachet page.", "default": "/pages/sachets" },
 		{ "type": "text", "id": "science_url", "label": "The Science page for layout A", "default": "/pages/sachets-science" },
 		{ "type": "text", "id": "science_b_url", "label": "The Science page for layout B", "default": "/pages/sachets-science-b" },
+		{
+			"type": "select",
+			"id": "price_layout",
+			"label": "THE SCIENCE opens",
+			"options": [
+				{ "value": "a", "label": "Science page A, for everyone" },
+				{ "value": "b", "label": "Science page B, for everyone" },
+				{ "value": "follow", "label": "The visitor's price layout (A/B test)" }
+			],
+			"default": "a",
+			"info": "Match the Price layout setting on the sachet page (A for everyone since the test ended)."
+		},
 		{ "type": "checkbox", "id": "show_benefits", "label": "Show BENEFITS in the menu", "info": "Off (Jenny, 8 Oct). When on, it opens the page below.", "default": false },
 		{ "type": "text", "id": "benefits_url", "label": "Sachet Benefits page", "default": "/pages/sachets-benefits" },
 		{ "type": "text", "id": "jar_url", "label": "Jar product page", "info": "Links to it go to the sachet page; the menu item for it is hidden.", "default": "/products/amplifye-p24" },
