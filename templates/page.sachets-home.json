@@ -170,7 +170,7 @@
         "button_style": "primary",
         "btn_label": "Get P24",
         "btn_url": "shopify://products/sachets",
-        "btn_subtext": "",
+        "btn_subtext": "From $58.00 a month",
         "source_text": ""
       }
     },
@@ -207,7 +207,7 @@
         "button_style": "primary",
         "btn_label": "",
         "btn_url": "",
-        "btn_subtext": "",
+        "btn_subtext": "From $58.00 a month",
         "source_text": "<p><em>Source: </em>Dietary Protein and Muscle Mass: Translating Science to Application for the Age Health Benefit. NIH 2022 Jul John W Carbone.</p>"
       }
     },
@@ -312,7 +312,7 @@
       "settings": {
         "text_color": "#000000",
         "heading": "Digest More",
-        "subheading": "",
+        "subheading": "From $58.00",
         "content": "Try P24 for 30 days, worry free.",
         "content_richtext": "",
         "cta_label": "Get P24",
@@ -326,7 +326,7 @@
         "heading_font_size": 36,
         "mobile_text_below": true,
         "mobile_align": "other",
-        "code": ""
+        "code": "MBG15"
       }
     },
     "landing_testimonial_video": {
