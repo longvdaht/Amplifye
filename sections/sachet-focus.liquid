@@ -5,7 +5,8 @@
 
 	Header (Jenny, 7 and 8 Oct): "P24 ENZYME" and "BENEFITS" are gone.
 	"THE SCIENCE" sits alone in the center and opens the sachet Science page
-	for the visitor's price layout: A or B. The logo opens the sachet page.
+	for the visitor's price layout: A or B. The logo opens the sachets home
+	page (Ten32, 27 Oct: the sachets have their own home page now).
 	BUY P24 (the jar) is hidden. Cart and account stay.
 	On tablets and phones (below 1025px) the theme moves its menu into the
 	menu panel; here THE SCIENCE stays in the top bar too (Jenny, 8 Oct):
@@ -22,10 +23,11 @@
 	the header. Legal links stay and open in a new tab.
 
 	Every link on these pages:
-	  - the sachet page, the Science pages, cart, checkout, account, anchors
-	    on the page and outside sites: unchanged (on a Science page, links to
-	    the sachet page get that page's layout)
-	  - the home page and the jar's product page: the sachet page
+	  - the sachet page, the sachets home page, the Science pages, cart,
+	    checkout, account, anchors on the page and outside sites: unchanged
+	    (on a Science page, links to the sachet page get that page's layout)
+	  - the home page: the sachets home page (empty setting: the sachet page)
+	  - the jar's product page: the sachet page
 	  - the jar's The Science page: the sachet Science page (A or B)
 	  - the jar's Benefits page: switched off, its menu item hidden (a
 	    setting brings it back as the sachet Benefits page)
@@ -47,6 +49,7 @@
 	assign science_url = s.science_url | default: '/pages/sachets-science'
 	assign science_b_url = s.science_b_url | default: '/pages/sachets-science-b'
 	assign jar_url = s.jar_url | default: '/products/amplifye-p24'
+	assign home_url = s.home_url | default: sachet_url
 -%}
 
 <style>
@@ -159,6 +162,7 @@
 			benefits: {{ benefits_url | json }},
 			showBenefits: {% if s.show_benefits %}true{% else %}false{% endif %},
 			jar: {{ jar_url | json }},
+			home: {{ home_url | json }},
 			footerMenu: {% if s.show_footer_menu %}true{% else %}false{% endif %},
 			hosts: [{{ request.host | json }}, {{ shop.domain | json }}, {{ shop.permanent_domain | json }}]
 		};
@@ -191,6 +195,7 @@
 		}
 
 		var SACHET = pathOf(cfg.sachet);
+		var HOME = pathOf(cfg.home);
 		var BENEFITS = pathOf(cfg.benefits);
 		var SCIENCE_A = pathOf(cfg.scienceA);
 		var SCIENCE_B = pathOf(cfg.scienceB);
@@ -293,7 +298,11 @@
 
 			if (path === SACHET) return toSachet(url);
 			if (path === SCIENCE_A || path === SCIENCE_B) return null;
-			if (path === '/') return { to: sachetHref(hash) };
+			if (HOME && HOME !== SACHET && path === HOME) return null;
+			if (path === '/') {
+				if (HOME && HOME !== SACHET) return { to: cfg.home + hash };
+				return { to: sachetHref(hash) };
+			}
 			if (path === '/pages/the-science') return { to: scienceHref(hash), science: true, hash: hash };
 			if (path === '/pages/benefits' || (BENEFITS && path === BENEFITS)) {
 				if (cfg.showBenefits) return path === BENEFITS ? null : { to: cfg.benefits + hash };
@@ -534,9 +543,10 @@
 	"settings": [
 		{
 			"type": "paragraph",
-			"content": "Keeps visitors inside the sachet funnel: the sachet page and its two The Science pages (one for price layout A, one for B). Put this section first on each of those templates. It shows nothing itself."
+			"content": "Keeps visitors inside the sachet funnel: the sachets home page, the sachet page and its two The Science pages (one for price layout A, one for B). Put this section first on each of those templates. It shows nothing itself."
 		},
 		{ "type": "text", "id": "sachet_url", "label": "Sachet page", "default": "/products/sachets" },
+		{ "type": "text", "id": "home_url", "label": "Sachets home page", "info": "The logo and other links to the store's home page open this page. Empty: they open the sachet page.", "default": "/pages/sachets" },
 		{ "type": "text", "id": "science_url", "label": "The Science page for layout A", "default": "/pages/sachets-science" },
 		{ "type": "text", "id": "science_b_url", "label": "The Science page for layout B", "default": "/pages/sachets-science-b" },
 		{ "type": "checkbox", "id": "show_benefits", "label": "Show BENEFITS in the menu", "info": "Off (Jenny, 8 Oct). When on, it opens the page below.", "default": false },
