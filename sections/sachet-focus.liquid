@@ -7,7 +7,8 @@
 	"THE SCIENCE" sits alone in the center and opens the sachet Science page
 	for the visitor's price layout: A or B. The logo opens the sachets home
 	page (Ten32, 27 Oct: the sachets have their own home page now).
-	BUY P24 (the jar) is hidden. Cart and account stay.
+	BUY P24 (the jar) is hidden. On the sachets home page a setting shows it
+	on desktop, and it opens the sachet page. Cart and account stay.
 	On tablets and phones (below 1025px) the theme moves its menu into the
 	menu panel; here THE SCIENCE stays in the top bar too (Jenny, 8 Oct):
 	centered where there's room, otherwise between the logo and the cart
@@ -58,10 +59,13 @@
 		display: none !important;
 	}
 
-	/* BUY P24 links to the jar. */
+	/* BUY P24 links to the jar. Where it shows (the sachets home page), the
+	   script below sends it to the sachet page instead. */
+	{%- unless s.show_buy %}
 	.g-header__cta {
 		display: none !important;
 	}
+	{%- endunless %}
 
 	/* "P24 ENZYME" (the jar's product page) and "BENEFITS" are taken out of
 	   the menus here, before the page shows; the script below covers older
@@ -553,6 +557,7 @@
 		{ "type": "text", "id": "benefits_url", "label": "Sachet Benefits page", "default": "/pages/sachets-benefits" },
 		{ "type": "text", "id": "jar_url", "label": "Jar product page", "info": "Links to it go to the sachet page; the menu item for it is hidden.", "default": "/products/amplifye-p24" },
 		{ "type": "checkbox", "id": "show_account", "label": "Show the account icon", "default": true },
+		{ "type": "checkbox", "id": "show_buy", "label": "Show BUY P24", "info": "Desktop only. It opens the sachet page. On for the sachets home page.", "default": false },
 		{ "type": "checkbox", "id": "show_footer_menu", "label": "Show the footer menu", "info": "Off as on the sachet page so far. When on, store links in it are hidden the same way as in the header.", "default": false },
 		{ "type": "checkbox", "id": "show_footer_social", "label": "Show the footer social icons", "default": false }
 	],
