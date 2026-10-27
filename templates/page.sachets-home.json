@@ -20,7 +20,8 @@
         "jar_url": "/products/amplifye-p24",
         "show_account": true,
         "show_footer_menu": false,
-        "show_footer_social": false
+        "show_footer_social": false,
+        "show_buy": true
       }
     },
     "landing_hero_2_GhYqWU": {
