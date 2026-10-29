@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "sachet-focus": {
+      "type": "sachet-focus",
+      "settings": {
+        "sachet_url": "/products/sachets",
+        "benefits_url": "/pages/sachets-benefits",
+        "science_url": "/pages/sachets-science",
+        "jar_url": "/products/amplifye-p24",
+        "show_account": true,
+        "show_footer_menu": false,
+        "show_footer_social": false
+      }
+    },
+    "legal": {
+      "type": "sachet-legal",
+      "settings": {
+        "policy": "privacy_policy",
+        "heading": ""
+      }
+    }
+  },
+  "order": [
+    "sachet-focus",
+    "legal"
+  ]
+}
