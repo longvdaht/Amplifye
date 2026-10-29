@@ -1,0 +1,73 @@
+{% comment %}
+	Sachet legal page: one of the store's policies (Settings > Policies),
+	laid out like the regular policy pages, for the sachet funnel. It goes on
+	a page template after the Sachet funnel links section, so the page keeps
+	the sachet header and footer and has no route back to the jar
+	(Josh, 28 Oct). The text comes straight from the policy, so it is only
+	ever edited in Settings > Policies.
+{% endcomment %}
+
+{%- liquid
+	assign s = section.settings
+	case s.policy
+		when 'terms_of_service'
+			assign policy = shop.terms_of_service
+		when 'refund_policy'
+			assign policy = shop.refund_policy
+		when 'shipping_policy'
+			assign policy = shop.shipping_policy
+		else
+			assign policy = shop.privacy_policy
+	endcase
+	assign heading = s.heading | default: policy.title
+-%}
+
+{%- if policy != blank and policy.body != blank -%}
+	<div class="shopify-policy__container">
+		<div class="shopify-policy__title">
+			<h1>{{- heading | escape -}}</h1>
+		</div>
+		<div class="shopify-policy__body">
+			<div class="rte wysiwyg wysiwyg-page">
+				{{- policy.body -}}
+			</div>
+		</div>
+	</div>
+{%- elsif request.design_mode -%}
+	<div class="shopify-policy__container">
+		<p>This policy is empty. Add its text in Settings &gt; Policies.</p>
+	</div>
+{%- endif -%}
+
+{% schema %}
+{
+	"name": "Sachet legal page",
+	"tag": "section",
+	"class": "sachet-legal",
+	"settings": [
+		{
+			"type": "paragraph",
+			"content": "Shows one of the store's policies with the same layout as the regular policy pages. Edit the text in Settings > Policies."
+		},
+		{
+			"type": "select",
+			"id": "policy",
+			"label": "Policy",
+			"options": [
+				{ "value": "privacy_policy", "label": "Privacy policy" },
+				{ "value": "terms_of_service", "label": "Terms of service" },
+				{ "value": "refund_policy", "label": "Refund policy" },
+				{ "value": "shipping_policy", "label": "Shipping policy" }
+			],
+			"default": "privacy_policy"
+		},
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"info": "Empty: the policy's own title, as on the regular page."
+		}
+	],
+	"presets": [{ "name": "Sachet legal page" }]
+}
+{% endschema %}
