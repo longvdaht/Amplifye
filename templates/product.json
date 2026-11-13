@@ -32,6 +32,7 @@
         },
         "abra_promotions_banner_mDWhr8": {
           "type": "shopify://apps/abra-promotions/blocks/banner/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "name": "discount applied at checkout banner",
           "settings": {
             "name": "pdp banner",
             "banner_background_color": "#FFFAF1",
