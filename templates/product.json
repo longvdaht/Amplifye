@@ -30,12 +30,28 @@
           "type": "description",
           "settings": {}
         },
+        "abra_promotions_banner_mDWhr8": {
+          "type": "shopify://apps/abra-promotions/blocks/banner/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "settings": {
+            "name": "pdp banner",
+            "banner_background_color": "#FFFAF1",
+            "banner_border_color": "#C14B24",
+            "banner_color": "#C14B24",
+            "banner_icon_color": "#C14B24",
+            "banner_border_radius": 0,
+            "banner_font_size": 16,
+            "banner_icon_size": 16,
+            "banner_padding_y": 10,
+            "banner_padding_x": 10,
+            "text_align": "center"
+          }
+        },
         "hero_form_6tUAYX": {
           "type": "hero-form",
           "settings": {}
         },
         "flex_flex_badge_KrX9zn": {
-          "type": "shopify://apps/flex/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
+          "type": "shopify://apps/flex-extensions/blocks/flex-badge/7944fcd9-6423-42f1-9cd2-c38b5e996536",
           "disabled": true,
           "settings": {
             "lomn": "yes",
@@ -87,6 +103,7 @@
         "sub_title_HpXKiz",
         "okendo_star_rating_iiRUbw",
         "description_W8EtCK",
+        "abra_promotions_banner_mDWhr8",
         "hero_form_6tUAYX",
         "flex_flex_badge_KrX9zn",
         "icon_with_text_rrEtjF",
@@ -100,6 +117,65 @@
         "one_time_info": "",
         "notes": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, cure, or prevent any disease.",
         "gallery_layout": "stacked"
+      }
+    },
+    "s_protein_stats_7cYMii": {
+      "type": "s-protein-stats",
+      "name": "Protein Stats",
+      "settings": {
+        "heading": "P24 amplifyes all proteins.",
+        "subheading": "",
+        "proteins": [
+          "beef",
+          "chicken",
+          "tofu",
+          "atlantic-salmon",
+          "eggs",
+          "pork",
+          "whey-protein",
+          "brown-lentils",
+          "greek-yogurt"
+        ]
+      }
+    },
+    "s_how_p24_works_Ck3Hrn": {
+      "type": "s-how-p24-works",
+      "blocks": {
+        "step_bp7Kr4": {
+          "type": "step",
+          "settings": {
+            "step_title": "Activate the Enzyme",
+            "step_text": "P24 \"turns on\" in the acidic environment of your stomach, so it can begin to efficiently break down protein."
+          }
+        },
+        "step_qqi9Yn": {
+          "type": "step",
+          "settings": {
+            "step_title": "Unlock Proteins",
+            "step_text": "With precision during gastric digestion, P24 slices protein chains into smaller pieces, making them usable for the body."
+          }
+        },
+        "step_eidyNk": {
+          "type": "step",
+          "settings": {
+            "step_title": "Increase Absorption",
+            "step_text": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition."
+          }
+        }
+      },
+      "block_order": [
+        "step_bp7Kr4",
+        "step_qqi9Yn",
+        "step_eidyNk"
+      ],
+      "name": "How P24 Works",
+      "settings": {
+        "image": "shopify://shop_images/Frame_1533210083.png",
+        "image_position": "left",
+        "heading": "How P24 Works",
+        "cta_label": "Learn more about this scientific breakthrough.",
+        "video": "shopify://files/videos/f37e1bbfa4ef446fa76fcfd70509646c_1f9a921f-bb6f-4097-a4c8-c32450055acd.mp4",
+        "is_autoplay": false
       }
     },
     "s_brands_3axFpA": {
@@ -185,65 +261,6 @@
         "padding_right_mobile": 0,
         "padding_bottom_mobile": 25,
         "padding_left_mobile": 0
-      }
-    },
-    "s_how_p24_works_Ck3Hrn": {
-      "type": "s-how-p24-works",
-      "blocks": {
-        "step_bp7Kr4": {
-          "type": "step",
-          "settings": {
-            "step_title": "Activate the Enzyme",
-            "step_text": "P24 \"turns on\" in the acidic environment of your stomach, so it can begin to efficiently break down protein."
-          }
-        },
-        "step_qqi9Yn": {
-          "type": "step",
-          "settings": {
-            "step_title": "Unlock Proteins",
-            "step_text": "With precision during gastric digestion, P24 slices protein chains into smaller pieces, making them usable for the body."
-          }
-        },
-        "step_eidyNk": {
-          "type": "step",
-          "settings": {
-            "step_title": "Increase Absorption",
-            "step_text": "More amino acids and small peptides are now absorbable by the small intestine, delivering better nutrition."
-          }
-        }
-      },
-      "block_order": [
-        "step_bp7Kr4",
-        "step_qqi9Yn",
-        "step_eidyNk"
-      ],
-      "name": "How P24 Works",
-      "settings": {
-        "image": "shopify://shop_images/Frame_1533210083.png",
-        "image_position": "left",
-        "heading": "How P24 Works",
-        "cta_label": "Learn more about this scientific breakthrough.",
-        "video": "shopify://files/videos/f37e1bbfa4ef446fa76fcfd70509646c_1f9a921f-bb6f-4097-a4c8-c32450055acd.mp4",
-        "is_autoplay": false
-      }
-    },
-    "s_protein_stats_7cYMii": {
-      "type": "s-protein-stats",
-      "name": "Protein Stats",
-      "settings": {
-        "heading": "P24 amplifyes all proteins.",
-        "subheading": "",
-        "proteins": [
-          "beef",
-          "chicken",
-          "tofu",
-          "atlantic-salmon",
-          "eggs",
-          "pork",
-          "whey-protein",
-          "brown-lentils",
-          "greek-yogurt"
-        ]
       }
     },
     "feature_cards_DW37g4": {
@@ -597,6 +614,31 @@
     "product-purchase-bar": {
       "type": "product-purchase-bar",
       "settings": {}
+    },
+    "1794612392e53533c3": {
+      "type": "apps",
+      "blocks": {
+        "abra_promotions_banner_heexYH": {
+          "type": "shopify://apps/abra-promotions/blocks/banner/daa1493a-23b5-48bb-8cb5-7ab1267b4642",
+          "settings": {
+            "name": "abraBnr",
+            "banner_background_color": "#000000",
+            "banner_border_color": "#C14B24",
+            "banner_color": "#FFFFFF",
+            "banner_icon_color": "#FFFFFF",
+            "banner_border_radius": 0,
+            "banner_font_size": 16,
+            "banner_icon_size": 16,
+            "banner_padding_y": 10,
+            "banner_padding_x": 10,
+            "text_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "abra_promotions_banner_heexYH"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -618,6 +660,7 @@
     "blocks_GKJidi",
     "product-reviews",
     "s_faq_fbD3iH",
-    "product-purchase-bar"
+    "product-purchase-bar",
+    "1794612392e53533c3"
   ]
 }
