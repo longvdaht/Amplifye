@@ -19,6 +19,14 @@
       "g-announcement": {
         "type": "g-announcement",
         "blocks": {
+          "block_9e7Le9": {
+            "type": "block",
+            "disabled": true,
+            "settings": {
+              "message": "<p>The Black Friday Sale: Take an extra 26% off P24. GET P24</p>",
+              "url": "/products/amplifye-p24"
+            }
+          },
           "block_VMphUk": {
             "type": "block",
             "settings": {
@@ -28,6 +36,7 @@
           }
         },
         "block_order": [
+          "block_9e7Le9",
           "block_VMphUk"
         ],
         "settings": {
