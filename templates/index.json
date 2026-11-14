@@ -9,6 +9,58 @@
  */
 {
   "sections": {
+    "landing_hero_2_W7PegR": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "text_color": "#ffffff",
+        "heading": "Same protein.\nMore efficient digestion.*",
+        "subheading": "",
+        "content": "&nbsp;The Black Friday Sale: 26% off one-time orders and your first subscription order, applied automatically at checkout.&nbsp;",
+        "content_richtext": "",
+        "cta_label": "GET P24",
+        "cta_url": "shopify://products/amplifye-p24",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/Absorb_More_Protein.png",
+        "background_image_mobile": "shopify://shop_images/Absorb_More_Protein-Mobile.png",
+        "product": "amplifye-p24",
+        "custom_style": false,
+        "content_alignment": "right",
+        "heading_font_size": 36,
+        "mobile_text_below": false,
+        "mobile_align": "bottom_center",
+        "code": "",
+        "footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "show_from": "2026-11-15 00:00",
+        "show_until": "2026-11-30 00:00"
+      }
+    },
+    "landing_hero_2_LgK9Dr": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2)",
+      "settings": {
+        "text_color": "#ffffff",
+        "heading": "Same protein.\nMore efficient digestion.*",
+        "subheading": "",
+        "content": "&nbsp;Cyber Monday: 26% off one-time orders and your first subscription order, applied automatically at checkout.&nbsp;",
+        "content_richtext": "",
+        "cta_label": "GET P24",
+        "cta_url": "shopify://products/amplifye-p24",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/Absorb_More_Protein.png",
+        "background_image_mobile": "shopify://shop_images/Absorb_More_Protein-Mobile.png",
+        "product": "amplifye-p24",
+        "custom_style": false,
+        "content_alignment": "right",
+        "heading_font_size": 36,
+        "mobile_text_below": false,
+        "mobile_align": "bottom_center",
+        "code": "",
+        "footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "show_from": "2026-11-30 00:00",
+        "show_until": "2026-12-02 00:00"
+      }
+    },
     "landing_hero_2_GhYqWU": {
       "type": "landing-hero-2",
       "name": "Landing Hero (2)",
@@ -29,7 +81,10 @@
         "heading_font_size": 36,
         "mobile_text_below": false,
         "mobile_align": "bottom_center",
-        "code": ""
+        "code": "",
+        "footnote": "",
+        "show_from": "",
+        "show_until": "2026-11-15 00:00"
       }
     },
     "s_brands_3axFpA": {
@@ -497,11 +552,16 @@
         "heading_font_size": 36,
         "mobile_text_below": true,
         "mobile_align": "other",
-        "code": ""
+        "code": "",
+        "footnote": "",
+        "show_from": "",
+        "show_until": ""
       }
     }
   },
   "order": [
+    "landing_hero_2_W7PegR",
+    "landing_hero_2_LgK9Dr",
     "landing_hero_2_GhYqWU",
     "s_brands_3axFpA",
     "s_protein_stats_7cYMii",
