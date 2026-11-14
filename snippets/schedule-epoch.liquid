@@ -1,0 +1,61 @@
+{%- comment -%}
+  Prints the Unix time (in seconds) for a Pacific-time date and time typed like "2026-11-15 00:00".
+  Daylight saving is handled (PDT from the 2nd Sunday of March, PST from the 1st Sunday of November).
+  Prints nothing when the value is empty, and -1 when it isn't in that format.
+
+  Usage:
+  {%- capture start_time -%}{%- render 'schedule-epoch', value: section.settings.show_from -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign raw = value | strip | replace: 'T', ' '
+  if raw != blank
+    assign result = -1
+    assign parts = raw | split: ' '
+    assign date_parts = parts[0] | split: '-'
+    assign time_text = parts[1] | default: '00:00'
+    assign time_parts = time_text | split: ':'
+
+    if date_parts.size == 3 and time_parts.size >= 2
+      assign y = date_parts[0] | plus: 0
+      assign mo = date_parts[1] | plus: 0
+      assign d = date_parts[2] | plus: 0
+      assign h = time_parts[0] | plus: 0
+      assign mi = time_parts[1] | plus: 0
+
+      if y >= 2000 and mo >= 1 and mo <= 12 and d >= 1 and d <= 31 and h >= 0 and h <= 23 and mi >= 0 and mi <= 59
+        assign offset = '-08:00'
+        if mo > 3 and mo < 11
+          assign offset = '-07:00'
+        elsif mo == 3
+          assign march_first = y | append: '-03-01 12:00'
+          assign dow = march_first | date: '%w' | plus: 0
+          assign first_sunday = 7 | minus: dow | modulo: 7 | plus: 1
+          assign second_sunday = first_sunday | plus: 7
+          if d > second_sunday or d == second_sunday and h >= 2
+            assign offset = '-07:00'
+          endif
+        elsif mo == 11
+          assign november_first = y | append: '-11-01 12:00'
+          assign dow = november_first | date: '%w' | plus: 0
+          assign first_sunday = 7 | minus: dow | modulo: 7 | plus: 1
+          if d < first_sunday or d == first_sunday and h < 2
+            assign offset = '-07:00'
+          endif
+        endif
+
+        assign mo_text = mo | prepend: '0' | slice: -2, 2
+        assign d_text = d | prepend: '0' | slice: -2, 2
+        assign h_text = h | prepend: '0' | slice: -2, 2
+        assign mi_text = mi | prepend: '0' | slice: -2, 2
+        assign iso = y | append: '-' | append: mo_text | append: '-' | append: d_text | append: 'T' | append: h_text | append: ':' | append: mi_text | append: ':00' | append: offset
+        assign epoch_text = iso | date: '%s' | append: ''
+
+        unless epoch_text contains '-' or epoch_text contains ':' or epoch_text contains 'T'
+          assign result = epoch_text | plus: 0
+        endunless
+      endif
+    endif
+
+    echo result
+  endif
+-%}
