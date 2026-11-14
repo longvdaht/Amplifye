@@ -54,6 +54,41 @@
 					"type": "url",
 					"id": "url",
 					"label": "URL"
+				},
+				{
+					"type": "header",
+					"content": "Schedule",
+					"info": "Pacific time, typed like 2026-11-15 00:00. Leave both empty to always show. The theme editor shows every message so you can edit it."
+				},
+				{
+					"type": "text",
+					"id": "show_from",
+					"label": "Show from",
+					"placeholder": "2026-11-15 00:00"
+				},
+				{
+					"type": "text",
+					"id": "show_until",
+					"label": "Show until",
+					"info": "The message hides at this time.",
+					"placeholder": "2026-11-29 23:55"
+				},
+				{
+					"type": "select",
+					"id": "pages_mode",
+					"label": "Pages",
+					"options": [
+						{ "value": "all", "label": "Show on every page" },
+						{ "value": "exclude", "label": "Hide on the pages listed below" },
+						{ "value": "only", "label": "Show only on the pages listed below" }
+					],
+					"default": "all"
+				},
+				{
+					"type": "textarea",
+					"id": "pages",
+					"label": "Page list",
+					"info": "One per line. Matches part of the page address (like /products/amplifye-p24) or the template name (like sachets)."
 				}
 			]
 		}
@@ -70,10 +105,79 @@
 	assign autoplay_interval = section.settings.autoplay_interval
 -%}
 
-{%- if section.blocks.size > 0 -%}
-	<div class="g-announcement__blocks js-announcement-blocks">
-		{%- for block in section.blocks -%}
-			<div class="g-announcement__blocks__item{% if forloop.index == 1 %} is-active{% endif %} js-announcement-block">
+{%- liquid
+	assign announcement_now = 'now' | date: '%s' | plus: 0
+	assign announcement_page = template.name | append: '.' | append: template.suffix | append: ' ' | append: request.path
+	assign announcement_count = 0
+	assign announcement_has_active = false
+	assign announcement_has_schedule = false
+-%}
+
+{%- capture announcement_blocks -%}
+	{%- for block in section.blocks -%}
+		{%- liquid
+			assign show_here = true
+			unless request.design_mode
+				if block.settings.pages_mode == 'exclude' or block.settings.pages_mode == 'only'
+					assign page_matched = false
+					assign page_lines = block.settings.pages | newline_to_br | split: '<br />'
+					for page_line in page_lines
+						assign page_text = page_line | strip
+						if page_text != blank and announcement_page contains page_text
+							assign page_matched = true
+						endif
+					endfor
+					if block.settings.pages_mode == 'exclude' and page_matched
+						assign show_here = false
+					elsif block.settings.pages_mode == 'only' and page_matched == false
+						assign show_here = false
+					endif
+				endif
+			endunless
+		-%}
+		{%- if show_here -%}
+			{%- capture block_from -%}{%- render 'schedule-epoch', value: block.settings.show_from -%}{%- endcapture -%}
+			{%- capture block_until -%}{%- render 'schedule-epoch', value: block.settings.show_until -%}{%- endcapture -%}
+			{%- liquid
+				assign block_from = block_from | strip
+				assign block_until = block_until | strip
+				assign block_active = true
+				if block_from != blank
+					assign announcement_has_schedule = true
+					assign block_from_number = block_from | plus: 0
+					if block_from_number < 0 or announcement_now < block_from_number
+						assign block_active = false
+					endif
+				endif
+				if block_until != blank
+					assign announcement_has_schedule = true
+					assign block_until_number = block_until | plus: 0
+					if block_until_number < 0 or announcement_now >= block_until_number
+						assign block_active = false
+					endif
+				endif
+				if request.design_mode
+					assign block_active = true
+				endif
+				assign make_active = false
+				if block_active and announcement_has_active == false
+					assign make_active = true
+					assign announcement_has_active = true
+				endif
+				assign announcement_count = announcement_count | plus: 1
+			-%}
+			<div
+				class="g-announcement__blocks__item{% if make_active %} is-active{% endif %} js-announcement-block"
+				{% if block_from != blank %}
+					data-show-from="{{ block_from }}"
+				{% endif %}
+				{% if block_until != blank %}
+					data-show-until="{{ block_until }}"
+				{% endif %}
+				{% unless block_active %}
+					hidden
+				{% endunless %}
+			>
 				<div class="g-announcement__blocks__item__text t-l-3">
 					{{- block.settings.message -}}
 				</div>
@@ -86,11 +190,17 @@
 					></a>
 				{%- endif -%}
 			</div>
-		{%- endfor -%}
+		{%- endif -%}
+	{%- endfor -%}
+{%- endcapture -%}
+
+{%- if announcement_count > 0 -%}
+	<div class="g-announcement__blocks js-announcement-blocks">
+		{{- announcement_blocks -}}
 	</div>
 {%- endif -%}
 
-{%- if section.blocks.size > 1 -%}
+{%- if announcement_count > 1 -%}
 	<div
 		class="g-announcement__dots c f-h f-a-c f-j-c js-announcement-dots"
 		{% if autoplay == true %}
@@ -98,7 +208,7 @@
 		{% endif %}
 		data-autoplay-interval="{{- autoplay_interval -}}"
 	>
-		{%- for block in section.blocks -%}
+		{%- for i in (1..announcement_count) -%}
 			<button
 				type="button"
 				data-announcement-trigger="{{ forloop.index0 }}"
@@ -115,7 +225,7 @@
 {%- endif -%}
 
 <style>
-	{%- if section.blocks.size > 0 -%}
+	{%- if announcement_count > 0 -%}
 		.g-announcement {
 			--color: {{- text_color | default: '#000000' -}};
 			--background: {{- background_color | default: '#000000' -}};
@@ -127,3 +237,45 @@
 		}
 	{%- endif -%}
 </style>
+
+{%- if announcement_has_schedule and request.design_mode == false -%}
+	<script>
+		(function () {
+			var wrap = document.getElementById('shopify-section-{{ section.id }}');
+			if (!wrap) return;
+			var now = Date.now() / 1000;
+			var preview = new URLSearchParams(window.location.search).get('preview_at');
+			if (preview && !isNaN(Date.parse(preview))) now = Date.parse(preview) / 1000;
+			var dotsWrap = wrap.querySelector('.js-announcement-dots');
+			var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.querySelectorAll('[data-announcement-trigger]')) : [];
+			var items = Array.prototype.slice.call(wrap.querySelectorAll('.js-announcement-block'));
+			var kept = [];
+			items.forEach(function (item, index) {
+				var from = item.getAttribute('data-show-from');
+				var until = item.getAttribute('data-show-until');
+				var active = true;
+				if (from !== null && (Number(from) < 0 || now < Number(from))) active = false;
+				if (until !== null && (Number(until) < 0 || now >= Number(until))) active = false;
+				if (active) {
+					item.hidden = false;
+					kept.push(item);
+				} else {
+					item.remove();
+					if (dots[index]) dots[index].remove();
+				}
+			});
+			kept.forEach(function (item, index) {
+				item.classList.toggle('is-active', index === 0);
+			});
+			if (dotsWrap) {
+				var keptDots = dotsWrap.querySelectorAll('[data-announcement-trigger]');
+				Array.prototype.forEach.call(keptDots, function (dot, index) {
+					dot.setAttribute('data-announcement-trigger', index);
+					dot.classList.toggle('is-active', index === 0);
+				});
+				if (kept.length < 2) dotsWrap.remove();
+			}
+			if (!kept.length) wrap.style.display = 'none';
+		})();
+	</script>
+{%- endif -%}
