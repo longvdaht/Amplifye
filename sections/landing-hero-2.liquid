@@ -188,6 +188,13 @@
 			"info": "Small print under the button. Leave empty to hide."
 		},
 		{
+			"type": "checkbox",
+			"id": "compact_desktop_heading",
+			"label": "Smaller heading on desktop",
+			"info": "Fits a two-line heading next to the image on desktop. Phones aren't affected.",
+			"default": false
+		},
+		{
 			"type": "header",
 			"content": "Schedule",
 			"info": "Pacific time, typed like 2026-11-15 00:00. Leave both empty to always show. The theme editor always shows the section so you can edit it."
@@ -522,6 +529,15 @@
             margin-top: 100px;
         }
     }
+
+	{% if section.settings.compact_desktop_heading %}
+		@media (min-width: 1025px) {
+			{{ shopify_section_id }} .frontpage-hero__text { max-width: 900px; }
+			{{ shopify_section_id }} .frontpage-hero__heading { font-size: clamp(40px, 3.4vw, 54px); }
+			{{ shopify_section_id }} .landing-hero__text .landing-hero__text-content { margin-top: 24px; }
+			{{ shopify_section_id }} .frontpage-hero__content { font-size: 22px; max-width: 560px; margin: 0 auto; }
+		}
+	{% endif %}
 {% endstyle %}
 
 {%- liquid

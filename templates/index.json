@@ -11,9 +11,7 @@
   "sections": {
     "landing_hero_2_W7PegR": {
       "type": "landing-hero-2",
-      "custom_css": [
-        "@media (min-width:1025px){.frontpage-hero__text{max-width:900px!important}.frontpage-hero__heading{font-size:clamp(40px,3.4vw,54px)!important}.landing-hero__text-content{margin-top:24px!important}.frontpage-hero__content{font-size:22px!important;max-width:560px;margin:0 auto}}"
-      ],
+      "custom_css": [],
       "name": "Landing Hero (2) - Black Friday",
       "settings": {
         "text_color": "#ffffff",
@@ -50,7 +48,7 @@
         "cta_label": "GET P24",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/Hero_image_asset_FULL__11_15-12_1.png",
+        "background_image": "shopify://shop_images/Amber_Amplifye_P24_Hero_Jar.png",
         "background_image_mobile": "shopify://shop_images/Hero_image_asset_FULL__11_15-12_1.png",
         "product": "amplifye-p24",
         "custom_style": false,
