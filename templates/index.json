@@ -32,6 +32,7 @@
         "mobile_align": "top_center",
         "code": "",
         "footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "compact_desktop_heading": true,
         "show_from": "2026-11-15 00:00",
         "show_until": "2026-11-30 00:00"
       }
@@ -58,6 +59,7 @@
         "mobile_align": "top_center",
         "code": "",
         "footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "compact_desktop_heading": true,
         "show_from": "2026-11-30 00:00",
         "show_until": "2026-12-02 00:00"
       }
@@ -84,6 +86,7 @@
         "mobile_align": "bottom_center",
         "code": "",
         "footnote": "",
+        "compact_desktop_heading": false,
         "show_from": "",
         "show_until": "2026-11-15 00:00"
       }
@@ -555,6 +558,7 @@
         "mobile_align": "other",
         "code": "",
         "footnote": "",
+        "compact_desktop_heading": false,
         "show_from": "",
         "show_until": ""
       }
