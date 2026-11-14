@@ -253,10 +253,6 @@
 		assign schedule_active = true
 	endif
 
-	assign hero_image_loading = 'eager'
-	if schedule_active == false
-		assign hero_image_loading = 'lazy'
-	endif
 -%}
 
 {%- if has_schedule and request.design_mode -%}
@@ -568,7 +564,7 @@
 					"
 					sizes="(max-width: 1351px) 675px, 100vw"
 					alt="{{ background_image.alt | default: 'Banner image alt' }}"
-					loading="{{ hero_image_loading }}"
+					loading="eager"
 					{% if schedule_active %}fetchpriority="high"{% endif %}
 					class="desktop-image"
 					width="{{ background_image.width }}"
@@ -585,7 +581,7 @@
 					"
 					sizes="(max-width: 768px) 100vw, 100vw"
 					alt="{{ background_image_mobile.alt | default: 'Banner image alt' }}"
-					loading="{{ hero_image_loading }}"
+					loading="eager"
 					{% if schedule_active %}fetchpriority="high"{% endif %}
 					class="mobile-image"
 					width="{{ background_image_mobile.width }}"
