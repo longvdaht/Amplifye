@@ -176,6 +176,34 @@
 			"id": "code",
 			"label": "Code",
 			"default": "MBG15"
+		},
+		{
+			"type": "header",
+			"content": "Footnote"
+		},
+		{
+			"type": "text",
+			"id": "footnote",
+			"label": "Footnote",
+			"info": "Small print under the button. Leave empty to hide."
+		},
+		{
+			"type": "header",
+			"content": "Schedule",
+			"info": "Pacific time, typed like 2026-11-15 00:00. Leave both empty to always show. The theme editor always shows the section so you can edit it."
+		},
+		{
+			"type": "text",
+			"id": "show_from",
+			"label": "Show from",
+			"placeholder": "2026-11-15 00:00"
+		},
+		{
+			"type": "text",
+			"id": "show_until",
+			"label": "Show until",
+			"info": "The section hides at this time.",
+			"placeholder": "2026-11-29 23:55"
 		}
 	],
 	"presets": [
@@ -187,6 +215,90 @@
 {% endschema %}
 
 {% assign shopify_section_id = '#shopify-section-' | append: section.id %}
+
+{%- comment -%} Schedule: hide this section outside its Show from / Show until window (Pacific time). {%- endcomment -%}
+{%- capture schedule_from -%}{%- render 'schedule-epoch', value: section.settings.show_from -%}{%- endcapture -%}
+{%- capture schedule_until -%}{%- render 'schedule-epoch', value: section.settings.show_until -%}{%- endcapture -%}
+{%- liquid
+	assign schedule_from = schedule_from | strip
+	assign schedule_until = schedule_until | strip
+	assign has_schedule = false
+	assign schedule_active = true
+	assign schedule_invalid = false
+	assign schedule_now = 'now' | date: '%s' | plus: 0
+
+	if schedule_from != blank
+		assign has_schedule = true
+		assign schedule_from_number = schedule_from | plus: 0
+		if schedule_from_number < 0
+			assign schedule_invalid = true
+			assign schedule_active = false
+		elsif schedule_now < schedule_from_number
+			assign schedule_active = false
+		endif
+	endif
+
+	if schedule_until != blank
+		assign has_schedule = true
+		assign schedule_until_number = schedule_until | plus: 0
+		if schedule_until_number < 0
+			assign schedule_invalid = true
+			assign schedule_active = false
+		elsif schedule_now >= schedule_until_number
+			assign schedule_active = false
+		endif
+	endif
+
+	if request.design_mode
+		assign schedule_active = true
+	endif
+
+	assign hero_image_loading = 'eager'
+	if schedule_active == false
+		assign hero_image_loading = 'lazy'
+	endif
+-%}
+
+{%- if has_schedule and request.design_mode -%}
+	<div style="position: absolute; top: 12px; left: 12px; z-index: 5; padding: 6px 10px; background: {% if schedule_invalid %}#b00020{% else %}#000{% endif %}; color: #fff; font: 12px/1.4 Arial, sans-serif; pointer-events: none;">
+		{%- if schedule_invalid -%}
+			Schedule date not recognized. Type it like 2026-11-15 00:00.
+		{%- else -%}
+			Scheduled (Pacific time):
+			{% if section.settings.show_from != blank %}from {{ section.settings.show_from | escape }}{% endif %}
+			{% if section.settings.show_until != blank %}until {{ section.settings.show_until | escape }}{% endif %}
+		{%- endif -%}
+	</div>
+{%- endif -%}
+
+{%- if has_schedule and request.design_mode == false -%}
+	{%- if schedule_active == false -%}
+		<style id="schedule-hide-{{ section.id }}">
+			#shopify-section-{{ section.id }} { display: none !important; }
+		</style>
+	{%- endif -%}
+	<script>
+		(function () {
+			var from = {{ schedule_from | default: 'null' }};
+			var until = {{ schedule_until | default: 'null' }};
+			var now = Date.now() / 1000;
+			var preview = new URLSearchParams(window.location.search).get('preview_at');
+			if (preview && !isNaN(Date.parse(preview))) now = Date.parse(preview) / 1000;
+			var active = true;
+			if (from !== null && (from < 0 || now < from)) active = false;
+			if (until !== null && (until < 0 || now >= until)) active = false;
+			var id = 'schedule-hide-{{ section.id }}';
+			var hide = document.getElementById(id);
+			if (active && hide) hide.remove();
+			if (!active && !hide) {
+				hide = document.createElement('style');
+				hide.id = id;
+				hide.textContent = '#shopify-section-{{ section.id }} { display: none !important; }';
+				document.head.appendChild(hide);
+			}
+		})();
+	</script>
+{%- endif -%}
 
 {% style %}
     {{ shopify_section_id }} .landing-hero__text {
@@ -456,8 +568,8 @@
 					"
 					sizes="(max-width: 1351px) 675px, 100vw"
 					alt="{{ background_image.alt | default: 'Banner image alt' }}"
-					loading="eager"
-					fetchpriority="high"
+					loading="{{ hero_image_loading }}"
+					{% if schedule_active %}fetchpriority="high"{% endif %}
 					class="desktop-image"
 					width="{{ background_image.width }}"
 					height="{{ background_image.height }}"
@@ -473,8 +585,8 @@
 					"
 					sizes="(max-width: 768px) 100vw, 100vw"
 					alt="{{ background_image_mobile.alt | default: 'Banner image alt' }}"
-					loading="eager"
-					fetchpriority="high"
+					loading="{{ hero_image_loading }}"
+					{% if schedule_active %}fetchpriority="high"{% endif %}
 					class="mobile-image"
 					width="{{ background_image_mobile.width }}"
 					height="{{ background_image_mobile.height }}"
@@ -543,6 +655,11 @@
 							{% render 'simple-product-form', product: product, item: product, is_update_variant_url: true, cta_label: cta_label, button_class: btn_class, code: code %}
 						</div>
 					{%- endif -%}
+				{%- endif -%}
+				{%- if section.settings.footnote != blank -%}
+					<p class="landing-hero__footnote" style="margin-top: 24px; font-size: 12px; line-height: 1.4; opacity: 0.85;">
+						{{- section.settings.footnote | escape -}}
+					</p>
 				{%- endif -%}
 			</div>
 		{%- endif -%}
