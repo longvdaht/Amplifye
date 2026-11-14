@@ -21,23 +21,42 @@
         "blocks": {
           "block_9e7Le9": {
             "type": "block",
-            "disabled": true,
             "settings": {
               "message": "<p>The Black Friday Sale: Take an extra 26% off P24. GET P24</p>",
-              "url": "/products/amplifye-p24"
+              "url": "/products/amplifye-p24",
+              "show_from": "2026-11-15 00:00",
+              "show_until": "2026-11-30 00:00",
+              "pages_mode": "exclude",
+              "pages": "sachets\n/tools/recurring"
             }
           },
           "block_VMphUk": {
             "type": "block",
             "settings": {
               "message": "<p>Free US shipping on every order. Try for 30 days or your money back.</p>",
-              "url": "shopify://products/amplifye-p24"
+              "url": "shopify://products/amplifye-p24",
+              "show_from": "",
+              "show_until": "2026-11-15 00:00",
+              "pages_mode": "all",
+              "pages": ""
+            }
+          },
+          "block_ybymP6": {
+            "type": "block",
+            "settings": {
+              "message": "<p>Free US shipping on every order. Try for 30 days or your money back.</p>",
+              "url": "shopify://products/amplifye-p24",
+              "show_from": "2026-11-15 00:00",
+              "show_until": "2027-01-01 00:00",
+              "pages_mode": "only",
+              "pages": "sachets"
             }
           }
         },
         "block_order": [
           "block_9e7Le9",
-          "block_VMphUk"
+          "block_VMphUk",
+          "block_ybymP6"
         ],
         "settings": {
           "background_color": "#000000",
