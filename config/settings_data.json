@@ -30,6 +30,28 @@
               "pages": "sachets\n/tools/recurring"
             }
           },
+          "block_7mfM7c": {
+            "type": "block",
+            "settings": {
+              "message": "<p>Last chance: Extra 26% off P24 ends tonight. GET P24</p>",
+              "url": "/products/amplifye-p24",
+              "show_from": "2026-12-01 00:00",
+              "show_until": "2026-12-02 00:00",
+              "pages_mode": "exclude",
+              "pages": "sachets\n/tools/recurring"
+            }
+          },
+          "block_i4a6cK": {
+            "type": "block",
+            "settings": {
+              "message": "<p>Cyber Monday: Take an extra 26% off P24. GET P24</p>",
+              "url": "/products/amplifye-p24",
+              "show_from": "2026-11-30 00:00",
+              "show_until": "2026-12-01 00:00",
+              "pages_mode": "exclude",
+              "pages": "sachets\n/tools/recurring"
+            }
+          },
           "block_VMphUk": {
             "type": "block",
             "settings": {
@@ -55,6 +77,8 @@
         },
         "block_order": [
           "block_9e7Le9",
+          "block_7mfM7c",
+          "block_i4a6cK",
           "block_VMphUk",
           "block_ybymP6"
         ],
