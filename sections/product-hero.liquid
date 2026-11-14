@@ -176,6 +176,13 @@
 			],
 			"default": "thumbnail_slider",
 			"label": "t:sections.main-product.settings.gallery_layout.label"
+		},
+		{
+			"type": "checkbox",
+			"id": "app_blocks_below_form",
+			"label": "Show app blocks placed after Hero form under the buy button",
+			"info": "When off, every app block shows above the purchase options.",
+			"default": false
 		}
 	]
 }
@@ -183,12 +190,34 @@
 
 {%- render 'product-hero-gallery', product: product -%}
 
+{%- liquid
+  assign hero_form_index = -1
+  if section.settings.app_blocks_below_form
+    for block in section.blocks
+      if block.type == 'hero-form'
+        assign hero_form_index = forloop.index0
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- if hero_form_index != -1 -%}
+  <style>
+    #shopify-section-{{ section.id }} .product-hero__form + .shopify-app-block {
+      margin-top: calc(16px - var(--hero-space-lg, 40px));
+    }
+  </style>
+{%- endif -%}
+
 <div class="product-hero__content f-v f-j-s f-a-s">
   <div class="product-hero__header f-v">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when '@app' -%}
-          {% render block %}
+          {%- if hero_form_index == -1 or forloop.index0 < hero_form_index -%}
+            {% render block %}
+          {%- endif -%}
         {%- when 'title' -%}
           <h1 class="t-h-2 product-hero__header">{{ product.title }}</h1>
         {%- when 'price' -%}
@@ -210,6 +239,10 @@
   </div>
 	{%- for block in section.blocks -%}
 		{%- case block.type -%}
+      {%- when '@app' -%}
+        {%- if hero_form_index != -1 and forloop.index0 > hero_form_index -%}
+          {% render block %}
+        {%- endif -%}
       {%- when 'icon-with-text' -%}
         {% render 'icon-with-text', block: block %}
       {%- when 'hero-form' -%}
