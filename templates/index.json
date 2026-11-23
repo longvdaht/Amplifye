@@ -64,6 +64,33 @@
         "show_until": "2026-12-02 00:00"
       }
     },
+    "landing_hero_2_DJqMxW": {
+      "type": "landing-hero-2",
+      "name": "Landing Hero (2) - The Holiday Sale",
+      "settings": {
+        "text_color": "#ffffff",
+        "heading": "The Holiday Sale:\n20% Off",
+        "subheading": "",
+        "content": "Same protein, more efficient digestion* for 20% less. Good on one-time orders and your first subscription order, applied automatically at checkout.",
+        "content_richtext": "",
+        "cta_label": "GET P24",
+        "cta_url": "shopify://products/amplifye-p24",
+        "button_style": "primary",
+        "background_image": "shopify://shop_images/Amber_Amplifye_P24_Hero_Jar.png",
+        "background_image_mobile": "shopify://shop_images/Hero_image_asset_FULL__11_15-12_1.png",
+        "product": "amplifye-p24",
+        "custom_style": false,
+        "content_alignment": "right",
+        "heading_font_size": 36,
+        "mobile_text_below": false,
+        "mobile_align": "top_center",
+        "code": "",
+        "footnote": "*In lab stomach digestion testing, vs. without P24.",
+        "compact_desktop_heading": true,
+        "show_from": "2026-12-02 00:00",
+        "show_until": "2026-12-20 23:59"
+      }
+    },
     "landing_hero_2_GhYqWU": {
       "type": "landing-hero-2",
       "name": "Landing Hero (2)",
@@ -567,6 +594,7 @@
   "order": [
     "landing_hero_2_W7PegR",
     "landing_hero_2_LgK9Dr",
+    "landing_hero_2_DJqMxW",
     "landing_hero_2_GhYqWU",
     "s_brands_3axFpA",
     "s_protein_stats_7cYMii",
