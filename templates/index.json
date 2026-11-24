@@ -76,7 +76,7 @@
         "cta_label": "GET P24",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "primary",
-        "background_image": "shopify://shop_images/amplifye-jar-orange-fixed-v4_34bf5658-faa6-4d0c-b2cd-4a3199b9f8a6.png",
+        "background_image": "shopify://shop_images/Hero_BG_image_desktop.png",
         "background_image_mobile": "shopify://shop_images/Hero_image_asset_FULL__11_15-12_1.png",
         "product": "amplifye-p24",
         "custom_style": false,
@@ -88,7 +88,7 @@
         "footnote": "*In lab stomach digestion testing, vs. without P24.",
         "compact_desktop_heading": true,
         "show_from": "2026-12-02 00:00",
-        "show_until": "2026-12-20 23:59"
+        "show_until": "2027/01/01 00:00"
       }
     },
     "landing_hero_2_GhYqWU": {
@@ -100,7 +100,7 @@
         "subheading": "",
         "content": "The patented digestive enzyme designed to unlock more protein and nutrients your body needs.",
         "content_richtext": "",
-        "cta_label": "Unlock More Protein",
+        "cta_label": "GET P24",
         "cta_url": "shopify://products/amplifye-p24",
         "button_style": "primary",
         "background_image": "shopify://shop_images/Absorb_More_Protein.png",
@@ -114,8 +114,8 @@
         "code": "",
         "footnote": "",
         "compact_desktop_heading": false,
-        "show_from": "",
-        "show_until": "2026-11-15 00:00"
+        "show_from": "2027-01-01 00:00",
+        "show_until": ""
       }
     },
     "s_brands_3axFpA": {

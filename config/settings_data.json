@@ -57,11 +57,12 @@
           },
           "block_VMphUk": {
             "type": "block",
+            "name": "Block - Free US shipping + 30-day promise",
             "settings": {
               "message": "<p>Free US shipping on every order. Try for 30 days or your money back.</p>",
               "url": "shopify://products/amplifye-p24",
-              "show_from": "",
-              "show_until": "2026-11-15 00:00",
+              "show_from": "2027-01-01 00:00",
+              "show_until": "",
               "pages_mode": "all",
               "pages": ""
             }
@@ -72,7 +73,7 @@
               "message": "<p>Free US shipping on every order. Try for 30 days or your money back.</p>",
               "url": "shopify://products/amplifye-p24",
               "show_from": "2026-11-15 00:00",
-              "show_until": "2027-01-01 00:00",
+              "show_until": "2030-01-01 00:00",
               "pages_mode": "only",
               "pages": "sachets"
             }
